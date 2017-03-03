@@ -15,3 +15,34 @@ main {
 aside {
   background: #aaa;
 }
+
+#dokuwiki__aside {
+	width: 15em;
+}
+
+#dokuwiki__toc {
+	width: 7.5em;
+}
+
+#moncontainer {
+	justify-content: center;
+}
+
+@media (max-width: 800px) {
+  #dokuwiki__aside,
+  #dokuwiki__toc {
+    width: 100%;
+  }
+}
+
+@media (min-width: 801px) {
+  #dokuwiki__toc {
+    order: 3;
+  }
+
+	#moncontainer {
+	max-width: 60em;
+	margin: 0 auto 0 auto;
+	}
+}
+

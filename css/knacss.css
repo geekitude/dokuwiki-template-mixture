@@ -1330,6 +1330,22 @@ ul.is-unstyled, ul.unstyled {
   width: 300px;
 }
 
+.wsidebar {
+	width: 15em;
+}
+
+.wtoc {
+	width: 7.5em;
+}
+
+#moncontainer {
+	justify-content: center;
+}
+
+/*#main {
+	min-width: 50%;
+}*/
+
 @media (min-width: 401px) {
   .w400p {
     width: 400px;
@@ -1349,6 +1365,24 @@ ul.is-unstyled, ul.unstyled {
   .w800p {
     width: 800px;
   }
+}
+
+@media (max-width: 800px) {
+  .wsidebar,
+  .wtoc {
+    width: 100%;
+  }
+}
+
+@media (min-width: 801px) {
+  .wtoc {
+    order: 3;
+  }
+
+#moncontainer {
+	max-width: 60em;
+	margin: 0 auto 0 auto;
+}
 }
 
 @media (min-width: 961px) {
