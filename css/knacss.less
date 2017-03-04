@@ -174,8 +174,8 @@ h1 {
  * Add the correct background and color in IE 9-.
  */
 mark {
-  background-color: #ff0;
-  color: #000;
+  background-color: @ini_highlight;
+  color: @ini_text;
 }
 
 /**
@@ -338,7 +338,7 @@ button:-moz-focusring,
  * Change the border, margin, and padding in all browsers (opinionated).
  */
 fieldset {
-  border: 1px solid #c0c0c0;
+  border: 1px solid @ini_border;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
@@ -451,18 +451,18 @@ html {
 
 body {
   font-size: 1.6rem;
-  background-color: #fff;
-  color: #000;
+  background-color: @ini_color_white;
+  color: @ini_text;
   font-family: sans-serif;
   line-height: 1.5;
 }
 
 a {
-  color: #333;
+  color: @ini_color_primary;
 }
 
 a:focus, a:hover, a:active {
-  color: #000;
+  color: @ini_text;
 }
 
 ul,
@@ -711,13 +711,13 @@ mark {
 
 kbd {
   padding: 0 2px;
-  border: 1px solid #999;
+  border: 1px solid @ini_color_dark-gray;
 }
 
 code {
   padding: 2px 4px;
   background: rgba(0, 0, 0, 0.04);
-  color: #b11;
+  color: @ini_color_red;
 }
 
 pre code {
@@ -793,26 +793,26 @@ hr {
   margin: 1em 0 2em;
   padding: 0;
   border: 0;
-  color: #ccc;
-  background-color: #ccc;
+  color: @ini_border;
+  background-color: @ini_border;
 }
 
 /* tables */
 table,
 .table {
-  border: 1px solid #ccc;
+  border: 1px solid @ini_border;
 }
 
 caption {
   padding: 1rem;
-  color: #555;
+  color: @ini_color_dark-gray;
   font-style: italic;
 }
 
 td,
 th {
   padding: 0.3em 0.8em;
-  border: 1px #aaa dotted;
+  border: 1px @ini_color_dark-gray dotted;
   text-align: left;
 }
 
@@ -932,7 +932,7 @@ input,
 optgroup,
 select,
 textarea {
-  color: #000;
+  color: @ini_text;
 }
 
 label {
@@ -965,12 +965,12 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
 }
 
 ::-webkit-input-placeholder {
-  color: #777;
+  color: @ini_color_dark-gray;
 }
 
 input:-moz-placeholder,
 textarea:-moz-placeholder {
-  color: #777;
+  color: @ini_color_dark-gray;
 }
 
 .btn:focus,
