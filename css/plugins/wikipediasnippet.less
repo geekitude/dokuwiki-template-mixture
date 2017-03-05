@@ -5,10 +5,30 @@ dl.wpsnip {
   overflow: hidden;
   /* add some consistency (Blockquote plugin) */
   border: 1px dotted @ini_border;
+  margin: 0 auto 1.5rem auto !important;
 }
+
+dl.wpsnip dd {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
 dl.wpsnip dt em,
 dl.wpsnip dd div.wplicense {
   /* Mixture style (more compact and subtle) */
   font-size: 1.3rem;
   color: @ini_text_neu;
+}
+
+dl.wpsnip dt em {
+  /* Mixture style (more compact and subtle) */
+  line-height: 300% !important;
+}
+
+dl.wpsnip dd blockquote::before {
+  content: "\201C";
+  left: -1.4rem;
+  top: -1.4rem;
+  font-family: @ini_font_headings, serif;
+  font-size: 10rem;
+  color: rgba(150, 150, 150, 0.25);
 }

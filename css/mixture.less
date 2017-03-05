@@ -10,6 +10,17 @@ body {
   margin-left: auto;
 }
 
+blockquote {
+  margin: 0 0 1.5rem 0;
+  padding: 0 0 0 1rem;
+  line-height: 3rem;
+  border-left: .4rem solid @ini_color_primary;
+}  
+
+blockquote::before {
+  content: "";
+}
+
 #dokuwiki__aside {
 	width: @ini_sidebar_width;
 }

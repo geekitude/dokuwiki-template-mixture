@@ -6,17 +6,31 @@
   /* Mixture style (centered) */
   margin: 0 auto 1.5rem auto !important;
   /* Mixture style (more compact) */
-  padding: 1em 1em 0 1em;
-  /* add some consistency (Blockquote plugin) */
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  /* add some consistency (WikipediaSnippet plugin) */
   border-radius: 5px;
 }
+
+.dokuwiki blockquote.blockquote-plugin {
+  /* use KNACCS' nice scallable character instead of gif */
+  background-image: none;
+}
+
+.dokuwiki blockquote.blockquote-plugin::before {
+  /* use KNACCS' nice scallable character instead of gif */
+  content: "\201C";
+  font-family: @ini_font_headings, serif;
+  font-size: 10rem;
+  color: rgba(150, 150, 150, 0.25);
+}
+
 .dokuwiki cite.blockquote-plugin {
   /* Mixture style (more compact and subtle) */
   font-size: 1.3rem;
   color: @ini_text_neu;
 }
 
-/* Remove char before author */
+/* Uncomment following CSS rule if you want to remove the character before author */
 /*
-.dokuwiki blockquote.blockquote-plugin cite.blockquote-plugin:before { content: "" !important; }
+.dokuwiki blockquote.blockquote-plugin cite.blockquote-plugin:before { content: ""; }
 */
