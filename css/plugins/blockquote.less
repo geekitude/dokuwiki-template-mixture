@@ -1,9 +1,22 @@
 /* Votre Style */
 
-blockquote.blockquote-plugin {
+.dokuwiki blockquote.blockquote-plugin {
   /* prevent blockquote to interfere with ToC when there's one */
   overflow: hidden;
-  /* Mixture style */
+  /* Mixture style (centered) */
   margin: 0 auto 1.5rem auto !important;
-  max-width: 80%;
+  /* Mixture style (more compact) */
+  padding: 1em 1em 0 1em;
+  /* add some consistency (Blockquote plugin) */
+  border-radius: 5px;
 }
+.dokuwiki cite.blockquote-plugin {
+  /* Mixture style (more compact and subtle) */
+  font-size: 1.3rem;
+  color: @ini_text_neu;
+}
+
+/* Remove char before author */
+/*
+.dokuwiki blockquote.blockquote-plugin cite.blockquote-plugin:before { content: "" !important; }
+*/

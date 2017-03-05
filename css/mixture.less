@@ -4,13 +4,18 @@ html {
   background-color: @ini_color_light-gray;
 }
 
+body {
+  max-width: @ini_site_width;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 #dokuwiki__aside {
-	width: 15em;
+	width: @ini_sidebar_width;
 }
 
 #dw__toc {
-	width: 7.5em;
+	width: @ini_toc_width;
 }
 
 #moncontainer {
