@@ -23,7 +23,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
   </head>
-  <body id="dokuwiki__top" class="boxed <?php echo tpl_classes(); ?>">
+  <body id="dokuwiki__top" class="<?php echo tpl_classes(); ?>">
     <?php tpl_includeFile('header.html') ?>
     <!-- ********** HEADER ********** -->
     <header id="dokuwiki__header" role="banner" class="pam">

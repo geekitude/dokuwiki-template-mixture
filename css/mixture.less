@@ -3,9 +3,6 @@
 html {
   background-color: @ini_color_light-gray;
 }
-body.boxed {
-  margin: 1%;
-}
 
 
 #dokuwiki__aside {
@@ -20,6 +17,12 @@ body.boxed {
 	justify-content: center;
 }
 
+@media (min-width: 401px) {
+}
+
+@media (min-width: 701px) {
+}
+
 @media (max-width: 800px) {
   #dokuwiki__aside,
   #dw__toc {
@@ -28,10 +31,17 @@ body.boxed {
 }
 
 @media (min-width: 801px) {
-
+  html {
+    padding: 1%;
+  }
 	#moncontainer {
 	max-width: 60em;
 	margin: 0 auto 0 auto;
 	}
 }
 
+@media (min-width: 961px) {
+  html {
+    padding: 1.5%;
+  }
+}
