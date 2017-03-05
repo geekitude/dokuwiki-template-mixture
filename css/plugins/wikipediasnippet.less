@@ -5,11 +5,11 @@ dl.wpsnip {
   overflow: hidden;
   /* add some consistency (Blockquote plugin) */
   border: 1px dotted @ini_border;
-  margin: 0 auto 1.5rem auto !important;
+  margin: 0 auto @ini_spacer auto !important;
 }
 
 dl.wpsnip dd {
-  padding: 1.5rem 1.5rem 0 1.5rem;
+  padding: @ini_spacer @ini_spacer 0 @ini_spacer;
 }
 
 dl.wpsnip dt em,
@@ -27,8 +27,8 @@ dl.wpsnip dt em {
 dl.wpsnip dd blockquote::before {
   content: "\201C";
   left: -1.4rem;
-  top: -1.4rem;
+  top: -2.8rem;
   font-family: @ini_font_headings, serif;
-  font-size: 10rem;
+  font-size: 15rem;
   color: rgba(150, 150, 150, 0.25);
 }

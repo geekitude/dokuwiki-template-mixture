@@ -11,14 +11,20 @@ body {
 }
 
 blockquote {
-  margin: 0 0 1.5rem 0;
-  padding: 0 0 0 1rem;
+  margin: 0 0 @ini_spacer 0;
+  padding: 0 0 0 calc(@ini_spacer / 2);
   line-height: 3rem;
-  border-left: .4rem solid @ini_color_primary;
+  border-left: 4px solid @ini_color_primary;
 }  
 
 blockquote::before {
   content: "";
+}
+
+ul,
+p,
+pre {
+  margin: 0 0 @ini_spacer 0;
 }
 
 #dokuwiki__aside {
