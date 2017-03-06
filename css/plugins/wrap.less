@@ -5,11 +5,13 @@ div.plugin_wrap {
   margin-bottom: @ini_spacer !important;
 }
 
-/*
 div.plugin_wrap {
-  max-width: calc(100% - @ini_toc_width - @ini_spacer - 5px) !important;
+  /* Make sure WRAP div is never larger than content with expanded ToC */
+  max-width: calc(100% - @ini_toc_width - @ini_spacer - 5px);
+  /* Add the following rule to userstyle to override this limitation
+    max-width: 100% !important;
+  */
 }
-*/
 
 [dir=ltr] .dokuwiki div.wrap_info,
 [dir=ltr] .dokuwiki div.wrap_important,
@@ -21,13 +23,13 @@ div.plugin_wrap {
   /* vertically center paragraphs inside wrap elements with icons */
     padding: @ini_spacer @ini_spacer 0 70px;
 }
-[dir=ltr] .dokuwiki div.wrap_info,
-[dir=ltr] .dokuwiki div.wrap_important,
-[dir=ltr] .dokuwiki div.wrap_alert,
-[dir=ltr] .dokuwiki div.wrap_tip,
-[dir=ltr] .dokuwiki div.wrap_help,
-[dir=ltr] .dokuwiki div.wrap_todo,
-[dir=ltr] .dokuwiki div.wrap_download {
+[dir=rtl] .dokuwiki div.wrap_info,
+[dir=rtl] .dokuwiki div.wrap_important,
+[dir=rtl] .dokuwiki div.wrap_alert,
+[dir=rtl] .dokuwiki div.wrap_tip,
+[dir=rtl] .dokuwiki div.wrap_help,
+[dir=rtl] .dokuwiki div.wrap_todo,
+[dir=rtl] .dokuwiki div.wrap_download {
   /* vertically center paragraphs inside wrap elements with icons */
     padding: @ini_spacer 70px 0 @ini_spacer;
 }
