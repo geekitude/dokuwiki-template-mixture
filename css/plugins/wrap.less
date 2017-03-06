@@ -1,4 +1,33 @@
 /* Votre Style */
 
 div.plugin_wrap {
+  /* Mixture style */
+  margin: 0 auto @ini_spacer auto !important;
+}
+
+/*
+div.plugin_wrap {
+  max-width: calc(100% - @ini_toc_width - @ini_spacer - 5px) !important;
+  margin: 0 auto @ini_spacer auto !important;
+}
+*/
+
+.dokuwiki div.wrap_info,
+.dokuwiki div.wrap_important,
+.dokuwiki div.wrap_alert,
+.dokuwiki div.wrap_tip,
+.dokuwiki div.wrap_help,
+.dokuwiki div.wrap_todo,
+.dokuwiki div.wrap_download {
+  /* vertically center paragraphs inside wrap elements with icons */
+    padding: @ini_spacer @ini_spacer 0 70px;
+}
+.dokuwiki div.wrap_box,
+.dokuwiki div.wrap_danger,
+.dokuwiki div.wrap_warning,
+.dokuwiki div.wrap_caution,
+.dokuwiki div.wrap_notice,
+.dokuwiki div.wrap_safety {
+  /* vertically center paragraphs inside wrap elements with icons */
+    padding: @ini_spacer @ini_spacer 0 @ini_spacer;
 }
