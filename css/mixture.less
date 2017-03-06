@@ -12,10 +12,18 @@ body {
 
 blockquote {
   margin: 0 0 @ini_spacer 0;
-  padding: 0 0 0 calc(@ini_spacer / 2);
   line-height: 3rem;
+}
+
+[dir=ltr] blockquote {
+  padding: 0 0 0 calc(@ini_spacer / 2);
   border-left: 4px solid @ini_color_primary;
-}  
+}
+
+[dir=rtl] blockquote {
+  padding: 0 calc(@ini_spacer / 2) 0 0;
+  border-right: 4px solid @ini_color_primary;
+}
 
 blockquote::before {
   content: "";
@@ -38,6 +46,14 @@ table {
 
 #dw__toc {
 	width: @ini_toc_width;
+}
+
+[dir=ltr] #dw__toc {
+  margin: 0 0 @ini_spacer @ini_spacer;
+}
+
+[dir=rtl] #dw__toc {
+  margin: 0 @ini_spacer @ini_spacer 0;
 }
 
 #moncontainer {

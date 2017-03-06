@@ -11,23 +11,43 @@ div.plugin_wrap {
 }
 */
 
-.dokuwiki div.wrap_info,
-.dokuwiki div.wrap_important,
-.dokuwiki div.wrap_alert,
-.dokuwiki div.wrap_tip,
-.dokuwiki div.wrap_help,
-.dokuwiki div.wrap_todo,
-.dokuwiki div.wrap_download {
+[dir=ltr] .dokuwiki div.wrap_info,
+[dir=ltr] .dokuwiki div.wrap_important,
+[dir=ltr] .dokuwiki div.wrap_alert,
+[dir=ltr] .dokuwiki div.wrap_tip,
+[dir=ltr] .dokuwiki div.wrap_help,
+[dir=ltr] .dokuwiki div.wrap_todo,
+[dir=ltr] .dokuwiki div.wrap_download {
   /* vertically center paragraphs inside wrap elements with icons */
     padding: @ini_spacer @ini_spacer 0 70px;
 }
+[dir=ltr] .dokuwiki div.wrap_info,
+[dir=ltr] .dokuwiki div.wrap_important,
+[dir=ltr] .dokuwiki div.wrap_alert,
+[dir=ltr] .dokuwiki div.wrap_tip,
+[dir=ltr] .dokuwiki div.wrap_help,
+[dir=ltr] .dokuwiki div.wrap_todo,
+[dir=ltr] .dokuwiki div.wrap_download {
+  /* vertically center paragraphs inside wrap elements with icons */
+    padding: @ini_spacer 70px 0 @ini_spacer;
+}
 
-.dokuwiki div.wrap_box,
-.dokuwiki div.wrap_danger,
-.dokuwiki div.wrap_warning,
-.dokuwiki div.wrap_caution,
-.dokuwiki div.wrap_notice,
-.dokuwiki div.wrap_safety {
+[dir=ltr] .dokuwiki div.wrap_box,
+[dir=ltr] .dokuwiki div.wrap_danger,
+[dir=ltr] .dokuwiki div.wrap_warning,
+[dir=ltr] .dokuwiki div.wrap_caution,
+[dir=ltr] .dokuwiki div.wrap_notice,
+[dir=ltr] .dokuwiki div.wrap_safety {
+  /* vertically center paragraphs inside wrap elements without icons */
+    padding: @ini_spacer @ini_spacer 0 @ini_spacer;
+}
+
+[dir=rtl] .dokuwiki div.wrap_box,
+[dir=rtl] .dokuwiki div.wrap_danger,
+[dir=rtl] .dokuwiki div.wrap_warning,
+[dir=rtl] .dokuwiki div.wrap_caution,
+[dir=rtl] .dokuwiki div.wrap_notice,
+[dir=rtl] .dokuwiki div.wrap_safety {
   /* vertically center paragraphs inside wrap elements without icons */
     padding: @ini_spacer @ini_spacer 0 @ini_spacer;
 }
