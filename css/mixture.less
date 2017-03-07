@@ -40,9 +40,18 @@ table {
   width: auto;
 }
 
+#dokuwiki__aside h3.toggle,
+#dw__toc h3.toggle {
+  margin: .2em;
+}
+
 #dokuwiki__aside {
 	width: @ini_sidebar_width;
   background-color: @ini_color_white;
+}
+
+#dokuwiki__aside h3.toggle {
+  display: none;
 }
 
 #dw__toc {
@@ -70,8 +79,12 @@ table {
     width: 100%;
   }
   #dw__toc h3,
-  #dw__toc div {
+  #dw__toc div,
+  #dokuwiki__aside h3.toggle {
     padding: 0;
+  }
+  #dokuwiki__aside h3.toggle {
+    display: block;
   }
 }
 
