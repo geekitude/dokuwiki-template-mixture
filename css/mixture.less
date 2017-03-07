@@ -42,6 +42,7 @@ table {
 
 #dokuwiki__aside {
 	width: @ini_sidebar_width;
+  background-color: @ini_background_neu;
 }
 
 #dw__toc {
@@ -89,3 +90,69 @@ table {
     padding: 1.5%;
   }
 }
+
+/* 15-Scrollspy ToC media query
+----------------------------------------------- */
+/* Switch to scrollspy ToC */
+@media all and (min-width: @ini_site_width + (2 * @ini_toc_width) + 3vmax) {
+/*@media all and (min-width: @ini_site_width + @ini_toc_width + @ini_spacer) {*/
+    #dw__toc {
+        /*position: fixed;*/
+        position: absolute;
+        /*top: 1.5vmax;*/
+    }
+    [dir=ltr] #dw__toc {
+        right: 1.5vmax;
+    }
+    [dir=rtl] #dw__toc {
+        left: 1.5vmax;
+    }
+}
+@media all and (min-width: @ini_site_width + @ini_sidebar_width + @ini_toc_width + 6vmax) {
+/*@media all and (min-width: @ini_site_width + @ini_toc_width + @ini_spacer) {*/
+    #dokuwiki__aside {
+        /*position: fixed;*/
+        position: absolute;
+        /*top: 1.5vmax;*/
+    }
+    [dir=ltr] #dokuwiki__aside {
+        left: 1.5vmax;
+    }
+    [dir=rtl] #dokuwiki__aside {
+        right: 1.5vmax;
+    }
+}
+/*
+    #dokuwiki__site.hasWidebanner #dw__toc.scrollspy {
+        margin: -18.7em 0 0 0 !important;
+    }
+    #dw__toc.scrollspy h3 {
+        margin: .5em 0 .5em 0;
+    }
+    #dw__toc.scrollspy h3 strong {
+        display: none !important;
+    }
+    [dir=ltr] #dw__toc.scrollspy ul {
+        padding: 0 0 0 1em;
+    }
+    [dir=rtl] #dw__toc.scrollspy ul {
+        padding: 0 1em 0 0;
+    }
+    #dw__toc.scrollspy > div > ul {
+        padding: 0 !important;
+    }
+    #dw__toc.scrollspy li div.li {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #dw__toc.scrollspy li div.li a {
+        padding: 0 4px 0 4px;
+    }
+    #dw__toc.scrollspy li ul.toc {
+        display: none;
+    }
+    #dw__toc.scrollspy li.scrollspy-active > ul {
+        display: block;
+    }
+*/
