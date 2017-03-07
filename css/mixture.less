@@ -56,6 +56,11 @@ table {
   width: auto;
 }
 
+#dokuwiki__aside,
+#dw__toc {
+  font-size: 80%;
+}
+
 #dokuwiki__aside h3.toggle,
 #dw__toc h3.toggle {
   margin: .2em;
@@ -63,7 +68,7 @@ table {
 
 #dokuwiki__aside {
 	width: @ini_sidebar_width;
-  background-color: @ini_color_white;
+  background-color: @ini_background_neu;
 }
 
 #dokuwiki__aside h3.toggle {
@@ -107,6 +112,9 @@ table {
 @media (min-width: 801px) {
   html {
     padding: 1.5vmax;
+  }
+  #dokuwiki__aside {
+      margin: @ini_spacer 0 0 0;
   }
 }
 
