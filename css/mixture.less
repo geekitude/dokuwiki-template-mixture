@@ -10,6 +10,30 @@ body {
   margin-left: auto;
 }
 
+h1 {
+  font-size: 3.1em;
+}
+
+h2 {
+  font-size: 2.7em;
+}
+
+h3 {
+  font-size: 2.2em;
+}
+
+h4 {
+  font-size: 2em;
+}
+
+h5 {
+  font-size: 1.8em;
+}
+
+h6 {
+  font-size: 1.6em;
+}
+
 header h1,
 header h2,
 header h3,
@@ -35,7 +59,9 @@ table  {
 }
 
 blockquote {
-  line-height: 3rem;
+  /*line-height: 3rem;*/
+  /*line-height: 2em;*/
+  line-height: 1.3 * @ini_line_factor;
 }
 
 [dir=ltr] blockquote {
@@ -58,7 +84,7 @@ table {
 
 #dokuwiki__aside,
 #dw__toc {
-  font-size: 80%;
+  font-size: 75%;
 }
 
 #dokuwiki__aside h3.toggle,
