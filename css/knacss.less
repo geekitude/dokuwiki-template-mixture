@@ -450,11 +450,11 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
+  font-size: unit(@ini_font_factor, rem);
   background-color: @ini_color_white;
   color: @ini_text;
   font-family: sans-serif;
-  line-height: 1.5;
+  line-height: @ini_line_factor;
 }
 
 a {
@@ -465,9 +465,14 @@ a:focus, a:hover, a:active {
   color: @ini_text;
 }
 
-ul,
-ol {
-  padding-left: 2em;
+[dir=ltr] ul,
+[dir=ltr] ol {
+  padding-left: @ini_spacer;
+}
+
+[dir=rtl] ul,
+[dir=rtl] ol {
+  padding-right: @ini_spacer;
 }
 
 img {
@@ -497,7 +502,7 @@ details,
 figure {
   margin-top: 0.75em;
   margin-bottom: 0;
-  line-height: 1.5;
+  line-height: @ini_line_factor;
 }
 
 h1, .h1-like {

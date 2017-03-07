@@ -10,8 +10,31 @@ body {
   margin-left: auto;
 }
 
-blockquote {
+header h1,
+header h2,
+header h3,
+header h4,
+header h5,
+header h6 {
+  margin: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+pre,
+ul,
+ol,
+table  {
   margin: 0 0 @ini_spacer 0;
+}
+
+blockquote {
   line-height: 3rem;
 }
 
@@ -27,13 +50,6 @@ blockquote {
 
 blockquote::before {
   content: "";
-}
-
-ul,
-p,
-pre,
-table {
-  margin: 0 0 @ini_spacer 0;
 }
 
 table {
