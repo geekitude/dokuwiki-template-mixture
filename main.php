@@ -48,7 +48,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <div id="dokuwiki__site" class="flex-container <?php echo ($showSidebar) ? 'hasSidebar' : ''; ?>">
       <!-- ********** ASIDE ********** -->
       <?php if ($showSidebar): ?>
-        <aside id="dokuwiki__aside" class="mod pam aside">
+        <aside id="dokuwiki__aside" class="mod pas aside">
           <h3 class="toggle"><?php echo $lang['sidebar'] ?></h3>
           <nav id="navigation" role="navigation">
             <?php tpl_includeFile('sidebarheader.html') ?>

@@ -59,12 +59,12 @@ blockquote {
 }
 
 [dir=ltr] blockquote {
-  padding: 0 0 0 calc(@ini_spacer / 2);
+  padding: 0 0 0 (@ini_spacer / 2);
   border-left: 4px solid @ini_color_primary;
 }
 
 [dir=rtl] blockquote {
-  padding: 0 calc(@ini_spacer / 2) 0 0;
+  padding: 0 (@ini_spacer / 2) 0 0;
   border-right: 4px solid @ini_color_primary;
 }
 
@@ -76,14 +76,27 @@ table {
   width: auto;
 }
 
-#dokuwiki__aside,
-#dw__toc {
-  font-size: 75%;
+#dokuwiki__site {
+  padding: @ini_spacer;
+}
+
+#dokuwiki__content {
+  padding: 0;
+  /* required to reposition asides */
+  position: relative;
+}
+
+#dokuwiki__aside h3,
+#dokuwiki__aside nav,
+#dw__toc h3,
+#dw__toc ul {
+  font-size: 80%;
 }
 
 #dokuwiki__aside h3.toggle,
 #dw__toc h3.toggle {
-  margin: .2em;
+  margin: 0;
+  padding: 0;
 }
 
 #dokuwiki__aside {
@@ -91,13 +104,24 @@ table {
   background-color: @ini_background_neu;
 }
 
+[dir=ltr] #dokuwiki__aside {
+	margin: 0 @ini_spacer 0 0;
+}
+
+[dir=rtl] #dokuwiki__aside {
+	margin: 0 0 0 @ini_spacer;
+}
+
+/*
 #dokuwiki__aside h3.toggle {
   display: none;
-}
+}*/
 
 #dw__toc {
 	width: @ini_toc_width;
   background-color: @ini_background_neu;
+  /*right: -@ini_spacer;*/
+  padding: (@ini_spacer / 2);
 }
 
 [dir=ltr] #dw__toc {
@@ -141,7 +165,7 @@ table {
 @media (min-width: 961px) {
 }
 
-@media all and (min-width: @ini_site_width + (2 * @ini_toc_width) + 6em) {
+@media all and (min-width: @ini_site_width + 2 * @ini_toc_width + 4 * @ini_spacer + 1px) {
     #dw__toc {
         /*position: fixed;*/
         position: absolute;
@@ -150,15 +174,15 @@ table {
         top: 1.5vmax;
     }
     [dir=ltr] #dw__toc {
-        right: 1.5vmax;
+        right: -(@ini_toc_width + 2 * @ini_spacer);
     }
     [dir=rtl] #dw__toc {
         left: 1.5vmax;
     }
 }
-@media all and (min-width: @ini_site_width + @ini_sidebar_width + @ini_toc_width + 12em) {
+/*
+@media all and (min-width: @ini_site_width + 2 * @ini_sidebar_width + 4 * @ini_spacer + 1px) {
     #dokuwiki__aside {
-        /*position: fixed;*/
         position: absolute;
         margin-top: @ini_spacer;
     }
@@ -167,12 +191,13 @@ table {
         top: 1.5vmax;
     }
     [dir=ltr] #dokuwiki__aside {
-        left: 1.5vmax;
+        left: -(@ini_sidebar_width + 2 * @ini_spacer);
     }
     [dir=rtl] #dokuwiki__aside {
         right: 1.5vmax;
     }
 }
+*/
 /*
     #dokuwiki__site.hasWidebanner #dw__toc.scrollspy {
         margin: -18.7em 0 0 0 !important;
