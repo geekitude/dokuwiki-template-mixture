@@ -26,7 +26,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
   <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' hasSidebar' : ''; ?>">
     <?php tpl_includeFile('header.html') ?>
     <!-- ********** HEADER ********** -->
-    <header id="dokuwiki__header" role="banner" class="pam">
+    <header id="dokuwiki__header" role="banner" class="pam pb0">
       <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?></h1>
       <?php if ($conf['tagline']): ?>
         <p class="claim"><?php echo $conf['tagline'] ?></p>
@@ -41,11 +41,11 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <?php if($conf['youarehere']){ ?>
         <div class="breadcrumbs"><?php tpl_youarehere() ?></div>
       <?php } ?>
-      <hr />
       <!-- ALERTS -->
       <?php html_msgarea() ?>
+      <hr />
     </header>
-    <div id="dokuwiki__site" class="flex-container">
+    <div id="dokuwiki__site" class="flex-container pam pt0 pb0">
       <!-- ********** ASIDE ********** -->
       <?php if ($showSidebar): ?>
         <aside id="dokuwiki__aside" class="mod aside">
@@ -72,7 +72,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
       </main>
     </div>
     <!-- ********** FOOTER ********** -->
-    <footer id="dokuwiki__footer" role="contentinfo" class="pam">
+    <footer id="dokuwiki__footer" role="contentinfo" class="pam pt0 pb0">
       <hr />
       <div class="doc"><?php tpl_pageinfo() ?></div>
       <div class="tools">
