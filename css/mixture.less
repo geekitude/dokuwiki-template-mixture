@@ -96,9 +96,14 @@ table {
   padding: 0;
 }
 
+#dokuwiki__aside,
+#dw__toc {
+  background-color: @ini_background_neu;
+  padding: (@ini_spacer / 2);
+}
+
 #dokuwiki__aside {
 	width: @ini_sidebar_width;
-  background-color: @ini_background_neu;
 }
 
 [dir=ltr] #dokuwiki__aside {
@@ -115,8 +120,6 @@ table {
 
 #dw__toc {
 	width: @ini_toc_width;
-  background-color: @ini_background_neu;
-  padding: (@ini_spacer / 2);
 }
 
 [dir=ltr] #dw__toc {
@@ -162,7 +165,7 @@ table {
 
 @media all and (min-width: @ini_site_width + 2 * @ini_toc_width + 4 * @ini_spacer + 1px) {
   #dw__toc {
-    position: fixed;
+    position: absolute;
   }
   [dir=ltr] #dw__toc {
     transform: translate(-@ini_spacer + @ini_site_width, 0);
