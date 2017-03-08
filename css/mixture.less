@@ -179,34 +179,28 @@ table {
   body.maxasides #dw__toc {
     top: 1.5vmax;
   }
-    /*
-    [dir=ltr] #dw__toc {
-        right: -(@ini_toc_width + 2 * @ini_spacer);
-        right: 0;
-    }
-    [dir=rtl] #dw__toc {
-        left: 1.5vmax;
-    }
-    */
 }
-/*
+
+/* mostly working repositionment of both Sidebar and ToC, not sure to use it though
 @media all and (min-width: @ini_site_width + 2 * @ini_sidebar_width + 4 * @ini_spacer + 1px) {
-    #dokuwiki__aside {
-        position: absolute;
-        margin-top: @ini_spacer;
-    }
-    body.maxasides #dokuwiki__aside {
-        margin-top: 0;
-        top: 1.5vmax;
-    }
-    [dir=ltr] #dokuwiki__aside {
-        left: -(@ini_sidebar_width + 2 * @ini_spacer);
-    }
-    [dir=rtl] #dokuwiki__aside {
-        right: 1.5vmax;
-    }
+  body.hasSidebar #dokuwiki__aside {
+    position: fixed;
+  }
+  [dir=ltr] #dokuwiki__aside {
+    transform: translate(-2 * @ini_spacer - @ini_sidebar_width, 0);
+  }
+  [dir=ltr] body.hasSidebar #dw__toc {
+    transform: translate(@ini_site_width - @ini_spacer, 0);
+  }
+  [dir=rtl] #dokuwiki__aside {
+    transform: translate(2 * @ini_spacer + @ini_sidebar_width, 0);
+  }
+  [dir=rtl] body.hasSidebar #dw__toc {
+    transform: translate(-@ini_site_width + @ini_spacer, 0);
+  }
 }
 */
+
 /*
     #dokuwiki__site.hasWidebanner #dw__toc.scrollspy {
         margin: -18.7em 0 0 0 !important;
