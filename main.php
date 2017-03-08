@@ -42,8 +42,8 @@ $showSidebar = page_findnearest($conf['sidebar']);
         <div class="breadcrumbs"><?php tpl_youarehere() ?></div>
       <?php } ?>
       <!-- ALERTS -->
-      <?php html_msgarea() ?>
       <hr />
+      <?php html_msgarea() ?>
     </header>
     <div id="dokuwiki__site" class="flex-container pam pt0 pb0">
       <!-- ********** ASIDE ********** -->
