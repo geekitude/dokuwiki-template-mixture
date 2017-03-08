@@ -45,7 +45,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <!-- ALERTS -->
       <?php html_msgarea() ?>
     </header>
-    <div id="dokuwiki__site" class="flex-container <?php echo ($showSidebar) ? 'hasSidebar' : ''; ?>">
+    <div id="dokuwiki__site" class="flex-container">
       <!-- ********** ASIDE ********** -->
       <?php if ($showSidebar): ?>
         <aside id="dokuwiki__aside" class="mod pas aside">
