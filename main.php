@@ -61,12 +61,12 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <!-- ********** CONTENT ********** -->
       <main id="dokuwiki__content" role="main" class="flex-item-fluid pam">
         <?php tpl_flush() ?>
-        <!-- ********** PAGE HEADER ********** -->
-        <header id="mixture__page_header" role="banner" class="pam">
-          <h1><?php tpl_pagetitle() ?></h1>
-        </header>
         <?php tpl_includeFile('pageheader.html') ?>
         <article class="page group">
+          <!-- ********** PAGE HEADER ********** -->
+          <header id="mixture__page_header" role="banner" class="pam">
+            <h1><?php tpl_pagetitle() ?></h1>
+          </header>
           <!-- wikipage start -->
           <?php tpl_content() ?>
           <!-- wikipage stop -->
