@@ -63,9 +63,12 @@ $showSidebar = page_findnearest($conf['sidebar']);
         <?php tpl_flush() ?>
         <?php tpl_includeFile('pageheader.html') ?>
           <!-- ********** PAGE HEADER ********** -->
-          <header id="mixture__page_header" role="banner" class="pam">
-            <h1><?php tpl_pagetitle() ?></h1>
-          </header>
+          <?php if ($ACT=='show'): ?>
+            <header id="mixture__page_header" role="banner" class="pam">
+              <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
+              <h1><?php tpl_pagetitle() ?></h1>
+            </header>
+          <?php endif; ?>
         <article class="page group">
           <!-- wikipage start -->
           <?php tpl_content() ?>
