@@ -130,25 +130,33 @@ hr {
   text-overflow: ellipsis;
 }
 
-div.pageId {
+div.pageId,
+div.pageInfo {
   font-size: 75%;
-  text-align: right;
+  line-height: 1;
+}
+
+div.pageId {
   position: absolute;
   bottom: @ini_spacer;
 }
 
 [dir=ltr] div.pageId {
+  text-align: right;
   right: @ini_spacer;
 }
 
 [dir=rtl] div.pageId {
+  text-align: left;
   left: @ini_spacer;
 }
 
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+[dir=ltr] div.pageInfo {
+  text-align: right;
+}
+
+[dir=rtl] div.pageInfo {
+  text-align: left;
 }
 
 @media (min-width: 401px) {
