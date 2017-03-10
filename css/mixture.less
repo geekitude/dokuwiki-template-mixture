@@ -89,10 +89,10 @@ hr {
   background-color: @ini_color_primary;
 }
 
-#dokuwiki__aside h3,
+#dokuwiki__aside h3.toggle,
 #dokuwiki__aside nav,
-#dw__toc h3,
-#dw__toc ul {
+#dw__toc h3.toggle,
+#dw__toc div.li {
   font-size: 80%;
 }
 
@@ -120,11 +120,13 @@ hr {
   width: 100%;
   margin: 0;
 }
-    #dw__toc li div.li {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+
+/* only apply to #dw__toc.scrollspy? */
+#dw__toc li div.li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 div.pageId {
   font-size: 75%;
