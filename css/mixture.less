@@ -87,6 +87,8 @@ hr {
 
 #mixture__page_header {
   background-color: @ini_color_primary;
+  /* Required to place pageID div */
+  position: relative;
 }
 
 #dokuwiki__aside h3.toggle,
@@ -131,7 +133,16 @@ hr {
 div.pageId {
   font-size: 75%;
   text-align: right;
-  margin-bottom: -20px;
+  position: absolute;
+  bottom: @ini_spacer;
+}
+
+[dir=ltr] div.pageId {
+  right: @ini_spacer;
+}
+
+[dir=rtl] div.pageId {
+  left: @ini_spacer;
 }
 
 .truncate {
