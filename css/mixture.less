@@ -72,13 +72,25 @@ blockquote::before {
   content: "";
 }
 
-table {
-  width: auto;
+/*body.mixturetable {
+  margin-right: auto;
+  margin-left: auto;
 }
+
+body.autotable{
+  table {
+    width: auto;
+  }
+}
+*/
 
 hr {
   margin: calc(@ini_spacer / 2) auto calc(@ini_spacer / 2) auto;
   width: 80%
+}
+
+[dir=ltr] sup {
+  margin-left: .1em;
 }
 
 #dokuwiki__content {
@@ -245,6 +257,10 @@ div.pageId {
 @media (min-width: 801px) {
   html {
     padding: 1.5vmax;
+  }
+  table {
+    /*max-width: calc(100% - @ini_toc_width - @ini_spacer - 40px);*/
+    width: auto;
   }
 }
 
