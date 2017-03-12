@@ -179,7 +179,9 @@ div.pageId {
     margin-top: (@ini_spacer / 2);
   }
 }
-
+.dokuwiki div.footnotes {
+  margin: @ini_spacer 0 0 0;
+}
 
 /*
 @media (max-width: 543px) {
@@ -291,9 +293,11 @@ div.pageId {
   [dir=rtl] body.hasSidebar #dw__toc {
     transform: translate(@ini_sidebar_width + (2 * @ini_spacer) - @ini_site_width, 0);
   }
+  /*
   body.maxasides #dw__toc {
     top: 1.5vmax;
   }
+  */
 }
 
 /* mostly working repositionment of both Sidebar and ToC, not sure to use it though

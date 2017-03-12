@@ -62,18 +62,13 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <main id="dokuwiki__content" role="main" class="flex-item-fluid pam">
         <?php tpl_flush() ?>
         <?php tpl_includeFile('pageheader.html') ?>
-          <!-- ********** PAGE HEADER ********** -->
-          <?php if ($ACT=='show'): ?>
-            <header id="mixture__page_header" role="banner" class="pam">
-              <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
-              <h1><?php tpl_pagetitle() ?></h1>
-            </header>
-          <?php endif; ?>
+        <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
         <article class="page group">
           <!-- wikipage start -->
           <?php tpl_content() ?>
           <!-- wikipage stop -->
         </article>
+              <div class="pageInfo"><span><?php tpl_pageinfo() ?></span></div>
         <?php tpl_flush() ?>
         <?php tpl_includeFile('pagefooter.html') ?>
       </main>
