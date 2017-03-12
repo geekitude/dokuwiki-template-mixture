@@ -182,6 +182,15 @@ function mixture_init() {
 //dbg($trs);
 //dbg($conf['plugin']['translation']);
     }
+
+    // DEBUG
+    // Adding test alerts if debug is enabled
+    if ($_GET['debug'] == true) {
+        msg("This is an error alert (-1)", -1);
+        msg("This is an info message (0)", 0);
+        msg("This is a success message (1)", 1);
+        msg("This is a notification (2)", 2);
+    }
 }
 
 /**
