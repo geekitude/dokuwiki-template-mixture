@@ -263,21 +263,24 @@ div.pageId {
   text-align: left;
 }
 
-
 /* alerts */
 div.info, div.notify, div.success, div.error {
     width: 90%;
-    margin: 5px auto 5px auto;
+    margin: 0 auto calc(@ini_spacer / 2) auto;
 }
+
 div.info {
     background-color: @ini_color_blue;
 }
+
 div.notify {
     background-color: @ini_color_yellow;
 }
+
 div.success {
     background-color: @ini_color_green;
 }
+
 div.error {
     background-color: @ini_color_red;
 }
@@ -289,7 +292,6 @@ div.error {
 .wikilink2 {
   color: @ini_missing !important;
 }
-
 
 @media (min-width: 401px) {
 }
