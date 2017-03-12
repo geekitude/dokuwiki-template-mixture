@@ -27,9 +27,17 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <?php tpl_includeFile('header.html') ?>
     <!-- ********** HEADER ********** -->
     <header id="dokuwiki__header" role="banner" class="pam pb0">
-      <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?></h1>
+      <?php if (($ID<>'start') && ($ACT=='show')): ?>
+        <h1><?php tpl_link(wl(),tpl_pagetitle($ID, 1),'accesskey="h" title="[H]"') ?></h1>
+      <?php else: ?>
+        <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?></h1>
+      <?php endif; ?>
       <?php if ($conf['tagline']): ?>
-        <p class="claim"><?php echo $conf['tagline'] ?></p>
+        <?php if (($ID<>'start') && ($ACT=='show')): ?>
+          <p class="tagline"><?php echo $conf['title'] ?></p>
+        <?php else: ?>
+          <p class="tagline"><?php echo $conf['tagline'] ?></p>
+        <?php endif; ?>
       <?php endif ?>
       <p class="a11y skip">
         <a href="#dokuwiki__content"><?php echo $lang['skip_to_content'] ?></a>
