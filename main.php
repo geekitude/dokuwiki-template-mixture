@@ -10,6 +10,12 @@
 if (!defined('DOKU_INC')) die();
 @require_once(dirname(__FILE__).'/tpl_functions.php');
 header('X-UA-Compatible: IE=edge,chrome=1');
+
+global $mixture, $uhp, $trs;
+// Reset $mixture to make sure we don't inherit any value from previous page
+$mixture = array();
+mixture_init();
+
 $showSidebar = page_findnearest($conf['sidebar']);
 ?><!doctype html>
 <html class="no-js" lang="<?php echo $conf['lang'] ?>" dir="<?php echo $lang['direction'] ?>">
@@ -27,7 +33,6 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <?php tpl_includeFile('header.html') ?>
     <!-- ********** HEADER ********** -->
     <header id="dokuwiki__header" role="banner" class="pam pb0">
-<i class="fa fa-camera-retro fa-5x"></i>
       <?php if (($ID<>'start') && ($ACT=='show')): ?>
         <h1><?php tpl_link(wl(),tpl_pagetitle($ID, 1),'accesskey="h" title="[H]"') ?></h1>
       <?php else: ?>
