@@ -27,6 +27,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <?php tpl_includeFile('header.html') ?>
     <!-- ********** HEADER ********** -->
     <header id="dokuwiki__header" role="banner" class="pam pb0">
+<i class="fa fa-camera-retro fa-5x"></i>
       <?php if (($ID<>'start') && ($ACT=='show')): ?>
         <h1><?php tpl_link(wl(),tpl_pagetitle($ID, 1),'accesskey="h" title="[H]"') ?></h1>
       <?php else: ?>
