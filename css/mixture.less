@@ -148,6 +148,47 @@ hr {
   margin: 0;
 }
 
+.breadcrumbs {
+  font-size: .8em;
+}
+
+.breadcrumbs ul {
+  padding: 0;
+  margin: 0;
+}
+.breadcrumbs li {
+  display: inline-block;
+}
+.breadcrumbs li.active,
+.breadcrumbs li.active a {
+  cursor: not-allowed;
+}
+.breadcrumbs li.active a {
+  font-weight: 700;
+  pointer-events: none;
+  color: @ini_text_neu;
+}
+div.dokuwiki.namespaced-breadcrumbs-classic .breadcrumbs li:after,
+.breadcrumbs li:after {
+    content: "\00a0";
+}
+/* Add separator before each breadcrumb that is following another one... */
+div.dokuwiki.namespaced-breadcrumbs-classic #namespaced__tracks_breadcrumbs ul > li + li:before,
+.breadcrumbs.trace ul > li + li:before {
+    content: "/\00a0";
+}
+div.dokuwiki.namespaced-breadcrumbs-classic #namespaced__tracks_youarehere ul > li + li:before,
+.breadcrumbs.youarehere ul > li + li:before {
+    content: "»\00a0";
+}
+/* ...except second one */
+div.dokuwiki.namespaced-breadcrumbs-classic #namespaced__tracks_breadcrumbs ul > li:nth-child(2):before,
+div.dokuwiki.namespaced-breadcrumbs-classic #namespaced__tracks_youarehere ul > li:nth-child(2):before,
+.breadcrumbs.trace ul > li:nth-child(2):before,
+.breadcrumbs.youarehere ul > li:nth-child(2):before {
+  content: "";
+}
+
 div.pageId,
 div.pageInfo {
   font-size: 75%;

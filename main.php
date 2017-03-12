@@ -44,10 +44,10 @@ $showSidebar = page_findnearest($conf['sidebar']);
       </p>
       <!-- BREADCRUMBS -->
       <?php if($conf['breadcrumbs']){ ?>
-        <div class="breadcrumbs"><?php tpl_breadcrumbs() ?></div>
+        <div class="breadcrumbs trace"><?php mixture_breadcrumbs() ?></div>
       <?php } ?>
       <?php if($conf['youarehere']){ ?>
-        <div class="breadcrumbs"><?php tpl_youarehere() ?></div>
+        <div class="breadcrumbs youarehere"><?php mixture_youarehere() ?></div>
       <?php } ?>
       <!-- ALERTS -->
       <hr />
