@@ -51,13 +51,20 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <hr />
       <!-- ALERTS -->
       <?php html_msgarea() ?>
-      <!-- BREADCRUMBS -->
-      <?php if($conf['breadcrumbs']){ ?>
-        <div class="breadcrumbs trace"><?php mixture_breadcrumbs() ?></div>
-      <?php } ?>
-      <?php if($conf['youarehere']){ ?>
-        <div class="breadcrumbs youarehere"><?php mixture_youarehere() ?></div>
-      <?php } ?>
+      <nav id="mixture__page_nav" class="flex-container">
+        <!-- BREADCRUMBS -->
+        <?php if (($conf['breadcrumbs']) or ($conf['youarehere'])) { ?>
+          <div class="breadcrumbs">
+          <?php if ($conf['breadcrumbs']) { ?>
+            <div class="trace"><?php mixture_breadcrumbs() ?></div>
+          <?php } ?>
+          <?php if ($conf['youarehere']) { ?>
+            <div class="youarehere"><?php mixture_youarehere() ?></div>
+          <?php } ?>
+          </div>
+        <?php } ?>
+        <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
+      </nav>
     </header>
     <div id="dokuwiki__site" class="flex-container pam pt0 pb0">
       <!-- ********** ASIDE ********** -->
@@ -76,7 +83,6 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <main id="dokuwiki__content" role="main" class="flex-item-fluid pam">
         <?php tpl_flush() ?>
         <?php tpl_includeFile('pageheader.html') ?>
-        <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
         <article class="page group">
           <!-- wikipage start -->
           <?php tpl_content() ?>

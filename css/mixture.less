@@ -118,6 +118,11 @@ hr {
 }
 */
 
+#mixture__page_nav {
+  justify-content: space-between;
+  margin: 0 auto @ini_spacer auto;
+}
+
 #dokuwiki__aside h3.toggle,
 #dokuwiki__aside nav,
 #dw__toc h3.toggle,
@@ -246,10 +251,12 @@ div.pageInfo {
 }
 
 div.pageId {
-  position: absolute;
-  bottom: @ini_spacer;
+  /*position: absolute;*/
+  /*bottom: @ini_spacer;*/
+  align-self: center;
 }
 
+/*
 [dir=ltr] div.pageId {
   text-align: right;
   right: @ini_spacer;
@@ -259,6 +266,7 @@ div.pageId {
   text-align: left;
   left: @ini_spacer;
 }
+*/
 
 [dir=ltr] div.pageInfo {
   text-align: right;
