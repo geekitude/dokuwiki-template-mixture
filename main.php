@@ -48,6 +48,9 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <p class="a11y skip">
         <a href="#dokuwiki__content"><?php echo $lang['skip_to_content'] ?></a>
       </p>
+      <hr />
+      <!-- ALERTS -->
+      <?php html_msgarea() ?>
       <!-- BREADCRUMBS -->
       <?php if($conf['breadcrumbs']){ ?>
         <div class="breadcrumbs trace"><?php mixture_breadcrumbs() ?></div>
@@ -55,9 +58,6 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <?php if($conf['youarehere']){ ?>
         <div class="breadcrumbs youarehere"><?php mixture_youarehere() ?></div>
       <?php } ?>
-      <!-- ALERTS -->
-      <hr />
-      <?php html_msgarea() ?>
     </header>
     <div id="dokuwiki__site" class="flex-container pam pt0 pb0">
       <!-- ********** ASIDE ********** -->

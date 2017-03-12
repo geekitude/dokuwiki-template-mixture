@@ -271,7 +271,8 @@ function mixture_youarehere() {
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
     //if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
     if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or ((!plugin_isdisabled('translation')) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) or (plugin_isdisabled('translation'))) {
-        echo '<li class="home">';
+            $class = mixture_breadcrumbsClass($ID);
+        echo '<li'.$class.'>';
             tpl_pagelink(':'.$conf['start']);
         echo '</li>';
     }
@@ -348,7 +349,7 @@ function mixture_breadcrumbsClass($target = null) {
             }
 //        }
         if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
-            $classes .= " active";
+            $classes .= " curid";
         }
     }
     if ($classes != null) {
