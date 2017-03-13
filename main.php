@@ -59,10 +59,12 @@ $showSidebar = page_findnearest($conf['sidebar']);
           <?php } ?>
         </div>
       <?php } ?>
+    </header>
+    <aside id="mixture__alerts">
       <!-- ALERTS -->
       <?php html_msgarea() ?>
       <hr />
-    </header>
+    </aside>
     <nav id="mixture__page_nav" class="flex-container-h pam pt0 pb0">
       <div class="pageNews"><span>news</span></div>
       <div class="pageId"><span><?php echo hsc($ID) ?></span></div>

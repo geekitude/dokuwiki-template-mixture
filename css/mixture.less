@@ -114,12 +114,17 @@ hr {
 }
 
 #dokuwiki__header,
+#mixture__alerts,
 #mixture__page_nav,
 #dokuwiki__site,
 #dokuwiki__footer {
   background-color: @ini_color_white;
   max-width: @ini_site_width;
   margin: 0 auto 0 auto;
+}
+
+#mixture__alerts {
+  padding: (@ini_spacer / 4) 0 (@ini_spacer / 4) 0;
 }
 
 #dokuwiki__indexer {
@@ -150,11 +155,6 @@ div.no {
   flex-wrap: nowrap;
   margin: 0 auto @ini_spacer auto;
 */
-}
-
-div.pageNews,
-div.pageId {
-  max-width: 40px;
 }
 
 #dokuwiki__aside h3.toggle,
@@ -304,6 +304,14 @@ div.pageId {
   /*bottom: @ini_spacer;*/
   align-self: center;
   white-space: nowrap;
+}
+
+[dir=ltr] div.pageId {
+  text-align: right;
+}
+
+[dir=rtl] div.pageId {
+  text-align: left;
 }
 
 /*
