@@ -123,8 +123,23 @@ hr {
   margin: 0 auto 0 auto;
 }
 
+body.quartered #dokuwiki__header,
+/*body.quartered #mixture__alerts,*/
+/*body.quartered #mixture__page_nav,*/
+body.quartered #dokuwiki__site {
+  margin: 0 auto @ini_spacer auto;
+}
+body.quartered #mixture__alerts,
+body.quartered #mixture__page_nav {
+  background-color: transparent;
+}
+
 #mixture__alerts {
   padding: (@ini_spacer / 4) 0 (@ini_spacer / 4) 0;
+}
+
+body.quartered #mixture__alerts hr {
+  display: none;
 }
 
 #dokuwiki__indexer {
