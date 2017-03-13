@@ -48,24 +48,25 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <p class="a11y skip">
         <a href="#dokuwiki__content"><?php echo $lang['skip_to_content'] ?></a>
       </p>
-      <hr />
-      <!-- ALERTS -->
-      <?php html_msgarea() ?>
-      <nav id="mixture__page_nav" class="flex-container">
-        <!-- BREADCRUMBS -->
-        <?php if (($conf['breadcrumbs']) or ($conf['youarehere'])) { ?>
-          <div class="breadcrumbs">
+       <!-- BREADCRUMBS -->
+      <?php if (($conf['breadcrumbs']) or ($conf['youarehere'])) { ?>
+        <div class="breadcrumbs">
           <?php if ($conf['breadcrumbs']) { ?>
             <div class="trace"><?php mixture_breadcrumbs() ?></div>
           <?php } ?>
           <?php if ($conf['youarehere']) { ?>
             <div class="youarehere"><?php mixture_youarehere() ?></div>
           <?php } ?>
-          </div>
-        <?php } ?>
-        <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
-      </nav>
+        </div>
+      <?php } ?>
+      <!-- ALERTS -->
+      <?php html_msgarea() ?>
+      <hr />
     </header>
+    <nav id="mixture__page_nav" class="flex-container-h pam pt0 pb0">
+      <div class="pageNews"><span>news</span></div>
+      <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
+    </nav>
     <div id="dokuwiki__site" class="flex-container pam pt0 pb0">
       <!-- ********** ASIDE ********** -->
       <?php if ($showSidebar): ?>
@@ -88,6 +89,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
           <?php tpl_content() ?>
           <!-- wikipage stop -->
         </article>
+      <hr />
               <div class="pageInfo"><span><?php tpl_pageinfo() ?></span></div>
         <?php tpl_flush() ?>
         <?php tpl_includeFile('pagefooter.html') ?>
@@ -95,8 +97,6 @@ $showSidebar = page_findnearest($conf['sidebar']);
     </div>
     <!-- ********** FOOTER ********** -->
     <footer id="dokuwiki__footer" role="contentinfo" class="pam pt0 pb0">
-      <hr />
-      <div class="pageInfo"><?php tpl_pageinfo() ?></div>
       <div class="tools">
         <!-- SITE TOOLS -->
         <div id="dokuwiki__sitetools">
@@ -163,6 +163,6 @@ $showSidebar = page_findnearest($conf['sidebar']);
       ga('create', 'UA-XXXXXXXX-X', 'XXXXXXXXXXX.TLD');
       ga('send', 'pageview');
     </script>
-    <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
+    <div id="dokuwiki__indexer" class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
   </body>
 </html>

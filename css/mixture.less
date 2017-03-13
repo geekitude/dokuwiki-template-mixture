@@ -1,13 +1,18 @@
 /* Votre Style */
 
 html {
-  background-color: @ini_color_light-gray;
+  /*background-color: @ini_color_light-gray;*/
 }
 
 body {
-  max-width: @ini_site_width;
+  /*max-width: @ini_site_width;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: auto;*/
+  background-color: @ini_color_light-gray;
+}
+
+article {
+  position: relative;
 }
 
 h1 {
@@ -99,12 +104,33 @@ body.autotable{
 */
 
 hr {
-  margin: calc(@ini_spacer / 2) auto calc(@ini_spacer / 2) auto;
+  /*margin: calc(@ini_spacer / 2) auto calc(@ini_spacer / 2) auto;*/
+  margin: calc(@ini_spacer / 2) auto 0 auto;
   width: 80%
 }
 
 [dir=ltr] sup {
   margin-left: .1em;
+}
+
+#dokuwiki__header,
+#mixture__page_nav,
+#dokuwiki__site,
+#dokuwiki__footer {
+  background-color: @ini_color_white;
+  max-width: @ini_site_width;
+  margin: 0 auto 0 auto;
+}
+
+#dokuwiki__indexer {
+  position: absolute;
+}
+
+
+div.no {
+    display: inline;
+    margin: 0;
+    padding: 0;
 }
 
 #dokuwiki__content {
@@ -120,8 +146,15 @@ hr {
 
 #mixture__page_nav {
   justify-content: space-between;
+/*
   flex-wrap: nowrap;
   margin: 0 auto @ini_spacer auto;
+*/
+}
+
+div.pageNews,
+div.pageId {
+  max-width: 40px;
 }
 
 #dokuwiki__aside h3.toggle,
@@ -178,6 +211,13 @@ hr {
 }
 .breadcrumbs li {
   display: inline-block;
+  /* Using ellipsis breakes TwistieNav icons :( */
+  /*
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 8%;
+  */
 }
 /*.breadcrumbs li.active,
 .breadcrumbs li.active a {
@@ -245,18 +285,32 @@ div.dokuwiki.namespaced-breadcrumbs-classic #namespaced__tracks_youarehere ul > 
     content: "\00a0\f024";
 }
 
+/*div.pageId,*/
+div.pageNews,
 div.pageId,
 div.pageInfo {
-  font-size: 75%;
-  line-height: 1;
+  font-size: .8em;
+  /*line-height: 1;*/
 }
 
 div.pageId {
-  /*position: absolute;*/
+  /*
+  position: relative;
+  top: 0;
+  right: 0;
+  */
+  /*text-align: right;*/
+  /*line-height: 1.5em;*/
   /*bottom: @ini_spacer;*/
   align-self: center;
+  white-space: nowrap;
 }
 
+/*
+#dw__toc {
+  margin-top: -1.2em !important;
+}
+*/
 /*
 [dir=ltr] div.pageId {
   text-align: right;
@@ -278,9 +332,19 @@ div.pageId {
 }
 
 /* alerts */
-div.info, div.notify, div.success, div.error {
+div.info,
+div.notify,
+div.success,
+div.error {
     width: 90%;
-    margin: 0 auto calc(@ini_spacer / 2) auto;
+    margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 4) auto;
+}
+
+div.info a,
+div.notify a,
+div.success a,
+div.error a {
+  color: @ini_color_white;
 }
 
 div.info {
@@ -393,13 +457,14 @@ div.error {
 }
 
 @media (min-width: 801px) {
-  html {
+  body {
     padding: 1.5vmax;
   }
   table {
     /*max-width: calc(100% - @ini_toc_width - @ini_spacer - 40px);*/
     width: auto;
   }
+  
 }
 
 @media (max-width: 800px) {
@@ -429,6 +494,7 @@ div.error {
   [dir=rtl] body.hasSidebar #dw__toc {
     transform: translate(@ini_sidebar_width + (2 * @ini_spacer) - @ini_site_width, 0);
   }
+
   /*
   body.maxasides #dw__toc {
     top: 1.5vmax;
