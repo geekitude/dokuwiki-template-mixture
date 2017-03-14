@@ -1,44 +1,29 @@
 /* Votre Style */
 
-html {
-  /*background-color: @ini_color_light-gray;*/
-}
-
 body {
-  /*max-width: @ini_site_width;
-  margin-right: auto;
-  margin-left: auto;*/
   background-color: @ini_color_light-gray;
 }
-
 article {
   position: relative;
 }
-
 h1 {
   font-size: 3.1em;
 }
-
 h2 {
   font-size: 2.7em;
 }
-
 h3 {
   font-size: 2.2em;
 }
-
 h4 {
   font-size: 2em;
 }
-
 h5 {
   font-size: 1.8em;
 }
-
 h6 {
   font-size: 1.6em;
 }
-
 h1,
 h2,
 h3,
@@ -47,7 +32,6 @@ h5,
 h6 {
   margin: 0;
 }
-
 p,
 blockquote,
 pre,
@@ -56,61 +40,47 @@ ol,
 table  {
   margin: 0 0 @ini_spacer 0;
 }
-
 a {
   text-decoration: none;
 }
-
 a:focus, a:hover, a:active {
   color: auto;
 }
-
 a:focus,
 a:hover,
 a:active {
     opacity: .5;
 }
-
+a.wikilink1 {
+  color: @ini_existing !important;
+}
+a.wikilink2 {
+  color: @ini_missing !important;
+}
 blockquote {
-  /*line-height: 3rem;*/
-  /*line-height: 2em;*/
   line-height: 1.3 * @ini_line_factor;
 }
-
 [dir=ltr] blockquote {
   padding: 0 0 0 (@ini_spacer / 2);
   border-left: 4px solid @ini_color_primary;
 }
-
 [dir=rtl] blockquote {
   padding: 0 (@ini_spacer / 2) 0 0;
   border-right: 4px solid @ini_color_primary;
 }
-
 blockquote::before {
   content: "";
 }
-
-/*body.mixturetable {
-  margin-right: auto;
-  margin-left: auto;
-}
-
-body.autotable{
-  table {
-    width: auto;
-  }
-}
-*/
-
 hr {
   /*margin: calc(@ini_spacer / 2) auto calc(@ini_spacer / 2) auto;*/
   margin: calc(@ini_spacer / 2) auto 0 auto;
   width: 80%
 }
-
 [dir=ltr] sup {
   margin-left: .1em;
+}
+[dir=rtl] sup {
+  margin-right: .1em;
 }
 
 #dokuwiki__header,
@@ -122,7 +92,6 @@ hr {
   max-width: @ini_site_width;
   margin: 0 auto 0 auto;
 }
-
 body.quartered #dokuwiki__header,
 /*body.quartered #mixture__alerts,*/
 /*body.quartered #mixture__page_nav,*/
@@ -133,132 +102,83 @@ body.quartered #mixture__alerts,
 body.quartered #mixture__page_nav {
   background-color: transparent;
 }
-
 #mixture__alerts {
   padding: (@ini_spacer / 4) 0 (@ini_spacer / 4) 0;
 }
-
 body.quartered #mixture__alerts hr {
   display: none;
 }
-
 #dokuwiki__indexer {
   position: absolute;
 }
-
-
-div.no {
-    display: inline;
-    margin: 0;
-    padding: 0;
-}
-
 #dokuwiki__content {
   padding: 0;
 }
-
-/*
-#mixture__page_header {
-  background-color: @ini_color_primary;
-  position: relative;
-}
-*/
-
 #mixture__page_nav {
   justify-content: space-between;
-/*
-  flex-wrap: nowrap;
-  margin: 0 auto @ini_spacer auto;
-*/
 }
-
 #dokuwiki__aside h3.toggle,
 #dokuwiki__aside nav,
 #dw__toc h3.toggle,
 #dw__toc div.li {
   font-size: 80%;
 }
-
 #dokuwiki__aside h3.toggle,
 #dw__toc h3.toggle {
   padding: 0;
 }
-
 #dokuwiki__aside,
 #dw__toc {
   background-color: @ini_background_neu;
   padding: (@ini_spacer / 2);
 }
-
 #dokuwiki__aside {
   width: 100%;
   margin: 0;
 }
-
 #dokuwiki__aside h3.toggle {
   display: none;
 }
-
 #dw__toc {
   width: 100%;
   margin: 0;
 }
-
 /* only apply to #dw__toc.scrollspy? */
 #dw__toc li div.li {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .tagline {
   font-weight: bold;
   margin: 0;
 }
-
 .breadcrumbs {
   font-size: .8em;
 }
-
 .breadcrumbs ul {
   padding: 0;
   margin: 0;
 }
 .breadcrumbs li {
   display: inline-block;
-  /* Using ellipsis breakes TwistieNav icons :( */
-  /*
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 8%;
-  */
 }
-/*.breadcrumbs li.active,
-.breadcrumbs li.active a {
-  cursor: not-allowed;
-}*/
 .breadcrumbs li.curid a {
   font-weight: 700;
   pointer-events: none;
   color: @ini_text_neu;
 }
-div.dokuwiki.namespaced-breadcrumbs-classic .breadcrumbs li:after,
 .breadcrumbs li:after {
     content: "\00a0";
 }
-/* Add separator before each breadcrumb that is following another one... */
-div.dokuwiki.namespaced-breadcrumbs-classic #namespaced__tracks_breadcrumbs ul > li + li:before,
+/* Add separator before each list item that is following another one... */
 .breadcrumbs .trace ul > li + li:before {
     content: "/\00a0";
 }
-div.dokuwiki.namespaced-breadcrumbs-classic #namespaced__tracks_youarehere ul > li + li:before,
 .breadcrumbs .youarehere ul > li + li:before {
     content: "»\00a0";
 }
-/* ...except second one */
-div.dokuwiki.namespaced-breadcrumbs-classic #namespaced__tracks_breadcrumbs ul > li:nth-child(2):before,
-div.dokuwiki.namespaced-breadcrumbs-classic #namespaced__tracks_youarehere ul > li:nth-child(2):before,
+/* ...except second one (because first one is the label, not a breadcrumb) */
 .breadcrumbs .trace ul > li:nth-child(2):before,
 .breadcrumbs .youarehere ul > li:nth-child(2):before {
   content: "";
@@ -299,61 +219,27 @@ div.dokuwiki.namespaced-breadcrumbs-classic #namespaced__tracks_youarehere ul > 
 [dir=rtl] .breadcrumbs li.translated a:after {
     content: "\00a0\f024";
 }
-
-/*div.pageId,*/
 div.pageNews,
 div.pageId,
 div.pageInfo {
   font-size: .8em;
-  /*line-height: 1;*/
 }
-
 div.pageId {
-  /*
-  position: relative;
-  top: 0;
-  right: 0;
-  */
-  /*text-align: right;*/
-  /*line-height: 1.5em;*/
-  /*bottom: @ini_spacer;*/
   align-self: center;
   white-space: nowrap;
 }
-
 [dir=ltr] div.pageId {
   text-align: right;
 }
-
 [dir=rtl] div.pageId {
   text-align: left;
 }
-
-/*
-#dw__toc {
-  margin-top: -1.2em !important;
-}
-*/
-/*
-[dir=ltr] div.pageId {
-  text-align: right;
-  right: @ini_spacer;
-}
-
-[dir=rtl] div.pageId {
-  text-align: left;
-  left: @ini_spacer;
-}
-*/
-
 [dir=ltr] div.pageInfo {
   text-align: right;
 }
-
 [dir=rtl] div.pageInfo {
   text-align: left;
 }
-
 /* alerts */
 div.info,
 div.notify,
@@ -362,38 +248,32 @@ div.error {
     width: 90%;
     margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 4) auto;
 }
-
 div.info a,
 div.notify a,
 div.success a,
 div.error a {
   color: @ini_color_white;
 }
-
 div.info {
     background-color: @ini_color_blue;
 }
-
 div.notify {
     background-color: @ini_color_yellow;
 }
-
 div.success {
     background-color: @ini_color_green;
 }
-
 div.error {
     background-color: @ini_color_red;
 }
-
-.wikilink1 {
-  color: @ini_existing !important;
+div.footnotes {
+  margin: @ini_spacer 0 0 0;
 }
-
-.wikilink2 {
-  color: @ini_missing !important;
+div.no {
+    display: inline;
+    margin: 0;
+    padding: 0;
 }
-
 @media (min-width: 401px) {
 }
 
@@ -402,73 +282,31 @@ div.error {
     margin-top: (@ini_spacer / 2);
   }
 }
-.dokuwiki div.footnotes {
-  margin: @ini_spacer 0 0 0;
-}
-
-/*
-@media (max-width: 543px) {
-  #dokuwiki__content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  }
-  #dw__toc {
-          order: -1;
-  }
-  
-  #mixture__page_header {
-          order: 1;
-  }
-}
-*/
-
 @media (min-width: 544px) {
-
   #dokuwiki__aside {
     width: @ini_sidebar_width;
     max-width: 25%;
   }
-
-[dir=ltr] #dokuwiki__aside {
-	margin: 0 @ini_spacer 0 0;
-}
-
-[dir=rtl] #dokuwiki__aside {
-	margin: 0 0 0 @ini_spacer;
-}
-
+  [dir=ltr] #dokuwiki__aside {
+    margin: 0 @ini_spacer 0 0;
+  }
+  [dir=rtl] #dokuwiki__aside {
+    margin: 0 0 0 @ini_spacer;
+  }
   #dw__toc {
     width: @ini_toc_width;
     max-width: 20%;
   }
-
   [dir=ltr] #dw__toc {
     margin: 0 0 @ini_spacer @ini_spacer;
   }
-
   [dir=rtl] #dw__toc {
     margin: 0 @ini_spacer @ini_spacer 0;
   }
 }
-
-
-
-
 @media (min-width: 701px) {
 }
-
 @media (max-width: 800px) {
-  /*#dokuwiki__aside,
-  #dw__toc {
-    width: 100%;
-  }*/
   #dw__toc h3,
   #dw__toc div,
   #dokuwiki__aside h3.toggle {
@@ -478,7 +316,6 @@ div.error {
     display: block;
   }
 }
-
 @media (min-width: 801px) {
   body {
     padding: 1.5vmax;
@@ -487,95 +324,48 @@ div.error {
     /*max-width: calc(100% - @ini_toc_width - @ini_spacer - 40px);*/
     width: auto;
   }
-  
-}
-
-@media (max-width: 800px) {
-}
-
-@media (min-width: 961px) {
-}
-
-@media all and (min-width: @ini_site_width + 2 * @ini_toc_width + 4 * @ini_spacer + 1px) {
-  #dokuwiki__aside {
-    max-width: none;
-  }
-
+  #dokuwiki__aside,
   #dw__toc {
     max-width: none;
+  }
+}
+@media (max-width: 800px) {
+}
+@media (min-width: 961px) {
+}
+/* Extract ToC if there's enough room */
+@media all and (min-width: @ini_site_width + 2 * @ini_toc_width + 4 * @ini_spacer + 1px) {
+  body.boxed.extractToC #dw__toc {
     position: absolute;
   }
-  [dir=ltr] #dw__toc {
+  [dir=ltr] body.boxed.extractToC #dw__toc {
     transform: translate(-@ini_spacer + @ini_site_width, 0);
   }
-  [dir=ltr] body.hasSidebar #dw__toc {
+  [dir=ltr] body.boxed.extractToC.hasSidebar #dw__toc {
     transform: translate(-@ini_sidebar_width - (2 * @ini_spacer) + @ini_site_width, 0);
   }
-  [dir=rtl] #dw__toc {
+  [dir=rtl] body.boxed.extractToC #dw__toc {
     transform: translate(@ini_spacer - @ini_site_width, 0);
   }
-  [dir=rtl] body.hasSidebar #dw__toc {
+  [dir=rtl] body.boxed.extractToC.hasSidebar #dw__toc {
     transform: translate(@ini_sidebar_width + (2 * @ini_spacer) - @ini_site_width, 0);
   }
-
-  /*
-  body.maxasides #dw__toc {
-    top: 1.5vmax;
-  }
-  */
 }
-
-/* mostly working repositionment of both Sidebar and ToC, not sure to use it though
+/* Extract Sidebar if there's enough room */
 @media all and (min-width: @ini_site_width + 2 * @ini_sidebar_width + 4 * @ini_spacer + 1px) {
-  body.hasSidebar #dokuwiki__aside {
-    position: fixed;
+  body.boxed.hasSidebar.extractSidebar #dokuwiki__aside {
+    position: absolute;
   }
-  [dir=ltr] #dokuwiki__aside {
+  [dir=ltr] body.boxed.hasSidebar.extractSidebar #dokuwiki__aside {
     transform: translate(-2 * @ini_spacer - @ini_sidebar_width, 0);
   }
-  [dir=ltr] body.hasSidebar #dw__toc {
+  [dir=ltr] body.boxed.hasSidebar.extractSidebar.extractToC #dw__toc {
     transform: translate(@ini_site_width - @ini_spacer, 0);
   }
-  [dir=rtl] #dokuwiki__aside {
+  [dir=rtl] body.boxed.hasSidebar.extractSidebar #dokuwiki__aside {
     transform: translate(2 * @ini_spacer + @ini_sidebar_width, 0);
   }
-  [dir=rtl] body.hasSidebar #dw__toc {
+  [dir=rtl] body.boxed.hasSidebar.extractSidebar.extractToC #dw__toc {
     transform: translate(-@ini_site_width + @ini_spacer, 0);
   }
 }
-*/
-
-/*
-    #dokuwiki__site.hasWidebanner #dw__toc.scrollspy {
-        margin: -18.7em 0 0 0 !important;
-    }
-    #dw__toc.scrollspy h3 {
-        margin: .5em 0 .5em 0;
-    }
-    #dw__toc.scrollspy h3 strong {
-        display: none !important;
-    }
-    [dir=ltr] #dw__toc.scrollspy ul {
-        padding: 0 0 0 1em;
-    }
-    [dir=rtl] #dw__toc.scrollspy ul {
-        padding: 0 1em 0 0;
-    }
-    #dw__toc.scrollspy > div > ul {
-        padding: 0 !important;
-    }
-    #dw__toc.scrollspy li div.li {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    #dw__toc.scrollspy li div.li a {
-        padding: 0 4px 0 4px;
-    }
-    #dw__toc.scrollspy li ul.toc {
-        display: none;
-    }
-    #dw__toc.scrollspy li.scrollspy-active > ul {
-        display: block;
-    }
-*/
