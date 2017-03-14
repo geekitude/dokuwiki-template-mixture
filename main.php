@@ -98,7 +98,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
       </main>
     </div>
     <!-- ********** FOOTER ********** -->
-    <footer id="dokuwiki__footer" role="contentinfo" class="pam pt0 pb0">
+    <footer id="dokuwiki__footer" role="contentinfo" class="pam pt0">
       <div class="tools">
         <!-- SITE TOOLS -->
         <div id="dokuwiki__sitetools">
