@@ -193,6 +193,21 @@ function mixture_init() {
     }
 }
 
+// Add Mixture specific classes to HTML body
+function mixture_classes() {
+    global $ACT, $mixture;
+
+    $classes = " ";
+    if (tpl_getConf("extractToC")) {
+        $classes .= "extractToC ";
+    }
+    if (tpl_getConf("extractSidebar")) {
+        $classes .= "extractSidebar ";
+    }
+
+    return rtrim($classes, " ");
+}
+
 /**
  * PRINT THE BREADCRUMBS TRACE, adapted from core (template.php) to use a CSS separator solution and respect existing/non-existing page link colors
  *

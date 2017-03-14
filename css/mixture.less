@@ -92,21 +92,15 @@ hr {
   max-width: @ini_site_width;
   margin: 0 auto 0 auto;
 }
-body.quartered #dokuwiki__header,
-/*body.quartered #mixture__alerts,*/
-/*body.quartered #mixture__page_nav,*/
-body.quartered #dokuwiki__site {
-  margin: 0 auto @ini_spacer auto;
+#dokuwiki__site {
+  background-color: @ini_color_white;
+  padding: 0 @ini_spacer 0 @ini_spacer;
 }
-body.quartered #mixture__alerts,
-body.quartered #mixture__page_nav {
-  background-color: transparent;
+#dokuwiki__header {
+  padding: @ini_spacer @ini_spacer 0 @ini_spacer;
 }
 #mixture__alerts {
   padding: (@ini_spacer / 4) 0 (@ini_spacer / 4) 0;
-}
-body.quartered #mixture__alerts hr {
-  display: none;
 }
 #dokuwiki__indexer {
   position: absolute;
@@ -136,6 +130,17 @@ body.quartered #mixture__alerts hr {
   width: 100%;
   margin: 0;
 }
+/* TEST: recupérer l'espace sous la sidebar (il faut aussi supprimer la classe .flex-container sur #dokuwiki__site */
+/* Modif sur <blockquote> pour éviter que la bordure des blockquotes passe à travers la sidebar mais il y a de gros effets de bords sur tous les blockquotes */
+/*
+body #dokuwiki__aside {
+  position: relative;
+  float: left;
+}
+blockquote {
+  overflow: hidden;
+}
+*/
 #dokuwiki__aside h3.toggle {
   display: none;
 }
@@ -274,9 +279,9 @@ div.no {
     margin: 0;
     padding: 0;
 }
+
 @media (min-width: 401px) {
 }
-
 @media (max-width: 543px) {
   #dokuwiki__content {
     margin-top: (@ini_spacer / 2);
@@ -318,6 +323,7 @@ div.no {
 }
 @media (min-width: 801px) {
   body {
+    /*padding: (2 * @ini_spacer);*/
     padding: 1.5vmax;
   }
   table {
@@ -335,37 +341,37 @@ div.no {
 }
 /* Extract ToC if there's enough room */
 @media all and (min-width: @ini_site_width + 2 * @ini_toc_width + 4 * @ini_spacer + 1px) {
-  body.boxed.extractToC #dw__toc {
+  body.extractToC #dw__toc {
     position: absolute;
   }
-  [dir=ltr] body.boxed.extractToC #dw__toc {
+  [dir=ltr] body.extractToC #dw__toc {
     transform: translate(-@ini_spacer + @ini_site_width, 0);
   }
-  [dir=ltr] body.boxed.extractToC.hasSidebar #dw__toc {
+  [dir=ltr] body.extractToC.hasSidebar #dw__toc {
     transform: translate(-@ini_sidebar_width - (2 * @ini_spacer) + @ini_site_width, 0);
   }
-  [dir=rtl] body.boxed.extractToC #dw__toc {
+  [dir=rtl] body.extractToC #dw__toc {
     transform: translate(@ini_spacer - @ini_site_width, 0);
   }
-  [dir=rtl] body.boxed.extractToC.hasSidebar #dw__toc {
+  [dir=rtl] body.extractToC.hasSidebar #dw__toc {
     transform: translate(@ini_sidebar_width + (2 * @ini_spacer) - @ini_site_width, 0);
   }
 }
 /* Extract Sidebar if there's enough room */
 @media all and (min-width: @ini_site_width + 2 * @ini_sidebar_width + 4 * @ini_spacer + 1px) {
-  body.boxed.hasSidebar.extractSidebar #dokuwiki__aside {
+  body.hasSidebar.extractSidebar #dokuwiki__aside {
     position: absolute;
   }
-  [dir=ltr] body.boxed.hasSidebar.extractSidebar #dokuwiki__aside {
+  [dir=ltr] body.hasSidebar.extractSidebar #dokuwiki__aside {
     transform: translate(-2 * @ini_spacer - @ini_sidebar_width, 0);
   }
-  [dir=ltr] body.boxed.hasSidebar.extractSidebar.extractToC #dw__toc {
+  [dir=ltr] body.hasSidebar.extractSidebar.extractToC #dw__toc {
     transform: translate(@ini_site_width - @ini_spacer, 0);
   }
-  [dir=rtl] body.boxed.hasSidebar.extractSidebar #dokuwiki__aside {
+  [dir=rtl] body.hasSidebar.extractSidebar #dokuwiki__aside {
     transform: translate(2 * @ini_spacer + @ini_sidebar_width, 0);
   }
-  [dir=rtl] body.boxed.hasSidebar.extractSidebar.extractToC #dw__toc {
+  [dir=rtl] body.hasSidebar.extractSidebar.extractToC #dw__toc {
     transform: translate(-@ini_site_width + @ini_spacer, 0);
   }
 }

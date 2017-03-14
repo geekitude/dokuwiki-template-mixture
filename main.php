@@ -29,10 +29,10 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
   </head>
-  <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' hasSidebar' : ''; ?>">
+  <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' hasSidebar' : ''; ?><?php echo mixture_classes();?>">
     <?php tpl_includeFile('header.html') ?>
     <!-- ********** HEADER ********** -->
-    <header id="dokuwiki__header" role="banner" class="pam pb0">
+    <header id="dokuwiki__header" role="banner" class="pam">
       <?php if (($ID<>'start') && ($ACT=='show')): ?>
         <h1><?php tpl_link(wl(),tpl_pagetitle($ID, 1),'accesskey="h" title="[H]"') ?></h1>
       <?php else: ?>
@@ -69,7 +69,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <div class="pageNews"><span>news</span></div>
       <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
     </nav>
-    <div id="dokuwiki__site" class="flex-container pam pt0 pb0">
+    <div id="dokuwiki__site" class="flex-container">
       <!-- ********** ASIDE ********** -->
       <?php if ($showSidebar): ?>
         <aside id="dokuwiki__aside" class="mod aside">
