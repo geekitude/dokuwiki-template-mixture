@@ -63,12 +63,12 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <aside id="mixture__alerts">
       <!-- ALERTS -->
       <?php html_msgarea() ?>
+    </aside>
+    <aside id="mixture__pageIdInfo" class="flex-container-h pam pt0 pb0">
+      <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
+      <div class="pageInfo"><span><?php tpl_pageinfo() ?></span></div>
       <hr />
     </aside>
-    <nav id="mixture__page_nav" class="flex-container-h pam pt0 pb0">
-      <div class="pageNews"><span>news</span></div>
-      <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
-    </nav>
     <div id="dokuwiki__site" class="flex-container">
       <!-- ********** ASIDE ********** -->
       <?php if ($showSidebar): ?>
@@ -91,8 +91,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
           <?php tpl_content() ?>
           <!-- wikipage stop -->
         </article>
-      <hr />
-              <div class="pageInfo"><span><?php tpl_pageinfo() ?></span></div>
+        <hr />
         <?php tpl_flush() ?>
         <?php tpl_includeFile('pagefooter.html') ?>
       </main>

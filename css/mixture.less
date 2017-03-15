@@ -72,8 +72,9 @@ blockquote::before {
   content: "";
 }
 hr {
-  /*margin: calc(@ini_spacer / 2) auto calc(@ini_spacer / 2) auto;*/
-  margin: calc(@ini_spacer / 2) auto 0 auto;
+  margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 2) auto;
+  /*margin: calc(@ini_spacer / 2) auto 0 auto;*/
+  /*margin: 0 auto calc(@ini_spacer / 2) auto;*/
   width: 80%
 }
 [dir=ltr] sup {
@@ -84,7 +85,7 @@ hr {
 }
 #dokuwiki__header,
 #mixture__alerts,
-#mixture__page_nav,
+#mixture__pageIdInfo,
 #dokuwiki__site,
 #dokuwiki__footer {
   background-color: @ini_color_white;
@@ -109,7 +110,7 @@ hr {
 #dokuwiki__content {
   padding: 0;
 }
-#mixture__page_nav {
+#mixture__pageIdInfo {
   justify-content: space-between;
 }
 #dokuwiki__aside h3.toggle,
@@ -273,7 +274,9 @@ div.error {
     background-color: @ini_color_red;
 }
 div.footnotes {
-  margin: @ini_spacer 0 0 0;
+  margin: @ini_spacer auto 0 auto !important;
+  width: 80%;
+  font-size: 80%;
 }
 div.no {
     display: inline;
