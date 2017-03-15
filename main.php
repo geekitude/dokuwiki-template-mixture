@@ -48,27 +48,27 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <p class="a11y skip">
         <a href="#dokuwiki__content"><?php echo $lang['skip_to_content'] ?></a>
       </p>
-       <!-- BREADCRUMBS -->
+      <aside id="mixture__alerts">
+        <!-- ALERTS -->
+        <?php html_msgarea() ?>
+      </aside>
+      <!-- BREADCRUMBS -->
       <?php if (($conf['breadcrumbs']) or ($conf['youarehere'])) { ?>
-        <div class="breadcrumbs">
+        <div class="breadcrumbs flex-container-v">
           <?php if ($conf['breadcrumbs']) { ?>
-            <div class="trace"><?php mixture_breadcrumbs() ?></div>
+            <div class="trace"><?php mixture_trace() ?></div>
           <?php } ?>
           <?php if ($conf['youarehere']) { ?>
             <div class="youarehere"><?php mixture_youarehere() ?></div>
           <?php } ?>
         </div>
       <?php } ?>
+      <aside id="mixture__pageIdInfo" class="flex-container-h pam pt0 pb0">
+        <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
+        <div class="pageInfo"><span><?php tpl_pageinfo() ?></span></div>
+        <hr />
+      </aside>
     </header>
-    <aside id="mixture__alerts">
-      <!-- ALERTS -->
-      <?php html_msgarea() ?>
-    </aside>
-    <aside id="mixture__pageIdInfo" class="flex-container-h pam pt0 pb0">
-      <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
-      <div class="pageInfo"><span><?php tpl_pageinfo() ?></span></div>
-      <hr />
-    </aside>
     <div id="dokuwiki__site" class="flex-container">
       <!-- ********** ASIDE ********** -->
       <?php if ($showSidebar): ?>

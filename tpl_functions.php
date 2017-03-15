@@ -213,7 +213,7 @@ function mixture_classes() {
  *
  * @return bool
  */
-function mixture_breadcrumbs() {
+function mixture_trace() {
     global $lang, $conf, $uhp, $ID;
 
     //check if enabled

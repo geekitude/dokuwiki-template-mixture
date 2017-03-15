@@ -72,7 +72,7 @@ blockquote::before {
   content: "";
 }
 hr {
-  margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 2) auto;
+  margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 4) auto;
   /*margin: calc(@ini_spacer / 2) auto 0 auto;*/
   /*margin: 0 auto calc(@ini_spacer / 2) auto;*/
   width: 80%
@@ -98,6 +98,13 @@ hr {
 }
 #dokuwiki__header {
   padding: @ini_spacer @ini_spacer 0 @ini_spacer;
+}
+div.breadcrumbs {
+  padding: (@ini_spacer / 4) 0 0 0;
+}
+div.breadcrumbs div.trace,
+div.breadcrumbs div.youarehere {
+  margin: 0 auto 0 auto;
 }
 #mixture__alerts {
   padding: (@ini_spacer / 4) 0 (@ini_spacer / 4) 0;
