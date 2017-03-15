@@ -7,22 +7,22 @@ article {
   position: relative;
 }
 h1 {
-  font-size: 3.1em;
+  font-size: unit(1.42 * @ini_font_factor, em);
 }
 h2 {
-  font-size: 2.7em;
+  font-size: unit(1.3 * @ini_font_factor, em);
 }
 h3 {
-  font-size: 2.2em;
+  font-size: unit(1.18 * @ini_font_factor, em);
 }
 h4 {
-  font-size: 2em;
+  font-size: unit(1.12 * @ini_font_factor, em);
 }
 h5 {
-  font-size: 1.8em;
+  font-size: unit(1.06 * @ini_font_factor, em);
 }
 h6 {
-  font-size: 1.6em;
+  font-size: unit(@ini_font_factor, em);
 }
 h1,
 h2,
@@ -82,7 +82,6 @@ hr {
 [dir=rtl] sup {
   margin-right: .1em;
 }
-
 #dokuwiki__header,
 #mixture__alerts,
 #mixture__page_nav,
@@ -161,7 +160,7 @@ blockquote {
   margin: 0;
 }
 .breadcrumbs {
-  font-size: .8em;
+  font-size: 80%;
 }
 .breadcrumbs ul {
   padding: 0;
@@ -229,7 +228,7 @@ blockquote {
 div.pageNews,
 div.pageId,
 div.pageInfo {
-  font-size: .8em;
+  font-size: 80%;
 }
 div.pageId {
   align-self: center;
