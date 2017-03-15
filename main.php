@@ -33,7 +33,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <?php tpl_includeFile('header.html') ?>
     <!-- ********** HEADER ********** -->
     <header id="dokuwiki__header" role="banner" class="pam">
-      <?php if (($ID<>'start') && ($ACT=='show')): ?>
+      <?php if ((tpl_getConf('pageTitle') == 1) && ($ID<>'start') && ($ACT=='show')): ?>
         <h1><?php tpl_link(wl(),tpl_pagetitle($ID, 1),'accesskey="h" title="[H]"') ?></h1>
       <?php else: ?>
         <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?></h1>
@@ -56,7 +56,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <?php if (($conf['breadcrumbs']) or ($conf['youarehere'])) { ?>
         <div class="breadcrumbs flex-container-v">
           <?php if ($conf['breadcrumbs']) { ?>
-            <div class="trace"><?php mixture_trace() ?></div>
+            <div class="trace"><?php mixture_breadcrumbs() ?></div>
           <?php } ?>
           <?php if ($conf['youarehere']) { ?>
             <div class="youarehere"><?php mixture_youarehere() ?></div>

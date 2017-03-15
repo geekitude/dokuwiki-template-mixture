@@ -201,6 +201,9 @@ function mixture_classes() {
     if (tpl_getConf("extractToC")) {
         $classes .= "extractToC ";
     }
+    if (tpl_getConf("scrollspyToC")) {
+        $classes .= "scrollspyToC ";
+    }
     if (tpl_getConf("extractSidebar")) {
         $classes .= "extractSidebar ";
     }
@@ -213,7 +216,7 @@ function mixture_classes() {
  *
  * @return bool
  */
-function mixture_trace() {
+function mixture_breadcrumbs() {
     global $lang, $conf, $uhp, $ID;
 
     //check if enabled
