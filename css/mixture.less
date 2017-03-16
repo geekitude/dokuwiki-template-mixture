@@ -127,7 +127,8 @@ div.breadcrumbs div.youarehere {
   font-size: 80%;
 }
 #dokuwiki__aside h3.toggle,
-#dw__toc h3.toggle {
+#dw__toc h3.toggle,
+#dw__toc div {
   padding: 0;
 }
 #dokuwiki__aside,
@@ -150,9 +151,6 @@ blockquote {
   overflow: hidden;
 }
 */
-#dokuwiki__aside h3.toggle {
-  display: none;
-}
 #dw__toc {
   width: 100%;
   margin: 0;
@@ -324,16 +322,6 @@ div.no {
   }
 }
 @media (min-width: 701px) {
-}
-@media (max-width: 800px) {
-  #dw__toc h3,
-  #dw__toc div,
-  #dokuwiki__aside h3.toggle {
-    padding: 0;
-  }
-  #dokuwiki__aside h3.toggle {
-    display: block;
-  }
 }
 @media (min-width: 801px) {
   body {
