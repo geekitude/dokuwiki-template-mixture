@@ -74,12 +74,11 @@ $showSidebar = page_findnearest($conf['sidebar']);
       <?php if ($showSidebar): ?>
         <aside id="dokuwiki__aside" class="mod aside">
           <h3 class="toggle"><?php echo $lang['sidebar'] ?></h3>
-          <nav id="navigation" role="navigation">
+          <div class="content" role="complementary">
             <?php tpl_includeFile('sidebarheader.html') ?>
             <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
             <?php tpl_includeFile('sidebarfooter.html') ?>
-            <hr class="a11y" />
-          </nav>
+          </div>
         </aside>
 	    <?php endif; ?>
       <!-- ********** CONTENT ********** -->
