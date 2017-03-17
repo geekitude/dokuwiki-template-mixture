@@ -6,6 +6,16 @@
  */
 
 /**
+ * BREAKPOINTS [#screen__mode z-index]
+ * -...tiny...543px [1000]
+ * 544px...small...767px [1001]
+ * 768px...medium...1200px [1002]
+ * 1201px...large...1800px [1003]
+ * 1801px...wide...+ [1004]
+ * Plus variable breakpoints for ToC and Sidebar extraction (depending on style.ini placeholders)
+ */
+
+/**
  * Z-INDEXES
  * (Scroll-up: 997)
  * (Lightbox: 998)
@@ -129,6 +139,7 @@ div.breadcrumbs div.youarehere {
 }
 #dokuwiki__content {
   padding: 0;
+  margin: calc(@ini_spacer / 2) 0 0 0;
 }
 #dokuwiki__aside {
   width: 100%;
@@ -308,19 +319,19 @@ div.footnotes {
 div.no {
   position: fixed;
 }
+/*
 @media (min-width: 401px) {
 }
-@media (max-width: 543px) {
-  #dokuwiki__content {
-    margin-top: calc(@ini_spacer / 2);
-  }
-}
+*/
 @media (min-width: 544px) {
   #screen__mode {
     z-index: 1001;
   }
   hr {
     margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 2) auto;
+  }
+  #dokuwiki__content {
+    margin: 0;
   }
   #dokuwiki__aside {
     width: @ini_sidebar_width;
@@ -343,14 +354,10 @@ div.no {
     margin: 0 @ini_spacer @ini_spacer 0;
   }
 }
-@media (min-width: 701px) {
-}
 @media (min-width: 768px) {
   #screen__mode {
     z-index: 1002;
   }
-}
-@media (min-width: 801px) {
   body {
     /*padding: (2 * @ini_spacer);*/
     padding: 1.5vmax;
@@ -359,10 +366,6 @@ div.no {
     /*max-width: calc(100% - @ini_toc_width - @ini_spacer - 40px);*/
     width: auto;
   }
-}
-@media (max-width: 800px) {
-}
-@media (min-width: 961px) {
 }
 @media (min-width: 1201px) {
   #screen__mode {
