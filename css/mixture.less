@@ -1,4 +1,18 @@
-/* Votre Style */
+@charset "UTF-8";
+/**
+ * This file provides CSS rules specific to Mixture template.
+ *
+ * @author Simon Delage <simon.geekitude@gmail.com>
+ */
+
+/**
+ * Z-INDEXES
+ * (Scroll-up: 997)
+ * (Lightbox: 998)
+ * (Modal overlay: 999)
+ * Mixture breakpoint helper: 1000 to 1005
+ * (.topmost: 9999)
+ */
 
 body {
   background-color: @ini_color_light-gray;
@@ -80,6 +94,9 @@ hr {
 }
 [dir=rtl] sup {
   margin-right: .1em;
+}
+#screen__mode {
+  z-index: 1000;
 }
 #dokuwiki__header,
 #mixture__alerts,
@@ -165,11 +182,6 @@ blockquote {
 }
 body.scrollspyToC #dw__toc {
   /*background-color: pink;*/
-}
-#dokuwiki__indexer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
 }
 .tagline {
   font-weight: bold;
@@ -294,11 +306,8 @@ div.footnotes {
   font-size: 80%;
 }
 div.no {
-    display: inline;
-    margin: 0;
-    padding: 0;
+  position: fixed;
 }
-
 @media (min-width: 401px) {
 }
 @media (max-width: 543px) {
@@ -307,6 +316,9 @@ div.no {
   }
 }
 @media (min-width: 544px) {
+  #screen__mode {
+    z-index: 1001;
+  }
   hr {
     margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 2) auto;
   }
@@ -333,6 +345,11 @@ div.no {
 }
 @media (min-width: 701px) {
 }
+@media (min-width: 768px) {
+  #screen__mode {
+    z-index: 1002;
+  }
+}
 @media (min-width: 801px) {
   body {
     /*padding: (2 * @ini_spacer);*/
@@ -348,9 +365,17 @@ div.no {
 @media (min-width: 961px) {
 }
 @media (min-width: 1201px) {
+  #screen__mode {
+    z-index: 1003;
+  }
   #dokuwiki__aside,
   #dw__toc {
     max-width: none;
+  }
+}
+@media (min-width: 1801px) {
+  #screen__mode {
+    z-index: 1004;
   }
 }
 /* Extract ToC if there's enough room */
