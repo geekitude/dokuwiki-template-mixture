@@ -73,8 +73,6 @@ blockquote::before {
 }
 hr {
   margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 4) auto;
-  /*margin: calc(@ini_spacer / 2) auto 0 auto;*/
-  /*margin: 0 auto calc(@ini_spacer / 2) auto;*/
   width: 80%
 }
 [dir=ltr] sup {
@@ -109,19 +107,18 @@ div.breadcrumbs div.youarehere {
 #mixture__alerts {
   padding: (@ini_spacer / 4) 0 (@ini_spacer / 4) 0;
 }
-#dokuwiki__indexer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+#mixture__pageIdInfo {
+  justify-content: space-between;
 }
 #dokuwiki__content {
   padding: 0;
 }
-#mixture__pageIdInfo {
-  justify-content: space-between;
+#dokuwiki__aside {
+  width: 100%;
+  margin: (@ini_spacer / 4) 0 0 0;
 }
 #dokuwiki__aside h3.toggle,
-#dokuwiki__aside nav,
+#dokuwiki__aside div.content,
 #dw__toc h3.toggle,
 #dw__toc div.li {
   font-size: 80%;
@@ -145,10 +142,6 @@ div.breadcrumbs div.youarehere {
   -o-transition: @ini_animation_time ease-in-out;
   transition: @ini_animation_time ease-in-out;
 }
-#dokuwiki__aside {
-  width: 100%;
-  margin: 0;
-}
 /* TEST: recupérer l'espace sous la sidebar (il faut aussi supprimer la classe .flex-container sur #dokuwiki__site */
 /* Modif sur <blockquote> pour éviter que la bordure des blockquotes passe à travers la sidebar mais il y a de gros effets de bords sur tous les blockquotes */
 /*
@@ -162,7 +155,7 @@ blockquote {
 */
 #dw__toc {
   width: 100%;
-  margin: 0;
+  margin: 0 0 (@ini_spacer / 4) 0;
 }
 /* only apply to #dw__toc.scrollspy? */
 #dw__toc li div.li {
@@ -172,6 +165,11 @@ blockquote {
 }
 body.scrollspyToC #dw__toc {
   /*background-color: pink;*/
+}
+#dokuwiki__indexer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 .tagline {
   font-weight: bold;
@@ -309,6 +307,9 @@ div.no {
   }
 }
 @media (min-width: 544px) {
+  hr {
+    margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 2) auto;
+  }
   #dokuwiki__aside {
     width: @ini_sidebar_width;
     max-width: 25%;
