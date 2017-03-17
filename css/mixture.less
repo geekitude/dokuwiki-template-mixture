@@ -403,6 +403,9 @@ div.no {
     /* translate (search "transition" to find the rules for this translation animation) */
     transform: translate((-2 * @ini_spacer) - @ini_toc_width, 0);
   }
+  #dw__toc {
+    max-width: none;
+  }
 }
 /* Extract Sidebar if there's enough room */
 @media all and (min-width: @ini_site_width + (2 * @ini_sidebar_width) + (4 * @ini_spacer) + 1px) {
@@ -419,5 +422,8 @@ div.no {
     left: 0;
     /* translate (search "transition" to find the rules for this translation animation) */
     transform: translate((-2 * @ini_spacer) - @ini_toc_width, 0);
+  }
+  #dokuwiki__aside {
+    max-width: none;
   }
 }
