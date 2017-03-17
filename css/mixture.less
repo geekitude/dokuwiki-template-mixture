@@ -137,10 +137,10 @@ div.breadcrumbs div.youarehere {
 #dokuwiki__aside,
 #dw__toc {
   /* animate translations for those divs */
-  -webkit-transition: @ini_animation_time ease-in-out;
-  -moz-transition: @ini_animation_time ease-in-out;
-  -o-transition: @ini_animation_time ease-in-out;
-  transition: @ini_animation_time ease-in-out;
+  -webkit-transition: transform @ini_animation_time ease-in-out;
+  -moz-transition: transform @ini_animation_time ease-in-out;
+  -o-transition: transform @ini_animation_time ease-in-out;
+  transition: transform @ini_animation_time ease-in-out;
 }
 /* TEST: recupérer l'espace sous la sidebar (il faut aussi supprimer la classe .flex-container sur #dokuwiki__site */
 /* Modif sur <blockquote> pour éviter que la bordure des blockquotes passe à travers la sidebar mais il y a de gros effets de bords sur tous les blockquotes */
