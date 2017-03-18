@@ -14,7 +14,7 @@ var device_classes = 'extractedtoc extractedsb desktop mobile tablet phone';
 function js_mixture_mobile(){
 
     // the z-index in mobile.css is (mis-)used purely for detecting the screen mode here
-    var screen_mode = jQuery('#screen__mode').css('z-index') + '';
+    var screen_mode = jQuery('#mixture__helper').css('z-index') + '';
 
     // determine our device pattern
     // TODO: consider moving into dokuwiki core

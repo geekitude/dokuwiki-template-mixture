@@ -108,9 +108,6 @@ hr {
 main {
   padding: 0 @ini_spacer;
 }
-#screen__mode {
-  z-index: 1000;
-}
 #dokuwiki__site {
   margin: 0;
   padding: 0;
@@ -193,6 +190,17 @@ blockquote {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+#mixture__helper {
+  z-index: 1000;
+}
+#mixture__helper span::before {
+  content: "tiny (<544px)";
+}
+body.debug #mixture__helper {
+  background: @ini_highlight;
+  top: 0;
+  visibility: visible;
 }
 body.scrollspyToC #dw__toc {
   /*background-color: pink;*/
@@ -341,14 +349,18 @@ div.no {
 }
 div.not-visible {
   position: fixed;
+  visibility: hidden;;
 }
 /*
 @media (min-width: 401px) {
 }
 */
 @media (min-width: 544px) {
-  #screen__mode {
+  #mixture__helper {
     z-index: 1001;
+  }
+  #mixture__helper span::before {
+    content: "small (<768px)";
   }
   hr {
     margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 2) auto;
@@ -381,8 +393,11 @@ div.not-visible {
   }
 }
 @media (min-width: 768px) {
-  #screen__mode {
+  #mixture__helper {
     z-index: 1002;
+  }
+  #mixture__helper span::before {
+    content: "medium (<1201px)";
   }
   #dokuwiki__site {
     /*padding: (2 * @ini_spacer);*/
@@ -394,19 +409,28 @@ div.not-visible {
   }
 }
 @media (min-width: 1201px) {
-  #screen__mode {
+  #mixture__helper {
     z-index: 1003;
+  }
+  #mixture__helper span::before {
+    content: "large (<1801px)";
   }
 }
 @media (min-width: 1801px) {
-  #screen__mode {
+  #mixture__helper {
     z-index: 1004;
+  }
+  #mixture__helper span::before {
+    content: "wide (>=1801px)";
   }
 }
 /* Extract ToC if there's enough room */
 @media all and (min-width: @ini_site_width + (2 * @ini_toc_width) + (4 * @ini_spacer) + 1px) {
-  #screen__mode {
+  body.extractToC #mixture__helper {
     z-index: 2001;
+  }
+  body.extractToC #mixture__helper span::after {
+    content: "(ToC extracted)";
   }
   body.extractToC #dw__toc {
     /* let page content recover ToC'space */
@@ -432,8 +456,11 @@ div.not-visible {
 }
 /* Extract Sidebar if there's enough room */
 @media all and (min-width: @ini_site_width + (2 * @ini_sidebar_width) + (4 * @ini_spacer) + 1px) {
-  #screen__mode {
-    z-index: 2002;
+  body.extractSidebar #mixture__helper {
+    z-index: 2001;
+  }
+  body.extractSidebar #mixture__helper span::after {
+    content: "(Sidebar extracted)";
   }
   body.hasSidebar.extractSidebar #dokuwiki__aside {
     /* let page content recover ToC'space */

@@ -165,7 +165,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
       ga('create', 'UA-XXXXXXXX-X', 'XXXXXXXXXXX.TLD');
       ga('send', 'pageview');
     </script>
+    <div id="mixture__helper" class="not-visible">Mixture width: <span> </span></div><?php /* helper to detect CSS media query in script.js and eventually display it if adding `&debug=1` to url*/ ?>
     <div class="not-visible"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
-    <div id="screen__mode" class="not-visible"></div><?php /* helper to detect CSS media query in script.js */ ?>
   </body>
 </html>

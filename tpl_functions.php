@@ -186,10 +186,10 @@ function php_mixture_init() {
     // DEBUG
     // Adding test alerts if debug is enabled
     if ($_GET['debug'] == true) {
-        msg("This is an error alert (-1)", -1);
-        msg("This is an info message (0)", 0);
-        msg("This is a success message (1)", 1);
-        msg("This is a notification (2)", 2);
+        msg("This is an error [-1] alert with a <a>dummy link</a>", -1);
+        msg("This is an info [0] message with a <a>dummy link</a>", 0);
+        msg("This is a success [1] message with a <a>dummy link</a>", 1);
+        msg("This is a notification [2] with a <a>dummy link</a>", 2);
     }
 }
 
@@ -206,6 +206,9 @@ function php_mixture_classes() {
     }
     if (tpl_getConf("extractSidebar")) {
         $classes .= "extractSidebar ";
+    }
+    if ($_GET['debug'] == true) {
+        $classes .= "debug ";
     }
 
     return rtrim($classes, " ");
