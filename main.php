@@ -165,7 +165,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
       ga('create', 'UA-XXXXXXXX-X', 'XXXXXXXXXXX.TLD');
       ga('send', 'pageview');
     </script>
-    <div class="fixed"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
-    <div id="screen__mode" class="fixed"></div><?php /* helper to detect CSS media query in script.js */ ?>
+    <div class="not-visible"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
+    <div id="screen__mode" class="not-visible"></div><?php /* helper to detect CSS media query in script.js */ ?>
   </body>
 </html>
