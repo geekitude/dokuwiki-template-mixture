@@ -319,6 +319,21 @@ div.footnotes {
   width: 80%;
   font-size: 80%;
 }
+.toggle strong span {
+  display: none;
+}
+.toggle strong:before {
+    display:inline-block; /* prevent 'text-decoration' propagation to icon */
+    font-family: Fontawesome;
+    font-weight: 300;
+    color: @ini_color_white;
+}
+.toggle.closed strong:before {
+    content: "\f065";
+}
+.toggle.open strong:before {
+    content: "\f066";
+}
 div.no {
   display: inline;
   margin: 0;
