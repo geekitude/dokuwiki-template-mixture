@@ -438,6 +438,9 @@ div.not-visible {
     /* initial vertical position apllied along with absolute position rule above (and before translation), see direction specific rules below for horizontal position */ 
     top: 0;
   }
+  #dw__toc {
+    max-width: none;
+  }
   [dir=ltr] body.extractToC #dw__toc {
     /* initial horizontal position apllied along with absolute position rule above (and before translation), see above for vertical position */ 
     right: 0;
@@ -450,14 +453,22 @@ div.not-visible {
     /* translate (search "transition" to find the rules for this translation animation) */
     transform: translate((-2 * @ini_spacer) - @ini_toc_width, 0);
   }
-  #dw__toc {
-    max-width: none;
+  [dir=ltr] body.scrollspyToC.extractToC #dw__toc li div.li {
+    padding-left: 6px;
+    border-left: 4px solid transparent;
+  }
+  [dir=rtl] body.scrollspyToC.extractToC #dw__toc li div.li {
+    padding-right: 6px;
+    border-right: 4px solid transparent;
+  }
+  body.debug.scrollspyToC.extractToC #dw__toc li div.li {
+    border-color: @ini_highlight;
   }
 }
 /* Extract Sidebar if there's enough room */
 @media all and (min-width: @ini_site_width + (2 * @ini_sidebar_width) + (4 * @ini_spacer) + 1px) {
   body.extractSidebar #mixture__helper {
-    z-index: 2001;
+    z-index: 2002;
   }
   body.extractSidebar #mixture__helper span::after {
     content: "(Sidebar extracted)";
