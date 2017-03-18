@@ -40,13 +40,14 @@ function mixture_mobile(){
 
     // handle some layout changes based on change in device
     var $aside = jQuery('#dokuwiki__aside h3.toggle');
-    var $toc = jQuery('#dw__toc h3.toggle');
-    var $tocicon = jQuery('#dw__toc h3.toggle strong');
+    var $toc = jQuery('#dw__toc h3');
+    var $tocicon = jQuery('#dw__toc h3 strong');
 
     if (device_class.match(/extracted/)){
         // toc expand and aside hide
         if($toc.length) {
             $toc[0].setState(1);
+            $toc.addClass('is-disabled');
             $tocicon.hide();
         }
         if($aside.length) {
@@ -62,6 +63,7 @@ function mixture_mobile(){
         }
         if($toc.length) {
             $toc[0].setState(1);
+            $toc.removeClass('is-disabled');
             $tocicon.show();
         }
     }
@@ -73,6 +75,7 @@ function mixture_mobile(){
         }
         if($toc.length) {
             $toc[0].setState(1);
+            $toc.removeClass('is-disabled');
             $tocicon.show();
         }
     }
@@ -84,6 +87,7 @@ function mixture_mobile(){
         }
         if($toc.length) {
             $toc[0].setState(-1);
+            $toc.removeClass('is-disabled');
             $tocicon.show();
         }
     }
