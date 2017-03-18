@@ -99,6 +99,7 @@ jQuery(function(){
     dw_page.makeToggle('#dokuwiki__aside h3.toggle','#dokuwiki__aside div.content');
 
     js_mixture_resize();
+
     // RESIZE WATCHER
     jQuery(window).resize(function(){
             if (resizeTimer) clearTimeout(resizeTimer);
