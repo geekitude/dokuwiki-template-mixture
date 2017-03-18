@@ -11,7 +11,7 @@ var device_class = ''; // not yet known
 var device_classes = 'extractedtoc extractedsb desktop mobile tablet phone';
 
 
-function mixture_mobile(){
+function js_mixture_mobile(){
 
     // the z-index in mobile.css is (mis-)used purely for detecting the screen mode here
     var screen_mode = jQuery('#screen__mode').css('z-index') + '';
@@ -98,11 +98,11 @@ jQuery(function(){
     var resizeTimer;
     dw_page.makeToggle('#dokuwiki__aside h3.toggle','#dokuwiki__aside div.content');
 
-    mixture_mobile();
+    js_mixture_mobile();
     jQuery(window).on('resize',
         function(){
             if (resizeTimer) clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(mixture_mobile,200);
+            resizeTimer = setTimeout(js_mixture_mobile,200);
         }
     );
 });

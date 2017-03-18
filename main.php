@@ -14,7 +14,7 @@ header('X-UA-Compatible: IE=edge,chrome=1');
 global $mixture, $uhp, $trs;
 // Reset $mixture to make sure we don't inherit any value from previous page
 $mixture = array();
-mixture_init();
+php_mixture_init();
 
 $showSidebar = page_findnearest($conf['sidebar']);
 ?><!doctype html>
@@ -29,7 +29,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
   </head>
-  <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' hasSidebar' : ''; ?><?php echo mixture_classes();?>">
+  <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' hasSidebar' : ''; ?><?php echo php_mixture_classes();?>">
     <div id="dokuwiki__site">
       <?php tpl_includeFile('header.html') ?>
       <!-- ********** HEADER ********** -->
@@ -57,10 +57,10 @@ $showSidebar = page_findnearest($conf['sidebar']);
         <?php if (($conf['breadcrumbs']) or ($conf['youarehere'])) { ?>
           <div class="breadcrumbs flex-container-v">
             <?php if ($conf['breadcrumbs']) { ?>
-              <div class="trace"><?php mixture_breadcrumbs() ?></div>
+              <div class="trace"><?php php_mixture_breadcrumbs() ?></div>
             <?php } ?>
             <?php if ($conf['youarehere']) { ?>
-              <div class="youarehere"><?php mixture_youarehere() ?></div>
+              <div class="youarehere"><?php php_mixture_youarehere() ?></div>
             <?php } ?>
           </div>
         <?php } ?>

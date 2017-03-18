@@ -41,7 +41,7 @@ if (!function_exists('tpl_toolsevent')) {
  * 
  * Load usefull informations and plugins' helpers.
  */
-function mixture_init() {
+function php_mixture_init() {
     global $ID, $conf, $JSINFO;
     // New global variables
     global $mixture, $uhp, $trs, $translationHelper, $tags;
@@ -194,7 +194,7 @@ function mixture_init() {
 }
 
 // Add Mixture specific classes to HTML body
-function mixture_classes() {
+function php_mixture_classes() {
     global $ACT, $mixture;
 
     $classes = " ";
@@ -216,7 +216,7 @@ function mixture_classes() {
  *
  * @return bool
  */
-function mixture_breadcrumbs() {
+function php_mixture_breadcrumbs() {
     global $lang, $conf, $uhp, $ID;
 
     //check if enabled
@@ -237,13 +237,13 @@ function mixture_breadcrumbs() {
         //render crumbs, highlight the last one
         print '<ul>';
 //        if (tpl_getConf('breadcrumbsStyle') == "classic") {
-            print '<li><span class="md-display-none" title="'.rtrim($lang['breadcrumb'], ':').'">'.mixture_glyph("breadcrumbs").'</span><span class="display-none md-display-initial">'.$lang['breadcrumb'].'</span></li>';
+            print '<li><span class="md-display-none" title="'.rtrim($lang['breadcrumb'], ':').'">'.php_mixture_glyph("breadcrumbs").'</span><span class="display-none md-display-initial">'.$lang['breadcrumb'].'</span></li>';
 //        }
         $last = count($crumbs);
         $i    = 0;
         foreach($crumbs as $target => $name) {
             $i++;
-            $class = mixture_breadcrumbsClass($target);
+            $class = php_mixture_breadcrumbsClass($target);
             print '<li'.$class.'>';
               if (page_exists($target)) {
                 $class = "wikilink1";
@@ -273,7 +273,7 @@ function mixture_breadcrumbs() {
  *
  * @return bool
  */
-function mixture_youarehere() {
+function php_mixture_youarehere() {
     global $conf, $ID, $lang, $trs;
 
     // check if enabled
@@ -284,12 +284,12 @@ function mixture_youarehere() {
 
     print '<ul>';
 //    if (tpl_getConf('breadcrumbsStyle') == "classic") {
-        print '<li><span class="md-display-none" title="'.rtrim($lang['youarehere'], ':').'">'.mixture_glyph("youarehere").'</span><span class="display-none md-display-initial">'.$lang['youarehere'].'</span></li>';
+        print '<li><span class="md-display-none" title="'.rtrim($lang['youarehere'], ':').'">'.php_mixture_glyph("youarehere").'</span><span class="display-none md-display-initial">'.$lang['youarehere'].'</span></li>';
 //    }
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
     //if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
     if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or ((!plugin_isdisabled('translation')) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) or (plugin_isdisabled('translation'))) {
-            $class = mixture_breadcrumbsClass($ID);
+            $class = php_mixture_breadcrumbsClass($ID);
         echo '<li'.$class.'>';
             tpl_pagelink(':'.$conf['start']);
         echo '</li>';
@@ -300,7 +300,7 @@ function mixture_youarehere() {
         $part .= $parts[$i].':';
         $page = $part;
         //if($page == $conf['start']) continue; // Skip startpage
-        $class = mixture_breadcrumbsClass($page);
+        $class = php_mixture_breadcrumbsClass($page);
         // output
         // skip if current target leads to untranslated wiki start
 //        if ((isset($trs['defaultLang'])) and ($page != $trs['defaultLang'].":")) {
@@ -325,7 +325,7 @@ function mixture_youarehere() {
         echo "</ul>";
         return true;
     }
-    $class = mixture_breadcrumbsClass($page);
+    $class = php_mixture_breadcrumbsClass($page);
     echo "<li$class>";
         if (p_get_metadata($page, 'plugin_croissant_bctitle') != null) {
             tpl_pagelink($page, p_get_metadata($page, 'plugin_croissant_bctitle'));
@@ -342,7 +342,7 @@ function mixture_youarehere() {
  *
  * @return string
  */
-function mixture_breadcrumbsClass($target = null) {
+function php_mixture_breadcrumbsClass($target = null) {
     global $ID, $conf, $uhp, $translationHelper,$trs;
 
     $classes = "";
@@ -387,7 +387,7 @@ function mixture_breadcrumbsClass($target = null) {
  * @param bool      $button
  * @return string|null
  */
-function mixture_glyph($action, $context = null) {
+function php_mixture_glyph($action, $context = null) {
     global $mixture;
 
     if (isset($mixture['glyphs'][$action])) {
