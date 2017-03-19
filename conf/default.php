@@ -12,3 +12,4 @@ $conf['pageTitle']          = 1;
 $conf['extractToC']          = 1;
 $conf['scrollspyToC']          = 1;
 $conf['extractSidebar']          = 1;
+$conf['stickySidebar']          = 0;
