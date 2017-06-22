@@ -6,7 +6,7 @@ Experimental template based on DW's minimal Starter template, [KNACCS](http://gi
 
 ## Third Party Modules
 
-* [KNACSS - 6.0.5](http://knacss.com/) a lightweight CSS framework
+* [KNACSS - 6.1.2](http://knacss.com/) a lightweight CSS framework
 * [Font Awesome - 4.7.0](http://fontawesome.io/) or maybe just a selection with [IcoMoon](https://icomoon.io/) some day
 * [Web Font Loader - 1.6.24](https://github.com/typekit/webfontloader) to nicely load fonts from Google Web Fonts
 * [WildDeer Stickyfill - 1.1.4](https://github.com/wilddeer/stickyfill), a polyfill for `position: sticky`

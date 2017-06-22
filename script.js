@@ -102,7 +102,6 @@ jQuery(function(){
 
     js_mixture_resize();
     jQuery( '#dw__toc' ).Stickyfill();
-    /*jQuery('#dokuwiki__aside').Stickyfill();*/
     
     // RESIZE WATCHER
     jQuery(window).resize(function(){
