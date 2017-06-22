@@ -560,64 +560,62 @@ figure {
 }
 
 h1, .h1-like {
-  font-size: 2.8rem;
-  font-family: sans-serif;
+  font-size: unit(calc(1.75 * @ini_font_factor), rem);
 }
 
 @media (min-width: 480px) {
   h1, .h1-like {
-    font-size: 3.2rem;
+    font-size: unit(calc(2 * @ini_font_factor), rem);
   }
 }
 
 h2, .h2-like {
-  font-size: 2.4rem;
-  font-family: sans-serif;
+  font-size: unit(calc(1.575 * @ini_font_factor), rem);
 }
 
 @media (min-width: 480px) {
   h2, .h2-like {
-    font-size: 2.8rem;
+    font-size: unit(calc(1.8 * @ini_font_factor), rem);
   }
 }
 
 h3, .h3-like {
-  font-size: 2rem;
+  font-size: unit(calc(1.4 * @ini_font_factor), rem);
 }
 
 @media (min-width: 480px) {
   h3, .h3-like {
-    font-size: 2.4rem;
+    font-size: unit(calc(1.6 * @ini_font_factor), rem);
   }
 }
 
 h4, .h4-like {
-  font-size: 1.8rem;
+  font-size: unit(calc(1.225 * @ini_font_factor), rem);
 }
 
 @media (min-width: 480px) {
   h4, .h4-like {
-    font-size: 2rem;
+    font-size: unit(calc(1.4 * @ini_font_factor), rem);
   }
 }
 
 h5, .h5-like {
-  font-size: 1.6rem;
+  font-size: unit(calc(1.05 * @ini_font_factor), rem);
 }
 
 @media (min-width: 480px) {
   h5, .h5-like {
-    font-size: 1.8rem;
+    font-size: unit(calc(1.2 * @ini_font_factor), rem);
   }
 }
 
 h6, .h6-like {
-  font-size: 1.4rem;
+  font-size: unit(calc(.875 * @ini_font_factor), rem);
 }
 
 @media (min-width: 480px) {
   h6, .h6-like {
-    font-size: 1.6rem;
+    font-size: unit(@ini_font_factor, rem);
   }
 }
 
@@ -1167,7 +1165,7 @@ input[type="reset"].unstyled:focus {
 /* Autogrid variants */
 @media (min-width: 576px) {
   .has-gutter > *:not(:first-child) {
-    margin-left: 1rem;
+    margin-left: @ini_spacer;
   }
   [class*="--reverse"] {
     -webkit-box-orient: horizontal;
@@ -1245,7 +1243,7 @@ img.fr {
 
 img.fl,
 img.fr {
-  margin-bottom: 0.5rem;
+  margin-bottom: calc(.5 * @ini_spacer);
 }
 
 /* inline-block */
