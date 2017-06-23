@@ -186,10 +186,10 @@ function php_mixture_init() {
     // DEBUG
     // Adding test alerts if debug is enabled
     if ($_GET['debug'] == true) {
-        msg("This is an error [-1] alert with a <a>dummy link</a>", -1);
-        msg("This is an info [0] message with a <a>dummy link</a>", 0);
-        msg("This is a success [1] message with a <a>dummy link</a>", 1);
-        msg("This is a notification [2] with a <a>dummy link</a>", 2);
+        msg("This is an error [-1] alert with a <a href='?doku.php'>dummy link</a>", -1);
+        msg("This is an info [0] message with a <a href='?doku.php'>dummy link</a>", 0);
+        msg("This is a success [1] message with a <a href='?doku.php'>dummy link</a>", 1);
+        msg("This is a notification [2] with a <a href='?doku.php'>dummy link</a>", 2);
     }
 }
 
