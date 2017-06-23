@@ -1,5 +1,3 @@
-/* DOKUWIKI:include js/stickyfill.min.js */
-
 /**
  *  We handle several device classes based on browser width.
  *
@@ -101,7 +99,6 @@ jQuery(function(){
     dw_page.makeToggle('#dokuwiki__aside h3.toggle','#dokuwiki__aside div.content');
 
     js_mixture_resize();
-    jQuery( '#dw__toc' ).Stickyfill();
     
     // RESIZE WATCHER
     jQuery(window).resize(function(){
