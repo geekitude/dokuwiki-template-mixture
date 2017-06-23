@@ -7,21 +7,21 @@ Experimental template based on DW's minimal Starter template, [KNACCS](http://kn
 
 ## Main features
 
-* Namespace dependent CSS placeholders (mostly <or maybe only> for colors and fonts)
+* Namespace dependent CSS placeholders (mostly, or maybe only, for colors and fonts)
 * Namespace dependent special images (banner, logo, 'widebanner' and a potential last one that could be 'cover' for example)
 * Google Fonts : each of main text, headings, condensed text (mostly nav bar) and monospaced text (```code``` syntax) can use a different font
 * <maybe> customizable glyphs (this doesn't include Interwiki links and Search field placehoder that can only be customized through CSS), not sure yet if it will be Font Awesome, Genericons or SVG images from another source
 * Optional "scrollspy" ToC on wide screen
-* Dokuwiki's standard include hooks, based on [this document](https://www.dokuwiki.org/include_hooks) and starter template as well as a few additions that can be easily put in place simply renaming corresponding `.includesample` file located in the template directory (e.g. *lib/tpl/colormag/*) into `.html`
-  * *meta.html* : just before `</head>` tag (use this to add additional styles or metaheaders)
-  * *title.html* : replace default simple <h1> title by anything you want
+* Dokuwiki's standard include hooks, based on [this document](https://www.dokuwiki.org/include_hooks) and starter template as well as a few additions that can be easily put in place simply renaming corresponding `.includesample` file located in the template directory (e.g. *lib/tpl/mixture/*) into `.html`
+  * *meta.html* : just before HTML head closing tag (use this to add additional styles or metaheaders)
+  * *title.html* : replace default basic site title by anything you want (like a multi-colors string)
   * *banner.html* : replace image banner with HTML include hook
   * *header.html* : right at the begining of nav area
   * *sidebarheader.html* : before sidebar content
   * *sidebarfooter.html* : after sidebar content
   * *pageheader.html* : below *breadcrumbs*, above the actual page content
   * *pagefooter.html* : inside Namespaced footer, below  the last changed Date
-  * *footer.html* : at the very end of the page just before the `</body>` tag
+  * *footer.html* : at the very end of the page just before the body closing tag
 
 ## Third Party Modules
 
