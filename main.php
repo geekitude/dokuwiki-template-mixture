@@ -18,7 +18,7 @@ php_mixture_init();
 
 $showSidebar = page_findnearest($conf['sidebar']);
 ?><!doctype html>
-<html class="no-js" lang="<?php echo $conf['lang'] ?>" dir="<?php echo $lang['direction'] ?>">
+<html class="no-js" lang="<?php echo $conf['lang'] ?>" dir="<?php echo (($_GET['dir'] <> null)) ? $_GET['dir'] : $lang['direction']; ?>" class="no-js">
   <head>
     <meta charset="UTF-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
