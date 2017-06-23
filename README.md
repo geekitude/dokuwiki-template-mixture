@@ -13,7 +13,7 @@ Experimental template based on DW's minimal Starter template, [KNACCS](http://kn
 * [JDENTICON - 1.4.0](https://jdenticon.com/) to add modern and highly recognizable identicons, licensed under [zlib License](https://www.zlib.net/zlib_license.html)
 * [Font Awesome - 4.7.0](http://fontawesome.io/) or maybe just a selection with [IcoMoon](https://icomoon.io/) some day
 
-Font used for Mixture logo is : [Karmatic Arcade by Vic Fieger](http://www.dafont.com/fr/karmatic-arcade.font).
+Font used for Mixture logo is : [RollandinEmilie by Emilie Rollandin](http://www.archistico.com/ - http://www.dafont.com/fr/emilie-rollandin.d4776).
 
 Special thanks to :
 * Giuseppe Di Terlizzi, author of [Bootstrap3](https://www.dokuwiki.org/template:bootstrap3) DokuWiki template who nicely acepted that I copy some of his code to build admin dropdown menu.
