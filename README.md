@@ -1,4 +1,4 @@
-![Mixture - Dokuwiki template](/images/Mixture_889x137.png)
+![Mixture - Dokuwiki template](/images/Mixture_800x160.png)
 # dokuwiki-template-mixture
 Experimental template based on DW's minimal Starter template, [KNACCS](http://knacss.com/) framework and [Schnaps.it](http://schnaps.it/) HTML5 template :)
 
