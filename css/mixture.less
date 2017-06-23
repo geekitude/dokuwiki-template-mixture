@@ -473,11 +473,11 @@ div.not-visible {
   }
   [dir=ltr] body.hasSidebar.extractSidebar #dokuwiki__aside {
     /* translate (search "transition" to find the rules for this translation animation) */
-    transform: translate((-2 * @ini_spacer) - (@ini_font_factor * @ini_sidebar_width), 0);
+    transform: translate((-2 * @ini_spacer) - (@ini_sidebar_width * @ini_font_factor), 0);
   }
   [dir=rtl] body.hasSidebar.extractSidebar #dokuwiki__aside {
     /* translate (search "transition" to find the rules for this translation animation) */
-    transform: translate((2 * @ini_spacer) + (@ini_font_factor * @ini_sidebar_width), 0);
+    transform: translate((2 * @ini_spacer) + (@ini_sidebar_width * @ini_font_factor), 0);
   }
   #dokuwiki__aside {
     max-width: none;
