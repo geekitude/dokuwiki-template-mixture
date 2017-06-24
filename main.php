@@ -16,7 +16,8 @@ global $mixture, $uhp, $trs;
 $mixture = array();
 php_mixture_init();
 
-$showSidebar = page_findnearest($conf['sidebar']);
+$hasSidebar = page_findnearest($conf['sidebar']);
+$showSidebar = $hasSidebar && ($ACT=='show');
 ?><!doctype html>
 <html class="no-js" lang="<?php echo $conf['lang'] ?>" dir="<?php echo ($_GET['dir'] <> null) ? $_GET['dir'] : $lang['direction']; ?>" class="no-js">
   <head>
@@ -29,7 +30,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
   </head>
-  <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' hasSidebar' : ''; ?><?php echo php_mixture_classes();?>">
+  <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' showSidebar' : ''; ?><?php echo php_mixture_classes();?>">
     <div id="dokuwiki__site">
       <?php tpl_includeFile('header.html') ?>
       <!-- ********** HEADER ********** -->
@@ -72,12 +73,12 @@ $showSidebar = page_findnearest($conf['sidebar']);
       </header>
       <main role="main" class="<?php echo (tpl_getConf('wrappedSidebar') == 0) ? 'flex-container' : ''; ?>">
         <!-- ********** ASIDE ********** -->
-        <?php if ($showSidebar): ?>
+        <?php if ($showSidebar) : ?>
           <aside id="dokuwiki__aside" class="mod aside">
             <h3 class="toggle"><?php echo $lang['sidebar'] ?></h3>
             <div class="content" role="complementary">
               <?php tpl_includeFile('sidebarheader.html') ?>
-              <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
+              <?php tpl_include_page($hasSidebar) ?>
               <?php tpl_includeFile('sidebarfooter.html') ?>
             </div>
           </aside>
