@@ -47,6 +47,12 @@ ol,
 table  {
   margin: 0 0 @ini_spacer 0;
 }
+[dir=ltr] ul {
+  padding-left: (2 * @ini_spacer);
+}
+[dir=rtl] ul {
+  padding-right: (2 * @ini_spacer);
+}
 a {
   color: @ini_color_primary;
   text-decoration: none;
@@ -176,12 +182,6 @@ body.wrappedSidebar ul {
 }
 body.wrappedSidebar blockquote {
   margin: 0;
-}
-[dir=ltr] body.wrappedSidebar ul {
-  margin-left: @ini_spacer;
-}
-[dir=rtl] body.wrappedSidebar ul {
-  margin-right: @ini_spacer;
 }
 body.wrappedSidebar li {
   margin-left: inherit;
