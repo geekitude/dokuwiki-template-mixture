@@ -59,7 +59,11 @@ function js_mixture_resize(){
         // reset for desktop mode
         if($aside.length) {
             $aside[0].setState(1);
-            $aside.hide();
+            if (jQuery("body").hasClass("wrappedSidebar")) {
+              $aside.show();
+            } else {
+              $aside.hide();
+            }
         }
         if($toc.length) {
             $toc[0].setState(1);
