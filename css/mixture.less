@@ -160,15 +160,32 @@ div.breadcrumbs div.youarehere {
 }
 /* TEST: recupérer l'espace sous la sidebar (il faut aussi supprimer la classe .flex-container sur #dokuwiki__site */
 /* Modif sur <blockquote> pour éviter que la bordure des blockquotes passe à travers la sidebar mais il y a de gros effets de bords sur tous les blockquotes */
-/*
-body #dokuwiki__aside {
+body.wrappedSidebar #dokuwiki__aside {
   position: relative;
   float: left;
 }
-blockquote {
-  overflow: hidden;
+[dir=ltr] body.wrappedSidebar #dokuwiki__aside {
+  margin: 0 @ini_spacer @ini_spacer 0;
 }
-*/
+[dir=rtl] body.wrappedSidebar #dokuwiki__aside {
+  margin: 0 0 @ini_spacer @ini_spacer;
+}
+body.wrappedSidebar blockquote,
+body.wrappedSidebar ul {
+  overflow: auto;
+}
+body.wrappedSidebar blockquote {
+  margin: 0;
+}
+[dir=ltr] body.wrappedSidebar ul {
+  margin-left: @ini_spacer;
+}
+[dir=rtl] body.wrappedSidebar ul {
+  margin-right: @ini_spacer;
+}
+body.wrappedSidebar li {
+  margin-left: inherit;
+}
 #dw__toc {
   width: 100%;
   margin: 0 0 calc(@ini_spacer / 4) 0;

@@ -207,6 +207,9 @@ function php_mixture_classes() {
     if (tpl_getConf("extractSidebar")) {
         $classes .= "extractSidebar ";
     }
+    if (tpl_getConf("wrappedSidebar")) {
+        $classes .= "wrappedSidebar ";
+    }
     if ($_GET['debug'] == true) {
         $classes .= "debug ";
     }
