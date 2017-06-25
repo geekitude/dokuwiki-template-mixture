@@ -811,11 +811,12 @@ function php_mixture_breadcrumbs() {
                 $class = "wikilink2";
               }
               if (count(explode(":",$target)) == 1) { $target = ":".$target; }
-              if (p_get_metadata($target, 'plugin_croissant_bctitle') != null) {
-                tpl_pagelink($target, p_get_metadata($target, 'plugin_croissant_bctitle'));
-              } else {
-                tpl_pagelink($target);
-              }
+              //if (p_get_metadata($target, 'plugin_croissant_bctitle') != null) {
+              //  tpl_pagelink($target, p_get_metadata($target, 'plugin_croissant_bctitle'));
+              //} else {
+              //  tpl_pagelink($target);
+              //}
+              tpl_pagelink($target, php_mixture_pagetitle($target, "breadcrumbs"));
             print '</li>';
         }
         echo "</ul>";
@@ -859,17 +860,20 @@ function php_mixture_youarehere() {
     for($i = 0; $i < $count - 1; $i++) {
         $part .= $parts[$i].':';
         $page = $part;
+        if (substr($page, -1) == ":") { $page .= $conf['start']; }
         //if($page == $conf['start']) continue; // Skip startpage
         $class = php_mixture_breadcrumbsClass($page);
         // output
         // skip if current target leads to untranslated wiki start
 //        if ((isset($trs['defaultLang'])) and ($page != $trs['defaultLang'].":")) {
             echo "<li$class>";
-            if (p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle') != null) {
-                tpl_pagelink($page, p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle'));
-            } else {
-                tpl_pagelink($page);
-            }
+            //if (p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle') != null) {
+            //    tpl_pagelink($page, p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle'));
+            //} else {
+            //    tpl_pagelink($page);
+            //}
+            tpl_pagelink($page, php_mixture_pagetitle($page, "breadcrumbs"));
+            //dbg($page);
             echo "</li>";
 //        }
     }
