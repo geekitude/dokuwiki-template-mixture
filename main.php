@@ -59,7 +59,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
             ?>
           </h1>
         <?php else: ?>
-          <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?></h1>
+          <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="'.tpl_getLang('wikihome').' [H]"') ?></h1>
         <?php endif; ?>
         <?php if ($conf['tagline']): ?>
           <?php if (($ID<>'start') && ($ACT=='show')): ?>

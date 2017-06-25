@@ -601,7 +601,7 @@ function php_mixture_ui_link($element) {
                 return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
             // if there's more than 2 known parents first one is current ns start page and we want 2nd one (parent ns start page)
             } elseif (count($mixture['parents']) > 1) {
-                return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('parent_namespace'), 'classes' => $classes);
+                return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('parentns'), 'classes' => $classes);
             } else {
                 return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
             }
@@ -609,7 +609,7 @@ function php_mixture_ui_link($element) {
             // if there's at least one parent and current page isn't a start page we want a link to current ns start page
             if ((count($mixture['parents']) >= 1) && (strpos($ID, $conf['start']) === false)) {
 //dbg($classes);
-                return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('namespace_start'), 'classes' => $classes);
+                return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('nshome'), 'classes' => $classes);
             //} elseif ((count($mixture['parents']) >= 1) && (strpos($ID, $conf['start']) !== false)) {
             //    return null;
             } else {
@@ -619,7 +619,7 @@ function php_mixture_ui_link($element) {
         } elseif (tpl_getConf($element) == "dynamic") {
             // if we know more than one parent and current page isn't a start page we're on a random page and we want current NS start page
             if ((count($mixture['parents']) > 1) && (strpos($ID, $conf['start']) === false)) {
-                return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('namespace_start'), 'classes' => $classes);
+                return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('nshome'), 'classes' => $classes);
             // if we know 2 parents and current page is a start page, we want parent NS start page wich happens to be wiki home
 //            } elseif ((count($mixture['parents']) == 2) && (strpos($ID, $conf['start']) !== false)) {
 //                return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
@@ -631,7 +631,7 @@ function php_mixture_ui_link($element) {
 // WHAT ABOUT GOING TO LANDING FROM WIKI STAR PAGE? ACTUALLY LINKS TO WIKI START WHEN ALLREADY THERE
             // if we know at least one parent but current page is a start page, we want parent NS start page
             } elseif ((count($mixture['parents']) > 1) && (strpos($ID, $conf['start']) !== false)) {
-                return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('parent_namespace'), 'classes' => $classes);
+                return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('parentns'), 'classes' => $classes);
             } else {
                 return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
             }
