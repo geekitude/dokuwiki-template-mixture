@@ -66,7 +66,7 @@ a.wikilink2 {
   color: @ini_missing !important;
 }
 blockquote {
-  line-height: 1.3 * @ini_line_factor;
+  line-height: (1.3 * @ini_line_factor);
 }
 [dir=ltr] blockquote {
   padding: 0 0 0 calc(@ini_spacer / 2);
@@ -158,11 +158,11 @@ h3.toggle.closed {
 }
 [dir=ltr] #dokuwiki__aside ul,
 [dir=ltr] #dokuwiki__aside ol {
-  padding-left: (1.3 * @ini_spacer);
+  padding-left: calc(1.3 * @ini_spacer);
 }
 [dir=rtl] #dokuwiki__aside ul,
 [dir=rtl] #dokuwiki__aside ol {
-  padding-right: (1.4 * @ini_spacer);
+  padding-right: calc(1.4 * @ini_spacer);
 }
 #dokuwiki__aside,
 #dw__toc {
@@ -386,7 +386,7 @@ div.not-visible {
   }
   #dokuwiki__site {
     /*padding: 1.5%;*/
-    padding: (3 * @ini_spacer);
+    padding: calc(3 * @ini_spacer);
   }
   #dokuwiki__content {
     margin: 0;
@@ -454,7 +454,7 @@ div.not-visible {
   }
   body.extractToC #dw__toc {
     position: fixed;
-    top: (3 * @ini_spacer);
+    top: calc(3 * @ini_spacer);
   }
   [dir=ltr] body.extractToC #dw__toc {
     left: 50%;
