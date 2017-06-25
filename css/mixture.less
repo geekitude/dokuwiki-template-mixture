@@ -144,6 +144,18 @@ div.breadcrumbs div.youarehere {
 #dw__toc div {
   padding: 0;
 }
+h3.toggle,
+h3.toggle.open {
+      height: 0;
+      color: transparent;
+}
+h3.toggle.open strong {
+      height: 20px;
+}
+h3.toggle.closed {
+      height: auto;
+      color: @ini_color_headings;
+}
 [dir=ltr] #dokuwiki__aside ul,
 [dir=ltr] #dokuwiki__aside ol {
   padding-left: (1.3 * @ini_spacer);

@@ -70,10 +70,6 @@ function js_mixture_resize(){
             $toc.removeClass('is-disabled');
             $tocicon.show();
         }
-        // hide Toc and sidebar toggles text
-        jQuery("h3.toggle").contents().filter(function() {
-          return this.nodeType == 3;
-        }).remove();
     }
     if (device_class.match(/mobile tablet/)){
         // reset for tablet mode
