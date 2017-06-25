@@ -47,12 +47,6 @@ ol,
 table  {
   margin: 0 0 @ini_spacer 0;
 }
-[dir=ltr] article ul {
-  padding-left: (2 * @ini_spacer);
-}
-[dir=rtl] article ul {
-  padding-right: (2 * @ini_spacer);
-}
 a {
   color: @ini_color_primary;
   text-decoration: none;
@@ -149,6 +143,14 @@ div.breadcrumbs div.youarehere {
 #dw__toc h3.toggle,
 #dw__toc div {
   padding: 0;
+}
+[dir=ltr] #dokuwiki__aside ul,
+[dir=ltr] #dokuwiki__aside ol {
+  padding-left: (1.3 * @ini_spacer);
+}
+[dir=rtl] #dokuwiki__aside ul,
+[dir=rtl] #dokuwiki__aside ol {
+  padding-right: (1.4 * @ini_spacer);
 }
 #dokuwiki__aside,
 #dw__toc {
