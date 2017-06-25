@@ -8,8 +8,7 @@
 /*$conf['hideTools']          = 0;*/
 /*$conf['scrollDelay']        = 800;*/
 /*$conf['pageLayout']         = 'quartered';*/
-
-
+$conf['elements']           = 'news_date,news_lastchanges,news_links,header_logo,header_banner,widebanner,sidebar_cover';
 
 $conf['titleLink']          = 'dynamic';
 
