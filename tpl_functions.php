@@ -42,38 +42,45 @@ if (!function_exists('tpl_toolsevent')) {
  * Load usefull informations and plugins' helpers.
  */
 function php_mixture_init() {
-    global $ID, $conf, $JSINFO;
+    // DokuWiki core globals
+    global $conf, $ID, $INFO, $JSINFO;
     // New global variables
-    global $mixture, $uhp, $trs, $translationHelper, $tags;
+    //global $mixture, $uhp, $trs, $translationHelper, $tags;
+    global $mixture, $uhp, $trs, $editorAvatar, $userAvatar, $browserlang;
+
+    // To use when we need to ignore `discussion` namespace
     $id = str_replace("discussion:", "", $ID);
-    //reuse the CSS dispatcher functions without triggering the main function
-    define('SIMPLE_TEST', 1);
-    require_once(DOKU_INC . 'lib/exe/css.php');
+    // DokuWiki core public page (depends on 'user' value in 'conf/interwiki.conf')
+    $interwiki = getInterwiki();
+    $mixturePublicId = ltrim(str_replace('{NAME}', $_SERVER['REMOTE_USER'], $interwiki['user']),':');
+
+    // GET CURRENT VISITOR's BROWSER LANGUAGE
+    $browserlang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
     // HELPER PLUGINS
     // Preparing usefull plugins' helpers
-    $interwiki = getInterwiki();
-    $mixturePublicId = ltrim(str_replace('{NAME}', $_SERVER['REMOTE_USER'], $interwiki['user']),':');
-    if (!plugin_isdisabled('userhomepage')) {
-        $uhpHelper = plugin_load('helper','userhomepage');
-        $uhp = $uhpHelper->getElements();
-//dbg($uhp);
-        if ((isset($mixturePublicId)) and (!isset($uhp['public']))) {
-            $uhp['public'] = array();
-            $uhp['public']['id'] = $mixturePublicId;
-            if ((tpl_getLang('public_page') != null) and (!isset($uhp['public']['string']))) {
-                $uhp['public']['string'] = tpl_getLang('public_page');
-            }
-        }
-    } else {
-        // Without Userhomepage plugin, Public Page namespace is set by 'user' value in 'conf/interwiki.conf'
-        $uhp = array();
-        $uhp['private'] = null;
-        $uhp['public'] = array();
-        $uhp['public']['id'] = $mixturePublicId;
-        $uhp['public']['string'] = tpl_getLang('public_page');
+    // Userhomepage
+    if (!empty($_SERVER['REMOTE_USER'])) {
+		if (!plugin_isdisabled('userhomepage')) {
+			$uhpHelper = plugin_load('helper','userhomepage');
+			$uhp = $uhpHelper->getElements();
+			if ((isset($mixturePublicId)) and (!isset($uhp['public']))) {
+				$uhp['public'] = array();
+				$uhp['public']['id'] = $mixturePublicId;
+				if ((tpl_getLang('public_page') != null) and (!isset($uhp['public']['string']))) {
+					$uhp['public']['string'] = tpl_getLang('public_page');
+				}
+			}
+		} else {
+			// Without Userhomepage plugin, Public Page namespace is set by 'user' value in 'conf/interwiki.conf' and Private page is unknown
+			$uhp = array();
+			$uhp['private'] = null;
+			$uhp['public'] = array();
+			$uhp['public']['id'] = $mixturePublicId;
+			$uhp['public']['string'] = tpl_getLang('public_page');
+		}
     }
-//dbg($uhp);
+    // Translations
     $trs = array();
     if (!plugin_isdisabled('translation')) {
         $trs['defaultLang'] = $conf['lang'];
@@ -183,6 +190,164 @@ function php_mixture_init() {
 //dbg($conf['plugin']['translation']);
     }
 
+    // CURRENT NS AND PATH
+    // Get current namespace and corresponding path (resulting path will correspond to namespace's pages, media or conf files)
+    $mixture['currentNs'] = getNS(cleanID($id));
+    if ((isset($trs['parts'][1])) and ($trs['parts'][1] != null)) {
+        if (strpos($conf['plugin']['translation']['translations'], $conf['lang']) !== false) {
+            $mixture['baseNs'] = $conf['lang'].":".getNS(cleanID($trs['parts'][1]));
+        } else {
+            $mixture['baseNs'] = getNS(cleanID($trs['parts'][1]));
+        }
+    } else {
+        $mixture['baseNs'] = $mixture['currentNs'];
+    }
+    if ($mixture['currentNs'] != null) {
+        $mixture['currentPath'] = "/".str_replace(":", "/", $mixture['currentNs']);
+    } else {
+        $mixture['currentPath'] = "/";
+    }
+
+    // CURRENT NS AND PARENTS
+    // Look for all start pages starting from current namespace up to wiki root
+    $mixture['parents'] = php_mixture_file($conf['start'], "cumulate");
+    if ($mixture['parents'] != null) {
+        foreach ($mixture['parents'] as $key => $value) {
+            $tmp = explode("pages/", $value);
+            $tmpPath = explode(".txt", $tmp[1]);
+            $tmpId = str_replace("/", ":", $tmpPath[0]);
+            $mixture['parents'][$key] = $tmpId;
+        }
+        // Order start pages from current ns' one to furthest parent
+        $mixture['parents'] = array_reverse($mixture['parents']);
+        $mixture['parents'] = array_unique($mixture['parents']);
+    }
+
+//    // SUB NAMESPACES
+//    // Look for all sub namespaces with a start page
+//    //$mixture['children'] = php_mixture_file($conf['start'], "children");
+//    $mixture['children'] = array();
+//    // collect last change date of each?
+//    // order by date?
+//    $subnspaths = array_filter(glob(str_replace("//", "/", DOKU_CONF.'../'.$conf['savedir'].'/pages/'.$mixture['currentNs'].'/*')), 'is_dir');
+//    //dbg($subnspaths);
+//    foreach ($subnspaths as $value) {
+//        $path_parts = pathinfo(explode("pages", $value)[1]);
+//        // Keep going if we're not at wiki start page or if ns is not supposed to be excluded from main navigation
+//        if (($ID != $conf['start']) or (strpos(tpl_getConf('navExclude'), $path_parts['basename']) === false)) {
+//            // Build decent NS id of possible start page (no matter if it exists or not)
+//            $nsId = str_replace("\\", "", str_replace("/", ":", $path_parts['dirname']).":".$path_parts['basename'].":".$conf['start']);
+//            array_push($mixture['children'], $nsId);
+//        }
+//    }
+//dbg($mixture['children']);
+
+    // TREE (index from current NS)
+    $mixture['tree'] = php_mixture_tree($mixture['currentNs'].":");
+//dbg($mixture['tree']);
+
+    // LAST CHANGES (build list)
+    // Retrieve number of last changes to show and proceed if matching `lastchangesWhere` settings
+    if ((strpos(tpl_getConf('elements'), 'news_lastchanges') !== false) and ((tpl_getConf('lastChangesWhere') == "anywhere") or ((tpl_getConf('lastChangesWhere') == "any_start_page") and (strpos($ID, $conf['start']) !== false)) or ((tpl_getConf('lastChangesWhere') == "wiki_root") and ($ID == $conf['start'])))) {
+        $showLastChanges = intval(end(explode(',', tpl_getConf('lastChanges'))));
+        $flags = '';
+        if (strpos(tpl_getConf('lastChanges'), 'skip_deleted') !== false) {
+            $flags = RECENTS_SKIP_DELETED;
+        }
+        if (strpos(tpl_getConf('lastChanges'), 'skip_minors') !== false) {
+            $flags += RECENTS_SKIP_MINORS;
+        }
+        if (strpos(tpl_getConf('lastChanges'), 'skip_subspaces') !== false) {
+            $flags += RECENTS_SKIP_SUBSPACES;
+        }
+        if (tpl_getConf('lastChangesWhat') == 'media') {
+            $flags += RECENTS_MEDIA_CHANGES;
+        } elseif (tpl_getConf('lastChangesWhat') == 'both') {
+            $flags += RECENTS_MEDIA_PAGES_MIXED;
+        }
+        $mixture['recents'] = getRecents(0,$showLastChanges,$mixture['currentNs'],$flags);
+    }
+
+    // TOPBAR LINKS
+    if (strpos(tpl_getConf('elements'), 'news_links') !== false) {
+        $topbarFiles = php_mixture_file("topbar", tpl_getConf('topbarFrom'), "page", $mixture['baseNs']);
+        if ($topbarFiles != null) {
+            $prevValue = null;
+            if (is_string($topbarFiles)) {
+                $mixture['topbarLinks'] .= "\n".io_readFile($topbarFiles, false);
+            } else {
+                // Making sure each value in array is unique (so we don't process same topbar file twice)
+                $topbarFiles = array_unique($topbarFiles);
+                foreach ($topbarFiles as $value) {
+                    $mixture['topbarLinks'] .= "\n".io_readFile($value, false);
+                }
+            }
+            // Use the built-in parser to render data as HTML
+            $mixture['topbarLinks'] = p_render('xhtml',p_get_instructions($mixture['topbarLinks']), $info);
+            $mixture['topbarLinks'] = str_replace("<ul>", "<ul id='news-bar-links'>", $mixture['topbarLinks']);
+        }
+    }
+
+    // IMAGES
+    // Search for namespace special images set as adaptive by settings (logo, banner, widebanner and potential last "sidebar header" image)
+    if (strpos(tpl_getConf('elements'), 'header_logo') !== false) { $mixture['images']['logo'] = null; }
+    if (strpos(tpl_getConf('elements'), 'header_banner') !== false) { $mixture['images']['banner'] = null; }
+    if (strpos(tpl_getConf('elements'), 'widebanner') !== false) { $mixture['images']['widebanner'] = null; }
+    if (strpos(tpl_getConf('elements'), 'sidebar_cover') !== false) { $mixture['images']['sidebar_cover'] = null; }
+    if (count($mixture['images']) != null) {
+        foreach ($mixture['images'] as $key => $value) {
+        //if (strpos(tpl_getConf('namespaceImages'), $key) !== false) {
+            $mixture['images'][$key] = php_mixture_file($key, "inherit", "media", $mixture['baseNs']);
+        //}
+        }
+    }
+//dbg($mixture['images']);
+//    $lastImageTitle = end(explode(",", tpl_getConf('namespaceImages')));
+//    // If 'namespaceImages' other image is set, get it
+//    if (strpos("banner,logo,widebanner,cover", $lastImageTitle) === false) {
+//        $mixture['images']['other'] = php_mixture_file($lastImageTitle, "namespace", "media", $mixture['baseNs']);
+//        $mixture['images']['other']['label'] = ucfirst($lastImageTitle);
+//    }
+
+    // STYLE
+    $mixture['replacements'] = array();
+    $style = array();
+    // Look for a customized 'style.ini' generated by Styling plugin
+    if (is_file(DOKU_CONF."tpl/mixture/style.ini")) {
+        $style = parse_ini_file(DOKU_CONF."tpl/mixture/style.ini", true);
+    // Or load template's default 'style.ini'
+    } else {
+    //if (is_file(tpl_incdir()."style.ini")) {
+        $style = parse_ini_file (tpl_incdir()."style.ini", true);
+    }
+    // Look for a "namspaced" customized 'style.ini' in current namespace's "conf" folder (and overwrite previous values)
+    $nsStyleIni = php_mixture_file("style", "inherit", "conf", $namespaced['baseNs']);
+    if (is_file($nsStyleIni)) {
+        $nsStyle = parse_ini_file($nsStyleIni, true);
+        foreach ($nsStyle['replacements'] as $key => $value) {
+//            $namespaced['style']['replacements'][$key] = $value;
+            $style['replacements'][$key] = $value;
+        }
+    }
+    $mixture['replacements'] = $style['replacements'];
+
+    // JSINFO
+    // Add a value for connected user (false if none, true otherwise)
+    if (empty($_SERVER['REMOTE_USER'])) {
+        $JSINFO['user'] = false;
+    } else {
+        $JSINFO['user'] = true;
+    }
+    // Store options into $JSINFO for later use
+    //$JSINFO['ScrollDelay'] = tpl_getConf('scrollDelay');
+    if (strpos(tpl_getConf('elements'), 'lastchanges') !== false) {
+        $JSINFO['LoadNewsTicker'] = true;
+    } else {
+        $JSINFO['LoadNewsTicker'] = false;
+    }
+    //$JSINFO['ScrollspyToc'] = tpl_getConf('scrollspyToc');
+//dbg($JSINFO);
+
     // DEBUG
     // Adding test alerts if debug is enabled
     if ($_GET['debug'] == true) {
@@ -191,6 +356,94 @@ function php_mixture_init() {
         msg("This is a success [1] message with a <a href='?doku.php'>dummy link</a>", 1);
         msg("This is a notification [2] with a <a href='?doku.php'>dummy link</a>", 2);
     }
+}
+
+/**
+ * Stolen from AcMenu plugin ^^
+ * Build the tree directory starting from current namespace to the
+ * very end.
+ *
+ * @param (str) $base_ns the name of the namespace, where was found
+ *              the AcMenu's syntax, of the form:
+ *              <base_ns>:
+ * @param (str) $level the level of indentation from which start
+ * @return (arr) $tree the tree directory of the form:
+ *              array {
+ *              [(str) "<short_id>"] => array {
+ *                     ["id"] => (str) "<id>"
+ *                     ["type"] => (str) "ns"
+ *                     ["sub"] => array {
+ *                                [0] => array {
+ *                                       ["id"] => (str) "<id>"
+ *                                       ["type"] => (str) "pg"
+ *                                       }
+ *                                [i] => array {...}
+ *                                }
+ *                     }
+ *              {...}
+ *              }
+ *              where:
+ *              ["<short_id>"] is a NS' ID without start page at the end (ie ":sample_ns" instead of ":sample_ns:start"
+ *              ["type"] = "ns" means "namespace"
+ *              ["type"] = "pg" means "page"
+ *              so that only namespace can have ["sub"] namespaces
+ *
+ * By default we want current NS content and 1 sub-level NS' content
+ *
+ */
+function php_mixture_tree($base_ns, $level = -1, $max_level = 1) {
+    global $INFO, $conf;
+
+    $tree = array();
+    $level = $level + 1;
+
+    // Stop if reaching requested depth of index
+    if ($level > $max_level) { return $tree; }
+
+    $dir = $conf["savedir"] ."/pages/" . str_replace(":", "/", $base_ns) . "/";
+    $files = array_diff(scandir($dir), array('..', '.'));
+    foreach ($files as $file) {
+        if (is_file($dir . $file) == true) {
+            $namepage = basename($file, ".txt");
+            $id = cleanID($base_ns . $namepage);
+            if (isHiddenPage($id) == false) {
+                if (auth_quickaclcheck($id) >= AUTH_READ) {
+                    //$title = p_get_first_heading($id);
+                    //if (isset($title) == false) {
+                    //    $title = $namepage;
+                    //}
+                    //$tree[] = array("title" => $title,
+                    //                "url" => $id,
+                    //                "level" => $level,
+                    //                "type" => "pg");
+                    $tree[] = array("id" => $id,
+                                    "type" => "pg");
+                }
+            }
+        } elseif (is_dir($dir . $file) == true) {
+            //$short_id = cleanID($base_ns . $file);
+            //$id = $short_id . ":"  . $conf["start"];
+            $id = cleanID($base_ns . $file) . ":"  . $conf["start"];
+            if ($conf['sneaky_index'] == 1 and auth_quickaclcheck($id) < AUTH_READ) {
+                continue;
+            } else {
+                //$title = p_get_first_heading($id);
+                //if (isset($title) == false) {
+                //    $title = $file;
+                //}
+                //$tree[$id] = array("title" => $title,
+                //                "url" => $id,
+                //                "level" => $level,
+                //                "type" => "ns",
+                //                "sub" => mixture_tree($base_ns . $file . ":", $level));
+                //$tree[$short_id] = array("id" => $id,
+                $tree[] = array("id" => $id,
+                                "type" => "ns",
+                                "sub" => php_mixture_tree($base_ns . $file . ":", $level));
+            }
+        }
+    }
+    return $tree;
 }
 
 // Add Mixture specific classes to HTML body
@@ -215,6 +468,106 @@ function php_mixture_classes() {
     }
 
     return rtrim($classes, " ");
+}
+
+function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $returnId = false) {
+    global $conf, $mixture;
+
+    if ($searchns == null) {
+        $searchns = $mixture['currentNs'];
+    }
+    $searchnspath = str_replace(":", "/", $searchns);
+
+    if ($type == "conf") {
+        $path = DOKU_CONF."tpl/mixture/".$searchnspath;
+    } elseif ($type == "media") {
+        $path = $conf['savedir']."/media/".$searchnspath;
+    } else {
+        $path = $conf['savedir']."/pages/".$searchnspath;
+    }
+
+    if ($where == 'namespace') {
+        $ns = null;
+        // Search in currentNS, untranslatedNS or both?
+        // Only search untranslated namespace
+        $ns = array('/'.$searchnspath);
+    } elseif (($where == 'inherit') or ($where == 'cumulate')) {
+        $ns = null;
+        // List current namespace then all it's parents' up to last parent before root
+        $tmp = explode(":", $searchns);
+        for ($i=0; $i<count($tmp); $i++) {
+            $ns[$i] = $ns[$i-1].'/'.$tmp[$i];
+        }
+        // Order namespaces from current one to furthest parent
+        $ns = array_reverse($ns);
+        // Add strings to force searching in media root and :wiki namespace
+        array_push($ns, '/wiki');
+        array_push($ns, '');
+    } elseif ($where == 'root') {
+        $ns = array('/');
+    } else {
+        return null;
+    }
+
+    // Prepare data array to return for the cases where we need all results (ie. topbar)
+    $multiReturn = array();
+    // Reverse $ns array order again to cumulate from root to current namespace
+    if ($where == "cumulate") {
+        $ns = array_reverse($ns);
+    }
+    // Search listed namespace(s) for jpg, gif and finally png image or txt page with requested filename
+    foreach ($ns as $value) {
+        // In case we are in a farm, we have to make sure we search in animal's data or conf dir by starting at DOKU_CONF directory (will however work if not in a farm)
+        // If file extension is specified...
+        if (count(explode('.', $fileName)) > 1) {
+            if ($type == "media") {
+                $result = glob(DOKU_CONF.'../'.$conf['savedir'].'/media'.$value.'/'.$fileName);
+            } else {
+                $result = glob(DOKU_CONF.'../'.$conf['savedir'].'/pages'.$value.'/'.$fileName);
+            }
+        } elseif ($type == "media") {
+            $result = glob(DOKU_CONF.'../'.$conf['savedir'].'/media'.$value.'/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
+            //$result = glob($path.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
+            // If no result, let's try in template images
+            if ($result == null) {
+                $result = glob(DOKU_CONF.'../lib/tpl/mixture/images/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
+            }
+        } elseif ($type == "conf") {
+            $result = glob(DOKU_CONF.'tpl/mixture'.$value.'/'.$fileName.'.ini');
+        } else {
+            $result = glob(DOKU_CONF.'../'.$conf['savedir'].'/pages'.$value.'/'.$fileName.'.txt');
+        }
+        // If a result was found, we're looking for first match (IN MOST CASES), wich looks like "/var/www/dokufarm/<animal>/conf/../'.$conf['savedir'].'/<media or pages>/<namespace>/$fileName.<some_extension>
+        if ($result[0] != null) {
+            if ($type == "media") {
+                $imageSize = getimagesize($result[0]);
+            } else {
+                $imageSize = null;
+            }
+            // Get rid of potential misformated string
+            $result[0] = str_replace('//', '/', $result[0]);
+            // If we want ALL results
+            if ($where == "cumulate") {
+                array_push($multiReturn, $result[0]);
+            // If we're looking for a 'conf' file, let's return full file path
+            } elseif ($type == "media") {
+                $tmp = str_replace("/", ":", explode("media", $result[0])[1]);
+                return array('mediaId' => $tmp, 'filePath' => $result[0], 'imageSize' => $imageSize);
+            } else {
+                if ($returnId) {
+                    $path_parts = pathinfo(explode("pages", $result[0])[1]);
+                    return str_replace("/", ":", $path_parts['dirname']).":".$path_parts['filename'];
+                } else {
+                    return $result[0];
+                }
+            }
+        }
+    }
+    // if $multiReturn contains at least 1 element, return it
+    if (count($multiReturn) > 0) {
+        //dbg($multiReturn);
+        return $multiReturn;
+    }
 }
 
 /**
