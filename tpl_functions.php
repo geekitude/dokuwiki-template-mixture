@@ -584,11 +584,11 @@ function php_mixture_ui_link($element) {
 
 //dbg($element);
 //dbg($classes);
-    if ($element == "titleLink") {
-        $classes = "color-primary";
-    } elseif ($element == "taglineLink") {
-        $classes = "color-primary";
-    }
+    //if ($element == "titleLink") {
+    //    $classes = "color-primary";
+    //} elseif ($element == "taglineLink") {
+    //    $classes = "color-primary";
+    //}
 //dbg(tpl_getConf($element));
     if (($element != null) && (tpl_getConf($element) != "none")) {
         if (tpl_getConf($element) == "parent_namespace") {

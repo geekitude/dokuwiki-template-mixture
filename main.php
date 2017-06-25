@@ -36,7 +36,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
       <!-- ********** HEADER ********** -->
       <header id="dokuwiki__header" role="banner" class="pam">
         <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID<>'start') && ($ACT=='show')): ?>
-          <h1>
+          <h1 id="mixture__title">
             <?php
               // display wiki title as a link depending on titleLink setting
               $link = php_mixture_ui_link("titleLink");
