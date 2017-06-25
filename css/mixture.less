@@ -101,20 +101,20 @@ table,
 main {
   padding: 0 @ini_spacer;
 }
-#dokuwiki__site {
+#mixture__site {
   margin: 0;
   padding: 0;
 }
-#dokuwiki__header,
+#mixture__header,
 #mixture__alerts,
 #mixture__pageIdInfo,
 main,
-#dokuwiki__footer {
+#mixture__footer {
   background-color: @ini_color_white;
   max-width: @ini_site_width;
   margin: 0 auto 0 auto;
 }
-#dokuwiki__header {
+#mixture__header {
   padding: @ini_spacer @ini_spacer 0 @ini_spacer;
 }
 #mixture__title {
@@ -133,21 +133,21 @@ div.breadcrumbs div.youarehere {
 #mixture__pageIdInfo {
   justify-content: space-between;
 }
-#dokuwiki__content {
+#mixture__content {
   padding: 0;
   margin: calc(@ini_spacer / 2) 0 0 0;
 }
-#dokuwiki__aside {
+#mixture__aside {
   width: 100%;
   margin: calc(@ini_spacer / 4) 0 0 0;
 }
-#dokuwiki__aside h3.toggle,
-#dokuwiki__aside div.content,
+#mixture__aside h3.toggle,
+#mixture__aside div.content,
 #dw__toc h3.toggle,
 #dw__toc div.li {
   font-size: 80%;
 }
-#dokuwiki__aside h3.toggle,
+#mixture__aside h3.toggle,
 #dw__toc h3.toggle,
 #dw__toc div {
   padding: 0;
@@ -164,21 +164,21 @@ h3.toggle.closed {
       height: auto;
       color: @ini_color_headings;
 }
-[dir=ltr] #dokuwiki__aside ul,
-[dir=ltr] #dokuwiki__aside ol {
+[dir=ltr] #mixture__aside ul,
+[dir=ltr] #mixture__aside ol {
   padding-left: calc(1.3 * @ini_spacer);
 }
-[dir=rtl] #dokuwiki__aside ul,
-[dir=rtl] #dokuwiki__aside ol {
+[dir=rtl] #mixture__aside ul,
+[dir=rtl] #mixture__aside ol {
   padding-right: calc(1.4 * @ini_spacer);
 }
-#dokuwiki__aside,
+#mixture__aside,
 #dw__toc {
   background-color: @ini_background_neu;
   padding: calc(@ini_spacer / 2);
   z-index: 1;
 }
-#dokuwiki__aside,
+#mixture__aside,
 #dw__toc {
   /* animate translations for those divs */
   -webkit-transition: transform @ini_animation_time ease-in-out;
@@ -186,16 +186,16 @@ h3.toggle.closed {
   -o-transition: transform @ini_animation_time ease-in-out;
   transition: transform @ini_animation_time ease-in-out;
 }
-/* TEST: recupérer l'espace sous la sidebar (il faut aussi supprimer la classe .flex-container sur #dokuwiki__site */
+/* TEST: recupérer l'espace sous la sidebar (il faut aussi supprimer la classe .flex-container sur #mixture__site */
 /* Modif sur <blockquote> pour éviter que la bordure des blockquotes passe à travers la sidebar mais il y a de gros effets de bords sur tous les blockquotes */
-body.wrappedSidebar #dokuwiki__aside {
+body.wrappedSidebar #mixture__aside {
   position: relative;
   float: left;
 }
-[dir=ltr] body.wrappedSidebar #dokuwiki__aside {
+[dir=ltr] body.wrappedSidebar #mixture__aside {
   margin: 0 @ini_spacer @ini_spacer 0;
 }
-[dir=rtl] body.wrappedSidebar #dokuwiki__aside {
+[dir=rtl] body.wrappedSidebar #mixture__aside {
   margin: 0 0 @ini_spacer @ini_spacer;
 }
 body.wrappedSidebar blockquote,
@@ -396,21 +396,21 @@ pre.dbg {
   hr {
     margin: calc(@ini_spacer / 2) auto @ini_spacer auto;
   }
-  #dokuwiki__site {
+  #mixture__site {
     /*padding: 1.5%;*/
     padding: calc(3 * @ini_spacer);
   }
-  #dokuwiki__content {
+  #mixture__content {
     margin: 0;
   }
-  #dokuwiki__aside {
+  #mixture__aside {
     width: @ini_sidebar_width;
     max-width: 25%;
   }
-  [dir=ltr] #dokuwiki__aside {
+  [dir=ltr] #mixture__aside {
     margin: 0 @ini_spacer 0 0;
   }
-  [dir=rtl] #dokuwiki__aside {
+  [dir=rtl] #mixture__aside {
     margin: 0 0 0 @ini_spacer;
   }
   #dw__toc {
@@ -431,7 +431,7 @@ pre.dbg {
   #mixture__helper span::before {
     content: "medium (<1201px)";
   }
-  #dokuwiki__site {
+  #mixture__site {
     /*padding: (2 * @ini_spacer);*/
     /*margin: 1.5vmax auto 1.5vmax auto;*/
   }
@@ -497,19 +497,19 @@ pre.dbg {
   body.extractSidebar #mixture__helper span::after {
     content: "(Sidebar extracted)";
   }
-  body.showSidebar.extractSidebar #dokuwiki__aside {
+  body.showSidebar.extractSidebar #mixture__aside {
     /* let page content recover ToC'space */
     position: absolute;
   }
-  [dir=ltr] body.showSidebar.extractSidebar #dokuwiki__aside {
+  [dir=ltr] body.showSidebar.extractSidebar #mixture__aside {
     /* translate (search "transition" to find the rules for this translation animation) */
     transform: translate((-2 * @ini_spacer) - (@ini_sidebar_width * @ini_font_factor), 0);
   }
-  [dir=rtl] body.showSidebar.extractSidebar #dokuwiki__aside {
+  [dir=rtl] body.showSidebar.extractSidebar #mixture__aside {
     /* translate (search "transition" to find the rules for this translation animation) */
     transform: translate((2 * @ini_spacer) + (@ini_sidebar_width * @ini_font_factor), 0);
   }
-  #dokuwiki__aside {
+  #mixture__aside {
     max-width: none;
   }
 }

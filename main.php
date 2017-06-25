@@ -31,10 +31,10 @@ $showSidebar = $hasSidebar && ($ACT=='show');
     <?php tpl_includeFile('meta.html') ?>
   </head>
   <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' showSidebar' : ''; ?><?php echo php_mixture_classes();?>">
-    <div id="dokuwiki__site">
+    <div id="mixture__site">
       <?php tpl_includeFile('header.html') ?>
       <!-- ********** HEADER ********** -->
-      <header id="dokuwiki__header" role="banner" class="pam">
+      <header id="mixture__header" role="banner" class="pam">
         <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID<>'start') && ($ACT=='show')): ?>
           <h1 id="mixture__title">
             <?php
@@ -69,7 +69,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
           <?php endif; ?>
         <?php endif ?>
         <p class="a11y skip">
-          <a href="#dokuwiki__content"><?php echo $lang['skip_to_content'] ?></a>
+          <a href="#mixture__content"><?php echo $lang['skip_to_content'] ?></a>
         </p>
         <aside id="mixture__alerts">
           <!-- ALERTS -->
@@ -95,7 +95,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
       <main role="main" class="<?php echo (tpl_getConf('wrappedSidebar') == 0) ? 'flex-container' : ''; ?>">
         <!-- ********** ASIDE ********** -->
         <?php if ($showSidebar) : ?>
-          <aside id="dokuwiki__aside" class="mod aside">
+          <aside id="mixture__aside" class="mod aside">
             <h3 class="toggle"><?php echo $lang['sidebar'] ?></h3>
             <div class="content" role="complementary">
               <?php tpl_includeFile('sidebarheader.html') ?>
@@ -105,7 +105,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
           </aside>
         <?php endif; ?>
         <!-- ********** CONTENT ********** -->
-        <div id="dokuwiki__content" class="flex-item-fluid pam">
+        <div id="mixture__content" class="flex-item-fluid pam">
           <?php tpl_flush() ?>
           <?php tpl_includeFile('pageheader.html') ?>
           <article class="page group">
@@ -119,7 +119,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
         </div>
       </main>
       <!-- ********** FOOTER ********** -->
-      <footer id="dokuwiki__footer" role="contentinfo" class="pam pt0">
+      <footer id="mixture__footer" role="contentinfo" class="pam pt0">
         <div class="tools">
           <!-- SITE TOOLS -->
           <div id="dokuwiki__sitetools">

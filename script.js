@@ -41,7 +41,7 @@ function js_mixture_resize(){
     jQuery('html').removeClass(device_classes).addClass(device_class);
 
     // handle some layout changes based on change in device
-    var $aside = jQuery('#dokuwiki__aside h3.toggle');
+    var $aside = jQuery('#mixture__aside h3.toggle');
     var $toc = jQuery('#dw__toc h3.toggle');
     //var $tocicon = jQuery('#dw__toc h3 strong');
 
@@ -126,7 +126,7 @@ function js_mixture_resize(){
 
 jQuery(function(){
     var resizeTimer;
-    dw_page.makeToggle('#dokuwiki__aside h3.toggle','#dokuwiki__aside div.content');
+    dw_page.makeToggle('#mixture__aside h3.toggle','#mixture__aside div.content');
 
     js_mixture_resize();
     
