@@ -697,11 +697,7 @@ function php_mixture_branding($element) {
 //dbg(tpl_pagetitle('', true));
 //dbg(tpl_pagetitle($ID, false));
 //dbg(tpl_pagetitle($ID, true));
-            if (p_get_metadata($ID, 'plugin_croissant_bctitle') != null) {
-                return p_get_metadata($ID, 'plugin_croissant_bctitle');
-            } else {
-                return tpl_pagetitle($ID, true);
-            }
+            return php_mixture_pagetitle($ID);
         } elseif ($element == "tagline") {
             return $conf['title'];
         } else {
@@ -717,6 +713,64 @@ function php_mixture_branding($element) {
         }
     }
 }
+
+
+/**
+ * Returns the name of the given page (current one if none given).
+ *
+ * If useheading is enabled this will use the first headline else
+ * the given ID is used.
+ *
+ * @param string $id page id
+ */
+function php_mixture_pagetitle($target = null, $context = null) {
+    //global $ACT, $INPUT, $conf, $lang;
+    global $trs, $conf;
+
+    // By default, page name will be equal to it's ID
+    $name = $target;
+
+    // If `useheading` DW's setting is enabled for navigation links, try to get that first heading
+    if(useHeading('navigation')) {
+        $first_heading = p_get_first_heading($target);
+        if($first_heading) $name = $first_heading;
+    }
+
+    /* Get rid of ugly DW IDs (should work for pages without `useheading` as well as NS start pages)
+     * Code taken here : https://www.dokuwiki.org/tips:underscores
+     */
+    if (strstr($name, ':') == '') {
+        $name = utf8_ucfirst(strtr($name,'_',' '));
+    } else {
+        if (substr(strrchr($name, ':'), 1 ) == $conf['start']) {
+            $name = substr($name, 0, strlen($name) - strlen($conf['start']) - 1);
+            if (strstr($name, ':') == '') {
+                $name = utf8_ucfirst(strtr($name,'_',' '));
+            } else {
+                $name = utf8_ucfirst(substr(strrchr(strtr($name,'_',' '), ':'), 1 ));
+            }
+        } else {
+            $name = utf8_ucfirst(substr(strrchr(strtr($name,'_',' '), ':'), 1 ));
+        }
+    }
+
+    // CROISSANT PLUGIN
+    if (($context == "breadcrumbs") && (p_get_metadata($target, 'plugin_croissant_bctitle') != null)) {
+      $name = p_get_metadata($target, 'plugin_croissant_bctitle');
+    }
+
+    // ICON?
+    //$tmp = explode(":", ltrim($target, ":"));
+    //// Add a flag SVG image before translations
+    //if ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang'])) {
+    //    //$name = "<".$tmp[1].">".$name;
+    //    $icon =  '<span class="icon ico-12" title="<'.$tmp[0].'>">'.file_get_contents(".".tpl_basedir()."images/svg/flag.svg").'</span>';
+    //}
+
+    //return $icon.hsc($name);
+    return hsc($name);
+}
+
 /**
  * PRINT THE BREADCRUMBS TRACE, adapted from core (template.php) to use a CSS separator solution and respect existing/non-existing page link colors
  *
