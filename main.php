@@ -35,8 +35,29 @@ $showSidebar = $hasSidebar && ($ACT=='show');
       <?php tpl_includeFile('header.html') ?>
       <!-- ********** HEADER ********** -->
       <header id="dokuwiki__header" role="banner" class="pam">
-        <?php if ((tpl_getConf('pageTitle') == 1) && ($ID<>'start') && ($ACT=='show')): ?>
-          <h1><?php tpl_link(wl(),tpl_pagetitle($ID, 1),'accesskey="h" title="[H]"') ?></h1>
+        <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID<>'start') && ($ACT=='show')): ?>
+          <h1>
+            <?php
+              // display wiki title as a link depending on titleLink setting
+              $link = php_mixture_ui_link("titleLink");
+              $text = php_mixture_branding("title");
+              if ($link != null) {
+                $label = $link['label'];
+                if ($link['accesskey'] != null) {
+                  $label .= " [".strtoupper($link['accesskey'])."]";
+                  $accesskey = 'accesskey="'.$link['accesskey'].'" ';
+                }
+                tpl_link(
+                  $link['target'],
+                  //'<span>'.$text.'</span>',
+                  '<span>'.$text.'</span>',
+                  $accesskey.'title="'.$label.'" class="'.$link['classes'].'"'
+                );
+              } else {
+                echo '<span>'.$text.'</span>';
+              }
+            ?>
+          </h1>
         <?php else: ?>
           <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?></h1>
         <?php endif; ?>

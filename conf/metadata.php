@@ -8,7 +8,13 @@
 /*$meta['hideTools']          = array('onoff');*/
 /*$meta['scrollDelay']        = array('numeric');*/
 /*$meta['pageLayout']         = array('multichoice', '_choices' => array('quartered','boxed'));*/
-$meta['pageTitle']          = array('onoff'); /* outside home, replace wiki title by page title (and tagline by wiki title) */
+/*$meta['elements']           = array('multicheckbox',
+                               '_choices' => array('news_date','news_lastchanges','news_links','header_logo','header_banner','widebanner','sidebar_cover'));*/
+/*$meta['logoLink']           = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic', 'other')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home while "image" will give some kind of lightbox or modal to a large image in same namespace (name set with "logoLinkImage" setting) and will default to "none" if image doesn't exist */
+$meta['titleLink']          = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
+/*$meta['taglineLink']        = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
+/*$meta['bannerLink']        = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
+$meta['dynamicBranding']    = array('onoff'); /* outside home page, wiki title is replaced by page title and tagline by wiki title */
 $meta['extractToC']          = array('onoff'); /* move ToC out of main content as soon as there's enough room */
 $meta['scrollspyToC']          = array('onoff'); /* enable scrollspy ToC (requires previous option to be enabled) */
 $meta['extractSidebar']          = array('onoff'); /* move Sidebar out of main content as soon as there's enough room */

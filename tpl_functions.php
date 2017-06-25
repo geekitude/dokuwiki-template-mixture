@@ -400,7 +400,8 @@ function php_mixture_tree($base_ns, $level = -1, $max_level = 1) {
     // Stop if reaching requested depth of index
     if ($level > $max_level) { return $tree; }
 
-    $dir = $conf["savedir"] ."/pages/" . str_replace(":", "/", $base_ns) . "/";
+    //$dir = $conf["savedir"] ."/pages/" . str_replace(":", "/", $base_ns) . "/";
+    $dir = $conf["savedir"] ."/pages/" . str_replace(":", "/", $base_ns);
     $files = array_diff(scandir($dir), array('..', '.'));
     foreach ($files as $file) {
         if (is_file($dir . $file) == true) {
@@ -570,6 +571,152 @@ function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $
     }
 }
 
+/**
+ * PREPARE UI LINKS DATA
+ * 
+ * Prepare data needed for UI links (logo, title, tagline or banner).
+ *
+ * @param string   $element UI element for wich the link is requested
+ */
+function php_mixture_ui_link($element) {
+    global $conf, $ID;
+    global $mixture;
+
+//dbg($element);
+//dbg($classes);
+    if ($element == "titleLink") {
+        $classes = "color-primary";
+    } elseif ($element == "taglineLink") {
+        $classes = "color-primary";
+    }
+//dbg(tpl_getConf($element));
+    if (($element != null) && (tpl_getConf($element) != "none")) {
+        if (tpl_getConf($element) == "parent_namespace") {
+            // if there's only one known parent we're on wiki start page and there's no need for a link
+            if (count($mixture['parents']) == 1) {
+                //return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('parent_namespace'));
+                return null;
+            // if there's 2 known parents first one is current ns start page and 2nd one is wiki home
+            } elseif ((count($mixture['parents']) == 2) and ($mixture['parents'][1] == $conf['start'])) {
+                return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
+            // if there's more than 2 known parents first one is current ns start page and we want 2nd one (parent ns start page)
+            } elseif (count($mixture['parents']) > 1) {
+                return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('parent_namespace'), 'classes' => $classes);
+            } else {
+                return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
+            }
+        } elseif (tpl_getConf($element) == "namespace_start") {
+            // if there's at least one parent and current page isn't a start page we want a link to current ns start page
+            if ((count($mixture['parents']) >= 1) && (strpos($ID, $conf['start']) === false)) {
+//dbg($classes);
+                return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('namespace_start'), 'classes' => $classes);
+            //} elseif ((count($mixture['parents']) >= 1) && (strpos($ID, $conf['start']) !== false)) {
+            //    return null;
+            } else {
+                //return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h");
+                return null;
+            }
+        } elseif (tpl_getConf($element) == "dynamic") {
+            // if we know more than one parent and current page isn't a start page we're on a random page and we want current NS start page
+            if ((count($mixture['parents']) > 1) && (strpos($ID, $conf['start']) === false)) {
+                return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('namespace_start'), 'classes' => $classes);
+            // if we know 2 parents and current page is a start page, we want parent NS start page wich happens to be wiki home
+//            } elseif ((count($mixture['parents']) == 2) && (strpos($ID, $conf['start']) !== false)) {
+//                return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
+            // if we know only one parent and current page isn't a start page we're on random page of wiki root and we want wiki start page OR we know 2 parents and current page is a start page, we want parent NS start page wich happens to be wiki home
+            } elseif (((count($mixture['parents']) == 1) && (strpos($ID, $conf['start']) === false)) or ((count($mixture['parents']) == 2) && (strpos($ID, $conf['start']) !== false))) {
+//            // if we know only one parent and current page isn't a start page we're on random page of wiki root and we want wiki start page
+//            } elseif ((count($mixture['parents']) == 1) && (strpos($ID, $conf['start']) === false)) {
+                return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
+// WHAT ABOUT GOING TO LANDING FROM WIKI STAR PAGE? ACTUALLY LINKS TO WIKI START WHEN ALLREADY THERE
+            // if we know at least one parent but current page is a start page, we want parent NS start page
+            } elseif ((count($mixture['parents']) > 1) && (strpos($ID, $conf['start']) !== false)) {
+                return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('parent_namespace'), 'classes' => $classes);
+            } else {
+                return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
+            }
+        } elseif (tpl_getConf($element) == "image_namespace_start") {
+//                                //$imageParent = _namespaced_imageParent($mixture['images'][tpl_getConf('sidebarImage')]['mediaId']);
+////dbg($mixture['images'][tpl_getConf('sidebarImage')]['mediaId']);
+//                                //$imageParent = _namespaced_file($conf['start'], "inherit", "page", $mixture['images'][tpl_getConf('sidebarImage')]['mediaId'], true);
+            $imageParent = php_mixture_file($conf['start'], "namespace", "page", substr($mixture['images'][tpl_getConf('sidebarImage')]['mediaId'], 0, strrpos($mixture['images'][tpl_getConf('sidebarImage')]['mediaId'], ':')), true);
+////dbg($imageParent);
+//                                tpl_link(
+//                                    wl($imageParent),
+//                                    '<img src="'.ml($mixture['images'][tpl_getConf('sidebarImage')]['mediaId'],'',true).'" width="100%" height="auto" title="'.$imageParent.'" alt="*'.tpl_getConf('sidebarImage').'*" />'
+//                                );
+            if ($imageParent != ":".$ID) {
+                return array('target' => wl($imageParent), 'label' => $imageParent);
+            } else {
+                return false;
+            }
+        } elseif (tpl_getConf($element) == "other") {
+            if ((isset($mixture['images']['other']['mediaId'])) and ($mixture['images']['other']['mediaId'] != null)) {
+//dbg($element);
+                $classes = "hasOverlay";
+                //return ml("ars5:sigrid:portrait.jpg",'',false);
+                return array('target' => ml($mixture['images']['other']['mediaId'],'',true), 'label' => $mixture['images']['other']['label'], 'classes' => $classes);
+            } else {
+                return null;
+            }
+            //} elseif (($element == "sidebarImageLink") and (tpl_getConf("sidebarImageLink") == "other") and (isset($mixture['images']['other']['mediaId'])) and ($mixture['images']['other']['mediaId'] != null)) {
+            //    $classes = "hasOverlay";
+            //    return array('target' => ml($mixture['images']['other']['mediaId'],'',true), 'label' => $mixture['images']['other']['label'], 'classes' => $classes);
+            //} elseif (tpl_getConf($element) == "image_namespace_start") {
+//dbg("bingo");
+//dbg($element);
+//dbg(tpl_getConf($element));
+//            $imageParent = _namespaced_imageParent($mixture['images'][tpl_getConf($element)]['mediaId']);
+//dbg($imageParent);
+                            //if ($imageParent != null) {
+                            //    tpl_link(
+                            //        wl($imageParent),
+                            //        '<img id="sidebarImage" src="'.$sidebarImage.'" width="100%" height="auto" title="'.$imageParent.'" alt="*'.tpl_getConf('sidebarImage').'*" />'
+                            //    );
+
+        } else {
+//dbg(tpl_getConf($element));
+            return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
+        }
+    } else {
+        return null;
+    }
+}
+
+/**
+ * RETURN WIKI OR PAGE TITLE AND TAGLINE OR WIKI TITLE
+ * 
+ * @param string   $element UI element for wich the string is requested
+ */
+function php_mixture_branding($element) {
+    global $ID, $conf, $ACT;
+
+    if ((tpl_getConf('dynamicBranding') == true) && ($ID != $conf['start']) && (($ACT == "show") or ($ACT == "edit") or ($ACT == "preview"))) {
+        if ($element == "title") {
+//dbg(tpl_pagetitle('', false));
+//dbg(tpl_pagetitle('', true));
+//dbg(tpl_pagetitle($ID, false));
+//dbg(tpl_pagetitle($ID, true));
+            if (p_get_metadata($ID, 'plugin_croissant_bctitle') != null) {
+                return p_get_metadata($ID, 'plugin_croissant_bctitle');
+            } else {
+                return tpl_pagetitle($ID, true);
+            }
+        } elseif ($element == "tagline") {
+            return $conf['title'];
+        } else {
+            return false;
+        }
+    } else {
+        if ($element == "title") {
+            return $conf['title'];
+        } elseif ($element == "tagline") {
+            return $conf['tagline'];
+        } else {
+            return false;
+        }
+    }
+}
 /**
  * PRINT THE BREADCRUMBS TRACE, adapted from core (template.php) to use a CSS separator solution and respect existing/non-existing page link colors
  *
