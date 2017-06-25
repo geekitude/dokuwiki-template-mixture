@@ -80,7 +80,6 @@ blockquote::before {
   content: "";
 }
 hr {
-  margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 4) auto;
   width: 80%
 }
 [dir=ltr] sup {
@@ -382,7 +381,7 @@ div.not-visible {
     content: "small (<768px)";
   }
   hr {
-    margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 2) auto;
+    margin: calc(@ini_spacer / 2) auto @ini_spacer auto;
   }
   #dokuwiki__site {
     /*padding: 1.5%;*/
