@@ -10,7 +10,7 @@ Experimental template based on DW's minimal Starter template, [KNACCS](http://kn
 * Namespace dependent CSS placeholders (mostly, or maybe only, for colors and fonts)
 * Namespace dependent special images (banner, logo, 'widebanner' and a potential last one that could be 'cover' for example)
 * Google Fonts : each of main text, headings, condensed text (mostly nav bar) and monospaced text (```code``` syntax) can use a different font
-* <maybe> customizable glyphs (this doesn't include Interwiki links and Search field placehoder that can only be customized through CSS), not sure yet if it will be Font Awesome, Genericons or SVG images from another source
+* <maybe> customizable SVG glyphs from [iconmonstr](https://iconmonstr.com/) (this doesn't include Interwiki links and Search field placehoder that can only be customized through CSS)
 * Optional "scrollspy" ToC on wide screen
 * Dokuwiki's standard include hooks, based on [this document](https://www.dokuwiki.org/include_hooks) and starter template as well as a few additions that can be easily put in place simply renaming corresponding `.includesample` file located in the template directory (e.g. *lib/tpl/mixture/*) into `.html`
   * *meta.html* : just before HTML head closing tag (use this to add additional styles or metaheaders)
@@ -29,7 +29,6 @@ Experimental template based on DW's minimal Starter template, [KNACCS](http://kn
 * [Advanced News Ticker - 1.0.11](http://risq.github.io/jquery-advanced-news-ticker/), licensed under [GNU General Public License v2.0](https://www.gnu.org/licenses/gpl-2.0.en.html)
 * [Web Font Loader - 1.6.28](https://github.com/typekit/webfontloader) to nicely load fonts from Google Web Fonts, licensed under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * [JDENTICON - 1.4.0](https://jdenticon.com/) to add modern and highly recognizable identicons, licensed under [zlib License](https://www.zlib.net/zlib_license.html)
-* [Font Awesome - 4.7.0](http://fontawesome.io/) or maybe just a selection with [IcoMoon](https://icomoon.io/) some day
 
 Font used for Mixture logo is : [RollandinEmilie by Emilie Rollandin](http://www.archistico.com/).
 
