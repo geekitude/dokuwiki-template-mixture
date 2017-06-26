@@ -222,6 +222,7 @@ function php_mixture_init() {
         $mixture['parents'] = array_reverse($mixture['parents']);
         $mixture['parents'] = array_unique($mixture['parents']);
     }
+//dbg($mixture['parents']);
 
 //    // SUB NAMESPACES
 //    // Look for all sub namespaces with a start page
@@ -308,6 +309,39 @@ function php_mixture_init() {
 //        $mixture['images']['other'] = php_mixture_file($lastImageTitle, "namespace", "media", $mixture['baseNs']);
 //        $mixture['images']['other']['label'] = ucfirst($lastImageTitle);
 //    }
+
+    // GLYPHS
+    // Search for default or custum default SVG glyphs
+    
+    $mixture['glyphs']['flag'] = null;
+    $mixture['glyphs']['home'] = null;
+    $mixture['glyphs']['parent'] = null;
+    $mixture['glyphs']['rss-feed'] = null;
+    $mixture['glyphs']['search'] = null;
+    foreach ($mixture['glyphs'] as $key => $value) {
+      if (is_file(DOKU_CONF."tpl/mixture/".$key.".svg")) {
+        dbg($key." exists");
+        $mixture['glyphs'][$key] = file_get_contents(DOKU_CONF."tpl/mixture/".$key.".svg");
+      } else {
+        $mixture['glyphs'][$key] = file_get_contents(".".tpl_basedir()."images/svg/".$key.".svg");
+      }
+    }
+//dbg($mixture['glyphs']);
+
+        //$icon =  '<span class="icon ico-em" title="<'.$tmp[0].'>">'.file_get_contents(".".tpl_basedir()."images/svg/flag.svg").'</span>';
+        //$result = glob(DOKU_CONF.'../lib/tpl/mixture/images/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
+
+    //if (strpos(tpl_getConf('elements'), 'header_logo') !== false) { $mixture['images']['logo'] = null; }
+    //if (strpos(tpl_getConf('elements'), 'header_banner') !== false) { $mixture['images']['banner'] = null; }
+    //if (strpos(tpl_getConf('elements'), 'widebanner') !== false) { $mixture['images']['widebanner'] = null; }
+    //if (strpos(tpl_getConf('elements'), 'sidebar_cover') !== false) { $mixture['images']['sidebar_cover'] = null; }
+    //if (count($mixture['images']) != null) {
+    //    foreach ($mixture['images'] as $key => $value) {
+    //    //if (strpos(tpl_getConf('namespaceImages'), $key) !== false) {
+    //        $mixture['images'][$key] = php_mixture_file($key, "inherit", "media", $mixture['baseNs']);
+    //    //}
+    //    }
+    //}
 
     // STYLE
     $mixture['replacements'] = array();
@@ -764,12 +798,14 @@ function php_mixture_pagetitle($target = null, $context = null) {
 }
 
 function php_mixture_icon($target = null, $context = null) {
+    global $mixture;
+
     $tmp = explode(":", ltrim($target, ":"));
     // Add a flag SVG image before translations
     if ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang'])) {
       //dbg("ici?".$name);
         //$name = "<".$tmp[1].">".$name;
-        $icon =  '<span class="icon ico-em" title="<'.$tmp[0].'>">'.file_get_contents(".".tpl_basedir()."images/svg/flag.svg").'</span>';
+        $icon =  '<span class="icon ico-em" title="<'.$tmp[0].'>">'.$mixture['glyphs']['flag'].'</span>';
     }
     print $icon;
 }
