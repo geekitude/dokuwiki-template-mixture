@@ -117,6 +117,10 @@ main,
 #mixture__header {
   padding: @ini_spacer @ini_spacer 0 @ini_spacer;
 }
+#mixture__topbar ul {
+  list-style: none;
+  padding: 0;
+}
 #mixture__title {
   color: @ini_color_primary;
 }
@@ -386,7 +390,35 @@ pre.dbg {
   background-color: @ini_highlight;
 }
 
+/* =ICONS
+----------------------------------------------- */
+.icon svg {
+    fill: @ini_text_neu;
+    vertical-align: text-bottom;
+}
+.ico-rem svg {
+    height: unit(@ini_font_factor, rem);
+    width: unit(@ini_font_factor, rem);
+    /*fill: red;*/
+}
+.ico-em svg {
+    height: 1em;
+    width: 1em;
+    /*fill: red;*/
+}
+.ico-12 svg {
+    height: 12px;
+    width: 12px;
+    /*fill: red;*/
+}
+.ico-16 svg {
+    height: 16px;
+    width: 16px;
+    /*fill: red;*/
+}
 
+/* =HELPERS
+----------------------------------------------- */
 .camelcase {
     text-transform: capitalize;
 }

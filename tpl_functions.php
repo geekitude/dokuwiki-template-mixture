@@ -759,16 +759,19 @@ function php_mixture_pagetitle($target = null, $context = null) {
       $name = p_get_metadata($target, 'plugin_croissant_bctitle');
     }
 
-    // ICON?
-    //$tmp = explode(":", ltrim($target, ":"));
-    //// Add a flag SVG image before translations
-    //if ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang'])) {
-    //    //$name = "<".$tmp[1].">".$name;
-    //    $icon =  '<span class="icon ico-12" title="<'.$tmp[0].'>">'.file_get_contents(".".tpl_basedir()."images/svg/flag.svg").'</span>';
-    //}
-
     //return $icon.hsc($name);
     return hsc($name);
+}
+
+function php_mixture_icon($target = null, $context = null) {
+    $tmp = explode(":", ltrim($target, ":"));
+    // Add a flag SVG image before translations
+    if ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang'])) {
+      //dbg("ici?".$name);
+        //$name = "<".$tmp[1].">".$name;
+        $icon =  '<span class="icon ico-12" title="<'.$tmp[0].'>">'.file_get_contents(".".tpl_basedir()."images/svg/flag.svg").'</span>';
+    }
+    print $icon;
 }
 
 /**
@@ -834,17 +837,18 @@ function php_mixture_breadcrumbs() {
             $i++;
             $class = php_mixture_breadcrumbsClass($target);
             print '<li'.$class.'>';
-              if (page_exists($target)) {
-                $class = "wikilink1";
-              } else {
-                $class = "wikilink2";
-              }
+              //if (page_exists($target)) {
+              //  $class = "wikilink1";
+              //} else {
+              //  $class = "wikilink2";
+              //}
               if (count(explode(":",$target)) == 1) { $target = ":".$target; }
               //if (p_get_metadata($target, 'plugin_croissant_bctitle') != null) {
               //  tpl_pagelink($target, p_get_metadata($target, 'plugin_croissant_bctitle'));
               //} else {
               //  tpl_pagelink($target);
               //}
+              php_mixture_icon($target);
               tpl_pagelink($target, php_mixture_pagetitle($target, "breadcrumbs"));
             print '</li>';
         }

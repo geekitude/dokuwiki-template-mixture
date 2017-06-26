@@ -37,9 +37,9 @@ $showSidebar = $hasSidebar && ($ACT=='show');
       <header id="mixture__header" role="banner" class="pam">
         <!-- TOPBAR (with date & last changes) -->
         <?php if ((strpos(tpl_getConf('elements'), 'news_date') !== false) or (strpos(tpl_getConf('elements'), 'news_lastchanges') !== false) or (strpos(tpl_getConf('elements'), 'news_links') !== false)) : ?>
-            <div id="mixture__topbar" class="small">
+            <div id="mixture__topbar" class="small clearfix">
                 <div class="left">
-                    <ul class="pas clearfix">
+                    <ul>
                         <?php if (strpos(tpl_getConf('elements'), 'news_date') !== false) : ?>
                             <li id="mixture__topbar_date" class="camelcase">
                                 <span>
@@ -73,6 +73,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <?php echo $colormag['topbarLinks']; ?>
                     </div>
                 <?php endif ?>
+                <hr class="mt0 mb0" />
             </div><!-- #mixture__topbar -->
         <?php endif; ?>
         <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID<>'start') && ($ACT=='show')): ?>
