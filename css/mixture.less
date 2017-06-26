@@ -394,7 +394,7 @@ pre.dbg {
 ----------------------------------------------- */
 .icon svg {
     fill: @ini_text_neu;
-    vertical-align: text-bottom;
+    vertical-align: baseline;
 }
 .ico-rem svg {
     height: unit(@ini_font_factor, rem);
@@ -404,6 +404,11 @@ pre.dbg {
 .ico-em svg {
     height: 1em;
     width: 1em;
+    /*fill: red;*/
+}
+.small .ico-em svg {
+    height: .8em;
+    width: .8em;
     /*fill: red;*/
 }
 .ico-12 svg {

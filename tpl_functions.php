@@ -769,7 +769,7 @@ function php_mixture_icon($target = null, $context = null) {
     if ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang'])) {
       //dbg("ici?".$name);
         //$name = "<".$tmp[1].">".$name;
-        $icon =  '<span class="icon ico-12" title="<'.$tmp[0].'>">'.file_get_contents(".".tpl_basedir()."images/svg/flag.svg").'</span>';
+        $icon =  '<span class="icon ico-em" title="<'.$tmp[0].'>">'.file_get_contents(".".tpl_basedir()."images/svg/flag.svg").'</span>';
     }
     print $icon;
 }
