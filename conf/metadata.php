@@ -10,6 +10,8 @@
 /*$meta['pageLayout']         = array('multichoice', '_choices' => array('quartered','boxed'));*/
 $meta['elements']           = array('multicheckbox',
                                '_choices' => array('news_date','news_lastchanges','news_links','header_logo','header_banner','widebanner','sidebar_cover'));
+$meta['dateLocale']         = array('string');
+$meta['dateString']         = array('string');
 /*$meta['logoLink']           = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic', 'other')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home while "image" will give some kind of lightbox or modal to a large image in same namespace (name set with "logoLinkImage" setting) and will default to "none" if image doesn't exist */
 $meta['titleLink']          = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
 /*$meta['taglineLink']        = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */

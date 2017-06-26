@@ -35,6 +35,46 @@ $showSidebar = $hasSidebar && ($ACT=='show');
       <?php tpl_includeFile('header.html') ?>
       <!-- ********** HEADER ********** -->
       <header id="mixture__header" role="banner" class="pam">
+        <!-- TOPBAR (with date & last changes) -->
+        <?php if ((strpos(tpl_getConf('elements'), 'news_date') !== false) or (strpos(tpl_getConf('elements'), 'news_lastchanges') !== false) or (strpos(tpl_getConf('elements'), 'news_links') !== false)) : ?>
+            <div id="mixture__topbar" class="small">
+                <div class="left">
+                    <ul class="pas clearfix">
+                        <?php if (strpos(tpl_getConf('elements'), 'news_date') !== false) : ?>
+                            <li id="mixture__topbar_date" class="camelcase">
+                                <span>
+                                    <?php
+                                        print php_mixture_date("long");
+                                    ?>
+                                </span>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (count($colormag['recents']) >= 1) : ?>
+                            <li id="js_lastchanges_container">
+                                <strong>
+                                    <span class="icon ico-rem" title="<?php echo $lang['btn_recent'] ?>">
+                                        <?php echo file_get_contents(".".tpl_basedir()."images/svg/rss-feed.svg"); ?>
+                                    </span>
+                                    <span class="a11y">
+                                        <?php print $lang['btn_recent'] ?>:
+                                    </span>
+                                </strong>
+                                <ul class="<?php if (count($colormag['recents']) > 1) { echo 'js-lastchanges'; } else { echo 'lastchange'; } ?>">
+                                    <?php
+                                        colormag_lastchanges();
+                                    ?>
+                                </ul>
+                            </li><!-- #js_lastchanges_container -->
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <?php if ($colormag['topbarLinks'] != null) : ?>
+                    <div class="right">
+                        <?php echo $colormag['topbarLinks']; ?>
+                    </div>
+                <?php endif ?>
+            </div><!-- .news-bar -->
+        <?php endif; ?>
         <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID<>'start') && ($ACT=='show')): ?>
           <h1 id="mixture__title">
             <?php

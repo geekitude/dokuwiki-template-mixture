@@ -10,6 +10,8 @@
 /*$conf['pageLayout']         = 'quartered';*/
 $conf['elements']           = 'news_date,news_lastchanges,news_links,header_logo,header_banner,widebanner,sidebar_cover';
 
+$conf['dateLocale']         = '';
+$conf['dateString']         = '%A %d %B %Y';
 $conf['titleLink']          = 'dynamic';
 
 

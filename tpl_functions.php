@@ -772,6 +772,35 @@ function php_mixture_pagetitle($target = null, $context = null) {
 }
 
 /**
+ * PRINT A DATE
+ * 
+ * @param string    $type "long" for long date based on 'dateString' setting, "short" for numeric
+ * @param integer   $timestamp timestamp to use (null for current server time)
+ * @param bool      $clock if true, add hour to the result
+ * @param bool      $print if true, print the result instead of returning it
+ */
+function php_mixture_date($type, $timestamp = null, $clock = false, $printResult = false) {
+    if (tpl_getConf('dateLocale') != null) {
+        setlocale(LC_TIME, explode(",", tpl_getConf('dateLocale')));
+    }
+    $format = tpl_getConf('dateString');
+    if ($clock) {
+        $format .= ' %H:%M';
+    }
+    if ($timestamp == null) {
+        $result = utf8_encode(ucwords(strftime($format)));
+    } else {
+        $result = utf8_encode(ucwords(strftime($format, $timestamp)));
+    }
+    if ($printResult) {
+        print $result;
+        return true;
+    } else {
+        return $result;
+    }
+}
+
+/**
  * PRINT THE BREADCRUMBS TRACE, adapted from core (template.php) to use a CSS separator solution and respect existing/non-existing page link colors
  *
  * @return bool
