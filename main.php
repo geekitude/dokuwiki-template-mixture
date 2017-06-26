@@ -73,7 +73,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <?php echo $colormag['topbarLinks']; ?>
                     </div>
                 <?php endif ?>
-            </div><!-- .news-bar -->
+            </div><!-- #mixture__topbar -->
         <?php endif; ?>
         <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID<>'start') && ($ACT=='show')): ?>
           <h1 id="mixture__title">
@@ -117,7 +117,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
         </aside>
         <!-- BREADCRUMBS -->
         <?php if (($conf['breadcrumbs']) or ($conf['youarehere'])) { ?>
-          <div class="breadcrumbs flex-container-v">
+          <div class="breadcrumbs flex-container-v small">
             <?php if ($conf['breadcrumbs']) { ?>
               <div class="trace"><?php php_mixture_breadcrumbs() ?></div>
             <?php } ?>
@@ -127,8 +127,8 @@ $showSidebar = $hasSidebar && ($ACT=='show');
           </div>
         <?php } ?>
         <aside id="mixture__pageIdInfo" class="flex-container-h pam pt0 pb0">
-          <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
-          <div class="pageInfo"><span><?php tpl_pageinfo() ?></span></div>
+          <div class="pageId small"><span><?php echo hsc($ID) ?></span></div>
+          <div class="pageInfo small"><span><?php tpl_pageinfo() ?></span></div>
           <hr />
         </aside>
       </header>
