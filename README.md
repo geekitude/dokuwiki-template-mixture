@@ -10,7 +10,7 @@ Experimental template based on DW's minimal Starter template, [KNACCS](http://kn
 * Namespace dependent CSS placeholders (mostly, or maybe only, for colors and fonts)
 * Namespace dependent special images (banner, logo, 'widebanner' and a potential last one that could be 'cover' for example)
 * Google Fonts : each of main text, headings, condensed text (mostly nav bar) and monospaced text (```code``` syntax) can use a different font
-* <maybe> customizable SVG glyphs from [iconmonstr](https://iconmonstr.com/) (this doesn't include Interwiki links and Search field placehoder that can only be customized through CSS)
+* Customizable SVG glyphs from [iconmonstr](https://iconmonstr.com/) (this doesn't include Interwiki links and Search field placehoder that can only be customized through CSS and user, user-secret and user-plus that are [Font Awesome](http://fontawesome.io/icons/) glyphs resized with [Method Draw](http://editor.method.ac/))
 * Optional "scrollspy" ToC on wide screen
 * Dokuwiki's standard include hooks, based on [this document](https://www.dokuwiki.org/include_hooks) and starter template as well as a few additions that can be easily put in place simply renaming corresponding `.includesample` file located in the template directory (e.g. *lib/tpl/mixture/*) into `.html`
   * *meta.html* : just before HTML head closing tag (use this to add additional styles or metaheaders)
