@@ -202,10 +202,12 @@ body.wrappedSidebar #mixture__aside {
 [dir=rtl] body.wrappedSidebar #mixture__aside {
   margin: 0 0 @ini_spacer @ini_spacer;
 }
+/*
 body.wrappedSidebar blockquote,
 body.wrappedSidebar ul {
   overflow: auto;
 }
+*/
 body.wrappedSidebar blockquote {
   margin: 0;
 }
@@ -414,6 +416,7 @@ pre.dbg {
 .ico-12 svg {
     height: 12px;
     width: 12px;
+    margin-bottom: 1px;
 }
 .ico-14 svg {
     height: 14px;
@@ -422,6 +425,7 @@ pre.dbg {
 .ico-16 svg {
     height: 16px;
     width: 16px;
+    margin-bottom: -1px;
 }
 
 /* =HELPERS
@@ -436,7 +440,12 @@ pre.dbg {
 .caps > a {
    text-transform: inherit !important;
 }
-
+.label {
+  color: @ini_text;
+}
+.label svg {
+  fill: @ini_text;
+}
 
 /*
 @media (min-width: 401px) {

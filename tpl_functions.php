@@ -315,6 +315,7 @@ function php_mixture_init() {
     
     $mixture['glyphs']['flag'] = null;
     $mixture['glyphs']['home'] = null;
+    $mixture['glyphs']['location'] = null;
     $mixture['glyphs']['map'] = null;
     $mixture['glyphs']['parent'] = null;
     $mixture['glyphs']['rss-feed'] = null;
@@ -832,7 +833,7 @@ function php_mixture_date($type, $timestamp = null, $clock = false, $printResult
  * @return bool
  */
 function php_mixture_breadcrumbs() {
-    global $lang, $conf, $uhp, $ID;
+    global $lang, $conf, $uhp, $ID, $mixture;
 
     //check if enabled
     if(!$conf['breadcrumbs']) return false;
@@ -852,7 +853,7 @@ function php_mixture_breadcrumbs() {
         //render crumbs, highlight the last one
         print '<ul>';
 //        if (tpl_getConf('breadcrumbsStyle') == "classic") {
-            print '<li><span class="tiny-visible medium-hidden" title="'.rtrim($lang['breadcrumb'], ':').'">'.php_mixture_glyph("breadcrumbs").'</span><span class="tiny-hidden medium-visible">'.$lang['breadcrumb'].'</span></li>';
+            print '<li><span class="small-hidden medium-hidden large-hidden icon ico-16 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['map'].'</span><span class="tiny-hidden">'.$lang['breadcrumb'].'</span></li>';
 //        }
         $last = count($crumbs);
         $i    = 0;
@@ -891,7 +892,7 @@ function php_mixture_breadcrumbs() {
  * @return bool
  */
 function php_mixture_youarehere() {
-    global $conf, $ID, $lang, $trs;
+    global $conf, $ID, $lang, $trs, $mixture;
 
     // check if enabled
     if(!$conf['youarehere']) return false;
@@ -901,7 +902,8 @@ function php_mixture_youarehere() {
 
     print '<ul>';
 //    if (tpl_getConf('breadcrumbsStyle') == "classic") {
-        print '<li><span class="md-display-none" title="'.rtrim($lang['youarehere'], ':').'">'.php_mixture_glyph("youarehere").'</span><span class="display-none md-display-initial">'.$lang['youarehere'].'</span></li>';
+//        print '<li><span class="icon ico-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['location'].$mixture['glyphs']['map'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
+        print '<li><span class="small-hidden medium-hidden large-hidden icon ico-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['location'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
 //    }
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
     //if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
