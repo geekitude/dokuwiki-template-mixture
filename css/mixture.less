@@ -263,16 +263,18 @@ body.scrollspyToC #dw__toc {
 /* Add separator before each list item that is following another one... */
 .breadcrumbs .trace ul > li + li:before {
     content: "/\00a0";
+    vertical-align: text-bottom;
 }
 .breadcrumbs .youarehere ul > li + li:before {
     content: "»\00a0";
+    vertical-align: text-bottom;
 }
 /* ...except second one (because first one is the label, not a breadcrumb) */
 .breadcrumbs .trace ul > li:nth-child(2):before,
 .breadcrumbs .youarehere ul > li:nth-child(2):before {
   content: "";
 }
-.breadcrumbs li.home a:before,
+/*.breadcrumbs li.home a:before,*/
 .breadcrumbs li.userprivate a:before,
 .breadcrumbs li.userpublic a:before,
 .breadcrumbs li.translated a:before,
@@ -284,9 +286,9 @@ body.scrollspyToC #dw__toc {
     font-family: Fontawesome;
     font-weight: 300;
 }
-[dir=ltr] .breadcrumbs li.home a:before {
+/*[dir=ltr] .breadcrumbs li.home a:before {
     content: "\f015\00a0";
-}
+}*/
 [dir=ltr] .breadcrumbs li.userprivate a:before {
     content: "\f21b\00a0";
 }
@@ -394,32 +396,32 @@ pre.dbg {
 ----------------------------------------------- */
 .icon svg {
     fill: @ini_text_neu;
-    vertical-align: baseline;
+    vertical-align: sub;
+    /*fill: red;*/
 }
 .ico-rem svg {
     height: unit(@ini_font_factor, rem);
     width: unit(@ini_font_factor, rem);
-    /*fill: red;*/
 }
 .ico-em svg {
     height: 1em;
     width: 1em;
-    /*fill: red;*/
 }
 .small .ico-em svg {
     height: .8em;
     width: .8em;
-    /*fill: red;*/
 }
 .ico-12 svg {
     height: 12px;
     width: 12px;
-    /*fill: red;*/
+}
+.ico-14 svg {
+    height: 14px;
+    width: 14px;
 }
 .ico-16 svg {
     height: 16px;
     width: 16px;
-    /*fill: red;*/
 }
 
 /* =HELPERS

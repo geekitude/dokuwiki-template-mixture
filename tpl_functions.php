@@ -315,12 +315,12 @@ function php_mixture_init() {
     
     $mixture['glyphs']['flag'] = null;
     $mixture['glyphs']['home'] = null;
+    $mixture['glyphs']['map'] = null;
     $mixture['glyphs']['parent'] = null;
     $mixture['glyphs']['rss-feed'] = null;
     $mixture['glyphs']['search'] = null;
     foreach ($mixture['glyphs'] as $key => $value) {
       if (is_file(DOKU_CONF."tpl/mixture/".$key.".svg")) {
-        dbg($key." exists");
         $mixture['glyphs'][$key] = file_get_contents(DOKU_CONF."tpl/mixture/".$key.".svg");
       } else {
         $mixture['glyphs'][$key] = file_get_contents(".".tpl_basedir()."images/svg/".$key.".svg");
@@ -797,19 +797,6 @@ function php_mixture_pagetitle($target = null, $context = null) {
     return hsc($name);
 }
 
-function php_mixture_icon($target = null, $context = null) {
-    global $mixture;
-
-    $tmp = explode(":", ltrim($target, ":"));
-    // Add a flag SVG image before translations
-    if ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang'])) {
-      //dbg("ici?".$name);
-        //$name = "<".$tmp[1].">".$name;
-        $icon =  '<span class="icon ico-em" title="<'.$tmp[0].'>">'.$mixture['glyphs']['flag'].'</span>';
-    }
-    print $icon;
-}
-
 /**
  * PRINT A DATE
  * 
@@ -865,7 +852,7 @@ function php_mixture_breadcrumbs() {
         //render crumbs, highlight the last one
         print '<ul>';
 //        if (tpl_getConf('breadcrumbsStyle') == "classic") {
-            print '<li><span class="md-display-none" title="'.rtrim($lang['breadcrumb'], ':').'">'.php_mixture_glyph("breadcrumbs").'</span><span class="display-none md-display-initial">'.$lang['breadcrumb'].'</span></li>';
+            print '<li><span class="tiny-visible medium-hidden" title="'.rtrim($lang['breadcrumb'], ':').'">'.php_mixture_glyph("breadcrumbs").'</span><span class="tiny-hidden medium-visible">'.$lang['breadcrumb'].'</span></li>';
 //        }
         $last = count($crumbs);
         $i    = 0;
@@ -1010,6 +997,45 @@ function php_mixture_breadcrumbsClass($target = null) {
     }
 }
 
+/**
+ * PRINT OR RETURN A GLYPH
+ * 
+ * @param string    $target : a page id or action
+ * @param string    $context : nav/breadcrumbs/...
+ * @param string    $target : action/page
+ * @param bool      $print return result if true, print it if flase
+ */
+function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "page", $return = false) {
+    global $mixture, $trs, $conf;
+
+    if ($what == "page") {
+      $tmp = explode(":", ltrim($target, ":"));
+      if ($context == "breadcrumbs") {
+        // Add a flag SVG image before translations
+        if ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
+          //dbg("ici?".$name);
+          //$name = "<".$tmp[1].">".$name;
+          $icon =  '<span class="icon ico-14" title="<'.$tmp[0].'>">'.$mixture['glyphs']['flag'].'</span>';
+        // Add a house SVG image before home
+        } elseif (ltrim($target, ":") == $conf['start']) {
+          //dbg("sob?".$name);
+          $icon =  '<span class="icon ico-14" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
+        }
+      } else {
+        //dbg("là?".$name);
+      }
+    } else {
+      //dbg("grr?".$name);
+    }
+
+    if ($return == true) {
+      return $icon;
+    } else {
+      print $icon;
+    }
+}
+
+/* STILL USED IN BREADCRUMBS */
 /**
  * RETURN GLYPH CORRESPONDING TO GIVEN ACTION
  * 
