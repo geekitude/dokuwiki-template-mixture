@@ -364,20 +364,21 @@ div.footnotes {
   width: 80%;
   font-size: 80%;
 }
+.toggle strong {
+  line-height: 1;
+  padding-top: 2px;
+}
 .toggle strong span {
   display: none;
 }
-.toggle strong:before {
+.toggle strong:before svg {
     display:inline-block; /* prevent 'text-decoration' propagation to icon */
-    font-family: Fontawesome;
-    font-weight: 300;
-    color: @ini_color_white;
 }
 .toggle.closed strong:before {
-    content: "\f065";
+    content: url(svg/expand18white.svg);
 }
 .toggle.open strong:before {
-    content: "\f066";
+    content: url(svg/compress18white.svg);
 }
 div.no {
   display: inline;
@@ -394,35 +395,39 @@ pre.dbg {
 
 /* =ICONS
 ----------------------------------------------- */
-.icon svg {
+.glyph svg {
     fill: @ini_text_neu;
     vertical-align: sub;
     /*fill: red;*/
-}
-.ico-rem svg {
+  display: inline-block;
+  /*width: 1em;*/
+  /*height: 1em;*/
     height: unit(@ini_font_factor, rem);
     width: unit(@ini_font_factor, rem);
+  stroke-width: 0;
+  stroke: @ini_text_neu;
+  fill: @ini_text_neu;
 }
-.ico-em svg {
-    height: 1em;
+.glyph-em svg {
     width: 1em;
+    height: 1em;
 }
-.small .ico-em svg {
-    height: .8em;
+.small .glyph-em svg {
     width: .8em;
+    height: .8em;
 }
-.ico-12 svg {
-    height: 12px;
-    width: 12px;
+.glyph-12 svg {
+    width: 1.2rem;
+    height: 1.2rem;
     margin-bottom: 1px;
 }
-.ico-14 svg {
-    height: 14px;
-    width: 14px;
+.glyph-14 svg {
+    width: 1.4rem;
+    height: 1.4rem;
 }
-.ico-16 svg {
-    height: 16px;
-    width: 16px;
+.glyph-16 svg {
+    width: 1.6rem;
+    height: 1.6rem;
     margin-bottom: -1px;
 }
 

@@ -313,23 +313,25 @@ function php_mixture_init() {
     // GLYPHS
     // Search for default or custum default SVG glyphs
     
+    $mixture['glyphs']['feed'] = null;
     $mixture['glyphs']['flag'] = null;
+    $mixture['glyphs']['group'] = null;
     $mixture['glyphs']['home'] = null;
-    $mixture['glyphs']['location'] = null;
     $mixture['glyphs']['map'] = null;
-    $mixture['glyphs']['parent'] = null;
-    $mixture['glyphs']['rss-feed'] = null;
+    $mixture['glyphs']['map-marker'] = null;
     $mixture['glyphs']['search'] = null;
+    $mixture['glyphs']['step-backward'] = null;
+    $mixture['glyphs']['user-secret'] = null;
     foreach ($mixture['glyphs'] as $key => $value) {
       if (is_file(DOKU_CONF."tpl/mixture/".$key.".svg")) {
         $mixture['glyphs'][$key] = file_get_contents(DOKU_CONF."tpl/mixture/".$key.".svg");
       } else {
-        $mixture['glyphs'][$key] = file_get_contents(".".tpl_basedir()."images/svg/".$key.".svg");
+        $mixture['glyphs'][$key] = file_get_contents(".".tpl_basedir()."svg/".$key.".svg");
       }
     }
 //dbg($mixture['glyphs']);
 
-        //$icon =  '<span class="icon ico-em" title="<'.$tmp[0].'>">'.file_get_contents(".".tpl_basedir()."images/svg/flag.svg").'</span>';
+        //$icon =  '<span class="icon glyph-em" title="<'.$tmp[0].'>">'.file_get_contents(".".tpl_basedir()."images/svg/flag.svg").'</span>';
         //$result = glob(DOKU_CONF.'../lib/tpl/mixture/images/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
 
     //if (strpos(tpl_getConf('elements'), 'header_logo') !== false) { $mixture['images']['logo'] = null; }
@@ -853,7 +855,7 @@ function php_mixture_breadcrumbs() {
         //render crumbs, highlight the last one
         print '<ul>';
 //        if (tpl_getConf('breadcrumbsStyle') == "classic") {
-            print '<li><span class="small-hidden medium-hidden large-hidden icon ico-16 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['map'].'</span><span class="tiny-hidden">'.$lang['breadcrumb'].'</span></li>';
+            print '<li><span class="small-hidden medium-hidden large-hidden glyph glyph-16 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['map'].'</span><span class="tiny-hidden">'.$lang['breadcrumb'].'</span></li>';
 //        }
         $last = count($crumbs);
         $i    = 0;
@@ -902,8 +904,8 @@ function php_mixture_youarehere() {
 
     print '<ul>';
 //    if (tpl_getConf('breadcrumbsStyle') == "classic") {
-//        print '<li><span class="icon ico-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['location'].$mixture['glyphs']['map'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
-        print '<li><span class="small-hidden medium-hidden large-hidden icon ico-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['location'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
+//        print '<li><span class="glyph glyph-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['location'].$mixture['glyphs']['map'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
+        print '<li><span class="small-hidden medium-hidden large-hidden glyph glyph-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['map-marker'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
 //    }
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
     //if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
@@ -1013,15 +1015,23 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
     if ($what == "page") {
       $tmp = explode(":", ltrim($target, ":"));
       if ($context == "breadcrumbs") {
+        // Add glyph before user's public page
+        if ((count($tmp) == 2) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns']))) {
+          //dbg("ici?".$name);
+          $icon =  '<span class="glyph glyph-14" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['group'].'</span>';
+        // Add glyph before user's public page
+        } elseif ((count($tmp) == 3) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns'])) && ($tmp[2] == $conf['start'])) {
+          //dbg("ici?".$name);
+          $icon =  '<span class="glyph glyph-14" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['user-secret'].'</span>';
         // Add a flag SVG image before translations
-        if ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
+        } elseif ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
           //dbg("ici?".$name);
           //$name = "<".$tmp[1].">".$name;
-          $icon =  '<span class="icon ico-14" title="<'.$tmp[0].'>">'.$mixture['glyphs']['flag'].'</span>';
+          $icon =  '<span class="glyph glyph-14" title="<'.$tmp[0].'>">'.$mixture['glyphs']['flag'].'</span>';
         // Add a house SVG image before home
         } elseif (ltrim($target, ":") == $conf['start']) {
-          //dbg("sob?".$name);
-          $icon =  '<span class="icon ico-14" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
+          //dbg("sob?".$name.tpl_getLang('wikihome'));
+          $icon =  '<span class="glyph glyph-14" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
         }
       } else {
         //dbg("là?".$name);

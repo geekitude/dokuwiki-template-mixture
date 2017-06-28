@@ -7,4 +7,5 @@
 $lang['wikihome']           = 'Wiki Start';
 $lang['nshome']             = 'Namespace Start';
 $lang['parentns']           = 'Parent Namespace';
+$lang['publicpage']         = 'Public Page';
 

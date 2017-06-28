@@ -52,7 +52,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <?php if (count($colormag['recents']) >= 1) : ?>
                             <li id="js_lastchanges_container">
                                 <strong>
-                                    <span class="icon ico-rem" title="<?php echo $lang['btn_recent'] ?>">
+                                    <span class="glyph" title="<?php echo $lang['btn_recent'] ?>">
                                         <?php echo file_get_contents(".".tpl_basedir()."images/svg/rss-feed.svg"); ?>
                                     </span>
                                     <span class="a11y">

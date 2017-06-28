@@ -10,7 +10,7 @@ Experimental template based on DW's minimal Starter template, [KNACCS](http://kn
 * Namespace dependent CSS placeholders (mostly, or maybe only, for colors and fonts)
 * Namespace dependent special images (banner, logo, 'widebanner' and a potential last one that could be 'cover' for example)
 * Google Fonts : each of main text, headings, condensed text (mostly nav bar) and monospaced text (```code``` syntax) can use a different font
-* Customizable SVG glyphs from [iconmonstr](https://iconmonstr.com/) (this doesn't include Interwiki links and Search field placehoder that can only be customized through CSS and user, user-secret and user-plus that are [Font Awesome](http://fontawesome.io/icons/) glyphs resized with [Method Draw](http://editor.method.ac/))
+* Easy to replace individual SVG glyphs collected from  [Font Awesome](http://fontawesome.io/) with [IcoMoon](https://icomoon.io/) (this doesn't include sidebar and Toc toglles, Interwiki links and Search field placehoder that can only be customized through CSS)
 * Optional "scrollspy" ToC on wide screen
 * Dokuwiki's standard include hooks, based on [this document](https://www.dokuwiki.org/include_hooks) and starter template as well as a few additions that can be easily put in place simply renaming corresponding `.includesample` file located in the template directory (e.g. *lib/tpl/mixture/*) into `.html`
   * *meta.html* : just before HTML head closing tag (use this to add additional styles or metaheaders)
@@ -34,3 +34,10 @@ Font used for Mixture logo is : [RollandinEmilie by Emilie Rollandin](http://www
 
 Special thanks to :
 * Giuseppe Di Terlizzi, author of [Bootstrap3](https://www.dokuwiki.org/template:bootstrap3) DokuWiki template who nicely acepted that I copy some of his code to build admin dropdown menu.
+
+## Tips
+
+### SVG glyphs
+  * to replace a glyph, place your SVG file, renamed exactly like original one, in ```.../conf/tpl/mixture``` folder (create it if needed)
+  * IcoMoon's Font Awesome glyphs all have a height of 28px and it might give unexpected results if replace with another glyph with different height
+  * SVG files used should not contain a <title> node (or it will be used as glyph tooltip, overriding any Dokuwiki tooltip string)
