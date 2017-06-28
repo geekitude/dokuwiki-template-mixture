@@ -335,14 +335,20 @@ div.footnotes {
 .toggle strong span {
   display: none;
 }
-.toggle strong:before svg {
-    display:inline-block; /* prevent 'text-decoration' propagation to icon */
+.toggle strong {
+  content: "";
+  display:block;
+  height:1.8rem;
+  width:1.8rem;
+  background-size: 1.8rem 1.8rem;
+  background-repeat: no-repeat;
+  opacity: .4;
 }
-.toggle.closed strong:before {
-    content: url(svg/expand18white.svg);
+.toggle.closed strong {
+  background-image: url(svg/expand.svg);
 }
-.toggle.open strong:before {
-    content: url(svg/compress18white.svg);
+.toggle.open strong {
+  background-image: url(svg/compress.svg);
 }
 div.no {
   display: inline;

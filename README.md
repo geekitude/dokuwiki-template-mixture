@@ -39,5 +39,5 @@ Special thanks to :
 
 ### SVG glyphs
   * to replace a glyph, place your SVG file, renamed exactly like original one, in ```.../conf/tpl/mixture``` folder (create it if needed)
-  * IcoMoon's Font Awesome glyphs all have a height of 28px and it might give unexpected results if replace with another glyph with different height
-  * SVG files used should not contain a <title> node (or it will be used as glyph tooltip, overriding any Dokuwiki tooltip string)
+  * IcoMoon's Font Awesome glyphs all have a height of 28px and it might give unexpected results if you replace one with another of different height
+  * SVG files used should not contain a <title> node (or it will be used as glyph tooltip, overriding any Dokuwiki tooltip string), so glyphs from IcoMoon must be edited
