@@ -863,7 +863,7 @@ function php_mixture_breadcrumbs() {
             $i++;
             print '<li';
               if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
-                print "curid";
+                print ' class="curid"';
               }
             print '>';
               //if (page_exists($target)) {
@@ -911,12 +911,12 @@ function php_mixture_youarehere() {
         print '<li><span class="small-hidden medium-hidden large-hidden glyph glyph-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['map-marker'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
 //    }
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
-    if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
+    //if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
     // this was a test to also enable adding untranslated start page before translated start page but this is not very logic and 
-    //if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or ((!plugin_isdisabled('translation')) and (isset($trs['defaultLang'])) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) or (plugin_isdisabled('translation'))) {
+    if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or ((!plugin_isdisabled('translation')) and (isset($trs['defaultLang'])) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) or (plugin_isdisabled('translation'))) {
         print '<li';
           if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
-            print "curid";
+            print ' class="curid"';
           }
         print '>';
             php_mixture_icon($conf['start']);
@@ -934,7 +934,7 @@ function php_mixture_youarehere() {
 //        if ((isset($trs['defaultLang'])) and ($page != $trs['defaultLang'].":")) {
             print '<li';
               if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
-                print "curid";
+                print ' class="curid"';
               }
             print '>';
             //if (p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle') != null) {
@@ -963,7 +963,7 @@ function php_mixture_youarehere() {
     $class = php_mixture_breadcrumbsClass($page);
     print '<li';
       if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
-        print "curid";
+        print ' class="curid"';
       }
     print '>';
         php_mixture_icon($page);
@@ -1020,35 +1020,5 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
       return $icon;
     } else {
       print $icon;
-    }
-}
-
-/* STILL USED IN BREADCRUMBS */
-/**
- * RETURN GLYPH CORRESPONDING TO GIVEN ACTION
- * 
- * Returns action's glyph with classes depending on context (main menu, dropdown, ...).
- *
- * @param string    $action
- * @param string    $context (null|pagetools|dropdown|button)
- * @param bool      $button
- * @return string|null
- */
-function php_mixture_glyph($action, $context = null) {
-    global $mixture;
-
-    if (isset($mixture['glyphs'][$action])) {
-        $icon = $mixture['glyphs'][$action];
-    } else {
-        $icon = $mixture['glyphs']['default'];
-    }
-    if (($context == 'dropdown') or ($context == 'modal')) {
-        return "<i class='fa fa-fw text-alt ".$icon."'></i> ";
-    } elseif (($context == 'scroll-up') or ($context == 'scroll-down')) {
-        return "<i class='fa ".$icon." fa-stack-1x fa-inverse'></i>";
-    } elseif ($context == 'close') {
-        return "<i class='fa fa-2x ".$icon."'></i>";
-    } else {
-        return "<i class='fa ".$icon."'></i>";
     }
 }
