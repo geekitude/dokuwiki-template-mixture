@@ -861,8 +861,11 @@ function php_mixture_breadcrumbs() {
         $i    = 0;
         foreach($crumbs as $target => $name) {
             $i++;
-            $class = php_mixture_breadcrumbsClass($target);
-            print '<li'.$class.'>';
+            print '<li';
+              if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
+                print "curid";
+              }
+            print '>';
               //if (page_exists($target)) {
               //  $class = "wikilink1";
               //} else {
@@ -908,12 +911,17 @@ function php_mixture_youarehere() {
         print '<li><span class="small-hidden medium-hidden large-hidden glyph glyph-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['map-marker'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
 //    }
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
-    //if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
-    if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or ((!plugin_isdisabled('translation')) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) or (plugin_isdisabled('translation'))) {
-            $class = php_mixture_breadcrumbsClass($ID);
-        echo '<li'.$class.'>';
-            tpl_pagelink(':'.$conf['start']);
-        echo '</li>';
+    if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
+    // this was a test to also enable adding untranslated start page before translated start page but this is not very logic and 
+    //if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or ((!plugin_isdisabled('translation')) and (isset($trs['defaultLang'])) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) or (plugin_isdisabled('translation'))) {
+        print '<li';
+          if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
+            print "curid";
+          }
+        print '>';
+            php_mixture_icon($conf['start']);
+            tpl_pagelink($conf['start']);
+        print '</li>';
     }
     // print intermediate namespace links
     $part = '';
@@ -922,16 +930,19 @@ function php_mixture_youarehere() {
         $page = $part;
         if (substr($page, -1) == ":") { $page .= $conf['start']; }
         //if($page == $conf['start']) continue; // Skip startpage
-        $class = php_mixture_breadcrumbsClass($page);
-        // output
         // skip if current target leads to untranslated wiki start
 //        if ((isset($trs['defaultLang'])) and ($page != $trs['defaultLang'].":")) {
-            echo "<li$class>";
+            print '<li';
+              if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
+                print "curid";
+              }
+            print '>';
             //if (p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle') != null) {
             //    tpl_pagelink($page, p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle'));
             //} else {
             //    tpl_pagelink($page);
             //}
+            php_mixture_icon($page);
             tpl_pagelink($page, php_mixture_pagetitle($page, "breadcrumbs"));
             //dbg($page);
             echo "</li>";
@@ -950,7 +961,12 @@ function php_mixture_youarehere() {
         return true;
     }
     $class = php_mixture_breadcrumbsClass($page);
-    echo "<li$class>";
+    print '<li';
+      if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
+        print "curid";
+      }
+    print '>';
+        php_mixture_icon($page);
         if (p_get_metadata($page, 'plugin_croissant_bctitle') != null) {
             tpl_pagelink($page, p_get_metadata($page, 'plugin_croissant_bctitle'));
         } else {
@@ -959,46 +975,6 @@ function php_mixture_youarehere() {
     echo "</li>";
     echo "</ul>";
     return true;
-}
-
-/**
- * SELECT BREADCRUMBS SPECIAL CLASS IF NEEDED
- *
- * @return string
- */
-function php_mixture_breadcrumbsClass($target = null) {
-    global $ID, $conf, $uhp, $translationHelper,$trs;
-
-    $classes = "";
-//dbg($target);
-//dbg($uhp);
-//dbg(substr($uhp['private']['id'], 0, 0-strlen($conf['start'])));
-    if ($target != null) {
-//        if (tpl_getConf('breadcrumbsGlyphs')) {
-            if ($target == $conf['start']) {
-                $classes .= " home";
-            } elseif (($uhp['private']['id'] != null) and (($target == $uhp['private']['id']) or ($target == substr($uhp['private']['id'], 0, 0-strlen($conf['start']))) or (substr($target, 0, strlen(substr($uhp['private']['id'], 0, 0-strlen($conf['start'])))) == substr($uhp['private']['id'], 0, 0-strlen($conf['start']))))) {
-                $classes .= " userprivate";
-            } elseif (($target == $uhp['public']['id']) and ($target != "user:start")) {
-                $classes .= " userpublic";
-            } elseif (isset($translationHelper)) {
-                $tmp = $translationHelper->getTransParts($target);
-                //if (($tmp[0] != null) and ($tmp[0] != $conf['lang'])) {
-                // If first part of $ID is a language code other than default language
-                if (($tmp[0] != null) and ($tmp[0] != $trs['defaultLang'])) {
-                    $classes .= " translated";
-                }
-            }
-//        }
-        if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
-            $classes .= " curid";
-        }
-    }
-    if ($classes != null) {
-        return ' class="'.ltrim($classes, " ").'"';
-    } else {
-        return null;
-    }
 }
 
 /**
@@ -1019,10 +995,10 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
         if ((count($tmp) == 2) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns']))) {
           //dbg("ici?".$name);
           $icon =  '<span class="glyph glyph-14" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['group'].'</span>';
-        // Add glyph before user's public page
+        // Add glyph before user's private namespace
         } elseif ((count($tmp) == 3) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns'])) && ($tmp[2] == $conf['start'])) {
           //dbg("ici?".$name);
-          $icon =  '<span class="glyph glyph-14" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['user-secret'].'</span>';
+          $icon =  '<span class="glyph glyph-14" title="'.tpl_getLang('privatens').'">'.$mixture['glyphs']['user-secret'].'</span>';
         // Add a flag SVG image before translations
         } elseif ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
           //dbg("ici?".$name);
