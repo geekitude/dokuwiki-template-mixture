@@ -861,11 +861,7 @@ function php_mixture_breadcrumbs() {
         $i    = 0;
         foreach($crumbs as $target => $name) {
             $i++;
-            print '<li';
-              if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
-                print ' class="curid"';
-              }
-            print '>';
+            print '<li>';
               //if (page_exists($target)) {
               //  $class = "wikilink1";
               //} else {
@@ -912,15 +908,14 @@ function php_mixture_youarehere() {
 //    }
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
     //if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
-    // this was a test to also enable adding untranslated start page before translated start page but this is not very logic and 
-    if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or ((!plugin_isdisabled('translation')) and (isset($trs['defaultLang'])) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) or (plugin_isdisabled('translation'))) {
-        print '<li';
-          if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
-            print ' class="curid"';
-          }
-        print '>';
+    // this was a test to also enable adding untranslated start page before translated start page but this is not very logic and dosn't work at all since DW transforms link into one leading to translated ns
+    //if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or ((!plugin_isdisabled('translation')) and (isset($trs['defaultLang'])) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) or (plugin_isdisabled('translation'))) {
+    //if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or  (plugin_isdisabled('translation'))) {
+    //if ((isset($trs['parts'][0])) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) {
+    if (((isset($trs['parts'][0])) && ((strlen($trs['parts'][0]) == 0) || ($trs['parts'][0] == $trs['defaultLang']))) || (plugin_isdisabled('translation'))) {
+        print '<li>';
             php_mixture_icon($conf['start']);
-            tpl_pagelink($conf['start']);
+            tpl_pagelink($conf['start'], php_mixture_pagetitle($conf['start'], "breadcrumbs"));
         print '</li>';
     }
     // print intermediate namespace links
@@ -932,11 +927,7 @@ function php_mixture_youarehere() {
         //if($page == $conf['start']) continue; // Skip startpage
         // skip if current target leads to untranslated wiki start
 //        if ((isset($trs['defaultLang'])) and ($page != $trs['defaultLang'].":")) {
-            print '<li';
-              if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
-                print ' class="curid"';
-              }
-            print '>';
+            print '<li>';
             //if (p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle') != null) {
             //    tpl_pagelink($page, p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle'));
             //} else {
@@ -960,12 +951,7 @@ function php_mixture_youarehere() {
         echo "</ul>";
         return true;
     }
-    $class = php_mixture_breadcrumbsClass($page);
-    print '<li';
-      if (($target == $ID) or ($target == rtrim($ID, $conf['start']))) {
-        print ' class="curid"';
-      }
-    print '>';
+    print '<li>';
         php_mixture_icon($page);
         if (p_get_metadata($page, 'plugin_croissant_bctitle') != null) {
             tpl_pagelink($page, p_get_metadata($page, 'plugin_croissant_bctitle'));
