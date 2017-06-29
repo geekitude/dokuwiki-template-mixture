@@ -461,6 +461,9 @@ pre.dbg {
   [dir=rtl] #dw__toc {
     margin: 0 @ini_spacer @ini_spacer 0;
   }
+  body.unwrappedSidebar #mixture__aside h3.toggle {
+    display: none;
+  }
 }
 @media (min-width: 768px) {
   #mixture__helper {
@@ -514,6 +517,9 @@ pre.dbg {
     right: 50%;
     margin-right: (@ini_site_width / 2) + (@ini_spacer / @ini_font_factor);
   }
+  body.extractToC #dw__toc h3.toggle {
+    display: none;
+  }
   body.scrollspyToC.extractToC #dw__toc li div.li {
     padding: 0 6px;
   }
@@ -547,7 +553,10 @@ pre.dbg {
     /* translate (search "transition" to find the rules for this translation animation) */
     transform: translate((2 * @ini_spacer) + (@ini_sidebar_width * @ini_font_factor), 0);
   }
-  #mixture__aside {
+  body.showSidebar.extractSidebar #mixture__aside h3.toggle {
+    display: none;
+  }
+  body.showSidebar.extractSidebar #mixture__aside {
     max-width: none;
   }
 }

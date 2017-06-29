@@ -500,6 +500,8 @@ function php_mixture_classes() {
     }
     if (tpl_getConf("wrappedSidebar")) {
         $classes .= "wrappedSidebar ";
+    } else {
+        $classes .= "unwrappedSidebar ";
     }
     if ($_GET['debug'] == true) {
         $classes .= "debug ";

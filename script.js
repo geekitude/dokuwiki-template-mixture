@@ -43,82 +43,76 @@ function js_mixture_resize(){
     // handle some layout changes based on change in device
     var $aside = jQuery('#mixture__aside h3.toggle');
     var $toc = jQuery('#dw__toc h3.toggle');
-    //var $tocicon = jQuery('#dw__toc h3 strong');
 
-    if (device_class.match(/extracted-toc/)){
-        // toc expanded and toggle hidden
-        if($toc.length) {
-            $toc[0].setState(1);
-            //$toc.addClass('is-disabled');
-            //$tocicon.hide();
-            $toc.hide();
-        }
-    } else {
-        // toc expanded and toggle shown
-        if($toc.length) {
-            $toc[0].setState(1);
-            ////$toc.addClass('is-disabled');
-            ////$tocicon.hide();
-            $toc.show();
-        }
-    }
+//    if (device_class.match(/extracted-toc/)){
+//        // toc expanded
+//        if($toc.length) {
+//            $toc[0].setState(1);
+//        }
+//    } else {
+//        // toc expanded and toggle shown
+//        if($toc.length) {
+//            $toc[0].setState(1);
+//            //$toc.show();
+//        }
+//    }
 
-    if (device_class.match(/extracted-sidebar/)){
-        // sidebar expanded and toggle hidden
-        if($aside.length) {
-            $aside[0].setState(1);
-            $aside.hide();
-            $toc.hide();
-        }
-    } else {
-        // sidebar expanded and toggle shown
-        if($aside.length) {
-            $aside[0].setState(1);
-            $aside.show();
-        }
-    }
-
-//    if (device_class == 'desktop') {
-//        // reset for desktop mode
+//    if (device_class.match(/extracted-sidebar/)){
+//        // sidebar expanded and toggle hidden
 //        if($aside.length) {
 //            $aside[0].setState(1);
+//            //$aside.hide();
+//            //$toc.hide();
+//        }
+//    } else {
+//        // sidebar expanded and toggle shown
+//        if($aside.length) {
+//            $aside[0].setState(1);
+//            //$aside.show();
+//        }
+//    }
+
+    if (device_class == 'desktop') {
+        // reset for desktop mode
+        if($aside.length) {
+            $aside[0].setState(1);
 //            if (jQuery("body").hasClass("wrappedSidebar")) {
 //              $aside.show();
 //            } else {
 //              $aside.hide();
 //            }
-//        }
-//        if($toc.length) {
-//            $toc[0].setState(1);
+        }
+        if($toc.length) {
+            $toc[0].setState(1);
 //            $toc.removeClass('is-disabled');
 //            $tocicon.show();
-//        }
-//    }
+        }
+    }
 
     if (device_class.match(/mobile tablet/)){
         // reset for tablet mode
         if($aside.length) {
             $aside[0].setState(1);
-            $aside.show();
+            //$aside.show();
         }
         if($toc.length) {
             $toc[0].setState(1);
             //$toc.removeClass('is-disabled');
             //$tocicon.show();
-            $toc.show();
+            //$toc.show();
         }
     }
     if (device_class.match(/mobile phone/)){
         // toc and sidebar collapsed (toggles with titles shown)
         if($aside.length) {
-            $aside.show();
+            //$aside.show();
             $aside[0].setState(-1);
         }
         if($toc.length) {
             $toc[0].setState(-1);
             //$toc.removeClass('is-disabled');
             //$tocicon.show();
-            $toc.show();
+            //$toc.show();
         }
     }
 }
