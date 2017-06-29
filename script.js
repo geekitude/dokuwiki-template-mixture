@@ -27,10 +27,24 @@ function js_mixture_resize(){
             if (device_class.match(/tablet/)) return;
             device_class = 'mobile tablet';
             break;
+//        case '1002':
+//            if (device_class.match(/medium/)) return;
+//            device_class = 'desktop medium';
+//            break;
+//        case '1003':
+//            if (device_class.match(/large/)) return;
+//            device_class = 'desktop large';
+//            break;
+//        case '1004':
+//            if (device_class.match(/wide/)) return;
+//            device_class = 'desktop wide';
+//            break;
         case '2001':
+            if (device_class.match(/extracted-toc/)) return;
             device_class = 'desktop extracted-toc';
             break;
         case '2002':
+            if (device_class.match(/extracted-sidebar/)) return;
             device_class = 'desktop extracted-sidebar';
             break;
         default:
@@ -42,7 +56,7 @@ function js_mixture_resize(){
 
     // handle some layout changes based on change in device
     var $aside = jQuery('#mixture__aside h3.toggle');
-    var $toc = jQuery('#dw__toc h3.toggle');
+    var $toc = jQuery('#dw__toc h3');
 
 //    if (device_class.match(/extracted-toc/)){
 //        // toc expanded
@@ -72,15 +86,17 @@ function js_mixture_resize(){
 //        }
 //    }
 
-    if (device_class == 'desktop') {
+//    if (device_class == 'desktop') {
+    if (device_class.match(/desktop/)){
         // reset for desktop mode
         if($aside.length) {
             $aside[0].setState(1);
-//            if (jQuery("body").hasClass("wrappedSidebar")) {
-//              $aside.show();
-//            } else {
-//              $aside.hide();
-//            }
+            //if (jQuery("body").hasClass("wrappedSidebar")) {
+              //$aside.hide();
+            //}
+            //} else {
+            //  $aside.hide();
+            //}
         }
         if($toc.length) {
             $toc[0].setState(1);
@@ -89,23 +105,23 @@ function js_mixture_resize(){
         }
     }
 
-    if (device_class.match(/mobile tablet/)){
-        // reset for tablet mode
-        if($aside.length) {
-            $aside[0].setState(1);
-            //$aside.show();
-        }
-        if($toc.length) {
-            $toc[0].setState(1);
-            //$toc.removeClass('is-disabled');
-            //$tocicon.show();
-            //$toc.show();
-        }
-    }
-    if (device_class.match(/mobile phone/)){
+//    if (device_class.match(/mobile tablet/)){
+//        // reset for tablet mode
+//        if($aside.length) {
+//            $aside[0].setState(1);
+//            //$aside.show();
+//        }
+//        if($toc.length) {
+//            $toc[0].setState(1);
+//            //$toc.removeClass('is-disabled');
+//            //$tocicon.show();
+//            //$toc.show();
+//        }
+//    }
+    if (device_class.match(/mobile/)){
         // toc and sidebar collapsed (toggles with titles shown)
         if($aside.length) {
-            //$aside.show();
+            $aside.show();
             $aside[0].setState(-1);
         }
         if($toc.length) {
