@@ -366,10 +366,18 @@ div.not-visible {
 pre.dbg {
   background-color: @ini_highlight;
 }
+#js_lastchanges_container ul.js-lastchanges,
+#js_lastchanges_container ul.lastchange {
+    display: inline-block;
+}
+#mixture__topbar ul {
+    margin: 0;
+    vertical-align: text-bottom;
+}
 
 /* =ICONS
 ----------------------------------------------- */
-.glyph svg {
+[class*="glyph"] svg {
     fill: @ini_text_neu;
     vertical-align: sub;
     /*fill: red;*/

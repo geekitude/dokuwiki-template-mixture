@@ -155,7 +155,7 @@ jQuery(function(){
     //if ((ScreenMode == "SM") || (ScreenMode == "MD") || (ScreenMode == "LG") || (ScreenMode == "WD")) {
         jQuery('.js-lastchanges').newsTicker({
             max_rows: 1,
-            row_height: parseFloat(jQuery("#js_lastchanges_container").css("font-size")) + 4,
+            row_height: parseFloat(jQuery("#js_lastchanges_container").css("font-size")) + 6,
             speed: 600,
             direction: 'up',
             duration: 4000,

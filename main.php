@@ -37,11 +37,11 @@ $showSidebar = $hasSidebar && ($ACT=='show');
       <header id="mixture__header" role="banner" class="pam">
         <!-- TOPBAR (with date & last changes) -->
         <?php if ((strpos(tpl_getConf('elements'), 'news_date') !== false) or (strpos(tpl_getConf('elements'), 'news_lastchanges') !== false) or (strpos(tpl_getConf('elements'), 'news_links') !== false)) : ?>
-            <div id="mixture__topbar" class="small clearfix">
+            <div id="mixture__topbar" class="smaller clearfix">
                 <div class="left">
-                    <ul>
+                    <ul class="flex-container-h">
                         <?php if (strpos(tpl_getConf('elements'), 'news_date') !== false) : ?>
-                            <li id="mixture__topbar_date" class="camelcase">
+                            <li id="mixture__topbar_date" class="camelcase mrs">
                                 <span>
                                     <?php
                                         print php_mixture_date("long");
@@ -50,9 +50,9 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             </li>
                         <?php endif; ?>
                         <?php if (count($mixture['recents']) >= 1) : ?>
-                            <li id="js_lastchanges_container">
+                            <li id="js_lastchanges_container" class="flex-container-h">
                                 <strong>
-                                    <span class="glyph" title="<?php echo $lang['btn_recent'] ?>">
+                                    <span class="glyph-rem" title="<?php echo $lang['btn_recent'] ?>">
                                         <?php echo $mixture['glyphs']['feed']; ?>
                                     </span>
                                     <span class="a11y">
@@ -73,7 +73,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <?php echo $colormag['topbarLinks']; ?>
                     </div>
                 <?php endif ?>
-                <hr class="mt0 mb0" />
+                <hr class="mts mb0" />
             </div><!-- #mixture__topbar -->
         <?php endif; ?>
         <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID<>'start') && ($ACT=='show')): ?>
