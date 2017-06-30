@@ -53,7 +53,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             <li id="js_lastchanges_container" class="flex-container-h">
                                 <strong>
                                     <span class="glyph-rem" title="<?php echo $lang['btn_recent'] ?>">
-                                        <?php echo $mixture['glyphs']['feed']; ?>
+                                        <?php echo $mixture['glyphs']['lastchanges']; ?>
                                     </span>
                                     <span class="a11y">
                                         <?php print $lang['btn_recent'] ?>:

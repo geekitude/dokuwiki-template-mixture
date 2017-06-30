@@ -61,25 +61,26 @@ function php_mixture_init() {
     // Preparing usefull plugins' helpers
     // Userhomepage
     if (!empty($_SERVER['REMOTE_USER'])) {
-		if (!plugin_isdisabled('userhomepage')) {
-			$uhpHelper = plugin_load('helper','userhomepage');
-			$uhp = $uhpHelper->getElements();
-			if ((isset($mixturePublicId)) and (!isset($uhp['public']))) {
-				$uhp['public'] = array();
-				$uhp['public']['id'] = $mixturePublicId;
-				if ((tpl_getLang('public_page') != null) and (!isset($uhp['public']['string']))) {
-					$uhp['public']['string'] = tpl_getLang('public_page');
-				}
-			}
-		} else {
-			// Without Userhomepage plugin, Public Page namespace is set by 'user' value in 'conf/interwiki.conf' and Private page is unknown
-			$uhp = array();
-			$uhp['private'] = null;
-			$uhp['public'] = array();
-			$uhp['public']['id'] = $mixturePublicId;
-			$uhp['public']['string'] = tpl_getLang('public_page');
-		}
+      if (!plugin_isdisabled('userhomepage')) {
+        $uhpHelper = plugin_load('helper','userhomepage');
+        $uhp = $uhpHelper->getElements();
+        if ((isset($mixturePublicId)) and (!isset($uhp['public']))) {
+          $uhp['public'] = array();
+          $uhp['public']['id'] = $mixturePublicId;
+          if ((tpl_getLang('public_page') != null) and (!isset($uhp['public']['string']))) {
+            $uhp['public']['string'] = tpl_getLang('public_page');
+          }
+        }
+      } else {
+        // Without Userhomepage plugin, Public Page namespace is set by 'user' value in 'conf/interwiki.conf' and Private page is unknown
+        $uhp = array();
+        $uhp['private'] = null;
+        $uhp['public'] = array();
+        $uhp['public']['id'] = $mixturePublicId;
+        $uhp['public']['string'] = tpl_getLang('public_page');
+      }
     }
+
     // Translations
     $trs = array();
     if (!plugin_isdisabled('translation')) {
@@ -152,13 +153,6 @@ function php_mixture_init() {
 //dbg("ici!");
                 }
             }
-//dbg($trs['translations']['en']);
-//            if ($trs['translations'][$lc] == $ID) {
-//dbg("là?".$lc);
-//dbg($trs['links']['en']);
-//                $classes .= " active";
-//                unset($trs['translations'][$lc]);
-//            }
             foreach ($trs['links'] as $lc => $link) {
                 if (strpos($link, "div") !== false) {
                     $trs['links'][$lc] = substr($trs['links'][$lc], 20);
@@ -313,15 +307,15 @@ function php_mixture_init() {
     // GLYPHS
     // Search for default or custum default SVG glyphs
     
-    $mixture['glyphs']['feed'] = null;
-    $mixture['glyphs']['flag'] = null;
-    $mixture['glyphs']['group'] = null;
     $mixture['glyphs']['home'] = null;
-    $mixture['glyphs']['map'] = null;
-    $mixture['glyphs']['map-marker'] = null;
+    $mixture['glyphs']['lastchanges'] = null;
+    $mixture['glyphs']['parent'] = null;
     $mixture['glyphs']['search'] = null;
-    $mixture['glyphs']['step-backward'] = null;
-    $mixture['glyphs']['user-secret'] = null;
+    $mixture['glyphs']['trace'] = null;
+    $mixture['glyphs']['translation'] = null;
+    $mixture['glyphs']['userprivate'] = null;
+    $mixture['glyphs']['userpublic'] = null;
+    $mixture['glyphs']['youarehere'] = null;
     foreach ($mixture['glyphs'] as $key => $value) {
       if (is_file(DOKU_CONF."tpl/mixture/".$key.".svg")) {
         $mixture['glyphs'][$key] = file_get_contents(DOKU_CONF."tpl/mixture/".$key.".svg");
@@ -330,9 +324,6 @@ function php_mixture_init() {
       }
     }
 //dbg($mixture['glyphs']);
-
-        //$icon =  '<span class="icon glyph-em" title="<'.$tmp[0].'>">'.file_get_contents(".".tpl_basedir()."images/svg/flag.svg").'</span>';
-        //$result = glob(DOKU_CONF.'../lib/tpl/mixture/images/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
 
     //if (strpos(tpl_getConf('elements'), 'header_logo') !== false) { $mixture['images']['logo'] = null; }
     //if (strpos(tpl_getConf('elements'), 'header_banner') !== false) { $mixture['images']['banner'] = null; }
@@ -798,7 +789,6 @@ function php_mixture_pagetitle($target = null, $context = null) {
       $name = p_get_metadata($target, 'plugin_croissant_bctitle');
     }
 
-    //return $icon.hsc($name);
     return hsc($name);
 }
 
@@ -1050,16 +1040,16 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
         // Add glyph before user's public page
         if ((count($tmp) == 2) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns']))) {
           //dbg("ici?".$name);
-          $icon =  '<span class="glyph-14" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['group'].'</span>';
+          $icon =  '<span class="glyph-14" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['userpublic'].'</span>';
         // Add glyph before user's private namespace
         } elseif ((count($tmp) == 3) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns'])) && ($tmp[2] == $conf['start'])) {
           //dbg("ici?".$name);
-          $icon =  '<span class="glyph-14" title="'.tpl_getLang('privatens').'">'.$mixture['glyphs']['user-secret'].'</span>';
+          $icon =  '<span class="glyph-14" title="'.tpl_getLang('privatens').'">'.$mixture['glyphs']['userprivate'].'</span>';
         // Add a flag SVG image before translations
         } elseif ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
           //dbg("ici?".$name);
           //$name = "<".$tmp[1].">".$name;
-          $icon =  '<span class="glyph-14" title="<'.$tmp[0].'>">'.$mixture['glyphs']['flag'].'</span>';
+          $icon =  '<span class="glyph-14" title="<'.$tmp[0].'>">'.$mixture['glyphs']['translation'].'</span>';
         // Add a house SVG image before home
         } elseif (ltrim($target, ":") == $conf['start']) {
           //dbg("sob?".$name.tpl_getLang('wikihome'));
