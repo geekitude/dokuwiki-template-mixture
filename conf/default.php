@@ -12,6 +12,9 @@ $conf['elements']           = 'news_date,news_lastchanges,news_links,header_logo
 
 $conf['dateLocale']         = '';
 $conf['dateString']         = '%A %d %B %Y';
+$conf['lastChanges']        = 'skip_minors,5';
+$conf['lastChangesWhat']    = 'both';
+$conf['lastChangesWhere']   = 'anywhere';
 $conf['titleLink']          = 'dynamic';
 
 

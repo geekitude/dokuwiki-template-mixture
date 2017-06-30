@@ -269,6 +269,28 @@ function php_mixture_init() {
         $mixture['recents'] = getRecents(0,$showLastChanges,$mixture['currentNs'],$flags);
     }
 
+    // LAST CHANGES (build list)
+    // Retrieve number of last changes to show and proceed if matching `lastchangesWhere` settings
+    if ((strpos(tpl_getConf('elements'), 'news_lastchanges') !== false) and ((tpl_getConf('lastChangesWhere') == "anywhere") or ((tpl_getConf('lastChangesWhere') == "any_start_page") and (strpos($ID, $conf['start']) !== false)) or ((tpl_getConf('lastChangesWhere') == "wiki_root") and ($ID == $conf['start'])))) {
+        $showLastChanges = intval(end(explode(',', tpl_getConf('lastChanges'))));
+        $flags = '';
+        if (strpos(tpl_getConf('lastChanges'), 'skip_deleted') !== false) {
+            $flags = RECENTS_SKIP_DELETED;
+        }
+        if (strpos(tpl_getConf('lastChanges'), 'skip_minors') !== false) {
+            $flags += RECENTS_SKIP_MINORS;
+        }
+        if (strpos(tpl_getConf('lastChanges'), 'skip_subspaces') !== false) {
+            $flags += RECENTS_SKIP_SUBSPACES;
+        }
+        if (tpl_getConf('lastChangesWhat') == 'media') {
+            $flags += RECENTS_MEDIA_CHANGES;
+        } elseif (tpl_getConf('lastChangesWhat') == 'both') {
+            $flags += RECENTS_MEDIA_PAGES_MIXED;
+        }
+        $mixture['recents'] = getRecents(0,$showLastChanges,$colormag['currentNs'],$flags);
+    }
+
     // TOPBAR LINKS
     if (strpos(tpl_getConf('elements'), 'news_links') !== false) {
         $topbarFiles = php_mixture_file("topbar", tpl_getConf('topbarFrom'), "page", $mixture['baseNs']);
@@ -794,7 +816,7 @@ function php_mixture_pagetitle($target = null, $context = null) {
     }
 
     // CROISSANT PLUGIN
-    if (($context == "breadcrumbs") && (p_get_metadata($target, 'plugin_croissant_bctitle') != null)) {
+    if ((($context == "breadcrumbs") || ($context == "lastchanges")) && (p_get_metadata($target, 'plugin_croissant_bctitle') != null)) {
       $name = p_get_metadata($target, 'plugin_croissant_bctitle');
     }
 
@@ -828,6 +850,74 @@ function php_mixture_date($type, $timestamp = null, $clock = false, $printResult
         return true;
     } else {
         return $result;
+    }
+}
+
+/**
+ * PRINT LAST CHANGES LIST
+ * 
+ * Print an <ul> loaded with @param last changes.
+ *
+ * @param integer   $n number of last changes to show in the list
+ */
+function php_mixture_lastchanges($context = null) {
+    global $mixture, $conf, $lang;
+
+    $mediaPath = str_replace("/pages", "/media", $conf['datadir']);
+    $i = 0;
+    foreach ($mixture['recents'] as $key => $value) {
+        $details = null;
+        if ($value['sum'] != null) {
+            $details = ucfirst(rtrim($value['sum'], "."));
+        } else {
+            $details = ucfirst(rtrim(str_replace(":", "", $lang['mail_changed']), chr(0xC2).chr(0xA0)));
+        }
+        if ($value['date'] != null) {
+            $details .= " (".php_mixture_date("long", $value['date']).")";
+        }
+        if ($context == "landing") {
+            $details .= ".";
+        }
+        //print '<li title="'.$value['id'].'">';
+        print '<li title="'.$details.'">';
+            if ($value['media']) {
+                if (is_file($mediaPath."/".str_replace(":", "/", $value['id']))) {
+                    $exist = "wikilink1";
+                } else {
+                    $exist = "wikilink2";
+                }
+            } else {
+                if (page_exists($value['id'])) {
+                    $exist = "wikilink1";
+                } else {
+                    $exist = "wikilink2";
+                }
+            }
+            $pageName = php_mixture_pagetitle($value['id'], "lastchanges");
+            if ($value['media']) {
+                tpl_link(
+                    ml($value['id'],'',false),
+                    $pageName,
+                    'class="'.$exist.' medialink"'
+                );
+            } else {
+                tpl_link(
+                    wl($value['id']),
+                    $pageName,
+                    'class="'.$exist.'"'
+                );
+            }
+            $by = null;
+            if ($value['user'] != null) {
+                $by = " ".$lang['by']." ";
+            }
+            if ($context == null) {
+                //print '<span class="display-none xs-display-initial md-display-none wd-display-initial">'.$by.'<span class="text-capitalize"><bdi>'.$value['user'].'</bdi></span></span>';
+                //print '<span class="display-none xs-display-initial">'.$by.'<span class="camelcase"><bdi>'.$value['user'].'</bdi></span></span>';
+                print '<span>'.$by.'<span class="camelcase"><bdi>'.$value['user'].'</bdi></span></span>';
+            }
+            $i++;
+        print '</li>';
     }
 }
 
