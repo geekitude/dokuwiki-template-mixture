@@ -1,8 +1,0 @@
-compress => collapse
-feed => lastchanges
-flag => translation
-group => userpublic
-map => trace
-map-marker => youarehere
-step-backward => parent
-user-secret => userprivate

@@ -121,6 +121,9 @@ main,
   list-style: none;
   padding: 0;
 }
+#mixture__topbar_date span.text {
+  display: none;
+}
 #mixture__title {
   color: @ini_color_primary;
 }
@@ -499,6 +502,12 @@ pre.dbg {
   table {
     /*max-width: calc(100% - @ini_toc_width - @ini_spacer - 40px);*/
     width: auto;
+  }
+  #mixture__topbar_date span.label {
+    display: none;
+  }
+  #mixture__topbar_date span.text {
+    display: inline;
   }
   #mixture__aside {
     width: @ini_sidebar_width;

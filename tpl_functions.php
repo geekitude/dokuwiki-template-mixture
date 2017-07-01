@@ -306,7 +306,7 @@ function php_mixture_init() {
 
     // GLYPHS
     // Search for default or custum default SVG glyphs
-    
+    $mixture['glyphs']['calendar'] = null;
     $mixture['glyphs']['home'] = null;
     $mixture['glyphs']['lastchanges'] = null;
     $mixture['glyphs']['parent'] = null;

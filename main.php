@@ -42,7 +42,10 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                     <ul class="flex-container-h">
                         <?php if (strpos(tpl_getConf('elements'), 'topbar_date') !== false) : ?>
                             <li id="mixture__topbar_date" class="camelcase mrs">
-                                <span>
+                                <span class="label glyph-18" title="<?php print php_mixture_date("long"); ?>">
+                                    <?php echo $mixture['glyphs']['calendar']; ?>
+                                </span>
+                                <span class="text">
                                     <?php
                                         print php_mixture_date("long");
                                     ?>
@@ -52,7 +55,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <?php if (count($mixture['recents']) >= 1) : ?>
                             <li id="js_lastchanges_container" class="flex-container-h">
                                 <strong>
-                                    <span class="glyph-18" title="<?php echo $lang['btn_recent'] ?>">
+                                    <span class="label glyph-18" title="<?php echo $lang['btn_recent']; ?>">
                                         <?php echo $mixture['glyphs']['lastchanges']; ?>
                                     </span>
                                     <span class="a11y">
