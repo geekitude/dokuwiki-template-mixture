@@ -13,12 +13,13 @@ if (JSINFO.LoadNewsTicker) {
  */
 var device_class = ''; // not yet known
 var device_classes = 'extractedtoc extractedsb desktop mobile tablet phone';
+var screen_mode;
 
 
 function js_mixture_resize(){
 
     // the z-index in mobile.css is (mis-)used purely for detecting the screen mode here
-    var screen_mode = jQuery('#mixture__helper').css('z-index') + '';
+    screen_mode = jQuery('#mixture__helper').css('z-index') + '';
 
     // determine our device pattern
     // TODO: consider moving into dokuwiki core
@@ -161,21 +162,19 @@ jQuery(function(){
 jQuery(document).ready(function() {
 
     // the z-index in mobile.css is (mis-)used purely for detecting the screen mode here
-    var screen_mode = jQuery('#mixture__helper').css('z-index') + '';
+    screen_mode = jQuery('#mixture__helper').css('z-index') + '';
 
     // Prepare last changes ticker
-    //if ((ScreenMode == "SM") || (ScreenMode == "MD") || (ScreenMode == "LG") || (ScreenMode == "WD")) {
-    //if (screen_mode > 1000) {
-        jQuery('.js-lastchanges').newsTicker({
-            max_rows: 1,
-            row_height: parseFloat(jQuery("#js_lastchanges_container").css("font-size")) + 6,
-            speed: 600,
-            direction: 'up',
-            duration: 4000,
-            autostart: 1,
-            pauseOnHover: 1
-        });
-        //jQuery('#js_lastchanges_container').css("display", "initial");
+    jQuery('.js-lastchanges').newsTicker({
+        max_rows: 1,
+        row_height: parseFloat(jQuery("#js_lastchanges_container").css("font-size")) + 6,
+        speed: 600,
+        direction: 'up',
+        duration: 4000,
+        autostart: 1,
+        pauseOnHover: 1
+    });
+    if (screen_mode != '1000') {
         jQuery('#js_lastchanges_container').show();
-    //}
+    }
 });
