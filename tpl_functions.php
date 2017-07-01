@@ -243,7 +243,7 @@ function php_mixture_init() {
 
     // LAST CHANGES (build list)
     // Retrieve number of last changes to show and proceed if matching `lastchangesWhere` settings
-    if ((strpos(tpl_getConf('elements'), 'news_lastchanges') !== false) and ((tpl_getConf('lastChangesWhere') == "anywhere") or ((tpl_getConf('lastChangesWhere') == "any_start_page") and (strpos($ID, $conf['start']) !== false)) or ((tpl_getConf('lastChangesWhere') == "wiki_root") and ($ID == $conf['start'])))) {
+    if ((strpos(tpl_getConf('elements'), 'topbar_lastchanges') !== false) and ((tpl_getConf('lastChangesWhere') == "anywhere") or ((tpl_getConf('lastChangesWhere') == "any_start_page") and (strpos($ID, $conf['start']) !== false)) or ((tpl_getConf('lastChangesWhere') == "wiki_root") and ($ID == $conf['start'])))) {
         $showLastChanges = intval(end(explode(',', tpl_getConf('lastChanges'))));
         $flags = '';
         if (strpos(tpl_getConf('lastChanges'), 'skip_deleted') !== false) {
@@ -264,7 +264,7 @@ function php_mixture_init() {
     }
 
     // TOPBAR LINKS
-    if (strpos(tpl_getConf('elements'), 'news_links') !== false) {
+    if (strpos(tpl_getConf('elements'), 'topbar_links') !== false) {
         $topbarFiles = php_mixture_file("topbar", tpl_getConf('topbarFrom'), "page", $mixture['baseNs']);
         if ($topbarFiles != null) {
             $prevValue = null;

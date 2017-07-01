@@ -36,11 +36,11 @@ $showSidebar = $hasSidebar && ($ACT=='show');
       <!-- ********** HEADER ********** -->
       <header id="mixture__header" role="banner" class="pam">
         <!-- TOPBAR (with date & last changes) -->
-        <?php if ((strpos(tpl_getConf('elements'), 'news_date') !== false) or (strpos(tpl_getConf('elements'), 'news_lastchanges') !== false) or (strpos(tpl_getConf('elements'), 'news_links') !== false)) : ?>
+        <?php if ((strpos(tpl_getConf('elements'), 'topbar_date') !== false) or (strpos(tpl_getConf('elements'), 'topbar_lastchanges') !== false) or (strpos(tpl_getConf('elements'), 'topbar_links') !== false)) : ?>
             <div id="mixture__topbar" class="smaller clearfix">
                 <div class="left">
                     <ul class="flex-container-h">
-                        <?php if (strpos(tpl_getConf('elements'), 'news_date') !== false) : ?>
+                        <?php if (strpos(tpl_getConf('elements'), 'topbar_date') !== false) : ?>
                             <li id="mixture__topbar_date" class="camelcase mrs">
                                 <span>
                                     <?php
