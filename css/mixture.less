@@ -267,7 +267,6 @@ body.scrollspyToC #dw__toc {
 /* Add separator before each list item that is following another one... */
 .breadcrumbs .trace ul > li + li:before {
     content: "/\00a0";
-    /*vertical-align: text-bottom;*/
 }
 .breadcrumbs .youarehere ul > li + li:before {
     content: "»\00a0";
@@ -278,6 +277,13 @@ body.scrollspyToC #dw__toc {
 .breadcrumbs .youarehere ul > li:nth-child(2):before {
   content: "";
 }
+/* ...and add a margin after first one (label) */
+/*
+ * .breadcrumbs .trace ul > li:nth-child(1):after,
+.breadcrumbs .youarehere ul > li:nth-child(1):after {
+  margin-right: 4px;
+}
+*/
 /*
 div.pageNews,
 div.pageId,
@@ -377,19 +383,29 @@ pre.dbg {
 
 /* =ICONS
 ----------------------------------------------- */
+[class*="glyph"] {
+    font-size: 0;
+}
+[dir=ltr] [class*="glyph"] {
+    padding: 0 3px 0 0;
+}
+[dir=rtl] [class*="glyph"] {
+    padding: 0 0 0 3px;
+}
 [class*="glyph"] svg {
     fill: @ini_text_neu;
-    vertical-align: sub;
+    vertical-align: top;
     /*fill: red;*/
   display: inline-block;
-  /*width: 1em;*/
-  /*height: 1em;*/
+  /*width: 1rem;*/
+  /*height: 1rem;*/
     height: unit(@ini_font_factor, rem);
     width: unit(@ini_font_factor, rem);
   stroke-width: 0;
   stroke: @ini_text_neu;
   fill: @ini_text_neu;
 }
+/*
 .glyph-em svg {
     width: 1em;
     height: 1em;
@@ -401,7 +417,6 @@ pre.dbg {
 .glyph-12 svg {
     width: 1.2rem;
     height: 1.2rem;
-    margin-bottom: 1px;
 }
 .glyph-14 svg {
     width: 1.4rem;
@@ -410,17 +425,22 @@ pre.dbg {
 .glyph-16 svg {
     width: 1.6rem;
     height: 1.6rem;
-    margin-bottom: -1px;
 }
+*/
+/* used for lastchanges label */
+.glyph-17 svg {
+    width: 1.7rem;
+    height: 1.7rem;
+}
+/* used in breadcrumbs */
 .glyph-18 svg {
     width: 1.8rem;
     height: 1.8rem;
-    margin-bottom: -1px;
 }
+/* used for bredcrumbs labels */
 .glyph-20 svg {
     width: 2rem;
     height: 2rem;
-    margin-bottom: -1px;
 }
 
 /* =HELPERS

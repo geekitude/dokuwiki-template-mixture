@@ -52,7 +52,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <?php if (count($mixture['recents']) >= 1) : ?>
                             <li id="js_lastchanges_container" class="flex-container-h">
                                 <strong>
-                                    <span class="glyph-rem" title="<?php echo $lang['btn_recent'] ?>">
+                                    <span class="glyph-17" title="<?php echo $lang['btn_recent'] ?>">
                                         <?php echo $mixture['glyphs']['lastchanges']; ?>
                                     </span>
                                     <span class="a11y">
