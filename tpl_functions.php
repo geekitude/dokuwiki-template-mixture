@@ -915,7 +915,7 @@ function php_mixture_breadcrumbs() {
         //render crumbs, highlight the last one
         print '<ul>';
 //        if (tpl_getConf('breadcrumbsStyle') == "classic") {
-            print '<li><span class="small-hidden medium-hidden large-hidden glyph-16 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['map'].'</span><span class="tiny-hidden">'.$lang['breadcrumb'].'</span></li>';
+            print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['trace'].'</span><span class="tiny-hidden">'.$lang['breadcrumb'].'</span></li>';
 //        }
         $last = count($crumbs);
         $i    = 0;
@@ -964,7 +964,7 @@ function php_mixture_youarehere() {
     print '<ul>';
 //    if (tpl_getConf('breadcrumbsStyle') == "classic") {
 //        print '<li><span class="glyph-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['location'].$mixture['glyphs']['map'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
-        print '<li><span class="small-hidden medium-hidden large-hidden glyph-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['map-marker'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
+        print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['youarehere'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
 //    }
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
     //if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
@@ -1040,20 +1040,20 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
         // Add glyph before user's public page
         if ((count($tmp) == 2) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns']))) {
           //dbg("ici?".$name);
-          $icon =  '<span class="glyph-14" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['userpublic'].'</span>';
+          $icon =  '<span class="glyph-18" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['userpublic'].'</span>';
         // Add glyph before user's private namespace
         } elseif ((count($tmp) == 3) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns'])) && ($tmp[2] == $conf['start'])) {
           //dbg("ici?".$name);
-          $icon =  '<span class="glyph-14" title="'.tpl_getLang('privatens').'">'.$mixture['glyphs']['userprivate'].'</span>';
+          $icon =  '<span class="glyph-18" title="'.tpl_getLang('privatens').'">'.$mixture['glyphs']['userprivate'].'</span>';
         // Add a flag SVG image before translations
         } elseif ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
           //dbg("ici?".$name);
           //$name = "<".$tmp[1].">".$name;
-          $icon =  '<span class="glyph-14" title="<'.$tmp[0].'>">'.$mixture['glyphs']['translation'].'</span>';
+          $icon =  '<span class="glyph-18" title="<'.$tmp[0].'>">'.$mixture['glyphs']['translation'].'</span>';
         // Add a house SVG image before home
         } elseif (ltrim($target, ":") == $conf['start']) {
           //dbg("sob?".$name.tpl_getLang('wikihome'));
-          $icon =  '<span class="glyph-14" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
+          $icon =  '<span class="glyph-18" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
         }
       } else {
         //dbg("là?".$name);

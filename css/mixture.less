@@ -267,11 +267,11 @@ body.scrollspyToC #dw__toc {
 /* Add separator before each list item that is following another one... */
 .breadcrumbs .trace ul > li + li:before {
     content: "/\00a0";
-    vertical-align: text-bottom;
+    /*vertical-align: text-bottom;*/
 }
 .breadcrumbs .youarehere ul > li + li:before {
     content: "»\00a0";
-    vertical-align: text-bottom;
+    /*vertical-align: text-bottom;*/
 }
 /* ...except second one (because first one is the label, not a breadcrumb) */
 .breadcrumbs .trace ul > li:nth-child(2):before,
@@ -410,6 +410,16 @@ pre.dbg {
 .glyph-16 svg {
     width: 1.6rem;
     height: 1.6rem;
+    margin-bottom: -1px;
+}
+.glyph-18 svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-bottom: -1px;
+}
+.glyph-20 svg {
+    width: 2rem;
+    height: 2rem;
     margin-bottom: -1px;
 }
 
