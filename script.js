@@ -26,10 +26,12 @@ function js_mixture_resize(){
         case '1000':
             if (device_class.match(/phone/)) return;
             device_class = 'mobile phone';
+            jQuery('#js_lastchanges_container').hide();
             break;
         case '1001':
             if (device_class.match(/tablet/)) return;
             device_class = 'mobile tablet';
+            jQuery('#js_lastchanges_container').show();
             break;
 //        case '1002':
 //            if (device_class.match(/medium/)) return;
@@ -46,13 +48,16 @@ function js_mixture_resize(){
         case '2001':
             if (device_class.match(/extracted-toc/)) return;
             device_class = 'desktop extracted-toc';
+            jQuery('#js_lastchanges_container').show();
             break;
         case '2002':
             if (device_class.match(/extracted-sidebar/)) return;
             device_class = 'desktop extracted-sidebar';
+            jQuery('#js_lastchanges_container').show();
             break;
         default:
             if (device_class == 'desktop') return;
+            jQuery('#js_lastchanges_container').show();
             device_class = 'desktop';
     }
 
@@ -150,11 +155,17 @@ jQuery(function(){
             resizeTimer = setTimeout(js_mixture_resize,200);
         }
     );
+
 });
 
 jQuery(document).ready(function() {
+
+    // the z-index in mobile.css is (mis-)used purely for detecting the screen mode here
+    var screen_mode = jQuery('#mixture__helper').css('z-index') + '';
+
     // Prepare last changes ticker
     //if ((ScreenMode == "SM") || (ScreenMode == "MD") || (ScreenMode == "LG") || (ScreenMode == "WD")) {
+    //if (screen_mode > 1000) {
         jQuery('.js-lastchanges').newsTicker({
             max_rows: 1,
             row_height: parseFloat(jQuery("#js_lastchanges_container").css("font-size")) + 6,
@@ -164,6 +175,7 @@ jQuery(document).ready(function() {
             autostart: 1,
             pauseOnHover: 1
         });
-        jQuery('#js_lastchanges_container').css("display", "initial");
+        //jQuery('#js_lastchanges_container').css("display", "initial");
+        jQuery('#js_lastchanges_container').show();
     //}
 });
