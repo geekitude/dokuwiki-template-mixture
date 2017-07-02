@@ -137,6 +137,11 @@ main,
 [dir=rtl] #mixture__topbar_date {
     margin-left: @ini_spacer;
 }
+/*
+#mixture__topbar_links ul {
+    position: absolute;
+}
+*/
 #mixture__topbar_date span.text {
     display: none;
 }
@@ -494,9 +499,6 @@ pre.dbg {
 .label svg {
     fill: @ini_text;
 }
-#mixture__topbar_links ul {
-    position: absolute;
-}
 
 /* =BASIC DROPDOWN BUTTON (from https://www.w3schools.com/css/css_dropdowns.asp)
 ----------------------------------------------- */
@@ -637,6 +639,21 @@ pre.dbg {
     }
     #mixture__helper span::before {
         content: "large (<1801px)";
+    }
+    #mixture__topbar_links ul {
+        display: inline-flex;
+        background-color: @ini_background;
+        box-shadow: none;
+        right: 20px;
+    }
+    [dir=ltr] #mixture__topbar_links ul {
+        right: 25px;
+    }
+    [dir=rtl] #mixture__topbar_links ul {
+        left: 25px;
+    }
+    #mixture__topbar_links ul div.li {
+        padding: 0 (@ini_spacer / 2);
     }
 }
 @media (min-width: 1801px) {

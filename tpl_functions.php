@@ -280,7 +280,8 @@ function php_mixture_init() {
             }
             // Use the built-in parser to render data as HTML
             $mixture['topbarLinks'] = p_render('xhtml',p_get_instructions($mixture['topbarLinks']), $info);
-            $mixture['topbarLinks'] = str_replace("<ul>", "<ul id='news-bar-links' class='dropdown-content'>", $mixture['topbarLinks']);
+            //$mixture['topbarLinks'] = str_replace("<ul>", "<ul id='news-bar-links' class='dropdown-content'>", $mixture['topbarLinks']);
+            $mixture['topbarLinks'] = str_replace("<ul>", "<ul class='dropdown-content'>", $mixture['topbarLinks']);
         }
     }
 
