@@ -61,24 +61,24 @@ function php_mixture_init() {
     // Preparing usefull plugins' helpers
     // Userhomepage
     if (!empty($_SERVER['REMOTE_USER'])) {
-      if (!plugin_isdisabled('userhomepage')) {
-        $uhpHelper = plugin_load('helper','userhomepage');
-        $uhp = $uhpHelper->getElements();
-        if ((isset($mixturePublicId)) and (!isset($uhp['public']))) {
-          $uhp['public'] = array();
-          $uhp['public']['id'] = $mixturePublicId;
-          if ((tpl_getLang('public_page') != null) and (!isset($uhp['public']['string']))) {
+        if (!plugin_isdisabled('userhomepage')) {
+            $uhpHelper = plugin_load('helper','userhomepage');
+            $uhp = $uhpHelper->getElements();
+            if ((isset($mixturePublicId)) and (!isset($uhp['public']))) {
+                $uhp['public'] = array();
+                $uhp['public']['id'] = $mixturePublicId;
+                if ((tpl_getLang('public_page') != null) and (!isset($uhp['public']['string']))) {
+                    $uhp['public']['string'] = tpl_getLang('public_page');
+                }
+            }
+        } else {
+            // Without Userhomepage plugin, Public Page namespace is set by 'user' value in 'conf/interwiki.conf' and Private page is unknown
+            $uhp = array();
+            $uhp['private'] = null;
+            $uhp['public'] = array();
+            $uhp['public']['id'] = $mixturePublicId;
             $uhp['public']['string'] = tpl_getLang('public_page');
-          }
         }
-      } else {
-        // Without Userhomepage plugin, Public Page namespace is set by 'user' value in 'conf/interwiki.conf' and Private page is unknown
-        $uhp = array();
-        $uhp['private'] = null;
-        $uhp['public'] = array();
-        $uhp['public']['id'] = $mixturePublicId;
-        $uhp['public']['string'] = tpl_getLang('public_page');
-      }
     }
 
     // Translations
@@ -319,11 +319,11 @@ function php_mixture_init() {
     $mixture['glyphs']['userpublic'] = null;
     $mixture['glyphs']['youarehere'] = null;
     foreach ($mixture['glyphs'] as $key => $value) {
-      if (is_file(DOKU_CONF."tpl/mixture/".$key.".svg")) {
-        $mixture['glyphs'][$key] = file_get_contents(DOKU_CONF."tpl/mixture/".$key.".svg");
-      } else {
-        $mixture['glyphs'][$key] = file_get_contents(".".tpl_basedir()."svg/".$key.".svg");
-      }
+        if (is_file(DOKU_CONF."tpl/mixture/".$key.".svg")) {
+            $mixture['glyphs'][$key] = file_get_contents(DOKU_CONF."tpl/mixture/".$key.".svg");
+        } else {
+            $mixture['glyphs'][$key] = file_get_contents(".".tpl_basedir()."svg/".$key.".svg");
+        }
     }
 //dbg($mixture['glyphs']);
 

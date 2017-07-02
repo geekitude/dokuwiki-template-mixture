@@ -25,10 +25,10 @@
  */
 
 body {
-  background-color: @ini_color_light_gray;
+    background-color: @ini_color_light_gray;
 }
 article {
-  position: relative;
+    position: relative;
 }
 h1,
 .h1-like,
@@ -42,8 +42,8 @@ h5,
 .h5-like,
 h6,
 .h6-like {
-  margin: 0;
-  color: @ini_color_headings;
+    margin: 0;
+    color: @ini_color_headings;
 }
 p,
 blockquote,
@@ -51,14 +51,14 @@ pre,
 ul,
 ol,
 table  {
-  margin: 0 0 @ini_spacer 0;
+    margin: 0 0 @ini_spacer 0;
 }
 a {
-  color: @ini_color_links;
-  text-decoration: none;
+    color: @ini_color_links;
+    text-decoration: none;
 }
 a:focus, a:hover, a:active {
-  color: auto;
+    color: auto;
 }
 a:focus,
 a:hover,
@@ -66,217 +66,217 @@ a:active {
     opacity: .5;
 }
 a.wikilink1 {
-  color: @ini_existing !important;
+    color: @ini_existing !important;
 }
 a.wikilink2 {
-  color: @ini_missing !important;
+    color: @ini_missing !important;
 }
 blockquote {
-  line-height: (1.3 * @ini_line_factor);
+    line-height: (1.3 * @ini_line_factor);
 }
 [dir=ltr] blockquote {
-  padding: 0 0 0 calc(@ini_spacer / 2);
-  border-left: 4px solid @ini_color_primary;
+    padding: 0 0 0 calc(@ini_spacer / 2);
+    border-left: 4px solid @ini_color_primary;
 }
 [dir=rtl] blockquote {
-  padding: 0 calc(@ini_spacer / 2) 0 0;
-  border-right: 4px solid @ini_color_primary;
+    padding: 0 calc(@ini_spacer / 2) 0 0;
+    border-right: 4px solid @ini_color_primary;
 }
 blockquote::before {
-  content: "";
+    content: "";
 }
 hr {
-  width: 80%
+    width: 80%
 }
 [dir=ltr] sup {
-  margin-left: .1em;
+    margin-left: .1em;
 }
 [dir=rtl] sup {
-  margin-right: .1em;
+    margin-right: .1em;
 }
 table,
 .table {
-  border: none;
+    border: none;
 }
 main {
-  padding: 0 @ini_spacer;
+    padding: 0 @ini_spacer;
 }
 #mixture__site {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 #mixture__header,
 #mixture__alerts,
 #mixture__pageIdInfo,
 main,
 #mixture__footer {
-  background-color: @ini_color_white;
-  max-width: @ini_site_width;
-  margin: 0 auto 0 auto;
+    background-color: @ini_color_white;
+    max-width: @ini_site_width;
+    margin: 0 auto 0 auto;
 }
 #mixture__header {
-  padding: @ini_spacer @ini_spacer 0 @ini_spacer;
+    padding: @ini_spacer @ini_spacer 0 @ini_spacer;
 }
 /*
 #mixture__topbar {
-  min-width: 100%;
-  background-color: red;
+    min-width: 100%;
+    background-color: red;
 }
 */
 #mixture__topbar > div {
-  min-width: 100%;
-  width: 100%
+    min-width: 100%;
+    width: 100%
 }
 #mixture__topbar ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 [dir=ltr] #mixture__topbar_date {
-  margin-right: @ini_spacer;
+    margin-right: @ini_spacer;
 }
 [dir=rtl] #mixture__topbar_date {
-  margin-left: @ini_spacer;
+    margin-left: @ini_spacer;
 }
 #mixture__topbar_date span.text {
-  display: none;
+    display: none;
 }
 #mixture__title {
-  color: @ini_color_primary;
+    color: @ini_color_primary;
 }
 div.breadcrumbs {
-  padding: calc(@ini_spacer / 4) 0 0 0;
+    padding: calc(@ini_spacer / 4) 0 0 0;
 }
 div.breadcrumbs div.trace,
 div.breadcrumbs div.youarehere {
-  margin: 0 auto 0 auto;
+    margin: 0 auto 0 auto;
 }
 #mixture__alerts {
-  padding: calc(@ini_spacer / 4) 0 calc(@ini_spacer / 4) 0;
+    padding: calc(@ini_spacer / 4) 0 calc(@ini_spacer / 4) 0;
 }
 #mixture__content {
-  padding: 0;
-  margin: calc(@ini_spacer / 2) 0 0 0;
+    padding: 0;
+    margin: calc(@ini_spacer / 2) 0 0 0;
 }
 #mixture__aside {
-  width: 100%;
-  margin: calc(@ini_spacer / 4) 0 0 0;
+    width: 100%;
+    margin: calc(@ini_spacer / 4) 0 0 0;
 }
 #mixture__aside h3.toggle,
 #mixture__aside div.content,
 #dw__toc h3.toggle,
 #dw__toc div.li {
-  font-size: 80%;
+    font-size: 80%;
 }
 #mixture__aside h3.toggle,
 #dw__toc h3.toggle,
 #dw__toc div {
-  padding: 0;
+    padding: 0;
 }
 h3.toggle,
 h3.toggle.open {
-      height: 0;
-      color: transparent;
+    height: 0;
+    color: transparent;
 }
 h3.toggle.open strong {
-      height: 20px;
+    height: 20px;
 }
 h3.toggle.closed {
-      height: auto;
-      color: @ini_color_headings;
+    height: auto;
+    color: @ini_color_headings;
 }
 [dir=ltr] #mixture__aside ul,
 [dir=ltr] #mixture__aside ol {
-  padding-left: calc(1.3 * @ini_spacer);
+    padding-left: calc(1.3 * @ini_spacer);
 }
 [dir=rtl] #mixture__aside ul,
 [dir=rtl] #mixture__aside ol {
-  padding-right: calc(1.4 * @ini_spacer);
+    padding-right: calc(1.4 * @ini_spacer);
 }
 #mixture__aside,
 #dw__toc {
-  background-color: @ini_background_neu;
-  padding: calc(@ini_spacer / 2);
-  z-index: 1;
+    background-color: @ini_background_neu;
+    padding: calc(@ini_spacer / 2);
+    z-index: 1;
 }
 #mixture__aside,
 #dw__toc {
-  /* animate translations for those divs */
-  -webkit-transition: transform @ini_animation_time ease-in-out;
-  -moz-transition: transform @ini_animation_time ease-in-out;
-  -o-transition: transform @ini_animation_time ease-in-out;
-  transition: transform @ini_animation_time ease-in-out;
+    /* animate translations for those divs */
+    -webkit-transition: transform @ini_animation_time ease-in-out;
+    -moz-transition: transform @ini_animation_time ease-in-out;
+    -o-transition: transform @ini_animation_time ease-in-out;
+    transition: transform @ini_animation_time ease-in-out;
 }
 /* TEST: recupérer l'espace sous la sidebar (il faut aussi supprimer la classe .flex-container sur #mixture__site */
 /* Modif sur <blockquote> pour éviter que la bordure des blockquotes passe à travers la sidebar mais il y a de gros effets de bords sur tous les blockquotes */
 body.wrappedSidebar #mixture__aside {
-  position: relative;
-  float: left;
+    position: relative;
+    float: left;
 }
 [dir=ltr] body.wrappedSidebar #mixture__aside {
-  margin: 0 @ini_spacer @ini_spacer 0;
+    margin: 0 @ini_spacer @ini_spacer 0;
 }
 [dir=rtl] body.wrappedSidebar #mixture__aside {
-  margin: 0 0 @ini_spacer @ini_spacer;
+    margin: 0 0 @ini_spacer @ini_spacer;
 }
 body.wrappedSidebar #mixture__content blockquote,
 body.wrappedSidebar #mixture__content ul {
-  overflow: auto;
+    overflow: auto;
 }
 body.wrappedSidebar blockquote {
-  margin: 0;
+    margin: 0;
 }
 body.wrappedSidebar li {
-  margin-left: inherit;
+    margin-left: inherit;
 }
 body.unwrappedSidebar #mixture__aside {
-  box-sizing: content-box;
-  margin: 0 0 calc(@ini_spacer / 3) 0;
+    box-sizing: content-box;
+    margin: 0 0 calc(@ini_spacer / 3) 0;
 }
 #dw__toc {
-  width: 100%;
-  margin: 0 0 calc(@ini_spacer / 2) 0;
+    width: 100%;
+    margin: 0 0 calc(@ini_spacer / 2) 0;
 }
 /* only apply to #dw__toc.scrollspy? */
 .dropdown-content li div.li,
 #dw__toc li div.li {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #mixture__helper {
-  z-index: 1000;
+    z-index: 1000;
 }
 #mixture__helper span::before {
-  content: "tiny (<544px)";
+    content: "tiny (<544px)";
 }
 body.debug #mixture__helper {
-  background: @ini_highlight;
-  top: 0;
-  visibility: visible;
+    background: @ini_highlight;
+    top: 0;
+    visibility: visible;
 }
 body.scrollspyToC #dw__toc {
-  /*background-color: pink;*/
+    /*background-color: pink;*/
 }
 .tagline {
-  font-weight: bold;
-  margin: 0;
+    font-weight: bold;
+    margin: 0;
 }
 /*
 .breadcrumbs {
-  font-size: 80%;
+    font-size: 80%;
 }
 * */
 .breadcrumbs ul {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 .breadcrumbs li {
-  display: inline-block;
+    display: inline-block;
 }
 .breadcrumbs li.curid a {
-  font-weight: 700;
-  pointer-events: none;
-  color: @ini_text_neu;
+    font-weight: 700;
+    pointer-events: none;
+    color: @ini_text_neu;
 }
 .breadcrumbs li:after {
     content: "\00a0";
@@ -292,7 +292,7 @@ body.scrollspyToC #dw__toc {
 /* ...except second one (because first one is the label, not a breadcrumb) */
 .breadcrumbs .trace ul > li:nth-child(2):before,
 .breadcrumbs .youarehere ul > li:nth-child(2):before {
-  content: "";
+    content: "";
 }
 /* ...and add a margin after first one (label) */
 /*
@@ -309,20 +309,20 @@ div.pageInfo {
 }
 */
 div.pageId {
-  align-self: center;
-  white-space: nowrap;
+    align-self: center;
+    white-space: nowrap;
 }
 [dir=ltr] div.pageId {
-  text-align: right;
+    text-align: right;
 }
 [dir=rtl] div.pageId {
-  text-align: left;
+    text-align: left;
 }
 [dir=ltr] div.pageInfo {
-  text-align: right;
+    text-align: right;
 }
 [dir=rtl] div.pageInfo {
-  text-align: left;
+    text-align: left;
 }
 /* alerts */
 div.info,
@@ -336,7 +336,7 @@ div.info a,
 div.notify a,
 div.success a,
 div.error a {
-  color: @ini_color_white;
+    color: @ini_color_white;
 }
 div.info {
     background-color: @ini_color_blue;
@@ -351,47 +351,47 @@ div.error {
     background-color: @ini_color_red;
 }
 div.footnotes {
-  margin: @ini_spacer auto 0 auto !important;
-  width: 80%;
-  font-size: 80%;
+    margin: @ini_spacer auto 0 auto !important;
+    width: 80%;
+    font-size: 80%;
 }
 .toggle strong {
-  line-height: 1;
-  padding-top: 2px;
+    line-height: 1;
+    padding-top: 2px;
 }
 .toggle strong span {
-  display: none;
+    display: none;
 }
 .toggle strong {
-  content: "";
-  display:block;
-  height:1.8rem;
-  width:1.8rem;
-  background-size: 1.8rem 1.8rem;
-  background-repeat: no-repeat;
-  opacity: .4;
+    content: "";
+    display:block;
+    height:1.8rem;
+    width:1.8rem;
+    background-size: 1.8rem 1.8rem;
+    background-repeat: no-repeat;
+    opacity: .4;
 }
 .toggle.closed strong {
-  background-image: url(svg/expand.svg);
+    background-image: url(svg/expand.svg);
 }
 .toggle.open strong {
-  background-image: url(svg/collapse.svg);
+    background-image: url(svg/collapse.svg);
 }
 div.no {
-  display: inline;
-  margin: 0;
-  padding: 0;
+    display: inline;
+    margin: 0;
+    padding: 0;
 }
 div.not-visible {
-  position: fixed;
-  visibility: hidden;;
+    position: fixed;
+    visibility: hidden;;
 }
 pre.dbg {
-  background-color: @ini_highlight;
+    background-color: @ini_highlight;
 }
 #js_lastchanges_container {
-  display: none;
-  margin-bottom: -2px;
+    display: none;
+    margin-bottom: -2px;
 }
 #js_lastchanges_container ul.js-lastchanges,
 #js_lastchanges_container ul.lastchange {
@@ -417,14 +417,14 @@ pre.dbg {
     fill: @ini_text_neu;
     vertical-align: top;
     /*fill: red;*/
-  display: inline-block;
-  /*width: 1rem;*/
-  /*height: 1rem;*/
+    display: inline-block;
+    /*width: 1rem;*/
+    /*height: 1rem;*/
     height: unit(@ini_font_factor, rem);
     width: unit(@ini_font_factor, rem);
-  stroke-width: 0;
-  stroke: @ini_text_neu;
-  fill: @ini_text_neu;
+    stroke-width: 0;
+    stroke: @ini_text_neu;
+    fill: @ini_text_neu;
 }
 /*
 .glyph-em svg {
@@ -457,46 +457,47 @@ pre.dbg {
     height: 1.575rem;
 }
 @media (min-width: 480px) {
-  .glyph-18 svg {
-    width: 1.8rem;
-    height: 1.8rem;
-  }
+    .glyph-18 svg {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
 }
 .glyph-20 svg {
     width: 1.925rem;
     height: 1.925rem;
 }
 @media (min-width: 480px) {
-  .glyph-20 svg {
-    width: 2rem;
-    height: 2rem;
-  }
+    .glyph-20 svg {
+        width: 2rem;
+        height: 2rem;
+    }
 }
 
 /* =HELPERS
 ----------------------------------------------- */
 .spacebetween {
-  justify-content: space-between;
+    justify-content: space-between;
 }
 .camelcase {
     text-transform: capitalize;
 }
 .caps {
-   text-transform: uppercase;
+    text-transform: uppercase;
 }
 .camelcase > a,
 .caps > a {
-   text-transform: inherit !important;
+    text-transform: inherit !important;
 }
 .label {
-  color: @ini_text;
+    color: @ini_text;
 }
 .label svg {
-  fill: @ini_text;
+    fill: @ini_text;
 }
 #mixture__topbar_links ul {
-  position: absolute;
+    position: absolute;
 }
+
 /* =BASIC DROPDOWN BUTTON (from https://www.w3schools.com/css/css_dropdowns.asp)
 ----------------------------------------------- */
 /* Dropdown Button */
@@ -543,7 +544,9 @@ pre.dbg {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
@@ -560,158 +563,158 @@ pre.dbg {
 }
 */
 @media (min-width: 544px) {
-  #mixture__helper {
-    z-index: 1001;
-  }
-  #mixture__helper span::before {
-    content: "small (<768px)";
-  }
-  hr {
-    margin: calc(@ini_spacer / 2) auto @ini_spacer auto;
-  }
-  #mixture__site {
-    /*padding: 1.5%;*/
-    padding: calc(3 * @ini_spacer);
-  }
-  #mixture__content {
-    margin: 0;
-  }
+    #mixture__helper {
+        z-index: 1001;
+    }
+    #mixture__helper span::before {
+        content: "small (<768px)";
+    }
+    hr {
+        margin: calc(@ini_spacer / 2) auto @ini_spacer auto;
+    }
+    #mixture__site {
+        /*padding: 1.5%;*/
+        padding: calc(3 * @ini_spacer);
+    }
+    #mixture__content {
+        margin: 0;
+    }
 }
 @media (min-width: 768px) {
-  #mixture__helper {
-    z-index: 1002;
-  }
-  #mixture__helper span::before {
-    content: "medium (<1201px)";
-  }
-  #mixture__site {
-    /*padding: (2 * @ini_spacer);*/
-    /*margin: 1.5vmax auto 1.5vmax auto;*/
-  }
-  table {
-    /*max-width: calc(100% - @ini_toc_width - @ini_spacer - 40px);*/
-    width: auto;
-  }
-  #mixture__topbar_date span.label {
-    display: none;
-  }
-  #mixture__topbar_date span.text {
-    display: inline;
-  }
-  #mixture__aside {
-    width: @ini_sidebar_width;
-    max-width: 25%;
-  }
-  [dir=ltr] body.wrappedSidebar #mixture__aside {
-    margin: 0 @ini_spacer @ini_spacer 0 !important;
-  }
-  [dir=rtl] body.wrappedSidebar #mixture__aside {
-    margin: 0 0 @ini_spacer @ini_spacer !important;
-  }
-  [dir=ltr] body.unwrappedSidebar #mixture__aside {
-    margin: 0 @ini_spacer 0 0 !important;
-  }
-  [dir=rtl] body.unwrappedSidebar #mixture__aside {
-    margin: 0 0 0 @ini_spacer !important;
-  }
-  #dw__toc {
-    width: @ini_toc_width;
-    max-width: 20%;
-  }
-  [dir=ltr] #dw__toc {
-    margin: 0 0 @ini_spacer @ini_spacer;
-  }
-  [dir=rtl] #dw__toc {
-    margin: 0 @ini_spacer @ini_spacer 0;
-  }
-  body.unwrappedSidebar #mixture__aside h3.toggle {
-    display: none;
-  }
+    #mixture__helper {
+        z-index: 1002;
+    }
+    #mixture__helper span::before {
+        content: "medium (<1201px)";
+    }
+    #mixture__site {
+        /*padding: (2 * @ini_spacer);*/
+        /*margin: 1.5vmax auto 1.5vmax auto;*/
+    }
+    table {
+        /*max-width: calc(100% - @ini_toc_width - @ini_spacer - 40px);*/
+        width: auto;
+    }
+    #mixture__topbar_date span.label {
+        display: none;
+    }
+    #mixture__topbar_date span.text {
+        display: inline;
+    }
+    #mixture__aside {
+        width: @ini_sidebar_width;
+        max-width: 25%;
+    }
+    [dir=ltr] body.wrappedSidebar #mixture__aside {
+        margin: 0 @ini_spacer @ini_spacer 0 !important;
+    }
+    [dir=rtl] body.wrappedSidebar #mixture__aside {
+        margin: 0 0 @ini_spacer @ini_spacer !important;
+    }
+    [dir=ltr] body.unwrappedSidebar #mixture__aside {
+        margin: 0 @ini_spacer 0 0 !important;
+    }
+    [dir=rtl] body.unwrappedSidebar #mixture__aside {
+        margin: 0 0 0 @ini_spacer !important;
+    }
+    #dw__toc {
+        width: @ini_toc_width;
+        max-width: 20%;
+    }
+    [dir=ltr] #dw__toc {
+        margin: 0 0 @ini_spacer @ini_spacer;
+    }
+    [dir=rtl] #dw__toc {
+        margin: 0 @ini_spacer @ini_spacer 0;
+    }
+    body.unwrappedSidebar #mixture__aside h3.toggle {
+        display: none;
+    }
 }
 @media (min-width: 1201px) {
-  #mixture__helper {
-    z-index: 1003;
-  }
-  #mixture__helper span::before {
-    content: "large (<1801px)";
-  }
+    #mixture__helper {
+        z-index: 1003;
+    }
+    #mixture__helper span::before {
+        content: "large (<1801px)";
+    }
 }
 @media (min-width: 1801px) {
-  #mixture__helper {
-    z-index: 1004;
-  }
-  #mixture__helper span::before {
-    content: "wide (>=1801px)";
-  }
+    #mixture__helper {
+        z-index: 1004;
+    }
+    #mixture__helper span::before {
+        content: "wide (>=1801px)";
+    }
 }
 /* Extract ToC if there's enough room */
 @media all and (min-width: @ini_site_width + (2 * @ini_toc_width) + (4 * @ini_spacer) + 1px) {
-  body.extractToC #mixture__helper {
-    z-index: 2001;
-  }
-  body.extractToC #mixture__helper span::after {
-    content: "(ToC extracted)";
-  }
-  body.extractToC #dw__toc {
-    position: fixed;
-    top: calc(3 * @ini_spacer);
-  }
-  [dir=ltr] body.extractToC #dw__toc {
-    left: 50%;
-    margin-left: (@ini_site_width / 2) + (@ini_spacer / @ini_font_factor);
-  }
-  [dir=rtl] body.extractToC #dw__toc {
-    right: 50%;
-    margin-right: (@ini_site_width / 2) + (@ini_spacer / @ini_font_factor);
-  }
-  body.extractToC #dw__toc h3.toggle {
-    display: none;
-  }
-  body.scrollspyToC.extractToC #dw__toc li div.li {
-    padding: 0 6px;
-  }
-  [dir=ltr] body.scrollspyToC.extractToC #dw__toc li div.li {
-    border-left: 4px solid transparent;
-  }
-  [dir=rtl] body.scrollspyToC.extractToC #dw__toc li div.li {
-    border-right: 4px solid transparent;
-  }
-  body.debug.scrollspyToC.extractToC #dw__toc li div.li {
-    border-color: @ini_highlight;
-  }
+    body.extractToC #mixture__helper {
+        z-index: 2001;
+    }
+    body.extractToC #mixture__helper span::after {
+        content: "(ToC extracted)";
+    }
+    body.extractToC #dw__toc {
+        position: fixed;
+        top: calc(3 * @ini_spacer);
+    }
+    [dir=ltr] body.extractToC #dw__toc {
+        left: 50%;
+        margin-left: (@ini_site_width / 2) + (@ini_spacer / @ini_font_factor);
+    }
+    [dir=rtl] body.extractToC #dw__toc {
+        right: 50%;
+        margin-right: (@ini_site_width / 2) + (@ini_spacer / @ini_font_factor);
+    }
+    body.extractToC #dw__toc h3.toggle {
+        display: none;
+    }
+    body.scrollspyToC.extractToC #dw__toc li div.li {
+        padding: 0 6px;
+    }
+    [dir=ltr] body.scrollspyToC.extractToC #dw__toc li div.li {
+        border-left: 4px solid transparent;
+    }
+    [dir=rtl] body.scrollspyToC.extractToC #dw__toc li div.li {
+        border-right: 4px solid transparent;
+    }
+    body.debug.scrollspyToC.extractToC #dw__toc li div.li {
+        border-color: @ini_highlight;
+    }
 }
 /* Extract Sidebar if there's enough room */
 @media all and (min-width: @ini_site_width + (2 * @ini_sidebar_width) + (4 * @ini_spacer) + 1px) {
-  body.extractSidebar #mixture__helper {
-    z-index: 2002;
-  }
-  body.extractSidebar #mixture__helper span::after {
-    content: "(Sidebar extracted)";
-  }
-  body.showSidebar.extractSidebar #mixture__aside {
-    /* let page content recover ToC'space */
-    position: absolute;
-  }
-  [dir=ltr] body.showSidebar.extractSidebar #mixture__aside {
-    /* translate (search "transition" to find the rules for this translation animation) */
-    transform: translate((-2 * @ini_spacer) - (@ini_sidebar_width * @ini_font_factor), 0);
-  }
-  [dir=rtl] body.showSidebar.extractSidebar #mixture__aside {
-    /* translate (search "transition" to find the rules for this translation animation) */
-    transform: translate((2 * @ini_spacer) + (@ini_sidebar_width * @ini_font_factor), 0);
-  }
-  [dir=ltr] body.unwrappedSidebar.showSidebar.extractSidebar #mixture__aside {
-    /* translate (search "transition" to find the rules for this translation animation) */
-    transform: translate((-3 * @ini_spacer) - (@ini_sidebar_width * @ini_font_factor), 0);
-  }
-  [dir=rtl] body.unwrappedSidebar.showSidebar.extractSidebar #mixture__aside {
-    /* translate (search "transition" to find the rules for this translation animation) */
-    transform: translate((3 * @ini_spacer) + (@ini_sidebar_width * @ini_font_factor), 0);
-  }
-  body.showSidebar.extractSidebar #mixture__aside h3.toggle {
-    display: none;
-  }
-  body.showSidebar.extractSidebar #mixture__aside {
-    max-width: none;
-  }
+    body.extractSidebar #mixture__helper {
+        z-index: 2002;
+    }
+    body.extractSidebar #mixture__helper span::after {
+        content: "(Sidebar extracted)";
+    }
+    body.showSidebar.extractSidebar #mixture__aside {
+        /* let page content recover ToC'space */
+        position: absolute;
+    }
+    [dir=ltr] body.showSidebar.extractSidebar #mixture__aside {
+        /* translate (search "transition" to find the rules for this translation animation) */
+        transform: translate((-2 * @ini_spacer) - (@ini_sidebar_width * @ini_font_factor), 0);
+    }
+    [dir=rtl] body.showSidebar.extractSidebar #mixture__aside {
+        /* translate (search "transition" to find the rules for this translation animation) */
+        transform: translate((2 * @ini_spacer) + (@ini_sidebar_width * @ini_font_factor), 0);
+    }
+    [dir=ltr] body.unwrappedSidebar.showSidebar.extractSidebar #mixture__aside {
+        /* translate (search "transition" to find the rules for this translation animation) */
+        transform: translate((-3 * @ini_spacer) - (@ini_sidebar_width * @ini_font_factor), 0);
+    }
+    [dir=rtl] body.unwrappedSidebar.showSidebar.extractSidebar #mixture__aside {
+        /* translate (search "transition" to find the rules for this translation animation) */
+        transform: translate((3 * @ini_spacer) + (@ini_sidebar_width * @ini_font_factor), 0);
+    }
+    body.showSidebar.extractSidebar #mixture__aside h3.toggle {
+        display: none;
+    }
+    body.showSidebar.extractSidebar #mixture__aside {
+        max-width: none;
+    }
 }

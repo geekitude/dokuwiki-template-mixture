@@ -1,35 +1,35 @@
-/* Votre Style */
+/* Plugin adaptation to Mixture template */
 
 .dokuwiki blockquote.blockquote-plugin {
-  /* prevent blockquote to interfere with ToC when there's one */
-  overflow: hidden !important;
-  /* Mixture style (centered) */
-  margin: 0 auto @ini_spacer auto !important;
-  /* Mixture style (more compact) */
-  padding: @ini_spacer @ini_spacer 0 @ini_spacer;
-  /* add some consistency (WikipediaSnippet plugin) */
-  border-radius: 5px;
+    /* prevent blockquote to interfere with ToC when there's one */
+    overflow: hidden !important;
+    /* Mixture style (centered) */
+    margin: 0 auto @ini_spacer auto !important;
+    /* Mixture style (more compact) */
+    padding: @ini_spacer @ini_spacer 0 @ini_spacer;
+    /* add some consistency (WikipediaSnippet plugin) */
+    border-radius: 5px;
 }
 
 .dokuwiki blockquote.blockquote-plugin {
-  /* use KNACCS' nice scallable character instead of gif */
-  background-image: none;
+    /* use KNACCS' nice scallable character instead of gif */
+    background-image: none;
 }
 
 .dokuwiki blockquote.blockquote-plugin::before {
-  /* use KNACCS' nice scallable character instead of gif */
-  content: "\201C";
-  /*left: -1.4rem;*/
-  top: -1.3rem;
-  font-family: @ini_font_headings, serif;
-  font-size: 15rem;
-  color: rgba(150, 150, 150, 0.25);
+    /* use KNACCS' nice scallable character instead of gif */
+    content: "\201C";
+    /*left: -1.4rem;*/
+    top: -1.3rem;
+    font-family: @ini_font_headings, serif;
+    font-size: 15rem;
+    color: rgba(150, 150, 150, 0.25);
 }
 
 .dokuwiki cite.blockquote-plugin {
-  /* Mixture style (more compact and subtle) */
-  font-size: 1.3rem;
-  color: @ini_text_neu;
+    /* Mixture style (more compact and subtle) */
+    font-size: 1.3rem;
+    color: @ini_text_neu;
 }
 
 /* Uncomment following CSS rule if you want to remove the character before author */

@@ -1,8 +1,8 @@
-/* Votre Style */
+/* Plugin adaptation to Mixture template */
 
 div.plugin_wrap {
-  /* Mixture style */
-  margin-bottom: @ini_spacer !important;
+    /* Mixture style */
+    margin-bottom: @ini_spacer !important;
 }
 
 .dokuwiki div.wrap_download {
@@ -10,11 +10,11 @@ div.plugin_wrap {
 }
 
 .dokuwiki div.wrap_download {
-  background-image: url(images/replacements/wrap/download_48.png);
+    background-image: url(images/replacements/wrap/download_48.png);
 }
 
 .dokuwiki span.wrap_download {
-  background-image: url(images/replacements/wrap/download_16.png);
+    background-image: url(images/replacements/wrap/download_16.png);
 }
 
 [dir=ltr] .dokuwiki div.wrap_info,
@@ -24,7 +24,7 @@ div.plugin_wrap {
 [dir=ltr] .dokuwiki div.wrap_help,
 [dir=ltr] .dokuwiki div.wrap_todo,
 [dir=ltr] .dokuwiki div.wrap_download {
-  /* vertically center paragraphs inside wrap elements with icons */
+    /* vertically center paragraphs inside wrap elements with icons */
     padding: @ini_spacer @ini_spacer 0 70px;
 }
 [dir=rtl] .dokuwiki div.wrap_info,
@@ -34,7 +34,7 @@ div.plugin_wrap {
 [dir=rtl] .dokuwiki div.wrap_help,
 [dir=rtl] .dokuwiki div.wrap_todo,
 [dir=rtl] .dokuwiki div.wrap_download {
-  /* vertically center paragraphs inside wrap elements with icons */
+    /* vertically center paragraphs inside wrap elements with icons */
     padding: @ini_spacer 70px 0 @ini_spacer;
 }
 
@@ -44,7 +44,7 @@ div.plugin_wrap {
 [dir=ltr] .dokuwiki div.wrap_caution,
 [dir=ltr] .dokuwiki div.wrap_notice,
 [dir=ltr] .dokuwiki div.wrap_safety {
-  /* vertically center paragraphs inside wrap elements without icons */
+    /* vertically center paragraphs inside wrap elements without icons */
     padding: @ini_spacer @ini_spacer 0 @ini_spacer;
 }
 
@@ -54,16 +54,16 @@ div.plugin_wrap {
 [dir=rtl] .dokuwiki div.wrap_caution,
 [dir=rtl] .dokuwiki div.wrap_notice,
 [dir=rtl] .dokuwiki div.wrap_safety {
-  /* vertically center paragraphs inside wrap elements without icons */
+    /* vertically center paragraphs inside wrap elements without icons */
     padding: @ini_spacer @ini_spacer 0 @ini_spacer;
 }
 
 @media (min-width: 801px) {
-  div.plugin_wrap {
-    /* Make sure WRAP div is never larger than content with expanded ToC */
-    max-width: calc(100% - @ini_toc_width - @ini_spacer - 12px);
-    /* Add the following rule to userstyle to override this limitation
-      max-width: 100% !important;
-    */
-  }
+    div.plugin_wrap {
+        /* Make sure WRAP div is never larger than content with expanded ToC */
+        max-width: calc(100% - @ini_toc_width - @ini_spacer - 12px);
+        /* Add the following rule to userstyle to override this limitation
+        max-width: 100% !important;
+        */
+    }
 }
