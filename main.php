@@ -84,7 +84,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <hr class="mts mb0" />
                     </div><!-- /#mixture__topbar -->
                 <?php endif; ?>
-                <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID<>'start') && ($ACT=='show')): ?>
+                <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID <> $conf['start']) && ($ACT == 'show')): ?>
                     <h1 id="mixture__title">
                         <?php
                             // display wiki title as a link depending on titleLink setting
@@ -111,7 +111,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                     <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="'.tpl_getLang('wikihome').' [H]"') ?></h1>
                 <?php endif; ?>
                 <?php if ($conf['tagline']): ?>
-                    <?php if (($ID<>'start') && ($ACT=='show')): ?>
+                    <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID <> $conf['start']) && ($ACT == 'show')): ?>
                         <p class="tagline"><?php echo $conf['title'] ?></p>
                     <?php else: ?>
                         <p class="tagline"><?php echo $conf['tagline'] ?></p>
