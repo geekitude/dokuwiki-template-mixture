@@ -138,10 +138,10 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                 <aside id="mixture__pageIdInfo" class="flex-container-h spacebetween pam pt0 pb0">
                     <div class="pageId small"><span><?php echo hsc($ID) ?></span></div>
                     <div class="pageInfo small"><span><?php tpl_pageinfo() ?></span></div>
-                    <hr />
                 </aside>
             </header>
             <main role="main" class="<?php echo (tpl_getConf('wrappedSidebar') == 0) ? 'flex-container' : ''; ?>">
+                <hr />
                 <!-- ********** ASIDE ********** -->
                 <?php if ($showSidebar) : ?>
                     <aside id="mixture__aside" class="mod aside">
