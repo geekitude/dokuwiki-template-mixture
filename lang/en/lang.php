@@ -4,6 +4,7 @@
  *
  */
 
+$lang['relatedlinks']       = 'Related Links';
 $lang['wikihome']           = 'Wiki Start';
 $lang['nshome']             = 'Namespace Start';
 $lang['parentns']           = 'Parent Namespace';

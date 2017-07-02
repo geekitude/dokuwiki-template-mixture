@@ -38,10 +38,10 @@ $showSidebar = $hasSidebar && ($ACT=='show');
         <!-- TOPBAR (with date & last changes) -->
         <?php if ((strpos(tpl_getConf('elements'), 'topbar_date') !== false) or (strpos(tpl_getConf('elements'), 'topbar_lastchanges') !== false) or (strpos(tpl_getConf('elements'), 'topbar_links') !== false)) : ?>
             <div id="mixture__topbar" class="smaller clearfix">
-                <div class="left">
+              <div class="flex-container-h spacebetween">
                     <ul class="flex-container-h">
                         <?php if (strpos(tpl_getConf('elements'), 'topbar_date') !== false) : ?>
-                            <li id="mixture__topbar_date" class="camelcase mrs">
+                            <li id="mixture__topbar_date" class="camelcase">
                                 <span class="label glyph-18" title="<?php print php_mixture_date("long"); ?>">
                                     <?php echo $mixture['glyphs']['calendar']; ?>
                                 </span>
@@ -70,12 +70,17 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             </li><!-- #js_lastchanges_container -->
                         <?php endif; ?>
                     </ul>
-                </div>
-                <?php if ($colormag['topbarLinks'] != null) : ?>
-                    <div class="right">
-                        <?php echo $colormag['topbarLinks']; ?>
-                    </div>
+                <?php if ($mixture['topbarLinks'] != null) : ?>
+                      <ul class="flex-container-h">
+                            <li id="mixture__topbar_links" class="camelcase dropdown">
+                                <span class="label glyph-18" title="<?php echo tpl_getLang('relatedlinks'); ?>">
+                                    <?php echo $mixture['glyphs']['link']; ?>
+                                </span>
+                                <?php echo $mixture['topbarLinks']; ?>
+                            </li>
+                      </ul>
                 <?php endif ?>
+              </div>
                 <hr class="mts mb0" />
             </div><!-- #mixture__topbar -->
         <?php endif; ?>
@@ -130,7 +135,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
             <?php } ?>
           </div>
         <?php } ?>
-        <aside id="mixture__pageIdInfo" class="flex-container-h pam pt0 pb0">
+        <aside id="mixture__pageIdInfo" class="flex-container-h spacebetween pam pt0 pb0">
           <div class="pageId small"><span><?php echo hsc($ID) ?></span></div>
           <div class="pageInfo small"><span><?php tpl_pageinfo() ?></span></div>
           <hr />

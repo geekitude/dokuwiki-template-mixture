@@ -274,12 +274,13 @@ function php_mixture_init() {
                 // Making sure each value in array is unique (so we don't process same topbar file twice)
                 $topbarFiles = array_unique($topbarFiles);
                 foreach ($topbarFiles as $value) {
-                    $mixture['topbarLinks'] .= "\n".io_readFile($value, false);
+                    //$mixture['topbarLinks'] .= "\n".io_readFile($value, false);
+                    $mixture['topbarLinks'] .= io_readFile($value, false);
                 }
             }
             // Use the built-in parser to render data as HTML
             $mixture['topbarLinks'] = p_render('xhtml',p_get_instructions($mixture['topbarLinks']), $info);
-            $mixture['topbarLinks'] = str_replace("<ul>", "<ul id='news-bar-links'>", $mixture['topbarLinks']);
+            $mixture['topbarLinks'] = str_replace("<ul>", "<ul id='news-bar-links' class='dropdown-content'>", $mixture['topbarLinks']);
         }
     }
 
@@ -309,6 +310,7 @@ function php_mixture_init() {
     $mixture['glyphs']['calendar'] = null;
     $mixture['glyphs']['home'] = null;
     $mixture['glyphs']['lastchanges'] = null;
+    $mixture['glyphs']['link'] = null;
     $mixture['glyphs']['parent'] = null;
     $mixture['glyphs']['search'] = null;
     $mixture['glyphs']['trace'] = null;

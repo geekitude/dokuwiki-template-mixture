@@ -117,9 +117,25 @@ main,
 #mixture__header {
   padding: @ini_spacer @ini_spacer 0 @ini_spacer;
 }
+/*
+#mixture__topbar {
+  min-width: 100%;
+  background-color: red;
+}
+*/
+#mixture__topbar > div {
+  min-width: 100%;
+  width: 100%
+}
 #mixture__topbar ul {
   list-style: none;
   padding: 0;
+}
+[dir=ltr] #mixture__topbar_date {
+  margin-right: @ini_spacer;
+}
+[dir=rtl] #mixture__topbar_date {
+  margin-left: @ini_spacer;
 }
 #mixture__topbar_date span.text {
   display: none;
@@ -136,9 +152,6 @@ div.breadcrumbs div.youarehere {
 }
 #mixture__alerts {
   padding: calc(@ini_spacer / 4) 0 calc(@ini_spacer / 4) 0;
-}
-#mixture__pageIdInfo {
-  justify-content: space-between;
 }
 #mixture__content {
   padding: 0;
@@ -224,6 +237,7 @@ body.unwrappedSidebar #mixture__aside {
   margin: 0 0 calc(@ini_spacer / 2) 0;
 }
 /* only apply to #dw__toc.scrollspy? */
+.dropdown-content li div.li,
 #dw__toc li div.li {
   white-space: nowrap;
   overflow: hidden;
@@ -461,6 +475,9 @@ pre.dbg {
 
 /* =HELPERS
 ----------------------------------------------- */
+.spacebetween {
+  justify-content: space-between;
+}
 .camelcase {
     text-transform: capitalize;
 }
@@ -476,6 +493,66 @@ pre.dbg {
 }
 .label svg {
   fill: @ini_text;
+}
+#mixture__topbar_links ul {
+  position: absolute;
+}
+/* =BASIC DROPDOWN BUTTON (from https://www.w3schools.com/css/css_dropdowns.asp)
+----------------------------------------------- */
+/* Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    /*min-width: 160px;*/
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+[dir=ltr] .dropdown-content {
+    right: 0;
+    text-align: right;
+}
+[dir=rtl] .dropdown-content {
+    left: 0;
+    text-align: left;
+}
+.dropdown-content div.li {
+    padding: (@ini_spacer / 4) (@ini_spacer / 2);
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: inline;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
 }
 
 /*
