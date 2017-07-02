@@ -918,7 +918,7 @@ function php_mixture_breadcrumbs() {
         //render crumbs, highlight the last one
         print '<ul>';
 //        if (tpl_getConf('breadcrumbsStyle') == "classic") {
-            print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['trace'].'</span><span class="tiny-hidden">'.$lang['breadcrumb'].'</span></li>';
+            print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['trace'].'</span><span class="tiny-hidden label">'.$lang['breadcrumb'].'</span></li>';
 //        }
         $last = count($crumbs);
         $i    = 0;
@@ -967,7 +967,7 @@ function php_mixture_youarehere() {
     print '<ul>';
 //    if (tpl_getConf('breadcrumbsStyle') == "classic") {
 //        print '<li><span class="glyph-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['location'].$mixture['glyphs']['map'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
-        print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['youarehere'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
+        print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['youarehere'].'</span><span class="tiny-hidden label">'.$lang['youarehere'].'</span></li>';
 //    }
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
     //if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
