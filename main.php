@@ -139,7 +139,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                     <div class="pageId small"><span><?php echo hsc($ID) ?></span></div>
                     <div class="pageInfo small"><span><?php tpl_pageinfo() ?></span></div>
                 </aside>
-                <div class="clearfix"><hr /></div>
+                <!-- <div class="clearfix"><hr /></div> -->
             </header>
             <main role="main" class="<?php echo (tpl_getConf('wrappedSidebar') == 0) ? 'flex-container' : ''; ?>">
                 <!-- ********** ASIDE ********** -->
@@ -162,7 +162,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             <?php tpl_content() ?>
                         <!-- wikipage stop -->
                     </article>
-                    <hr />
+                    <!-- <hr /> -->
                     <?php tpl_flush() ?>
                     <?php tpl_includeFile('pagefooter.html') ?>
                 </div><!-- /#mixture__content -->
