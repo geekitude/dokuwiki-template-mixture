@@ -43,7 +43,7 @@ if (!function_exists('tpl_toolsevent')) {
  */
 function php_mixture_init() {
     // DokuWiki core globals
-    global $conf, $ID, $INFO, $JSINFO;
+    global $conf, $ID, $INFO, $JSINFO, $lang;
     // New global variables
     //global $mixture, $uhp, $trs, $translationHelper, $tags;
     global $mixture, $uhp, $trs, $editorAvatar, $userAvatar, $browserlang;
@@ -126,40 +126,55 @@ function php_mixture_init() {
             //} else {
             //    $translation = $translationHelper->buildTransID("", $trs['parts'][1]);
             //}
-            $trs['translations'][$lc] = $translation[0];
+//dbg($translation);
+            $trs['translations'][$lc] = ltrim($translation[0], ":");
             if (page_exists($translation[0])) {
                 $classes = "wikilink1";
             } else {
                 $classes = "wikilink2";
             }
+//dbg(tpl_link(wl($ID), $lc, 'class="'.$classes.'"', true));
             //$trs['links'][$lc] = tpl_link(wl($trs['translations'][$lc]), $lc, 'class="'.$classes.'"', true);
-            if ($lc == $trs['parts'][0]) {
-                $classes .= " cur";
-                $trs['links'][$lc] = tpl_link(wl($ID), $lc, 'class="'.$classes.'"', true);
-                $trs['translations'][$lc] = ltrim($trs['translations'][$lc], ":");
-            } else {
+            //if ($lc == $trs['parts'][0]) {
+//            if ($lc == $trs['parts'][0]) {
+//                $classes .= " cur";
+//                // ADDING TITLE WOULD BE NICE BUT THIS DOESN'T WORK
+//                // $trs['links'][$lc] = tpl_link(wl($ID), $lc, 'class="'.$classes.'" title="'.$lang[$lc].'"', true);
+//                $trs['links'][$lc] = tpl_link(wl($ID), $lc, 'class="'.$classes.'" title="'.$lang[$lc].'"', true);
+//                //$trs['translations'][$lc] = ltrim($trs['translations'][$lc], ":");
+////dbg($lc);
+//            } else {
+//dbg($trs['translations'][$lc]." vs ".$ID);
+            if ($trs['translations'][$lc] != $ID) {
                 //if ($lc == null) {
                 //    $trs['links'][$conf['lang']] = $translationHelper->getTransItem($lc, $trs['parts'][1]);
                 //} else {
                 //    $trs['links'][$lc] = $translationHelper->getTransItem($lc, $trs['parts'][1]);
                 //}
-                if (strpos($conf['plugin']['translation']['translations'], $lc) !== false) {
+//                if (strpos($conf['plugin']['translation']['translations'], $lc) !== false) {
                     $trs['links'][$lc] = $translationHelper->getTransItem($lc, $trs['parts'][1]);
-                    $trs['translations'][$lc] = ltrim($trs['translations'][$lc], ":");
-//dbg("là!");
-                } else {
-                    $trs['links'][$lc] = $translationHelper->getTransItem("", $trs['parts'][1]);
-                    $trs['translations'][$lc] = $trs['parts'][1];
-//dbg("ici!");
-                }
-            }
-            foreach ($trs['links'] as $lc => $link) {
-                if (strpos($link, "div") !== false) {
-                    $trs['links'][$lc] = substr($trs['links'][$lc], 20);
-                    $trs['links'][$lc] = substr($trs['links'][$lc], 0, -11);
-                }
+//                    //$trs['translations'][$lc] = ltrim($trs['translations'][$lc], ":");
+////dbg("là!".$lc);
+//                } else {
+//                    $trs['links'][$lc] = $translationHelper->getTransItem("", $trs['parts'][1]);
+//                    //$trs['translations'][$lc] = $trs['parts'][1];
+////dbg("ici!".$lc);
+//                }
             }
         }
+            foreach ($trs['links'] as $lc => $link) {
+                $trs['links'][$lc] = str_replace("<li><div class='li'>", "", $trs['links'][$lc]);
+                $trs['links'][$lc] = str_replace("<li><div class='li cur'>", "", $trs['links'][$lc]);
+                $trs['links'][$lc] = str_replace("</div></li>", "", $trs['links'][$lc]);
+                $trs['links'][$lc] = str_replace("  ", " ", $trs['links'][$lc]);
+//                if (strpos($link, "cur") !== false) {
+//                    $trs['links'][$lc] = substr($trs['links'][$lc], 24);
+//                    $trs['links'][$lc] = substr($trs['links'][$lc], 0, -11);
+//                } elseif (strpos($link, "div") !== false) {
+//                    $trs['links'][$lc] = substr($trs['links'][$lc], 20);
+//                    $trs['links'][$lc] = substr($trs['links'][$lc], 0, -11);
+//                }
+            }
 //        if (!in_array($conf['lang'], $languages)) {
 ////dbg("ici");
 //            $trs['translations'][$conf['lang']] = $trs['parts'][1];
@@ -1070,5 +1085,20 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
       return $icon;
     } else {
       print $icon;
+    }
+}
+
+/**
+ * PAGE NAV
+ * 
+ * Print page nav elements
+ */
+function php_mixture_pagenav() {
+    global $trs;
+
+    if ((is_array($trs['links'])) && (count($trs['links']) >= 1)) {
+        foreach($trs['links'] as $lc => $link) {
+            print "<li>".$link."</li>";
+        }
     }
 }
