@@ -1094,11 +1094,12 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
  * Print page nav elements
  */
 function php_mixture_pagenav() {
-    global $trs;
+    global $trs, $mixture, $ID;
 
     if ((is_array($trs['links'])) && (count($trs['links']) >= 1)) {
-        foreach($trs['links'] as $lc => $link) {
-            print "<li>".$link."</li>";
+        // List current page translations
+        foreach($trs['links'] as $key => $value) {
+            print "<li class='tab'>".$value."</li>";
         }
     }
 }

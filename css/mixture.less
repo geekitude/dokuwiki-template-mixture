@@ -167,11 +167,41 @@ div.breadcrumbs div.youarehere {
 /*#mixture__page_nav div {
     display: inline-block;
 }*/
-#mixture__page_nav ul.curid {
+#mixture__page_nav ul {
     display: inline-flex;
     list-style: none;
     margin:0;
     padding: 0;
+}
+#mixture__page_nav ul li {
+  display: inline-block;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+  color: @ini_text;
+  border: 1px solid transparent;
+}
+#mixture__page_nav ul li:nth-child(1) {
+  margin: 0 0 -1px;
+  border: 1px solid @ini_border;
+  border-top: 2px solid @ini_color_primary;
+  border-bottom: 1px solid @ini_background;
+  background-color: @ini_background;
+}
+#mixture__page_nav ul li:nth-child(1) span {
+  padding: @ini_spacer;
+  line-height: 3rem;
+}
+#mixture__page_nav ul li.tab a {
+  padding: calc(.6 * @ini_spacer);
+  line-height: 3.2rem;
+}
+#mixture__page_nav ul li.tab a:hover {
+  background-color: @ini_background;
+  border-top: 2px solid @ini_color_primary;
+}
+main {
+    border-top: 1px solid @ini_border;
 }
 #mixture__content {
     padding: 0;

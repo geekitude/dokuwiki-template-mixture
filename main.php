@@ -138,7 +138,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                 <!-- <div class="clearfix"><hr /></div> -->
             </header>
             <aside id="mixture__page_nav" class="">
-                <ul class="curid small">
+                <ul class="small">
                     <li><div class="pageId"><span><?php echo hsc($ID) ?></span></div></li>
                     <?php php_mixture_pagenav(); ?>
                 </ul>
