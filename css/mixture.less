@@ -71,10 +71,12 @@ a.wikilink1 {
 a.wikilink2 {
     color: @ini_missing !important;
     border: 0 !important;
-    /*text-decoration: underline !important;
-    text-decoration-style: dashed !important;
-    -moz-text-decoration-color: @ini_color_red !important;
-    text-decoration-color: @ini_color_red !important;*/
+/**
+ *     text-decoration: underline !important;
+ *     text-decoration-style: dashed !important;
+ *     -moz-text-decoration-color: @ini_color_red !important;
+ *     text-decoration-color: @ini_color_red !important;
+ */
 }
 blockquote {
     line-height: (1.3 * @ini_line_factor);
@@ -112,7 +114,7 @@ main {
 }
 #mixture__header,
 #mixture__alerts,
-#mixture__page_nav,
+#mixture__pagenav,
 main,
 #mixture__footer {
     max-width: @ini_site_width;
@@ -169,16 +171,16 @@ div.breadcrumbs div.youarehere {
 #mixture__alerts {
     padding: calc(@ini_spacer / 4) 0 calc(@ini_spacer / 4) 0;
 }
-/*#mixture__page_nav div {
+/*#mixture__pagenav div {
     display: inline-block;
 }*/
-#mixture__page_nav ul {
+#mixture__pagenav ul {
     display: inline-flex;
     list-style: none;
     margin:0;
     padding: 0;
 }
-#mixture__page_nav ul li {
+#mixture__pagenav ul li {
     display: inline-block;
     margin: 0;
     font-weight: 600;
@@ -187,34 +189,37 @@ div.breadcrumbs div.youarehere {
     border: 1px solid transparent;
     border: 2px solid transparent;
 }
-#mixture__page_nav ul li:nth-child(1) {
+#mixture__pagenav ul li:nth-child(1) {
     margin: 0 0 -1px;
     border-top: 2px solid @ini_color_primary;
     border-bottom: 1px solid @ini_background;
     background-color: @ini_background;
 }
-[dir=ltr] #mixture__page_nav ul li:nth-child(1) {
+[dir=ltr] #mixture__pagenav ul li:nth-child(1) {
     border-right: 1px solid @ini_border;
 }
-[dir=rtl] #mixture__page_nav ul li:nth-child(1) {
+[dir=rtl] #mixture__pagenav ul li:nth-child(1) {
     border-left: 1px solid @ini_border;
 }
-#mixture__page_nav ul li:nth-child(1) span {
+#mixture__pagenav ul li:nth-child(1) span {
     padding: @ini_spacer;
     line-height: 3rem;
 }
-#mixture__page_nav ul li.tab a {
+body.notFound #mixture__pagenav ul li:nth-child(1) span {
+    color: @ini_color_red;
+}
+#mixture__pagenav ul li.tab a {
     padding: calc(.6 * @ini_spacer);
     display:inline-block;
     width:100%;
     height:100%;
 }
-#mixture__page_nav ul li.tab:hover {
+#mixture__pagenav ul li.tab:hover {
   background-color: @ini_background;
   border-top: 2px solid @ini_color_primary;
   opacity: .5;
 }
-#mixture__page_nav ul li.tab a:hover {
+#mixture__pagenav ul li.tab a:hover {
   opacity: 1;
 }
 main {
