@@ -1096,10 +1096,22 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
 function php_mixture_pagenav() {
     global $trs, $mixture, $ID;
 
+    // List current page's translation(s), existing or not
     if ((is_array($trs['links'])) && (count($trs['links']) >= 1)) {
-        // List current page translations
         foreach($trs['links'] as $key => $value) {
             print "<li class='tab'>".$value."</li>";
+        }
+    }
+    // List other pages in same namespace
+    foreach($mixture['tree'] as $key => $value) {
+//dbg(tpl_link(wl(":".$value['id']), php_mixture_pagetitle($value['id'], "breadcrumbs"), '', true));
+        if (($value['type'] == "pg") && ($value['id'] != $ID)) {
+            if (page_exists($value['id'])) {
+                $classes = "wikilink1";
+            } else {
+                $classes = "wikilink2";
+            }
+            print "<li class='tab'>".tpl_link(wl($value['id']), php_mixture_pagetitle($value['id'], "breadcrumbs"), 'class="'.$classes.'"', true)."</li>";
         }
     }
 }
