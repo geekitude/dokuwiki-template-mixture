@@ -137,9 +137,16 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                 <?php } ?>
                 <!-- <div class="clearfix"><hr /></div> -->
             </header>
-            <aside id="mixture__pagenav">
+            <aside id="mixture__pagenav" class="flex-container-h">
+                <?php
+                    if (isset($trs['dropdown'])) {
+                        print $trs['dropdown'];
+                    }
+                ?>
                 <ul class="small">
-                    <li><div class="pageId"><span><?php echo hsc($ID) ?></span></div></li>
+                    <li>
+                        <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
+                    </li>
                     <?php php_mixture_pagenav(); ?>
                 </ul>
             </aside>

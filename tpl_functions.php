@@ -1097,7 +1097,7 @@ function php_mixture_pagenav() {
     global $trs, $mixture, $ID;
 
     // List current page's translation(s), existing or not
-    if ((is_array($trs['links'])) && (count($trs['links']) >= 1)) {
+    if ((!isset($trs['dropdown'])) && (is_array($trs['links'])) && (count($trs['links']) >= 1)) {
         foreach($trs['links'] as $key => $value) {
             print "<li class='tab'>".$value."</li>";
         }
