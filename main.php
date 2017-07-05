@@ -143,11 +143,18 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         print $trs['dropdown'];
                     }
                 ?>
-                <ul class="small">
+                <ul class="small flex-container-h">
                     <li>
                         <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
                     </li>
-                    <?php php_mixture_pagenav(); ?>
+                    <li id="mixture__pagenav_ellipsis" class="dropdown">
+                        <span class="label glyph-18" title="<?php echo tpl_getLang('more'); ?>">
+                            <?php echo $mixture['glyphs']['ellipsis']; ?>
+                        </span>
+                        <ul class="dropdown-content">
+                            <?php php_mixture_pagenav(); ?>
+                        </ul>
+                    </li>
                 </ul>
             </aside>
             <main role="main" class="<?php echo (tpl_getConf('wrappedSidebar') == 0) ? 'flex-container' : ''; ?>">

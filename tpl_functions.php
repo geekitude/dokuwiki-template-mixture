@@ -324,6 +324,7 @@ function php_mixture_init() {
     // GLYPHS
     // Search for default or custum default SVG glyphs
     $mixture['glyphs']['calendar'] = null;
+    $mixture['glyphs']['ellipsis'] = null;
     $mixture['glyphs']['home'] = null;
     $mixture['glyphs']['lastchanges'] = null;
     $mixture['glyphs']['link'] = null;
@@ -803,7 +804,7 @@ function php_mixture_pagetitle($target = null, $context = null) {
     }
 
     // CROISSANT PLUGIN
-    if ((($context == "breadcrumbs") || ($context == "lastchanges")) && (p_get_metadata($target, 'plugin_croissant_bctitle') != null)) {
+    if ((($context == "breadcrumbs") || ($context == "lastchanges") || ($context == "pagenav")) && (p_get_metadata($target, 'plugin_croissant_bctitle') != null)) {
       $name = p_get_metadata($target, 'plugin_croissant_bctitle');
     }
 
@@ -1110,7 +1111,7 @@ function php_mixture_pagenav() {
             } else {
                 $classes = "wikilink2";
             }
-            $pagename = php_mixture_pagetitle($value['id'], "breadcrumbs");
+            $pagename = php_mixture_pagetitle($value['id'], "pagenav");
             print "<li class='tab'>".tpl_link(wl($value['id']), $pagename, 'class="'.$classes.'" title="'.$value['id'].'"', true)."</li>";
         }
     }

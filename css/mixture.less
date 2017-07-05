@@ -175,37 +175,43 @@ div.breadcrumbs div.youarehere {
     display: inline-block;
 }*/
 #mixture__pagenav ul {
-    display: inline-flex;
+    /*display: inline-flex;*/
     list-style: none;
     margin:0;
     padding: 0;
 }
 #mixture__pagenav ul li {
-    display: inline-block;
+    /*display: inline-block;*/
     margin: 0;
     font-weight: 600;
     text-align: center;
     color: @ini_text;
-    border: 1px solid transparent;
-    border: 2px solid transparent;
+    border-top: 2px solid transparent;
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
     white-space: nowrap;
 }
-#mixture__pagenav ul li:nth-child(1) {
-    margin: 0 0 -1px;
+#mixture__pagenav ul li > div.pageId {
     border-top: 2px solid @ini_color_primary;
-    border-bottom: 1px solid @ini_background;
     border-right: 1px solid @ini_border;
     border-left: 1px solid @ini_border;
     background-color: @ini_background;
 }
-#mixture__pagenav ul li:nth-child(1) span {
+[dir=ltr] #mixture__pagenav ul li > div.pageId {
+    margin: 0 0 -1px -1px;
+}
+[dir=rtl] #mixture__pagenav ul li > div.pageId {
+    margin: 0 -1px -1px 0;
+}
+#mixture__pagenav ul li div.pageId span {
     padding: @ini_spacer;
     line-height: 3rem;
 }
-body.notFound #mixture__pagenav ul li:nth-child(1) span {
+body.notFound #mixture__pagenav ul li div.pageId span {
     color: @ini_color_red;
 }
 #mixture__pagenav ul li.tab a {
+    margin: 0 0 -2px 0;
     padding: calc(.6 * @ini_spacer);
     display:inline-block;
     width:100%;
@@ -217,7 +223,11 @@ body.notFound #mixture__pagenav ul li:nth-child(1) span {
   opacity: .5;
 }
 #mixture__pagenav ul li.tab a:hover {
+  background-color: @ini_background;
   opacity: 1;
+}
+#mixture__pagenav_ellipsis span svg {
+    margin-top: 1.2rem;
 }
 main {
     border-top: 1px solid @ini_border;
@@ -724,6 +734,28 @@ pre.dbg {
     #mixture__topbar_links ul div.li {
         padding: 0 (@ini_spacer / 2);
     }
+    #mixture__pagenav_ellipsis ul {
+        display: inline-flex;
+        background-color: @ini_background;
+        box-shadow: none;
+    }
+    #mixture__pagenav_ellipsis span.label {
+        display: none;
+    }
+    [dir=ltr] #mixture__pagenav_ellipsis ul {
+        left: 0;
+    }
+    [dir=rtl] #mixture__pagenav_ellipsis ul {
+        right: 0;
+    }
+    /*
+    [dir=rtl] #mixture__topbar_links ul {
+        left: 25px;
+    }
+    #mixture__topbar_links ul div.li {
+        padding: 0 (@ini_spacer / 2);
+    }
+    */
 }
 @media (min-width: 1801px) {
     #mixture__helper {
