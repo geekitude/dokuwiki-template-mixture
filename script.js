@@ -141,6 +141,15 @@ function js_mixture_resize(){
             //$toc.show();
         }
     }
+
+    var $pagenav = document.querySelector('#mixture__pagenav');
+    if( ($pagenav.offsetHeight < $pagenav.scrollHeight) || ($pagenav.offsetWidth < $pagenav.scrollWidth)){
+        // pagenav has overflow
+        $pagenav.style.background = "yellow";
+    } else {
+        // pagenav fits in page
+    }
+
 }
 
 
@@ -177,4 +186,5 @@ jQuery(document).ready(function() {
     if (screen_mode != '1000') {
         jQuery('#js_lastchanges_container').show();
     }
+
 });
