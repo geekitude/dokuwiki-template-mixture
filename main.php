@@ -156,7 +156,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         }
                     ?>
                     <li id="mixture__pagenav_ellipsis" class="dropdown">
-                        <span class="label glyph-18" title="<?php echo tpl_getLang('more'); ?>">
+                        <span class="label glyph-18" title="<?php echo tpl_getLang('otherpages'); ?>">
                             <?php echo $mixture['glyphs']['ellipsis']; ?>
                         </span>
                         <ul class="dropdown-content">

@@ -10,4 +10,4 @@ $lang['nshome']             = 'Namespace Start';
 $lang['parentns']           = 'Parent Namespace';
 $lang['publicpage']         = 'Public Page';
 $lang['privatens']          = 'Private Space';
-
+$lang['otherpages']         = 'Other pages in same namespace';

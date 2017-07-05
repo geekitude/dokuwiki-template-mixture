@@ -172,7 +172,7 @@ function js_mixture_resize(){
 //console.log("total: " + pagenav_width);
 //console.log("available: " + available);
 //console.log("pagenav_width: " + pagenav_width);
-console.log(available - pagenav_width);
+//console.log(available - pagenav_width);
 //    if((pagenav_width > available) || (pagenav_width == 0)){
     if(pagenav_width > available){
         // pagenav has overflow
