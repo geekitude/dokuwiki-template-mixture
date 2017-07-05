@@ -155,14 +155,25 @@ function js_mixture_resize(){
 //    }
     var pagenav_width = 0;
     var page_width = jQuery('#mixture__pagenav').width();
-    var pageid_width = jQuery('#mixture__pagenav .pageId').width();
-    var available = page_width-pageid_width;
-//console.log("available: " + available);
-    jQuery('#mixture__pagenav .dropdown-content li').each(function() {
-        pagenav_width += jQuery(this).outerWidth( true );
+    var pageid_width = jQuery('#mixture__pagenav div.pageId').outerWidth(true);
+    var pagetrs_width = 0;
+    jQuery('#mixture__pagenav li.trs').each(function() {
+        pagetrs_width += jQuery(this).outerWidth(true);
+    });
+//console.log(pagetrs_width);
+    var available = page_width - pageid_width - pagetrs_width - 30;
+    jQuery('#mixture__pagenav li.tab').each(function() {
+        pagenav_width += jQuery(this).outerWidth(true);
 //console.log(pagenav_width);
+//if (pagenav_width == 0) {
+//    console.log("eh ben?");
+//}
     });
 //console.log("total: " + pagenav_width);
+console.log("available: " + available);
+console.log("pagenav_width: " + pagenav_width);
+console.log(available - pagenav_width);
+//    if((pagenav_width > available) || (pagenav_width == 0)){
     if(pagenav_width > available){
         // pagenav has overflow
 //$pagenav.style.background = "yellow";

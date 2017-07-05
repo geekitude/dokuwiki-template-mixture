@@ -1097,12 +1097,6 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
 function php_mixture_pagenav() {
     global $trs, $mixture, $ID;
 
-    // List current page's translation(s), existing or not (if Translation plugin isn't set to use a dropdown)
-    if ((!isset($trs['dropdown'])) && (is_array($trs['links'])) && (count($trs['links']) >= 1)) {
-        foreach($trs['links'] as $key => $value) {
-            print "<li class='tab'>".$value."</li>";
-        }
-    }
     // List other pages in same namespace
     foreach($mixture['tree'] as $key => $value) {
         if (($value['type'] == "pg") && ($value['id'] != $ID)) {

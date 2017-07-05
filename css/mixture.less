@@ -204,21 +204,24 @@ div.breadcrumbs div.youarehere {
     padding: @ini_spacer;
     line-height: 3.1rem;
 }
+#mixture__pagenav ul li.trs {
+    margin-top: 4px;
+}
 body.notFound #mixture__pagenav ul li div.pageId span {
     color: @ini_color_red;
 }
 html.js #mixture__pagenav_ellipsis {
     opacity: 0;
 }
-
-#mixture__pagenav_ellipsis ul li.tab:hover {
-  opacity: .5;
-}
 #mixture__pagenav_ellipsis ul li.tab {
     padding: 0 6px;
     border-top: 0;
     border-right: 4px solid transparent;
     border-left: 4px solid transparent;
+}
+1#mixture__pagenav_ellipsis ul li.tab:hover,
+#mixture__pagenav ul li.trs:hover {
+  opacity: .5;
 }
 [dir=ltr] #mixture__pagenav_ellipsis ul li.tab:hover {
   border-left: 4px solid @ini_color_primary;
@@ -232,11 +235,38 @@ html.js #mixture__pagenav_ellipsis {
     display:inline-block;
     width:100%;
     height:100%;
+    line-height: 2rem;
 }
-[dir=ltr] #mixture__pagenav ul li.tab a {
-    text-align: left
+#mixture__pagenav ul li.tab a,
+#mixture__pagenav ul li.trs a {
+    margin: 0 0 -2px 0;
+    padding: calc(.6 * @ini_spacer);
+    display:inline-block;
+    width:100%;
+    height:100%;
 }
-#mixture__pagenav ul li.tab a:hover {
+#mixture__pagenav ul li.trs {
+        padding: 0;
+        border-top: 4px solid transparent;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+    }
+#mixture__pagenav ul li.trs:hover {
+        border-top: 4px solid @ini_color_primary;
+        border-left: 1px solid @ini_border;
+        border-right: 1px solid @ini_border;
+    }
+
+[dir=ltr] #mixture__pagenav ul li.tab a,
+[dir=ltr] #mixture__pagenav ul li.trs a {
+    text-align: left;
+}
+[dir=rtl] #mixture__pagenav ul li.tab a,
+[dir=rtl] #mixture__pagenav ul li.trs a {
+    text-align: right;
+}
+#mixture__pagenav ul li.tab a:hover,
+#mixture__pagenav ul li.trs a:hover {
   background-color: @ini_background;
   opacity: 1;
 }
@@ -689,12 +719,14 @@ pre.dbg {
     [dir=rtl] body.inline-pagenav-dropdown #mixture__pagenav_ellipsis ul {
         right: 0;
     }
+    /*
     body.inline-pagenav-dropdown #mixture__pagenav_ellipsis {
         padding: 0;
         border-top: 4px solid transparent;
         border-left: none;
         border-right: none;
     }
+    */
     body.inline-pagenav-dropdown #mixture__pagenav_ellipsis ul li.tab {
         padding: 0;
         border-top: 4px solid transparent;

@@ -147,6 +147,14 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                     <li>
                         <div class="pageId"><span><?php echo hsc($ID) ?></span></div>
                     </li>
+                    <?php
+                        // List current page's translation(s), existing or not (if Translation plugin isn't set to use a dropdown)
+                        if ((!isset($trs['dropdown'])) && (is_array($trs['links'])) && (count($trs['links']) >= 1)) {
+                            foreach($trs['links'] as $key => $value) {
+                                print "<li class='trs'>".$value."</li>";
+                            }
+                        }
+                    ?>
                     <li id="mixture__pagenav_ellipsis" class="dropdown">
                         <span class="label glyph-18" title="<?php echo tpl_getLang('more'); ?>">
                             <?php echo $mixture['glyphs']['ellipsis']; ?>
