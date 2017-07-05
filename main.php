@@ -30,7 +30,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
         <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
         <?php tpl_includeFile('meta.html') ?>
     </head>
-    <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' showSidebar' : ''; ?><?php echo php_mixture_classes();?>">
+    <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' showSidebar' : ''; ?><?php echo php_mixture_classes();?> inline-pagenav-dropdown">
         <div id="mixture__site">
             <?php tpl_includeFile('header.html') ?>
             <!-- ********** HEADER ********** -->
