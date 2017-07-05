@@ -166,12 +166,12 @@ function js_mixture_resize(){
         pagenav_width += jQuery(this).outerWidth(true);
 //console.log(pagenav_width);
 //if (pagenav_width == 0) {
-//    console.log("eh ben?");
+//pagenav_width = jQuery('#mixture__pagenav_ellipsis ul.dropdown-content').outerWidth(true);
 //}
     });
 //console.log("total: " + pagenav_width);
-console.log("available: " + available);
-console.log("pagenav_width: " + pagenav_width);
+//console.log("available: " + available);
+//console.log("pagenav_width: " + pagenav_width);
 console.log(available - pagenav_width);
 //    if((pagenav_width > available) || (pagenav_width == 0)){
     if(pagenav_width > available){
