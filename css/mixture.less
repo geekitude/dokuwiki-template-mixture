@@ -186,13 +186,13 @@ div.breadcrumbs div.youarehere {
     font-weight: 600;
     text-align: center;
     color: @ini_text;
-    border-top: 2px solid transparent;
+    border-top: 4px solid transparent;
     border-right: 1px solid transparent;
     border-left: 1px solid transparent;
     white-space: nowrap;
 }
 #mixture__pagenav ul li > div.pageId {
-    border-top: 2px solid @ini_color_primary;
+    border-top: 4px solid @ini_color_primary;
     border-right: 1px solid @ini_border;
     border-left: 1px solid @ini_border;
     background-color: @ini_background;
@@ -210,6 +210,21 @@ div.breadcrumbs div.youarehere {
 body.notFound #mixture__pagenav ul li div.pageId span {
     color: @ini_color_red;
 }
+#mixture__pagenav_ellipsis ul li.tab:hover {
+  opacity: .5;
+}
+#mixture__pagenav_ellipsis ul li.tab {
+    padding: 0 6px;
+    border-top: 0;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+[dir=ltr] #mixture__pagenav_ellipsis ul li.tab:hover {
+  border-left: 4px solid @ini_color_primary;
+}
+[dir=rtl] #mixture__pagenav_ellipsis ul li.tab:hover {
+  border-right: 4px solid @ini_color_primary;
+}
 #mixture__pagenav ul li.tab a {
     margin: 0 0 -2px 0;
     padding: calc(.6 * @ini_spacer);
@@ -217,10 +232,8 @@ body.notFound #mixture__pagenav ul li div.pageId span {
     width:100%;
     height:100%;
 }
-#mixture__pagenav ul li.tab:hover {
-  background-color: @ini_background;
-  border-top: 2px solid @ini_color_primary;
-  opacity: .5;
+[dir=ltr] #mixture__pagenav ul li.tab a {
+    text-align: left
 }
 #mixture__pagenav ul li.tab a:hover {
   background-color: @ini_background;
@@ -748,6 +761,24 @@ pre.dbg {
     [dir=rtl] #mixture__pagenav_ellipsis ul {
         right: 0;
     }
+    #mixture__pagenav_ellipsis ul li.tab {
+        padding: 0 !important;
+        border-top: 4px solid transparent;
+        border-left: 1px solid transparent !important;
+        border-right: 1px solid transparent !important;
+    }
+    #mixture__pagenav_ellipsis ul li.tab:hover {
+        border-top: 4px solid @ini_color_primary;
+        border-left: 1px solid @ini_border !important;
+        border-right: 1px solid @ini_border !important;
+    }
+    /*
+    #mixture__pagenav ul li.tab:hover {
+        background-color: @ini_background;
+        border-top: 2px solid @ini_color_primary;
+        opacity: .5;
+    }
+    */
     /*
     [dir=rtl] #mixture__topbar_links ul {
         left: 25px;
