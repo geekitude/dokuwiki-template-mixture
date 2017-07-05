@@ -596,6 +596,7 @@ pre.dbg {
 /* =BASIC DROPDOWN BUTTON (from https://www.w3schools.com/css/css_dropdowns.asp)
 ----------------------------------------------- */
 /* Dropdown Button */
+/*
 .dropbtn {
     background-color: #4CAF50;
     color: white;
@@ -604,6 +605,7 @@ pre.dbg {
     border: none;
     cursor: pointer;
 }
+*/
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -645,7 +647,7 @@ pre.dbg {
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-    display: block;
+    display: block !important;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
@@ -787,6 +789,15 @@ pre.dbg {
         padding: 0 (@ini_spacer / 2);
     }
     */
+    html.forceDropdownPagenav #mixture__pagenav_ellipsis span {
+        display: block !important;
+    }
+    html.forceDropdownPagenav #mixture__pagenav_ellipsis span:hover {
+        background-color: pink !important;
+    }
+    html.forceDropdownPagenav #mixture__pagenav_ellipsis ul.dropdown-content {
+        display: none;
+    }
 }
 @media (min-width: 1801px) {
     #mixture__helper {

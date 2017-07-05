@@ -143,11 +143,17 @@ function js_mixture_resize(){
     }
 
     var $pagenav = document.querySelector('#mixture__pagenav');
+    //var pagenav_width = jQuery('#mixture__pagenav .dropdown-content').scrollWidth;
+    //console.log(pagenav_width);
+    //if( ($pagenav.offsetHeight < $pagenav.scrollHeight) || ($pagenav.offsetWidth < $pagenav.scrollWidth)){
     if( ($pagenav.offsetHeight < $pagenav.scrollHeight) || ($pagenav.offsetWidth < $pagenav.scrollWidth)){
         // pagenav has overflow
-        $pagenav.style.background = "yellow";
+$pagenav.style.background = "yellow";
+        jQuery('html').addClass("forceDropdownPagenav");
     } else {
+$pagenav.style.background = "green";
         // pagenav fits in page
+        jQuery('html').removeClass("forceDropdownPagenav");
     }
 
 }
