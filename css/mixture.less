@@ -411,10 +411,10 @@ body.scrollspyToC #dw__toc {
 /* Add separator before each list item that is following another one... */
 .breadcrumbs .trace ul > li + li:before {
     content: "/\00a0";
+    vertical-align: 5%;
 }
 .breadcrumbs .youarehere ul > li + li:before {
     content: "»\00a0";
-    /*vertical-align: text-bottom;*/
 }
 /* ...except second one (because first one is the label, not a breadcrumb) */
 .breadcrumbs .trace ul > li:nth-child(2):before,
