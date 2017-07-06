@@ -152,7 +152,7 @@ jQuery(document).ready(function() {
 
         // RESIZE WATCHER
         jQuery(window).resize(function(){
-            // PageNav needs a very fast reaction
+            // PageNav needs a very fast reaction (switching it is not a heavy process)
             js_mixture_pagenav();
             // Other resize actions (mainly asides' toggles) can be less reactive without harming user experience
             if (resizeTimer) clearTimeout(resizeTimer);
