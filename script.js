@@ -68,66 +68,16 @@ function js_mixture_resize(){
     var $aside = jQuery('#mixture__aside h3.toggle');
     var $toc = jQuery('#dw__toc h3');
 
-//    if (device_class.match(/extracted-toc/)){
-//        // toc expanded
-//        if($toc.length) {
-//            $toc[0].setState(1);
-//        }
-//    } else {
-//        // toc expanded and toggle shown
-//        if($toc.length) {
-//            $toc[0].setState(1);
-//            //$toc.show();
-//        }
-//    }
-
-//    if (device_class.match(/extracted-sidebar/)){
-//        // sidebar expanded and toggle hidden
-//        if($aside.length) {
-//            $aside[0].setState(1);
-//            //$aside.hide();
-//            //$toc.hide();
-//        }
-//    } else {
-//        // sidebar expanded and toggle shown
-//        if($aside.length) {
-//            $aside[0].setState(1);
-//            //$aside.show();
-//        }
-//    }
-
-//    if (device_class == 'desktop') {
     if (device_class.match(/desktop/)){
         // reset for desktop mode
         if($aside.length) {
             $aside[0].setState(1);
-            //if (jQuery("body").hasClass("wrappedSidebar")) {
-              //$aside.hide();
-            //}
-            //} else {
-            //  $aside.hide();
-            //}
         }
         if($toc.length) {
             $toc[0].setState(1);
-//            $toc.removeClass('is-disabled');
-//            $tocicon.show();
         }
     }
 
-//    if (device_class.match(/mobile tablet/)){
-//        // reset for tablet mode
-//        if($aside.length) {
-//            $aside[0].setState(1);
-//            //$aside.show();
-//        }
-//        if($toc.length) {
-//            $toc[0].setState(1);
-//            //$toc.removeClass('is-disabled');
-//            //$tocicon.show();
-//            //$toc.show();
-//        }
-//    }
     if (device_class.match(/mobile/)){
         // toc and sidebar collapsed (toggles with titles shown)
         if($aside.length) {
@@ -136,49 +86,29 @@ function js_mixture_resize(){
         }
         if($toc.length) {
             $toc[0].setState(-1);
-            //$toc.removeClass('is-disabled');
-            //$tocicon.show();
-            //$toc.show();
         }
     }
 
-    //var $pagenav = document.querySelector('#mixture__pagenav');
-//    //if( ($pagenav.offsetHeight < $pagenav.scrollHeight) || ($pagenav.offsetWidth < $pagenav.scrollWidth)){
-//    if( ($pagenav.offsetHeight < $pagenav.scrollHeight) || ($pagenav.offsetWidth < $pagenav.scrollWidth)){
-//        // pagenav has overflow
-//$pagenav.style.background = "yellow";
-//        jQuery('html').addClass("forceDropdownPagenav");
-//    } else {
-//$pagenav.style.background = "green";
-//        // pagenav fits in page
-//        jQuery('html').removeClass("forceDropdownPagenav");
-//    }
-    //var pagenav_width = 0;
-//console.log(pagenav_width);
+}
 
+function js_mixture_pagenav(){
     var page_width = jQuery('#mixture__pagenav').width();
     var pageid_width = jQuery('#mixture__pagenav div.pageId').outerWidth(true);
     var pagetrs_width = 0;
     jQuery('#mixture__pagenav li.trs').each(function() {
         pagetrs_width += jQuery(this).outerWidth(true);
     });
-//console.log(pagetrs_width);
-    var available = page_width - pageid_width - pagetrs_width - 30;
-//console.log("total: " + pagenav_width);
-//console.log("available: " + available);
-//console.log("pagenav_width: " + pagenav_width);
-//console.log(available - pagenav_width);
-//    if((pagenav_width > available) || (pagenav_width == 0)){
+    // 10 pixels substracted to add just a little security in the process
+    var available = page_width - pageid_width - pagetrs_width - 10;
+
     if(pagenav_width > available){
         // pagenav has overflow
-//$pagenav.style.background = "yellow";
         jQuery('body').removeClass("inline-pagenav-dropdown");
     } else {
-//$pagenav.style.background = "green";
         // pagenav fits in page
         jQuery('body').addClass("inline-pagenav-dropdown");
     }
-    jQuery('#mixture__pagenav_ellipsis').css("opacity","1");
+    //console.log(jQuery(window).width());
 }
 
 
@@ -214,11 +144,17 @@ jQuery(document).ready(function() {
         var resizeTimer;
         dw_page.makeToggle('#mixture__aside h3.toggle','#mixture__aside div.content');
 
-        // Proceed first run of resize watcher function
+        // Proceed first run of resize watcher functions
         js_mixture_resize();
+        js_mixture_pagenav();
+        // Show some hidden elements only after jQuery initialisation
+        jQuery('#mixture__pagenav_ellipsis').css("opacity","1");
 
         // RESIZE WATCHER
         jQuery(window).resize(function(){
+            // PageNav needs a very fast reaction
+            js_mixture_pagenav();
+            // Other resize actions (mainly asides' toggles) can be less reactive without harming user experience
             if (resizeTimer) clearTimeout(resizeTimer);
             resizeTimer = setTimeout(js_mixture_resize,200);
         });
