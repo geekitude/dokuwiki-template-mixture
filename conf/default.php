@@ -15,6 +15,7 @@ $conf['dateString']         = '%A %d %B %Y';
 $conf['lastChanges']        = 'skip_minors,5';
 $conf['lastChangesWhat']    = 'both';
 $conf['lastChangesWhere']   = 'anywhere';
+$conf['topbar']             = 'topbar';
 $conf['topbarFrom']         = 'cumulate';
 $conf['titleLink']          = 'dynamic';
 

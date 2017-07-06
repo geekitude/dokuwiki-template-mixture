@@ -280,7 +280,7 @@ function php_mixture_init() {
 
     // TOPBAR LINKS
     if (strpos(tpl_getConf('elements'), 'topbar_links') !== false) {
-        $topbarFiles = php_mixture_file("topbar", tpl_getConf('topbarFrom'), "page", $mixture['baseNs']);
+        $topbarFiles = php_mixture_file(tpl_getConf('topbar'), tpl_getConf('topbarFrom'), "page", $mixture['baseNs']);
         if ($topbarFiles != null) {
             $prevValue = null;
             if (is_string($topbarFiles)) {
