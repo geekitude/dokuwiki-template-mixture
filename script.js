@@ -148,7 +148,7 @@ jQuery(document).ready(function() {
         js_mixture_resize();
         js_mixture_pagenav();
         // Show some hidden elements only after jQuery initialisation
-        jQuery('#mixture__pagenav_ellipsis').css("opacity","1");
+        jQuery('#mixture__pagenav_nsindex').css("opacity","1");
 
         // RESIZE WATCHER
         jQuery(window).resize(function(){
