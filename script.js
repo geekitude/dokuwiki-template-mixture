@@ -14,7 +14,7 @@ if (JSINFO.LoadNewsTicker) {
 var device_class = ''; // not yet known
 var device_classes = 'extractedtoc extractedsb desktop mobile tablet phone';
 var screen_mode;
-
+var pagenav_width = 0;
 
 function js_mixture_resize(){
 
@@ -153,7 +153,9 @@ function js_mixture_resize(){
 //        // pagenav fits in page
 //        jQuery('html').removeClass("forceDropdownPagenav");
 //    }
-    var pagenav_width = 0;
+    //var pagenav_width = 0;
+//console.log(pagenav_width);
+
     var page_width = jQuery('#mixture__pagenav').width();
     var pageid_width = jQuery('#mixture__pagenav div.pageId').outerWidth(true);
     var pagetrs_width = 0;
@@ -162,13 +164,6 @@ function js_mixture_resize(){
     });
 //console.log(pagetrs_width);
     var available = page_width - pageid_width - pagetrs_width - 30;
-    jQuery('#mixture__pagenav li.tab').each(function() {
-        pagenav_width += jQuery(this).outerWidth(true);
-//console.log(pagenav_width);
-//if (pagenav_width == 0) {
-//pagenav_width = jQuery('#mixture__pagenav_ellipsis ul.dropdown-content').outerWidth(true);
-//}
-    });
 //console.log("total: " + pagenav_width);
 //console.log("available: " + available);
 //console.log("pagenav_width: " + pagenav_width);
@@ -187,25 +182,16 @@ function js_mixture_resize(){
 }
 
 
-jQuery(function(){
-    var resizeTimer;
-    dw_page.makeToggle('#mixture__aside h3.toggle','#mixture__aside div.content');
-
-    js_mixture_resize();
-    
-    // RESIZE WATCHER
-    jQuery(window).resize(function(){
-            if (resizeTimer) clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(js_mixture_resize,200);
-        }
-    );
-
-});
-
 jQuery(document).ready(function() {
 
     // the z-index in mobile.css is (mis-)used purely for detecting the screen mode here
     screen_mode = jQuery('#mixture__helper').css('z-index') + '';
+
+    // Get current pagenav width
+    jQuery('#mixture__pagenav li.tab').each(function() {
+        pagenav_width += jQuery(this).outerWidth(true);
+    });
+    //console.log(pagenav_width);
 
     // Prepare last changes ticker
     jQuery('.js-lastchanges').newsTicker({
@@ -217,8 +203,26 @@ jQuery(document).ready(function() {
         autostart: 1,
         pauseOnHover: 1
     });
+
+    // Show last changes ticker
     if (screen_mode != '1000') {
         jQuery('#js_lastchanges_container').show();
     }
+
+    // Prepare resize watcher and proceed a resize function first run to adjust layout
+    jQuery(function(){
+        var resizeTimer;
+        dw_page.makeToggle('#mixture__aside h3.toggle','#mixture__aside div.content');
+
+        // Proceed first run of resize watcher function
+        js_mixture_resize();
+
+        // RESIZE WATCHER
+        jQuery(window).resize(function(){
+            if (resizeTimer) clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(js_mixture_resize,200);
+        });
+
+    });
 
 });
