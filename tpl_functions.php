@@ -253,6 +253,7 @@ function php_mixture_init() {
 //dbg($mixture['children']);
 
     // TREE (index from current NS)
+// ADD TEST(S) ABOUT ELEMENTS REQUIRING TREE BEFORE COLLECTING IT
     $mixture['tree'] = php_mixture_tree($mixture['currentNs'].":");
 //dbg($mixture['tree']);
 

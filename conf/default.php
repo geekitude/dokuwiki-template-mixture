@@ -8,7 +8,7 @@
 /*$conf['hideTools']          = 0;*/
 /*$conf['scrollDelay']        = 800;*/
 /*$conf['pageLayout']         = 'quartered';*/
-$conf['elements']           = 'topbar_date,topbar_lastchanges,topbar_links,header_logo,header_banner,widebanner,sidebar_cover';
+$conf['elements']           = 'topbar_date,topbar_lastchanges,topbar_links,header_logo,header_banner,widebanner,sidebar_cover,pagenav_nsindex';
 
 $conf['dateLocale']         = '';
 $conf['dateString']         = '%A %d %B %Y';

@@ -155,14 +155,16 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             }
                         }
                     ?>
-                    <li id="mixture__pagenav_nsindex" class="dropdown">
-                        <span class="label glyph-18" title="<?php echo tpl_getLang('otherpages'); ?>">
-                            <?php echo $mixture['glyphs']['ellipsis']; ?>
-                        </span>
-                        <ul class="dropdown-content">
-                            <?php php_mixture_pagenav(); ?>
-                        </ul>
-                    </li>
+                    <?php if (strpos(tpl_getConf('elements'), 'pagenav_nsindex') !== false) : ?>
+                        <li id="mixture__pagenav_nsindex" class="dropdown">
+                            <span class="label glyph-18" title="<?php echo tpl_getLang('otherpages'); ?>">
+                                <?php echo $mixture['glyphs']['ellipsis']; ?>
+                            </span>
+                            <ul class="dropdown-content">
+                                <?php php_mixture_pagenav(); ?>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </aside>
             <main role="main" class="<?php echo (tpl_getConf('wrappedSidebar') == 0) ? 'flex-container' : ''; ?>">

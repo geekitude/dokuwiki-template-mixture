@@ -9,7 +9,7 @@
 /*$meta['scrollDelay']        = array('numeric');*/
 /*$meta['pageLayout']         = array('multichoice', '_choices' => array('quartered','boxed'));*/
 $meta['elements']           = array('multicheckbox',
-                               '_choices' => array('topbar_date','topbar_lastchanges','topbar_links','header_logo','header_banner','widebanner','sidebar_cover'));
+                               '_choices' => array('topbar_date','topbar_lastchanges','topbar_links','header_logo','header_banner','widebanner','sidebar_cover','pagenav_nsindex'));
 $meta['dateLocale']         = array('string');
 $meta['dateString']         = array('string');
 $meta['lastChanges']        = array('multicheckbox', '_choices' => array('skip_deleted','skip_minors','skip_subspaces')); /* [other] field should contain a single integer, the number of last changes to show */
