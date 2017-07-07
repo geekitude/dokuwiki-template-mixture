@@ -22,6 +22,7 @@ $meta['titleLink']          = array('multichoice','_choices' => array('none','ho
 /*$meta['taglineLink']        = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
 /*$meta['bannerLink']        = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
 $meta['dynamicBranding']    = array('onoff'); /* outside home page, wiki title is replaced by page title and tagline by wiki title */
+$meta['exclusions']         = array('multicheckbox', '_choices' => array('sidebar','topbar','playground:*','user:*','wiki:*'));/* exclude these pages or namespaces from mixture indexes (ie nsindex and subcards) for non admins */
 $meta['extractToC']          = array('onoff'); /* move ToC out of main content as soon as there's enough room */
 $meta['scrollspyToC']          = array('onoff'); /* enable scrollspy ToC (requires previous option to be enabled) */
 $meta['extractSidebar']          = array('onoff'); /* move Sidebar out of main content as soon as there's enough room */

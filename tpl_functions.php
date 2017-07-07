@@ -1098,11 +1098,20 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
  * Print page nav elements
  */
 function php_mixture_pagenav() {
-    global $trs, $mixture, $ID;
+    global $trs, $mixture, $ID, $conf, $INFO;
 
+    $exclusions = "";
+    if (!$INFO['isadmin']) {
+        if (strpos(tpl_getConf('exclusions'), 'sidebar') !== false) {
+            $exclusions .= $conf['sidebar'];
+        }
+        if (strpos(tpl_getConf('exclusions'), 'topbar') !== false) {
+            $exclusions .= tpl_getconf('topbar');
+        }
+    }
     // List other pages in same namespace
     foreach($mixture['tree'] as $key => $value) {
-        if (($value['type'] == "pg") && ($value['id'] != $ID)) {
+        if (($value['type'] == "pg") && ($value['id'] != $ID) && (strpos($exclusions, end(explode(":", $value['id']))) === false)) {
             if (page_exists($value['id'])) {
                 $classes = "wikilink1";
             } else {
