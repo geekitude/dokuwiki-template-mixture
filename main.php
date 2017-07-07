@@ -173,6 +173,19 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                     <aside id="mixture__aside" class="mod aside">
                         <h3 class="toggle"><?php echo $lang['sidebar'] ?></h3>
                         <div class="content" role="complementary">
+                            <?php
+                                if (isset($mixture['images']['sidebar']['mediaId'])) {
+                                    $sidebarImage = ml($mixture['images']['sidebar']['mediaId'],'',true);
+                                    // Inherit a start page ID, starting from current sidebar header image's namespace
+                                    $targetns = substr($mixture['images']['sidebar']['mediaId'], 0, strrpos($mixture['images']['sidebar']['mediaId'], ':') + 1);
+                                    $target = ltrim(php_mixture_file($conf['start'],"inherit","page",$targetns,true), ":");
+                                    // Print link with sidebar image leading to that start page
+                                    tpl_link(
+                                        wl($target),
+                                        '<img src="'.$sidebarImage.'" width="100%" height="auto" title="'.$target.'" alt="*'.ucwords(tpl_getConf('sidebar_header')).'*" />'
+                                        );
+                                }
+                            ?>
                             <?php tpl_includeFile('sidebarheader.html') ?>
                             <?php tpl_include_page($hasSidebar) ?>
                             <?php tpl_includeFile('sidebarfooter.html') ?>
