@@ -303,17 +303,29 @@ function php_mixture_init() {
 
     // IMAGES
     // Search for namespace special images set as adaptive by settings (logo, banner, widebanner and potential last "sidebar header" image)
-    if (strpos(tpl_getConf('elements'), 'header_logo') !== false) { $mixture['images']['logo'] = null; }
-    if (strpos(tpl_getConf('elements'), 'header_banner') !== false) { $mixture['images']['banner'] = null; }
-    if (strpos(tpl_getConf('elements'), 'widebanner') !== false) { $mixture['images']['widebanner'] = null; }
-    if (strpos(tpl_getConf('elements'), 'sidebar_cover') !== false) { $mixture['images']['sidebar_cover'] = null; }
-    if (count($mixture['images']) != null) {
-        foreach ($mixture['images'] as $key => $value) {
-        //if (strpos(tpl_getConf('namespaceImages'), $key) !== false) {
-            $mixture['images'][$key] = php_mixture_file($key, "inherit", "media", $mixture['baseNs']);
-        //}
-        }
+//    if (strpos(tpl_getConf('elements'), 'header_logo') !== false) { $mixture['images']['logo'] = null; }
+//    if (strpos(tpl_getConf('elements'), 'header_banner') !== false) { $mixture['images']['banner'] = null; }
+//    if (strpos(tpl_getConf('elements'), 'widebanner') !== false) { $mixture['images']['widebanner'] = null; }
+//    if (strpos(tpl_getConf('elements'), 'sidebar_header') !== false) { $mixture['images']['sidebar'] = null; }
+    if (tpl_getConf('logo') != null) {
+        $mixture['images']['logo'] = php_mixture_file(tpl_getConf('logo'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
     }
+    if (tpl_getConf('banner') != null) {
+        $mixture['images']['banner'] = php_mixture_file(tpl_getConf('banner'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
+    }
+    if (tpl_getConf('widebanner') != null) {
+        $mixture['images']['widebanner'] = php_mixture_file(tpl_getConf('widebanner'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
+    }
+    if (tpl_getConf('sidebar_header') != null) {
+        $mixture['images']['sidebar'] = php_mixture_file(tpl_getConf('sidebar_header'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
+    }
+//    if (count($mixture['images']) != null) {
+//        foreach ($mixture['images'] as $key => $value) {
+//        //if (strpos(tpl_getConf('namespaceImages'), $key) !== false) {
+//            $mixture['images'][$key] = php_mixture_file($key, "inherit", "media", $mixture['baseNs']);
+//        //}
+//        }
+//    }
 //dbg($mixture['images']);
 //    $lastImageTitle = end(explode(",", tpl_getConf('namespaceImages')));
 //    // If 'namespaceImages' other image is set, get it

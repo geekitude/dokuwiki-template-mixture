@@ -9,14 +9,19 @@
 /*$meta['scrollDelay']        = array('numeric');*/
 /*$meta['pageLayout']         = array('multichoice', '_choices' => array('quartered','boxed'));*/
 $meta['elements']           = array('multicheckbox',
-                               '_choices' => array('topbar_date','topbar_lastchanges','topbar_links','header_logo','header_banner','widebanner','sidebar_cover','pagenav_nsindex'));
+                               '_choices' => array('topbar_date','topbar_lastchanges','topbar_links','pagenav_nsindex'));
+$meta['topbar']             = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of pages containing topbar links (empty to disable) */
+$meta['topbarFrom']         = array('multichoice','_choices' => array('root','namespace','inherit','cumulate')); /* get topbar links from wiki root only / current ns only / current ns then parents / inherit from parents and cumulate*/
+$meta['logo']               = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as logo (empty to disable) */
+$meta['banner']             = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as banner (empty to disable) */
+$meta['widebanner']         = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as widebanner (empty to disable) */
+$meta['sidebar_header']     = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as sidebar header (empty to disable) */
+$meta['imagesFrom']         = array('multichoice','_choices' => array('root','namespace','inherit')); /* get images from wiki root only / current ns only / current ns then parents */
 $meta['dateLocale']         = array('string');
 $meta['dateString']         = array('string');
 $meta['lastChanges']        = array('multicheckbox', '_choices' => array('skip_deleted','skip_minors','skip_subspaces')); /* [other] field should contain a single integer, the number of last changes to show */
 $meta['lastChangesWhat']    = array('multichoice', '_choices' => array('pages','media','both'));
 $meta['lastChangesWhere']   = array('multichoice', '_choices' => array('anywhere','any_start_page','wiki_root'));
-$meta['topbar']             = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of pages containing topbar links */
-$meta['topbarFrom']         = array('multichoice','_choices' => array('root','namespace','inherit','cumulate')); /* get topbar links from wiki root only / current ns only / current ns and all parents */
 /*$meta['logoLink']           = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic', 'other')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home while "image" will give some kind of lightbox or modal to a large image in same namespace (name set with "logoLinkImage" setting) and will default to "none" if image doesn't exist */
 $meta['titleLink']          = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
 /*$meta['taglineLink']        = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */

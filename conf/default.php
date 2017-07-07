@@ -8,15 +8,20 @@
 /*$conf['hideTools']          = 0;*/
 /*$conf['scrollDelay']        = 800;*/
 /*$conf['pageLayout']         = 'quartered';*/
-$conf['elements']           = 'topbar_date,topbar_lastchanges,topbar_links,header_logo,header_banner,widebanner,sidebar_cover,pagenav_nsindex';
+$conf['elements']           = 'topbar_date,topbar_lastchanges,topbar_links,pagenav_nsindex';
 
+$conf['topbar']             = 'topbar';
+$conf['topbarFrom']         = 'cumulate';
+$conf['logo']               = 'logo';
+$conf['banner']             = 'banner';
+$conf['widebanner']         = 'widebanner';
+$conf['sidebar_header']     = 'sidebar';
+$conf['imagesFrom']         = 'inherit';
 $conf['dateLocale']         = '';
 $conf['dateString']         = '%A %d %B %Y';
 $conf['lastChanges']        = 'skip_minors,5';
 $conf['lastChangesWhat']    = 'both';
 $conf['lastChangesWhere']   = 'anywhere';
-$conf['topbar']             = 'topbar';
-$conf['topbarFrom']         = 'cumulate';
 
 $conf['titleLink']          = 'dynamic';
 
