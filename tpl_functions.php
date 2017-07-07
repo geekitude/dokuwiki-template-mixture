@@ -449,45 +449,47 @@ function php_mixture_tree($base_ns, $level = -1, $max_level = 1) {
 
     //$dir = $conf["savedir"] ."/pages/" . str_replace(":", "/", $base_ns) . "/";
     $dir = $conf["savedir"] ."/pages/" . str_replace(":", "/", $base_ns);
-    $files = array_diff(scandir($dir), array('..', '.'));
-    foreach ($files as $file) {
-        if (is_file($dir . $file) == true) {
-            $namepage = basename($file, ".txt");
-            $id = cleanID($base_ns . $namepage);
-            if (isHiddenPage($id) == false) {
-                if (auth_quickaclcheck($id) >= AUTH_READ) {
+    if (is_dir($dir)) {
+        $files = array_diff(scandir($dir), array('..', '.'));
+        foreach ($files as $file) {
+            if (is_file($dir . $file) == true) {
+                $namepage = basename($file, ".txt");
+                $id = cleanID($base_ns . $namepage);
+                if (isHiddenPage($id) == false) {
+                    if (auth_quickaclcheck($id) >= AUTH_READ) {
+                        //$title = p_get_first_heading($id);
+                        //if (isset($title) == false) {
+                        //    $title = $namepage;
+                        //}
+                        //$tree[] = array("title" => $title,
+                        //                "url" => $id,
+                        //                "level" => $level,
+                        //                "type" => "pg");
+                        $tree[] = array("id" => $id,
+                                    "type" => "pg");
+                    }
+                }
+            } elseif (is_dir($dir . $file) == true) {
+                //$short_id = cleanID($base_ns . $file);
+                //$id = $short_id . ":"  . $conf["start"];
+                $id = cleanID($base_ns . $file) . ":"  . $conf["start"];
+                if ($conf['sneaky_index'] == 1 and auth_quickaclcheck($id) < AUTH_READ) {
+                    continue;
+                } else {
                     //$title = p_get_first_heading($id);
                     //if (isset($title) == false) {
-                    //    $title = $namepage;
+                    //    $title = $file;
                     //}
-                    //$tree[] = array("title" => $title,
+                    //$tree[$id] = array("title" => $title,
                     //                "url" => $id,
                     //                "level" => $level,
-                    //                "type" => "pg");
+                    //                "type" => "ns",
+                    //                "sub" => mixture_tree($base_ns . $file . ":", $level));
+                    //$tree[$short_id] = array("id" => $id,
                     $tree[] = array("id" => $id,
-                                    "type" => "pg");
-                }
-            }
-        } elseif (is_dir($dir . $file) == true) {
-            //$short_id = cleanID($base_ns . $file);
-            //$id = $short_id . ":"  . $conf["start"];
-            $id = cleanID($base_ns . $file) . ":"  . $conf["start"];
-            if ($conf['sneaky_index'] == 1 and auth_quickaclcheck($id) < AUTH_READ) {
-                continue;
-            } else {
-                //$title = p_get_first_heading($id);
-                //if (isset($title) == false) {
-                //    $title = $file;
-                //}
-                //$tree[$id] = array("title" => $title,
-                //                "url" => $id,
-                //                "level" => $level,
-                //                "type" => "ns",
-                //                "sub" => mixture_tree($base_ns . $file . ":", $level));
-                //$tree[$short_id] = array("id" => $id,
-                $tree[] = array("id" => $id,
                                 "type" => "ns",
                                 "sub" => php_mixture_tree($base_ns . $file . ":", $level));
+                }
             }
         }
     }
