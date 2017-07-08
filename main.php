@@ -176,14 +176,16 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             <?php
                                 if (isset($mixture['images']['sidebar']['mediaId'])) {
                                     $sidebarImage = ml($mixture['images']['sidebar']['mediaId'],'',true);
-                                    // Inherit a start page ID, starting from current sidebar header image's namespace
-                                    $targetns = substr($mixture['images']['sidebar']['mediaId'], 0, strrpos($mixture['images']['sidebar']['mediaId'], ':') + 1);
-                                    $target = ltrim(php_mixture_file($conf['start'],"inherit","page",$targetns,true), ":");
-                                    // Print link with sidebar image leading to that start page
-                                    tpl_link(
-                                        wl($target),
-                                        '<img src="'.$sidebarImage.'" width="100%" height="auto" title="'.$target.'" alt="*'.ucwords(tpl_getConf('sidebar_header')).'*" />'
+                                    $link = php_mixture_ui_link("sidebarLink", substr($mixture['images']['sidebar']['mediaId'], 0, strrpos($mixture['images']['sidebar']['mediaId'], ':') + 1));
+                                    if ($link != null) {
+                                        tpl_link(
+                                            $link['target'],
+                                            '<img src="'.$sidebarImage.'" width="100%" height="auto" title="'.$link['label'].'" alt="*'.ucwords(tpl_getConf('sidebar_header')).'*" />'
                                         );
+                                    } else {
+                                        $title = ucwords(tpl_getConf('sidebar_header'));
+                                        print '<img src="'.$sidebarImage.'" width="100%" height="auto" title="'.$title.'" alt="*'.$title.'*" />';
+                                    }
                                 }
                             ?>
                             <?php tpl_includeFile('sidebarheader.html') ?>

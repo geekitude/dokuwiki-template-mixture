@@ -23,13 +23,14 @@ $meta['lastChanges']        = array('multicheckbox', '_choices' => array('skip_d
 $meta['lastChangesWhat']    = array('multichoice', '_choices' => array('pages','media','both'));
 $meta['lastChangesWhere']   = array('multichoice', '_choices' => array('anywhere','any_start_page','wiki_root'));
 /*$meta['logoLink']           = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic', 'other')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home while "image" will give some kind of lightbox or modal to a large image in same namespace (name set with "logoLinkImage" setting) and will default to "none" if image doesn't exist */
+/*$meta['bannerLink']         = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
 $meta['titleLink']          = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
 /*$meta['taglineLink']        = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
-/*$meta['bannerLink']        = array('multichoice','_choices' => array('none','home','parent_namespace','namespace_start','dynamic')); /* dynamic: current ns start page on random pages, parent ns start page for sub ns start page, home for root ns, landing area on home */
+$meta['sidebarLink']        = array('multichoice','_choices' => array('none','home','namespace_start')); /* 'namespace_start' here stands for sidebar header image's namespace start page */
 $meta['dynamicBranding']    = array('onoff'); /* outside home page, wiki title is replaced by page title and tagline by wiki title */
 $meta['exclusions']         = array('multicheckbox', '_choices' => array('sidebar','topbar','playground:*','user:*','wiki:*'));/* exclude these pages or namespaces from mixture indexes (ie nsindex and subcards) for non admins */
-$meta['extractToC']          = array('onoff'); /* move ToC out of main content as soon as there's enough room */
-$meta['scrollspyToC']          = array('onoff'); /* enable scrollspy ToC (requires previous option to be enabled) */
-$meta['extractSidebar']          = array('onoff'); /* move Sidebar out of main content as soon as there's enough room */
-$meta['stickySidebar']          = array('onoff'); /* try to keep Sidebar always in viewport (buggy right now) */
-$meta['wrappedSidebar']          = array('onoff'); /* wrap content around sidebar (potential side effects with syntax plugins, for exemple, does not work well with larg WRAP elements) */
+$meta['extractToC']         = array('onoff'); /* move ToC out of main content as soon as there's enough room */
+$meta['scrollspyToC']       = array('onoff'); /* enable scrollspy ToC (requires previous option to be enabled) */
+$meta['extractSidebar']     = array('onoff'); /* move Sidebar out of main content as soon as there's enough room */
+$meta['stickySidebar']      = array('onoff'); /* try to keep Sidebar always in viewport (buggy right now) */
+$meta['wrappedSidebar']     = array('onoff'); /* wrap content around sidebar (potential side effects with syntax plugins, for exemple, does not work well with larg WRAP elements) */

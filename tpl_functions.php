@@ -642,10 +642,11 @@ function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $
  *
  * @param string   $element UI element for wich the link is requested
  */
-function php_mixture_ui_link($element) {
+function php_mixture_ui_link($element, $basens = null) {
     global $conf, $ID;
     global $mixture;
 
+    
 //dbg($element);
 //dbg($classes);
     //if ($element == "titleLink") {
@@ -653,7 +654,6 @@ function php_mixture_ui_link($element) {
     //} elseif ($element == "taglineLink") {
     //    $classes = "color-primary";
     //}
-//dbg(tpl_getConf($element));
     if (($element != null) && (tpl_getConf($element) != "none")) {
         if (tpl_getConf($element) == "parent_namespace") {
             // if there's only one known parent we're on wiki start page and there's no need for a link
@@ -676,6 +676,9 @@ function php_mixture_ui_link($element) {
                 return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('nshome'), 'classes' => $classes);
             //} elseif ((count($mixture['parents']) >= 1) && (strpos($ID, $conf['start']) !== false)) {
             //    return null;
+            } elseif ($basens != null) {
+                $target = ltrim(php_mixture_file($conf['start'],"inherit","page",$basens,true), ":");
+                return array('target' => wl($target), 'label' => $target, 'classes' => "");
             } else {
                 //return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h");
                 return null;
