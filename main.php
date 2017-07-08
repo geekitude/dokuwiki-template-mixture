@@ -170,7 +170,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
             <main role="main" class="<?php echo (tpl_getConf('wrappedSidebar') == 0) ? 'flex-container' : ''; ?>">
                 <!-- ********** ASIDE ********** -->
                 <?php if ($showSidebar) : ?>
-                    <aside id="mixture__aside" class="mod aside">
+                    <aside id="mixture__sidebar" class="mod aside">
                         <h3 class="toggle"><?php echo $lang['sidebar'] ?></h3>
                         <div class="content" role="complementary">
                             <?php

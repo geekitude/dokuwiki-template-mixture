@@ -65,7 +65,7 @@ function js_mixture_resize(){
     jQuery('html').removeClass(device_classes).addClass(device_class);
 
     // handle some layout changes based on change in device
-    var $aside = jQuery('#mixture__aside h3.toggle');
+    var $aside = jQuery('#mixture__sidebar h3.toggle');
     var $toc = jQuery('#dw__toc h3');
 
     if (device_class.match(/desktop/)){
@@ -142,7 +142,7 @@ jQuery(document).ready(function() {
     // Prepare resize watcher and proceed a resize function first run to adjust layout
     jQuery(function(){
         var resizeTimer;
-        dw_page.makeToggle('#mixture__aside h3.toggle','#mixture__aside div.content');
+        dw_page.makeToggle('#mixture__sidebar h3.toggle','#mixture__sidebar div.content');
 
         // Proceed first run of resize watcher functions
         js_mixture_resize();

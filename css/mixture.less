@@ -300,17 +300,17 @@ main {
     padding: 0;
     margin: calc(@ini_spacer / 2) 0 0 0;
 }
-#mixture__aside {
+#mixture__sidebar {
     width: 100%;
     margin: calc(@ini_spacer / 4) 0 0 0;
 }
-#mixture__aside h3.toggle,
-#mixture__aside div.content,
+#mixture__sidebar h3.toggle,
+#mixture__sidebar div.content,
 #dw__toc h3.toggle,
 #dw__toc div.li {
     font-size: 80%;
 }
-#mixture__aside h3.toggle,
+#mixture__sidebar h3.toggle,
 #dw__toc h3.toggle,
 #dw__toc div {
     padding: 0;
@@ -331,21 +331,21 @@ h3.toggle.closed {
     height: auto;
     color: @ini_color_headings;
 }
-[dir=ltr] #mixture__aside ul,
-[dir=ltr] #mixture__aside ol {
+[dir=ltr] #mixture__sidebar ul,
+[dir=ltr] #mixture__sidebar ol {
     padding-left: calc(1.3 * @ini_spacer);
 }
-[dir=rtl] #mixture__aside ul,
-[dir=rtl] #mixture__aside ol {
+[dir=rtl] #mixture__sidebar ul,
+[dir=rtl] #mixture__sidebar ol {
     padding-right: calc(1.4 * @ini_spacer);
 }
-#mixture__aside,
+#mixture__sidebar,
 #dw__toc {
     background-color: @ini_background_neu;
     padding: calc(@ini_spacer / 2);
     z-index: 1;
 }
-#mixture__aside,
+#mixture__sidebar,
 #dw__toc {
     /* animate translations for those divs */
     -webkit-transition: transform @ini_animation_time ease-in-out;
@@ -360,14 +360,14 @@ h3.toggle.closed {
 }
 /* TEST: recupérer l'espace sous la sidebar (il faut aussi supprimer la classe .flex-container sur #mixture__site */
 /* Modif sur <blockquote> pour éviter que la bordure des blockquotes passe à travers la sidebar mais il y a de gros effets de bords sur tous les blockquotes */
-body.wrappedSidebar #mixture__aside {
+body.wrappedSidebar #mixture__sidebar {
     position: relative;
     float: left;
 }
-[dir=ltr] body.wrappedSidebar #mixture__aside {
+[dir=ltr] body.wrappedSidebar #mixture__sidebar {
     margin: 0 @ini_spacer @ini_spacer 0;
 }
-[dir=rtl] body.wrappedSidebar #mixture__aside {
+[dir=rtl] body.wrappedSidebar #mixture__sidebar {
     margin: 0 0 @ini_spacer @ini_spacer;
 }
 body.wrappedSidebar #mixture__content blockquote,
@@ -380,7 +380,7 @@ body.wrappedSidebar blockquote {
 body.wrappedSidebar li {
     margin-left: inherit;
 }
-body.unwrappedSidebar #mixture__aside {
+body.unwrappedSidebar #mixture__sidebar {
     box-sizing: content-box;
     margin: 0 0 calc(@ini_spacer / 3) 0;
 }
@@ -790,20 +790,20 @@ pre.dbg {
     #mixture__topbar_date span.text {
         display: inline;
     }
-    #mixture__aside {
+    #mixture__sidebar {
         width: @ini_sidebar_width;
         max-width: 25%;
     }
-    [dir=ltr] body.wrappedSidebar #mixture__aside {
+    [dir=ltr] body.wrappedSidebar #mixture__sidebar {
         margin: 0 @ini_spacer @ini_spacer 0 !important;
     }
-    [dir=rtl] body.wrappedSidebar #mixture__aside {
+    [dir=rtl] body.wrappedSidebar #mixture__sidebar {
         margin: 0 0 @ini_spacer @ini_spacer !important;
     }
-    [dir=ltr] body.unwrappedSidebar #mixture__aside {
+    [dir=ltr] body.unwrappedSidebar #mixture__sidebar {
         margin: 0 @ini_spacer 0 0 !important;
     }
-    [dir=rtl] body.unwrappedSidebar #mixture__aside {
+    [dir=rtl] body.unwrappedSidebar #mixture__sidebar {
         margin: 0 0 0 @ini_spacer !important;
     }
     #dw__toc {
@@ -816,7 +816,7 @@ pre.dbg {
     [dir=rtl] #dw__toc {
         margin: 0 @ini_spacer @ini_spacer 0;
     }
-    body.unwrappedSidebar #mixture__aside h3.toggle {
+    body.unwrappedSidebar #mixture__sidebar h3.toggle {
         display: none;
     }
 }
@@ -894,30 +894,30 @@ pre.dbg {
     body.extractSidebar #mixture__helper span::after {
         content: "(Sidebar extracted)";
     }
-    body.showSidebar.extractSidebar #mixture__aside {
+    body.showSidebar.extractSidebar #mixture__sidebar {
         /* let page content recover ToC'space */
         position: absolute;
     }
-    [dir=ltr] body.showSidebar.extractSidebar #mixture__aside {
+    [dir=ltr] body.showSidebar.extractSidebar #mixture__sidebar {
         /* translate (search "transition" to find the rules for this translation animation) */
         transform: translate((-2 * @ini_spacer) - (@ini_sidebar_width * @ini_font_factor), 0);
     }
-    [dir=rtl] body.showSidebar.extractSidebar #mixture__aside {
+    [dir=rtl] body.showSidebar.extractSidebar #mixture__sidebar {
         /* translate (search "transition" to find the rules for this translation animation) */
         transform: translate((2 * @ini_spacer) + (@ini_sidebar_width * @ini_font_factor), 0);
     }
-    [dir=ltr] body.unwrappedSidebar.showSidebar.extractSidebar #mixture__aside {
+    [dir=ltr] body.unwrappedSidebar.showSidebar.extractSidebar #mixture__sidebar {
         /* translate (search "transition" to find the rules for this translation animation) */
         transform: translate((-3 * @ini_spacer) - (@ini_sidebar_width * @ini_font_factor), 0);
     }
-    [dir=rtl] body.unwrappedSidebar.showSidebar.extractSidebar #mixture__aside {
+    [dir=rtl] body.unwrappedSidebar.showSidebar.extractSidebar #mixture__sidebar {
         /* translate (search "transition" to find the rules for this translation animation) */
         transform: translate((3 * @ini_spacer) + (@ini_sidebar_width * @ini_font_factor), 0);
     }
-    body.showSidebar.extractSidebar #mixture__aside h3.toggle {
+    body.showSidebar.extractSidebar #mixture__sidebar h3.toggle {
         display: none;
     }
-    body.showSidebar.extractSidebar #mixture__aside {
+    body.showSidebar.extractSidebar #mixture__sidebar {
         max-width: none;
     }
 }
