@@ -188,6 +188,8 @@ div.breadcrumbs div.youarehere {
     list-style: none;
     margin:0;
     padding: 0;
+    flex-direction: row-reverse;
+    width: 100%
 }
 #mixture__pagenav ul li {
     /*display: inline-block;*/
@@ -205,10 +207,10 @@ div.breadcrumbs div.youarehere {
     background-color: @ini_background;
 }
 [dir=ltr] #mixture__pagenav ul li > div.pageId {
-    border-right: 1px solid @ini_border;
+    border-left: 1px solid @ini_border;
 }
 [dir=rtl] #mixture__pagenav ul li > div.pageId {
-    border-left: 1px solid @ini_border;
+    border-right: 1px solid @ini_border;
 }
 #mixture__pagenav ul li > div.pageId {
     margin: 0 -1px -1px -1px;
