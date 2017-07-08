@@ -202,9 +202,13 @@ div.breadcrumbs div.youarehere {
 }
 #mixture__pagenav ul li > div.pageId {
     border-top: 4px solid @ini_color_primary;
-    border-right: 1px solid @ini_border;
-    border-left: 1px solid @ini_border;
     background-color: @ini_background;
+}
+[dir=ltr] #mixture__pagenav ul li > div.pageId {
+    border-right: 1px solid @ini_border;
+}
+[dir=rtl] #mixture__pagenav ul li > div.pageId {
+    border-left: 1px solid @ini_border;
 }
 #mixture__pagenav ul li > div.pageId {
     margin: 0 -1px -1px -1px;
