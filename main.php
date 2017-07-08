@@ -175,15 +175,16 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <div class="content" role="complementary">
                             <?php
                                 if (isset($mixture['images']['sidebar']['mediaId'])) {
+                                    //dbg($mixture['images']['sidebar']);
                                     $sidebarImage = ml($mixture['images']['sidebar']['mediaId'],'',true);
                                     $link = php_mixture_ui_link("sidebarLink", substr($mixture['images']['sidebar']['mediaId'], 0, strrpos($mixture['images']['sidebar']['mediaId'], ':') + 1));
+                                    $title = ucwords(tpl_getConf('sidebar_header'));
                                     if ($link != null) {
                                         tpl_link(
                                             $link['target'],
-                                            '<img src="'.$sidebarImage.'" width="100%" height="auto" title="'.$link['label'].'" alt="*'.ucwords(tpl_getConf('sidebar_header')).'*" />'
+                                            '<img id="mixture__sidebar_header_image" src="'.$sidebarImage.'" title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['sidebar']['imageSize'][3].' />'
                                         );
                                     } else {
-                                        $title = ucwords(tpl_getConf('sidebar_header'));
                                         print '<img src="'.$sidebarImage.'" width="100%" height="auto" title="'.$title.'" alt="*'.$title.'*" />';
                                     }
                                 }
