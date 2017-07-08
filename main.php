@@ -84,6 +84,9 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <hr class="mts mb0" />
                     </div><!-- /#mixture__topbar -->
                 <?php endif; ?>
+                <p class="a11y skip">
+                    <a href="#mixture__content"><?php echo $lang['skip_to_content'] ?></a>
+                </p>
                 <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID <> $conf['start']) && ($ACT == 'show')): ?>
                     <h1 id="mixture__title">
                         <?php
@@ -117,9 +120,6 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <p class="tagline"><?php echo $conf['tagline'] ?></p>
                     <?php endif; ?>
                 <?php endif ?>
-                <p class="a11y skip">
-                    <a href="#mixture__content"><?php echo $lang['skip_to_content'] ?></a>
-                </p>
                 <aside id="mixture__alerts">
                     <!-- ALERTS -->
                     <?php html_msgarea() ?>
