@@ -167,6 +167,16 @@ main,
 #mixture__topbar_date span.text {
     display: none;
 }
+#mixture__branding_start,
+#mixture__branding_end {
+    flex: 1 1 auto;
+}
+[dir=ltr] #mixture__branding_logo_image {
+    margin: @ini_spacer @ini_spacer @ini_spacer 0;
+}
+[dir=rtl] #mixture__branding_logo_image {
+    margin: @ini_spacer 0 @ini_spacer @ini_spacer;
+}
 #mixture__title {
     color: @ini_color_primary;
 }
@@ -645,8 +655,17 @@ pre.dbg {
 
 /* =HELPERS
 ----------------------------------------------- */
-.spacebetween {
+.flexjustifycenter {
+    justify-content: center;
+}
+.flexjustifybetween {
     justify-content: space-between;
+}
+.flexaligncenter {
+    align-items: center;
+}
+.flexnowrap {
+  flex-wrap: nowrap;
 }
 .camelcase {
     text-transform: capitalize;
@@ -856,6 +875,12 @@ pre.dbg {
     }
     #mixture__topbar_links ul div.li {
         padding: 0 (@ini_spacer / 2);
+    }
+    #mixture__branding_start {
+        justify-content: flex-start;
+    }
+    #mixture__branding_end {
+        justify-content: flex-end;
     }
 }
 @media (min-width: 1801px) {

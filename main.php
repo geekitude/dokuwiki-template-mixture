@@ -38,7 +38,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                 <!-- TOPBAR (with date & last changes) -->
                 <?php if ((strpos(tpl_getConf('elements'), 'topbar_date') !== false) or (strpos(tpl_getConf('elements'), 'topbar_lastchanges') !== false) or (strpos(tpl_getConf('elements'), 'topbar_links') !== false)) : ?>
                     <div id="mixture__topbar" class="smaller clearfix">
-                        <div class="flex-container-h spacebetween">
+                        <div class="flex-container-h flexjustifybetween">
                             <ul class="flex-container-h">
                                 <?php if (strpos(tpl_getConf('elements'), 'topbar_date') !== false) : ?>
                                     <li id="mixture__topbar_date" class="camelcase">
@@ -87,39 +87,94 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                 <p class="a11y skip">
                     <a href="#mixture__content"><?php echo $lang['skip_to_content'] ?></a>
                 </p>
-                <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID <> $conf['start']) && ($ACT == 'show')): ?>
-                    <h1 id="mixture__title">
-                        <?php
-                            // display wiki title as a link depending on titleLink setting
-                            $link = php_mixture_ui_link("titleLink");
-                            $text = php_mixture_branding("title");
-                            if ($link != null) {
-                                $label = $link['label'];
-                                if ($link['accesskey'] != null) {
-                                    $label .= " [".strtoupper($link['accesskey'])."]";
-                                    $accesskey = 'accesskey="'.$link['accesskey'].'" ';
-                                }
-                                tpl_link(
-                                    $link['target'],
-                                    //'<span>'.$text.'</span>',
-                                    '<span>'.$text.'</span>',
-                                    $accesskey.'title="'.$label.'" class="'.$link['classes'].'"'
-                                );
-                            } else {
-                                echo '<span>'.$text.'</span>';
-                            }
-                        ?>
-                    </h1>
-                <?php else: ?>
-                    <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="'.tpl_getLang('wikihome').' [H]"') ?></h1>
-                <?php endif; ?>
-                <?php if ($conf['tagline']): ?>
-                    <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID <> $conf['start']) && ($ACT == 'show')): ?>
-                        <p class="tagline"><?php echo $conf['title'] ?></p>
-                    <?php else: ?>
-                        <p class="tagline"><?php echo $conf['tagline'] ?></p>
-                    <?php endif; ?>
-                <?php endif ?>
+                <!-- BRANDING -->
+                <div id="mixture__branding" class="flex-container-h flexjustifybetween">
+                    <div id="mixture__branding_start" class="flex-container-h flexjustifycenter flexaligncenter">
+                        <?php if ($mixture['images']['logo'] != null) : ?>
+                            <div id="mixture__branding_logo">
+                                <?php
+                                    //dbg($mixture['images']['logo']);
+                                    $logoImage = ml($mixture['images']['logo']['mediaId'],'',true);
+                                    if ($mixture['images']['logo']['mediaId'] != null) {
+                                        $logoImage = ml($mixture['images']['logo']['mediaId'],'',true);
+                                    } else {
+                                        $logoImage = "/lib/tpl/mixture/images/logo.png";
+                                    }
+                                    $link = php_mixture_ui_link("logoLink", substr($mixture['images']['logo']['mediaId'], 0, strrpos($mixture['images']['logo']['mediaId'], ':') + 1));
+                                    $title = "Logo";
+                                    if ($link != null) {
+                                        tpl_link(
+                                            $link['target'],
+                                            '<img id="mixture__branding_logo_image" src="'.$logoImage.'" title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['logo']['imageSize'][3].' />'
+                                        );
+                                    } else {
+                                        print '<img id="mixture__branding_logo_image" src="'.$logoImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['logo']['imageSize'][3].' />';
+                                    }
+                                ?>
+                            </div><!-- /#mixture__branding_logo -->
+                        <?php endif ?>
+                        <div id="mixture__branding_text">
+                            <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID <> $conf['start']) && ($ACT == 'show')): ?>
+                                <h1 id="mixture__title">
+                                    <?php
+                                        // display wiki title as a link depending on titleLink setting
+                                        $link = php_mixture_ui_link("titleLink");
+                                        $text = php_mixture_branding("title");
+                                        if ($link != null) {
+                                            $label = $link['label'];
+                                            if ($link['accesskey'] != null) {
+                                                $label .= " [".strtoupper($link['accesskey'])."]";
+                                                $accesskey = 'accesskey="'.$link['accesskey'].'" ';
+                                            }
+                                            tpl_link(
+                                                $link['target'],
+                                                //'<span>'.$text.'</span>',
+                                                '<span>'.$text.'</span>',
+                                                $accesskey.'title="'.$label.'" class="'.$link['classes'].'"'
+                                            );
+                                        } else {
+                                            echo '<span>'.$text.'</span>';
+                                        }
+                                    ?>
+                                </h1>
+                            <?php else: ?>
+                                <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="'.tpl_getLang('wikihome').' [H]"') ?></h1>
+                            <?php endif; ?>
+                            <?php if ($conf['tagline']): ?>
+                                <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID <> $conf['start']) && ($ACT == 'show')): ?>
+                                    <p class="tagline"><?php echo $conf['title'] ?></p>
+                                <?php else: ?>
+                                    <p class="tagline"><?php echo $conf['tagline'] ?></p>
+                                <?php endif; ?>
+                            <?php endif ?>
+                        </div>
+                    </div>
+                    <div id="mixture__branding_end" class="flex-container-h flexjustifycenter flexaligncenter">
+                        <?php if ($mixture['images']['banner'] != null) : ?>
+                            <div id="mixture__branding_banner">
+                                <?php
+                                    //dbg($mixture['images']['banner']);
+                                    $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
+                                    if ($mixture['images']['banner']['mediaId'] != null) {
+                                        $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
+                                    } else {
+                                        $bannerImage = "/lib/tpl/mixture/images/banner.png";
+                                    }
+                                    $link = php_mixture_ui_link("bannerLink", substr($mixture['images']['banner']['mediaId'], 0, strrpos($mixture['images']['banner']['mediaId'], ':') + 1));
+                                    $title = "Banner";
+                                    if ($link != null) {
+                                        tpl_link(
+                                            $link['target'],
+                                            '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />'
+                                        );
+                                    } else {
+                                        print '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />';
+                                    }
+                                ?>
+                            </div><!-- /#mixture__branding_banner -->
+                        <?php endif ?>
+                    </div>
+                </div><!-- /#mixture__branding -->
                 <aside id="mixture__alerts">
                     <!-- ALERTS -->
                     <?php html_msgarea() ?>
@@ -185,7 +240,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                             '<img id="mixture__sidebar_header_image" src="'.$sidebarImage.'" title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['sidebar']['imageSize'][3].' />'
                                         );
                                     } else {
-                                        print '<img src="'.$sidebarImage.'" width="100%" height="auto" title="'.$title.'" alt="*'.$title.'*" />';
+                                        print '<img src="'.$sidebarImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['sidebar']['imageSize'][3].' />';
                                     }
                                 }
                             ?>

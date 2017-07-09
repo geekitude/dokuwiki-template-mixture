@@ -22,8 +22,8 @@ $conf['dateString']         = '%A %d %B %Y';
 $conf['lastChanges']        = 'skip_minors,5';
 $conf['lastChangesWhat']    = 'both';
 $conf['lastChangesWhere']   = 'anywhere';
-
-
+$conf['logoLink']           = 'dynamic';
+$meta['bannerLink']         = 'dynamic';
 $conf['titleLink']          = 'dynamic';
 
 $conf['sidebarLink']        = 'namespace_start';
