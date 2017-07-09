@@ -8,20 +8,25 @@ Experimental template based on DW's minimal Starter template, [KNACCS](http://kn
 ## Main features
 
 * Namespace dependent CSS placeholders (mostly, or maybe only, for colors and fonts)
-* Namespace dependent special images (banner, logo, 'widebanner' and a potential last one that could be 'cover' for example)
+* Namespace dependent special images (banner, logo, sidebar header, widebanner (maybe) and a potential special last one that could be displayed in a CSS lightbox (a large portrait for example)
+* Topbar with a "news ticker" showing last changes in current namespace and a potential collection of links (as presented [here](https://www.dokuwiki.org/tips:topbar))
 * Google Fonts : each of main text, headings, condensed text (mostly nav bar) and monospaced text (```code``` syntax) can use a different font
 * Easy to replace individual SVG glyphs collected from  [Font Awesome](http://fontawesome.io/) with [IcoMoon](https://icomoon.io/) (this doesn't include sidebar and Toc toglles, Interwiki links and Search field placehoder that can only be customized through CSS)
+* Optionnal pseudo tabs proposing links to other pages of current namespace
+* Sidebar can be wrapped inside main content instead of blocking a long column
+* ToC and Sidebar can both be extracted from main content when there's enough room: Toc becomes fixed while Sidebar scrolls with main content as usual (will hopefully be sticky some day)
 * Optional "scrollspy" ToC on wide screen
-* Dokuwiki's standard include hooks, based on [this document](https://www.dokuwiki.org/include_hooks) and starter template as well as a few additions that can be easily put in place simply renaming corresponding `.includesample` file located in the template directory (e.g. *lib/tpl/mixture/*) into `.html`
+* Dokuwiki's standard include hooks (based on [this document](https://www.dokuwiki.org/include_hooks) and starter template) as well as a few additions that can be easily put in place simply renaming corresponding `.html.sample` file located in the template directory (e.g. *lib/tpl/mixture/*) into `.html`
   * *meta.html* : just before HTML head closing tag (use this to add additional styles or metaheaders)
-  * *title.html* : replace default basic site title by anything you want (like a multi-colors string)
-  * *banner.html* : replace image banner with HTML include hook
-  * *header.html* : right at the begining of nav area
-  * *sidebarheader.html* : before sidebar content
-  * *sidebarfooter.html* : after sidebar content
+  * *title.html* : replace default basic site title by anything you want like a multi-colors string (note that site title should allways be an html string, not an image)
+  * *banner.html*(*) : replace image banner with some more dynamic and smarter HTML code
+  * *header.html*(*) : right at the begining of nav area
+  * *sidebarheader.html* : before *sidebar* content (but after sidebar header image)
+  * *sidebarfooter.html* : after *sidebar* content
   * *pageheader.html* : below *breadcrumbs*, above the actual page content
   * *pagefooter.html* : inside Namespaced footer, below  the last changed Date
   * *footer.html* : at the very end of the page just before the body closing tag
+(*) these include hooks take the place of a standard element, they are not added to default page layout
 
 ## Third Party Modules
 
