@@ -89,6 +89,14 @@ function js_mixture_resize(){
         }
     }
 
+    // fix wiki title and tagline horizontal alignment when window is so tiny they go under logo
+    var brandingHeight = jQuery('#mixture__branding_start').height();
+    var brandingLogoHeight = jQuery('#mixture__branding_logo').height();
+    var brandingTextHeight = jQuery('#mixture__branding_text').height();
+    if (brandingHeight > brandingLogoHeight + brandingTextHeight) {
+        jQuery('#mixture__branding_text').css("text-align","center");
+    }
+
 }
 
 function js_mixture_pagenav(){
