@@ -746,6 +746,7 @@ function php_mixture_ui_link($element, $basens = null) {
                             //    );
 
         } else {
+//dbg($element);
 //dbg(tpl_getConf($element));
             return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
         }

@@ -177,11 +177,16 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                         $bannerImage = "/lib/tpl/mixture/images/banner.png";
                                     }
                                     $link = php_mixture_ui_link("bannerLink", substr($mixture['images']['banner']['mediaId'], 0, strrpos($mixture['images']['banner']['mediaId'], ':') + 1));
+                                    //dbg($link);
                                     $title = "Banner";
                                     if ($link != null) {
+                                        if ($link['accesskey'] != null) {
+                                            $link['label'] .= " [".strtoupper($link['accesskey'])."]";
+                                            $accesskey = 'accesskey="'.$link['accesskey'].'" ';
+                                        }
                                         tpl_link(
                                             $link['target'],
-                                            '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />'
+                                            '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" '.$accesskey.'title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />'
                                         );
                                     } else {
                                         print '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />';
