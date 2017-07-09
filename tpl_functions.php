@@ -535,6 +535,7 @@ function php_mixture_classes() {
     return rtrim($classes, " ");
 }
 
+//php_mixture_file(tpl_getConf('banner'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
 function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $returnId = false) {
     global $conf, $mixture;
 
@@ -580,6 +581,9 @@ function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $
     if ($where == "cumulate") {
         $ns = array_reverse($ns);
     }
+//if ($fileName == "banner") {
+//dbg($ns);
+//}
     // Search listed namespace(s) for jpg, gif and finally png image or txt page with requested filename
     foreach ($ns as $value) {
         // In case we are in a farm, we have to make sure we search in animal's data or conf dir by starting at DOKU_CONF directory (will however work if not in a farm)
@@ -593,10 +597,16 @@ function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $
         } elseif ($type == "media") {
             $result = glob(DOKU_CONF.'../'.$conf['savedir'].'/media'.$value.'/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
             //$result = glob($path.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
+//if ($fileName == "banner") {
+//dbg(DOKU_CONF.'../'.$conf['savedir'].'/media'.$value.'/'.$fileName);
+//dbg($result);
+//dbg("bingo");
+//}
+
             // If no result, let's try in template images
-            if ($result == null) {
-                $result = glob(DOKU_CONF.'../lib/tpl/mixture/images/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
-            }
+            //if ($result == null) {
+            //    $result = glob(DOKU_CONF.'../lib/tpl/mixture/images/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
+            //}
         } elseif ($type == "conf") {
             $result = glob(DOKU_CONF.'tpl/mixture'.$value.'/'.$fileName.'.ini');
         } else {
@@ -628,10 +638,20 @@ function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $
             }
         }
     }
+
     // if $multiReturn contains at least 1 element, return it
     if (count($multiReturn) > 0) {
         //dbg($multiReturn);
         return $multiReturn;
+    } elseif ($type == "media") {
+        $result = glob(DOKU_CONF.'../lib/tpl/mixture/images/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
+        if ($result[0] != null) {
+            $imageSize = getimagesize($result[0]);
+            //dbg($imageSize);
+            //dbg($result[0]);
+            //$path_parts = pathinfo(explode("pages", $result[0])[1]);
+            return array('mediaId' => null, 'filePath' => $result[0], 'imageSize' => $imageSize);
+        }
     }
 }
 

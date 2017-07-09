@@ -93,7 +93,6 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <?php if ($mixture['images']['logo'] != null) : ?>
                             <div id="mixture__branding_logo">
                                 <?php
-                                    //dbg($mixture['images']['logo']);
                                     $logoImage = ml($mixture['images']['logo']['mediaId'],'',true);
                                     if ($mixture['images']['logo']['mediaId'] != null) {
                                         $logoImage = ml($mixture['images']['logo']['mediaId'],'',true);
@@ -169,7 +168,6 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <?php if ($mixture['images']['banner'] != null) : ?>
                             <div id="mixture__branding_banner">
                                 <?php
-                                    //dbg($mixture['images']['banner']);
                                     $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
                                     if ($mixture['images']['banner']['mediaId'] != null) {
                                         $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
@@ -177,7 +175,6 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                         $bannerImage = "/lib/tpl/mixture/images/banner.png";
                                     }
                                     $link = php_mixture_ui_link("bannerLink", substr($mixture['images']['banner']['mediaId'], 0, strrpos($mixture['images']['banner']['mediaId'], ':') + 1));
-                                    //dbg($link);
                                     $title = "Banner";
                                     if ($link != null) {
                                         if ($link['accesskey'] != null) {
@@ -251,7 +248,6 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <div class="content" role="complementary">
                             <?php
                                 if (isset($mixture['images']['sidebar']['mediaId'])) {
-                                    //dbg($mixture['images']['sidebar']);
                                     $sidebarImage = ml($mixture['images']['sidebar']['mediaId'],'',true);
                                     $link = php_mixture_ui_link("sidebarLink", substr($mixture['images']['sidebar']['mediaId'], 0, strrpos($mixture['images']['sidebar']['mediaId'], ':') + 1));
                                     $title = ucwords(tpl_getConf('sidebar_header'));

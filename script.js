@@ -18,11 +18,10 @@ var pagenav_width = 0;
 
 function js_mixture_resize(){
 
-    // the z-index in mobile.css is (mis-)used purely for detecting the screen mode here
+    // the z-index of #mixture__helper div is (mis-)used on purpose for detecting the screen mode here
     screen_mode = jQuery('#mixture__helper').css('z-index') + '';
 
     // determine our device pattern
-    // TODO: consider moving into dokuwiki core
     switch (screen_mode) {
         case '1000':
             if (device_class.match(/phone/)) return;
@@ -124,7 +123,6 @@ function js_mixture_pagenav(){
         // pagenav fits in page
         jQuery('body').addClass("inline-pagenav-dropdown");
     }
-    //console.log(jQuery(window).width());
 }
 
 jQuery(document).ready(function() {
@@ -136,7 +134,6 @@ jQuery(document).ready(function() {
     jQuery('#mixture__pagenav li.tab').each(function() {
         pagenav_width += jQuery(this).outerWidth(true);
     });
-    //console.log(pagenav_width);
 
     // Prepare last changes ticker
     jQuery('.js-lastchanges').newsTicker({
