@@ -89,6 +89,9 @@ function js_mixture_resize(){
         }
     }
 
+}
+
+function js_mixture_branding(){
     // fix wiki title and tagline horizontal alignment when window is so tiny they go under logo
     var brandingHeight = jQuery('#mixture__branding_start').height();
     var brandingLogoHeight = jQuery('#mixture__branding_logo').height();
@@ -96,7 +99,12 @@ function js_mixture_resize(){
     if (brandingHeight > brandingLogoHeight + brandingTextHeight) {
         jQuery('#mixture__branding_text').css("text-align","center");
     }
-
+    var brandingWidth = jQuery('#mixture__branding_start').width();
+    var brandingLogoWidth = jQuery('#mixture__branding_logo').width();
+    var brandingTextWidth = jQuery('#mixture__branding_text').width();
+    if (brandingWidth > brandingLogoWidth + brandingTextWidth) {
+        jQuery('#mixture__branding_text').css("text-align","initial");
+    }
 }
 
 function js_mixture_pagenav(){
@@ -118,7 +126,6 @@ function js_mixture_pagenav(){
     }
     //console.log(jQuery(window).width());
 }
-
 
 jQuery(document).ready(function() {
 
@@ -155,6 +162,7 @@ jQuery(document).ready(function() {
         // Proceed first run of resize watcher functions
         js_mixture_resize();
         js_mixture_pagenav();
+        js_mixture_branding();
         // Show some hidden elements only after jQuery initialisation
         jQuery('#mixture__pagenav_nsindex').css("opacity","1");
 
@@ -162,6 +170,8 @@ jQuery(document).ready(function() {
         jQuery(window).resize(function(){
             // PageNav needs a very fast reaction (switching it is not a heavy process)
             js_mixture_pagenav();
+            // Branding text needs a fast reaction time but can occur after PageNav
+            js_mixture_branding();
             // Other resize actions (mainly asides' toggles) can be less reactive without harming user experience
             if (resizeTimer) clearTimeout(resizeTimer);
             resizeTimer = setTimeout(js_mixture_resize,200);
