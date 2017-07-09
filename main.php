@@ -141,11 +141,27 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                 <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="'.tpl_getLang('wikihome').' [H]"') ?></h1>
                             <?php endif; ?>
                             <?php if ($conf['tagline']): ?>
-                                <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID <> $conf['start']) && ($ACT == 'show')): ?>
-                                    <p class="tagline"><?php echo $conf['title'] ?></p>
-                                <?php else: ?>
-                                    <p class="tagline"><?php echo $conf['tagline'] ?></p>
-                                <?php endif; ?>
+                                <?php
+                                    print "<p class='tagline'>";
+                                        // display wiki tagline as a link depending on taglineLink setting
+                                        $link = php_mixture_ui_link("taglineLink");
+                                        $text = php_mixture_branding("tagline");
+                                        if ($link != null) {
+                                            $label = $link['label'];
+                                            if ($link['accesskey'] != null) {
+                                                $label .= " [".strtoupper($link['accesskey'])."]";
+                                                $accesskey = 'accesskey="'.$link['accesskey'].'" ';
+                                            }
+                                            tpl_link(
+                                                $link['target'],
+                                                '<span>'.$text.'</span>',
+                                                $accesskey.'title="'.$label.'" class="'.$link['classes'].'"'
+                                            );
+                                        } else {
+                                            echo '<span>'.$text.'</span>';
+                                        }
+                                    print "</p>";
+                                ?>
                             <?php endif ?>
                         </div>
                     </div>

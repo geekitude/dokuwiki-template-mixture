@@ -22,10 +22,10 @@ $conf['dateString']         = '%A %d %B %Y';
 $conf['lastChanges']        = 'skip_minors,5';
 $conf['lastChangesWhat']    = 'both';
 $conf['lastChangesWhere']   = 'anywhere';
-$conf['logoLink']           = 'dynamic';
-$meta['bannerLink']         = 'dynamic';
+$conf['logoLink']           = 'namespace_start';
+$meta['bannerLink']         = 'home';
 $conf['titleLink']          = 'dynamic';
-
+$conf['taglineLink']        = 'parent_namespace';
 $conf['sidebarLink']        = 'namespace_start';
 $conf['dynamicBranding']          = 1;
 $conf['exclusions']         = 'sidebar,topbar,playground:*,user:*,wiki:*';

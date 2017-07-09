@@ -1,6 +1,6 @@
 <?php
 /**
- * English language file for template
+ * English language file for Mixture template
  *
  */
 

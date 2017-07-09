@@ -658,15 +658,19 @@ function php_mixture_ui_link($element, $basens = null) {
         if (tpl_getConf($element) == "parent_namespace") {
             // if there's only one known parent we're on wiki start page and there's no need for a link
             if (count($mixture['parents']) == 1) {
+//dbg("ici?");
                 //return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('parent_namespace'));
                 return null;
             // if there's 2 known parents first one is current ns start page and 2nd one is wiki home
             } elseif ((count($mixture['parents']) == 2) and ($mixture['parents'][1] == $conf['start'])) {
+//dbg("là?");
                 return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
             // if there's more than 2 known parents first one is current ns start page and we want 2nd one (parent ns start page)
             } elseif (count($mixture['parents']) > 1) {
+//dbg("ben?");
                 return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('parentns'), 'classes' => $classes);
             } else {
+//dbg("merde");
                 return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
             }
         } elseif (tpl_getConf($element) == "namespace_start") {
