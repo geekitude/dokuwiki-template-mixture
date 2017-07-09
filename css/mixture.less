@@ -177,6 +177,17 @@ main,
 [dir=rtl] #mixture__branding_logo_image {
     margin: @ini_spacer 0 @ini_spacer @ini_spacer;
 }
+#mixture__branding_text {
+    margin: 0 0 @ini_spacer 0;
+}
+/*
+[dir=ltr] #mixture__branding_text {
+    margin: @ini_spacer 0 @ini_spacer @ini_spacer;
+}
+[dir=rtl] #mixture__branding_logo_image {
+    margin: @ini_spacer @ini_spacer @ini_spacer 0;
+}
+*/
 #mixture__title {
     color: @ini_color_primary;
 }
@@ -751,18 +762,21 @@ pre.dbg {
 }
 */
 @media (min-width: 544px) {
-    #mixture__helper {
-        z-index: 1001;
-    }
-    #mixture__helper span::before {
-        content: "small (<768px)";
-    }
     hr {
         margin: calc(@ini_spacer / 2) auto @ini_spacer auto;
     }
     #mixture__site {
         /*padding: 1.5%;*/
         padding: calc(3 * @ini_spacer);
+    }
+    #mixture__helper {
+        z-index: 1001;
+    }
+    #mixture__helper span::before {
+        content: "small (<768px)";
+    }
+    #mixture__branding_text {
+        margin: 0;
     }
     #mixture__content {
         margin: 0;
