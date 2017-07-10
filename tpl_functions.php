@@ -45,7 +45,6 @@ function php_mixture_init() {
     // DokuWiki core globals
     global $conf, $ID, $INFO, $JSINFO, $lang;
     // New global variables
-    //global $mixture, $uhp, $trs, $translationHelper, $tags;
     global $mixture, $uhp, $trs, $editorAvatar, $userAvatar, $browserlang;
 
     // To use when we need to ignore `discussion` namespace
@@ -89,25 +88,10 @@ function php_mixture_init() {
             $trs['defaultLang'] = $conf['lang_before_translation'];
         }
         $translationHelper = plugin_load('helper','translation');
-//dbg($translationHelper->showTranslations());
-//dbg($conf['plugin']['translation']);
         if ($conf['plugin']['translation']['dropdown']) {
             $trs['dropdown'] = $translationHelper->showTranslations();
         }
-        //$trs['helper'] = str_replace("cur", "pageId", $trs['helper']);
-//        if (strpos($trs['helper'], 'form') !== false) {
-//            //$tmp = explode("option", $trs['helper']);
-//            //$tmp0: <div class="plugin_translation"><span>Traductions de cette page:</span> <form action="/doku.php" id="translation__dropdown"><select name="id" class="wikilink1"><
-////dbg($tmp);
-//        } else {
-//        }
-//dbg($trs['helper']);
         $trs['parts'] = $translationHelper->getTransParts($id);
-//dbg($trs['parts']);        
-        //$trs['lng'] = $translationHelper->getLangPart($ID);
-        //$trs['translations'] = $translationHelper->getAvailableTranslations($ID);
-//dbg($conf);
-//dbg($conf['plugin']['translation']['translations']);
         if (isset($conf['plugin']['translation']['translations'])) {
             $languages = explode(" ", $conf['plugin']['translation']['translations']);
             sort($languages);
@@ -118,85 +102,25 @@ function php_mixture_init() {
             array_push($languages, $trs['defaultLang']);
         }
         sort($languages);
-//dbg($languages);
         $trs['translations'] = array();
         foreach ($languages as $lc) {
-            //if (strpos($conf['plugin']['translation']['translations'], $lc) !== false) {
-                $translation = $translationHelper->buildTransID($lc, $trs['parts'][1]);
-            //} else {
-            //    $translation = $translationHelper->buildTransID("", $trs['parts'][1]);
-            //}
-//dbg($translation);
+            $translation = $translationHelper->buildTransID($lc, $trs['parts'][1]);
             $trs['translations'][$lc] = ltrim($translation[0], ":");
             if (page_exists($translation[0])) {
                 $classes = "wikilink1";
             } else {
                 $classes = "wikilink2";
             }
-//dbg(tpl_link(wl($ID), $lc, 'class="'.$classes.'"', true));
-            //$trs['links'][$lc] = tpl_link(wl($trs['translations'][$lc]), $lc, 'class="'.$classes.'"', true);
-            //if ($lc == $trs['parts'][0]) {
-//            if ($lc == $trs['parts'][0]) {
-//                $classes .= " cur";
-//                // ADDING TITLE WOULD BE NICE BUT THIS DOESN'T WORK
-//                // $trs['links'][$lc] = tpl_link(wl($ID), $lc, 'class="'.$classes.'" title="'.$lang[$lc].'"', true);
-//                $trs['links'][$lc] = tpl_link(wl($ID), $lc, 'class="'.$classes.'" title="'.$lang[$lc].'"', true);
-//                //$trs['translations'][$lc] = ltrim($trs['translations'][$lc], ":");
-////dbg($lc);
-//            } else {
-//dbg($trs['translations'][$lc]." vs ".$ID);
             if ($trs['translations'][$lc] != $ID) {
-                //if ($lc == null) {
-                //    $trs['links'][$conf['lang']] = $translationHelper->getTransItem($lc, $trs['parts'][1]);
-                //} else {
-                //    $trs['links'][$lc] = $translationHelper->getTransItem($lc, $trs['parts'][1]);
-                //}
-//                if (strpos($conf['plugin']['translation']['translations'], $lc) !== false) {
-                    $trs['links'][$lc] = $translationHelper->getTransItem($lc, $trs['parts'][1]);
-//                    //$trs['translations'][$lc] = ltrim($trs['translations'][$lc], ":");
-////dbg("là!".$lc);
-//                } else {
-//                    $trs['links'][$lc] = $translationHelper->getTransItem("", $trs['parts'][1]);
-//                    //$trs['translations'][$lc] = $trs['parts'][1];
-////dbg("ici!".$lc);
-//                }
+                $trs['links'][$lc] = $translationHelper->getTransItem($lc, $trs['parts'][1]);
             }
         }
-            foreach ($trs['links'] as $lc => $link) {
-                $trs['links'][$lc] = str_replace("<li><div class='li'>", "", $trs['links'][$lc]);
-                $trs['links'][$lc] = str_replace("<li><div class='li cur'>", "", $trs['links'][$lc]);
-                $trs['links'][$lc] = str_replace("</div></li>", "", $trs['links'][$lc]);
-                $trs['links'][$lc] = str_replace("  ", " ", $trs['links'][$lc]);
-//                if (strpos($link, "cur") !== false) {
-//                    $trs['links'][$lc] = substr($trs['links'][$lc], 24);
-//                    $trs['links'][$lc] = substr($trs['links'][$lc], 0, -11);
-//                } elseif (strpos($link, "div") !== false) {
-//                    $trs['links'][$lc] = substr($trs['links'][$lc], 20);
-//                    $trs['links'][$lc] = substr($trs['links'][$lc], 0, -11);
-//                }
-            }
-//        if (!in_array($conf['lang'], $languages)) {
-////dbg("ici");
-//            $trs['translations'][$conf['lang']] = $trs['parts'][1];
-//            if (page_exists($trs['parts'][1])) {
-//                $classes = "wikilink1";
-//            } else {
-//                $classes = "wikilink2";
-//            }
-//            if ($trs['parts'][1] == $ID) {
-//                $classes .= " active";
-//                unset($trs['translations'][$conf['lang']]);
-//            }
-//            //$trs['links'][$conf['lang']] = tpl_link(wl($trs['translations'][$conf['lang']]), $trs['parts'][1], 'class="'.$classes.'"', true);
-//            //$trs['links'][$conf['lang']] = tpl_link(wl($trs['translations'][$conf['lang']]), $conf['lang'], 'class="'.$classes.'"', true);
-//            $trs['links'][$conf['lang']] = $translationHelper->getTransItem($conf['lang'], $trs['parts'][1]);
-//        } else {
-//            $defaultLanguageLink = $trs['links'][$conf['lang']];
-//            unset($trs['links'][$conf['lang']]);
-//            $trs['links'][$conf['lang']] = $defaultLanguageLink;
-//        }
-//dbg($trs);
-//dbg($conf['plugin']['translation']);
+        foreach ($trs['links'] as $lc => $link) {
+            $trs['links'][$lc] = str_replace("<li><div class='li'>", "", $trs['links'][$lc]);
+            $trs['links'][$lc] = str_replace("<li><div class='li cur'>", "", $trs['links'][$lc]);
+            $trs['links'][$lc] = str_replace("</div></li>", "", $trs['links'][$lc]);
+            $trs['links'][$lc] = str_replace("  ", " ", $trs['links'][$lc]);
+        }
     }
 
     // CURRENT NS AND PATH
@@ -231,7 +155,6 @@ function php_mixture_init() {
         $mixture['parents'] = array_reverse($mixture['parents']);
         $mixture['parents'] = array_unique($mixture['parents']);
     }
-//dbg($mixture['parents']);
 
 //    // SUB NAMESPACES
 //    // Look for all sub namespaces with a start page
@@ -255,7 +178,6 @@ function php_mixture_init() {
     // TREE (index from current NS)
 // ADD TEST(S) ABOUT ELEMENTS REQUIRING TREE BEFORE COLLECTING IT
     $mixture['tree'] = php_mixture_tree($mixture['currentNs'].":");
-//dbg($mixture['tree']);
 
     // LAST CHANGES (build list)
     // Retrieve number of last changes to show and proceed if matching `lastchangesWhere` settings
@@ -302,11 +224,7 @@ function php_mixture_init() {
     }
 
     // IMAGES
-    // Search for namespace special images set as adaptive by settings (logo, banner, widebanner and potential last "sidebar header" image)
-//    if (strpos(tpl_getConf('elements'), 'header_logo') !== false) { $mixture['images']['logo'] = null; }
-//    if (strpos(tpl_getConf('elements'), 'header_banner') !== false) { $mixture['images']['banner'] = null; }
-//    if (strpos(tpl_getConf('elements'), 'widebanner') !== false) { $mixture['images']['widebanner'] = null; }
-//    if (strpos(tpl_getConf('elements'), 'sidebar_header') !== false) { $mixture['images']['sidebar'] = null; }
+    // Search for namespace special images depending on settings (logo, banner, widebanner and potential last "sidebar header" image)
     if (tpl_getConf('logo') != null) {
         $mixture['images']['logo'] = php_mixture_file(tpl_getConf('logo'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
     }
@@ -319,20 +237,6 @@ function php_mixture_init() {
     if (tpl_getConf('sidebar_header') != null) {
         $mixture['images']['sidebar'] = php_mixture_file(tpl_getConf('sidebar_header'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
     }
-//    if (count($mixture['images']) != null) {
-//        foreach ($mixture['images'] as $key => $value) {
-//        //if (strpos(tpl_getConf('namespaceImages'), $key) !== false) {
-//            $mixture['images'][$key] = php_mixture_file($key, "inherit", "media", $mixture['baseNs']);
-//        //}
-//        }
-//    }
-//dbg($mixture['images']);
-//    $lastImageTitle = end(explode(",", tpl_getConf('namespaceImages')));
-//    // If 'namespaceImages' other image is set, get it
-//    if (strpos("banner,logo,widebanner,cover", $lastImageTitle) === false) {
-//        $mixture['images']['other'] = php_mixture_file($lastImageTitle, "namespace", "media", $mixture['baseNs']);
-//        $mixture['images']['other']['label'] = ucfirst($lastImageTitle);
-//    }
 
     // GLYPHS
     // Search for default or custum default SVG glyphs
@@ -355,19 +259,6 @@ function php_mixture_init() {
             $mixture['glyphs'][$key] = file_get_contents(".".tpl_basedir()."svg/".$key.".svg");
         }
     }
-//dbg($mixture['glyphs']);
-
-    //if (strpos(tpl_getConf('elements'), 'header_logo') !== false) { $mixture['images']['logo'] = null; }
-    //if (strpos(tpl_getConf('elements'), 'header_banner') !== false) { $mixture['images']['banner'] = null; }
-    //if (strpos(tpl_getConf('elements'), 'widebanner') !== false) { $mixture['images']['widebanner'] = null; }
-    //if (strpos(tpl_getConf('elements'), 'sidebar_cover') !== false) { $mixture['images']['sidebar_cover'] = null; }
-    //if (count($mixture['images']) != null) {
-    //    foreach ($mixture['images'] as $key => $value) {
-    //    //if (strpos(tpl_getConf('namespaceImages'), $key) !== false) {
-    //        $mixture['images'][$key] = php_mixture_file($key, "inherit", "media", $mixture['baseNs']);
-    //    //}
-    //    }
-    //}
 
     // STYLE
     $mixture['replacements'] = array();
@@ -385,7 +276,6 @@ function php_mixture_init() {
     if (is_file($nsStyleIni)) {
         $nsStyle = parse_ini_file($nsStyleIni, true);
         foreach ($nsStyle['replacements'] as $key => $value) {
-//            $namespaced['style']['replacements'][$key] = $value;
             $style['replacements'][$key] = $value;
         }
     }
@@ -406,7 +296,6 @@ function php_mixture_init() {
         $JSINFO['LoadNewsTicker'] = false;
     }
     //$JSINFO['ScrollspyToc'] = tpl_getConf('scrollspyToc');
-//dbg($JSINFO);
 
     // DEBUG
     // Adding test alerts if debug is enabled
@@ -460,7 +349,6 @@ function php_mixture_tree($base_ns, $level = -1, $max_level = 1) {
     // Stop if reaching requested depth of index
     if ($level > $max_level) { return $tree; }
 
-    //$dir = $conf["savedir"] ."/pages/" . str_replace(":", "/", $base_ns) . "/";
     $dir = $conf["savedir"] ."/pages/" . str_replace(":", "/", $base_ns);
     if (is_dir($dir)) {
         $files = array_diff(scandir($dir), array('..', '.'));
@@ -470,38 +358,19 @@ function php_mixture_tree($base_ns, $level = -1, $max_level = 1) {
                 $id = cleanID($base_ns . $namepage);
                 if (isHiddenPage($id) == false) {
                     if (auth_quickaclcheck($id) >= AUTH_READ) {
-                        //$title = p_get_first_heading($id);
-                        //if (isset($title) == false) {
-                        //    $title = $namepage;
-                        //}
-                        //$tree[] = array("title" => $title,
-                        //                "url" => $id,
-                        //                "level" => $level,
-                        //                "type" => "pg");
                         $tree[] = array("id" => $id,
                                     "type" => "pg");
                     }
                 }
             } elseif (is_dir($dir . $file) == true) {
-                //$short_id = cleanID($base_ns . $file);
-                //$id = $short_id . ":"  . $conf["start"];
                 $id = cleanID($base_ns . $file) . ":"  . $conf["start"];
                 if ($conf['sneaky_index'] == 1 and auth_quickaclcheck($id) < AUTH_READ) {
                     continue;
                 } else {
-                    //$title = p_get_first_heading($id);
-                    //if (isset($title) == false) {
-                    //    $title = $file;
-                    //}
-                    //$tree[$id] = array("title" => $title,
-                    //                "url" => $id,
-                    //                "level" => $level,
-                    //                "type" => "ns",
-                    //                "sub" => mixture_tree($base_ns . $file . ":", $level));
-                    //$tree[$short_id] = array("id" => $id,
                     $tree[] = array("id" => $id,
-                                "type" => "ns",
-                                "sub" => php_mixture_tree($base_ns . $file . ":", $level));
+                        "type" => "ns",
+                        "sub" => php_mixture_tree($base_ns . $file . ":", $level
+                    ));
                 }
             }
         }
@@ -581,9 +450,6 @@ function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $
     if ($where == "cumulate") {
         $ns = array_reverse($ns);
     }
-//if ($fileName == "banner") {
-//dbg($ns);
-//}
     // Search listed namespace(s) for jpg, gif and finally png image or txt page with requested filename
     foreach ($ns as $value) {
         // In case we are in a farm, we have to make sure we search in animal's data or conf dir by starting at DOKU_CONF directory (will however work if not in a farm)
@@ -596,17 +462,6 @@ function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $
             }
         } elseif ($type == "media") {
             $result = glob(DOKU_CONF.'../'.$conf['savedir'].'/media'.$value.'/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
-            //$result = glob($path.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
-//if ($fileName == "banner") {
-//dbg(DOKU_CONF.'../'.$conf['savedir'].'/media'.$value.'/'.$fileName);
-//dbg($result);
-//dbg("bingo");
-//}
-
-            // If no result, let's try in template images
-            //if ($result == null) {
-            //    $result = glob(DOKU_CONF.'../lib/tpl/mixture/images/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
-            //}
         } elseif ($type == "conf") {
             $result = glob(DOKU_CONF.'tpl/mixture'.$value.'/'.$fileName.'.ini');
         } else {
@@ -643,13 +498,11 @@ function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $
     if (count($multiReturn) > 0) {
         //dbg($multiReturn);
         return $multiReturn;
+    // if we were looking for an image, let's try default Mixture images
     } elseif ($type == "media") {
         $result = glob(DOKU_CONF.'../lib/tpl/mixture/images/'.$fileName.'.{jpg,gif,png}', GLOB_BRACE);
         if ($result[0] != null) {
             $imageSize = getimagesize($result[0]);
-            //dbg($imageSize);
-            //dbg($result[0]);
-            //$path_parts = pathinfo(explode("pages", $result[0])[1]);
             return array('mediaId' => null, 'filePath' => $result[0], 'imageSize' => $imageSize);
         }
     }
@@ -667,75 +520,45 @@ function php_mixture_ui_link($element, $basens = null) {
     global $mixture;
 
     
-//dbg($element);
-//dbg($classes);
-    //if ($element == "titleLink") {
-    //    $classes = "color-primary";
-    //} elseif ($element == "taglineLink") {
-    //    $classes = "color-primary";
-    //}
     if (($element != null) && (tpl_getConf($element) != "none")) {
         if (tpl_getConf($element) == "parent_namespace") {
-            // if there's only one known parent we're on wiki start page and there's no need for a link
+            // if there's only one known parent we're on wiki start page and there's no need for a link to a parent
             if (count($mixture['parents']) == 1) {
-//dbg("ici?");
-                //return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('parent_namespace'));
                 return null;
             // if there's 2 known parents first one is current ns start page and 2nd one is wiki home
             } elseif ((count($mixture['parents']) == 2) and ($mixture['parents'][1] == $conf['start'])) {
-//dbg("là?");
                 return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
             // if there's more than 2 known parents first one is current ns start page and we want 2nd one (parent ns start page)
             } elseif (count($mixture['parents']) > 1) {
-//dbg("ben?");
                 return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('parentns'), 'classes' => $classes);
             } else {
-//dbg("merde");
                 return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
             }
         } elseif (tpl_getConf($element) == "namespace_start") {
             // if there's at least one parent and current page isn't a start page we want a link to current ns start page
             if ((count($mixture['parents']) >= 1) && (strpos($ID, $conf['start']) === false)) {
-//dbg($classes);
                 return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('nshome'), 'classes' => $classes);
-            //} elseif ((count($mixture['parents']) >= 1) && (strpos($ID, $conf['start']) !== false)) {
-            //    return null;
             } elseif ($basens != null) {
                 $target = ltrim(php_mixture_file($conf['start'],"inherit","page",$basens,true), ":");
                 return array('target' => wl($target), 'label' => $target, 'classes' => "");
             } else {
-                //return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h");
                 return null;
             }
         } elseif (tpl_getConf($element) == "dynamic") {
             // if we know more than one parent and current page isn't a start page we're on a random page and we want current NS start page
             if ((count($mixture['parents']) > 1) && (strpos($ID, $conf['start']) === false)) {
                 return array('target' => wl($mixture['parents'][0]), 'label' => tpl_getLang('nshome'), 'classes' => $classes);
-            // if we know 2 parents and current page is a start page, we want parent NS start page wich happens to be wiki home
-//            } elseif ((count($mixture['parents']) == 2) && (strpos($ID, $conf['start']) !== false)) {
-//                return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
             // if we know only one parent and current page isn't a start page we're on random page of wiki root and we want wiki start page OR we know 2 parents and current page is a start page, we want parent NS start page wich happens to be wiki home
             } elseif (((count($mixture['parents']) == 1) && (strpos($ID, $conf['start']) === false)) or ((count($mixture['parents']) == 2) && (strpos($ID, $conf['start']) !== false))) {
-//            // if we know only one parent and current page isn't a start page we're on random page of wiki root and we want wiki start page
-//            } elseif ((count($mixture['parents']) == 1) && (strpos($ID, $conf['start']) === false)) {
                 return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
-// WHAT ABOUT GOING TO LANDING FROM WIKI STAR PAGE? ACTUALLY LINKS TO WIKI START WHEN ALLREADY THERE
-            // if we know at least one parent but current page is a start page, we want parent NS start page
+            // if we know at least one parent and current page is not a start page, we want parent NS start page
             } elseif ((count($mixture['parents']) > 1) && (strpos($ID, $conf['start']) !== false)) {
                 return array('target' => wl($mixture['parents'][1]), 'label' => tpl_getLang('parentns'), 'classes' => $classes);
             } else {
                 return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
             }
         } elseif (tpl_getConf($element) == "image_namespace_start") {
-//                                //$imageParent = _namespaced_imageParent($mixture['images'][tpl_getConf('sidebarImage')]['mediaId']);
-////dbg($mixture['images'][tpl_getConf('sidebarImage')]['mediaId']);
-//                                //$imageParent = _namespaced_file($conf['start'], "inherit", "page", $mixture['images'][tpl_getConf('sidebarImage')]['mediaId'], true);
             $imageParent = php_mixture_file($conf['start'], "namespace", "page", substr($mixture['images'][tpl_getConf('sidebarImage')]['mediaId'], 0, strrpos($mixture['images'][tpl_getConf('sidebarImage')]['mediaId'], ':')), true);
-////dbg($imageParent);
-//                                tpl_link(
-//                                    wl($imageParent),
-//                                    '<img src="'.ml($mixture['images'][tpl_getConf('sidebarImage')]['mediaId'],'',true).'" width="100%" height="auto" title="'.$imageParent.'" alt="*'.tpl_getConf('sidebarImage').'*" />'
-//                                );
             if ($imageParent != ":".$ID) {
                 return array('target' => wl($imageParent), 'label' => $imageParent);
             } else {
@@ -743,31 +566,13 @@ function php_mixture_ui_link($element, $basens = null) {
             }
         } elseif (tpl_getConf($element) == "other") {
             if ((isset($mixture['images']['other']['mediaId'])) and ($mixture['images']['other']['mediaId'] != null)) {
-//dbg($element);
                 $classes = "hasOverlay";
                 //return ml("ars5:sigrid:portrait.jpg",'',false);
                 return array('target' => ml($mixture['images']['other']['mediaId'],'',true), 'label' => $mixture['images']['other']['label'], 'classes' => $classes);
             } else {
                 return null;
             }
-            //} elseif (($element == "sidebarImageLink") and (tpl_getConf("sidebarImageLink") == "other") and (isset($mixture['images']['other']['mediaId'])) and ($mixture['images']['other']['mediaId'] != null)) {
-            //    $classes = "hasOverlay";
-            //    return array('target' => ml($mixture['images']['other']['mediaId'],'',true), 'label' => $mixture['images']['other']['label'], 'classes' => $classes);
-            //} elseif (tpl_getConf($element) == "image_namespace_start") {
-//dbg("bingo");
-//dbg($element);
-//dbg(tpl_getConf($element));
-//            $imageParent = _namespaced_imageParent($mixture['images'][tpl_getConf($element)]['mediaId']);
-//dbg($imageParent);
-                            //if ($imageParent != null) {
-                            //    tpl_link(
-                            //        wl($imageParent),
-                            //        '<img id="sidebarImage" src="'.$sidebarImage.'" width="100%" height="auto" title="'.$imageParent.'" alt="*'.tpl_getConf('sidebarImage').'*" />'
-                            //    );
-
         } else {
-//dbg($element);
-//dbg(tpl_getConf($element));
             return array('target' => wl(), 'label' => tpl_getLang('wikihome'), 'accesskey' => "h", 'classes' => $classes);
         }
     } else {
@@ -785,10 +590,6 @@ function php_mixture_branding($element) {
 
     if ((tpl_getConf('dynamicBranding') == true) && ($ID != $conf['start']) && (($ACT == "show") or ($ACT == "edit") or ($ACT == "preview"))) {
         if ($element == "title") {
-//dbg(tpl_pagetitle('', false));
-//dbg(tpl_pagetitle('', true));
-//dbg(tpl_pagetitle($ID, false));
-//dbg(tpl_pagetitle($ID, true));
             return php_mixture_pagetitle($ID);
         } elseif ($element == "tagline") {
             return $conf['title'];
@@ -816,7 +617,6 @@ function php_mixture_branding($element) {
  * @param string $id page id
  */
 function php_mixture_pagetitle($target = null, $context = null) {
-    //global $ACT, $INPUT, $conf, $lang;
     global $trs, $conf;
 
     // By default, page name will be equal to it's ID
@@ -908,7 +708,6 @@ function php_mixture_lastchanges($context = null) {
         if ($context == "landing") {
             $details .= ".";
         }
-        //print '<li title="'.$value['id'].'">';
         print '<li title="'.$details.'">';
             if ($value['media']) {
                 if (is_file($mediaPath."/".str_replace(":", "/", $value['id']))) {
@@ -942,8 +741,6 @@ function php_mixture_lastchanges($context = null) {
                 $by = " ".$lang['by']." ";
             }
             if ($context == null) {
-                //print '<span class="display-none xs-display-initial md-display-none wd-display-initial">'.$by.'<span class="text-capitalize"><bdi>'.$value['user'].'</bdi></span></span>';
-                //print '<span class="display-none xs-display-initial">'.$by.'<span class="camelcase"><bdi>'.$value['user'].'</bdi></span></span>';
                 print '<span>'.$by.'<span class="camelcase"><bdi>'.$value['user'].'</bdi></span></span>';
             }
             $i++;
@@ -963,38 +760,25 @@ function php_mixture_breadcrumbs() {
     if(!$conf['breadcrumbs']) return false;
 
     $crumbs = breadcrumbs(); //setup crumb trace
-//dbg($crumbs);
+
     // Make sure current page crumb is last in list (this also occurs with 'dokuwiki' template so it seems to be a core code minor bug)
     // COULD BE FIXED WITH FOLLOWING LINE BUT THIS BREAKS TWISTIENAV AS IT IS BASED ON CORE BREADCRUMBS()
     //$value = $crumbs[$ID];
     //unset($crumbs[$ID]);
     //$crumbs = array_merge($crumbs); 
     //$crumbs[$ID] = $value;
-//dbg($crumbs);
 
 
     if (count($crumbs) > 0) {
         //render crumbs, highlight the last one
         print '<ul>';
-//        if (tpl_getConf('breadcrumbsStyle') == "classic") {
-            print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['trace'].'</span><span class="tiny-hidden label">'.$lang['breadcrumb'].'</span></li>';
-//        }
+        print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['trace'].'</span><span class="tiny-hidden label">'.$lang['breadcrumb'].'</span></li>';
         $last = count($crumbs);
         $i    = 0;
         foreach($crumbs as $target => $name) {
             $i++;
             print '<li>';
-              //if (page_exists($target)) {
-              //  $class = "wikilink1";
-              //} else {
-              //  $class = "wikilink2";
-              //}
               if (count(explode(":",$target)) == 1) { $target = ":".$target; }
-              //if (p_get_metadata($target, 'plugin_croissant_bctitle') != null) {
-              //  tpl_pagelink($target, p_get_metadata($target, 'plugin_croissant_bctitle'));
-              //} else {
-              //  tpl_pagelink($target);
-              //}
               php_mixture_icon($target);
               tpl_pagelink(":".$target, php_mixture_pagetitle($target, "breadcrumbs"));
             print '</li>';
@@ -1024,16 +808,8 @@ function php_mixture_youarehere() {
     $count = count($parts);
 
     print '<ul>';
-//    if (tpl_getConf('breadcrumbsStyle') == "classic") {
-//        print '<li><span class="glyph-16 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['location'].$mixture['glyphs']['map'].'</span><span class="tiny-hidden">'.$lang['youarehere'].'</span></li>';
-        print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['youarehere'].'</span><span class="tiny-hidden label">'.$lang['youarehere'].'</span></li>';
-//    }
+    print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['youarehere'].'</span><span class="tiny-hidden label">'.$lang['youarehere'].'</span></li>';
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
-    //if ((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) {
-    // this was a test to also enable adding untranslated start page before translated start page but this is not very logic and dosn't work at all since DW transforms link into one leading to translated ns
-    //if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or ((!plugin_isdisabled('translation')) and (isset($trs['defaultLang'])) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) or (plugin_isdisabled('translation'))) {
-    //if (((isset($trs['parts'][0])) and (isset($trs['defaultLang'])) and ($trs['parts'][0] == $trs['defaultLang'])) or  (plugin_isdisabled('translation'))) {
-    //if ((isset($trs['parts'][0])) and (strpos($conf['plugin']['translation']['translations'], $trs['defaultLang']) === false)) {
     if (((isset($trs['parts'][0])) && ((strlen($trs['parts'][0]) == 0) || ($trs['parts'][0] == $trs['defaultLang']))) || (plugin_isdisabled('translation'))) {
         print '<li>';
             php_mixture_icon($conf['start']);
@@ -1046,20 +822,10 @@ function php_mixture_youarehere() {
         $part .= $parts[$i].':';
         $page = $part;
         if (substr($page, -1) == ":") { $page .= $conf['start']; }
-        //if($page == $conf['start']) continue; // Skip startpage
-        // skip if current target leads to untranslated wiki start
-//        if ((isset($trs['defaultLang'])) and ($page != $trs['defaultLang'].":")) {
-            print '<li>';
-            //if (p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle') != null) {
-            //    tpl_pagelink($page, p_get_metadata($page.$conf['start'], 'plugin_croissant_bctitle'));
-            //} else {
-            //    tpl_pagelink($page);
-            //}
-            php_mixture_icon($page);
-            tpl_pagelink(":".$page, php_mixture_pagetitle($page, "breadcrumbs"));
-            //dbg($page);
-            echo "</li>";
-//        }
+        print '<li>';
+        php_mixture_icon($page);
+        tpl_pagelink(":".$page, php_mixture_pagetitle($page, "breadcrumbs"));
+        echo "</li>";
     }
 
     // print current page, skipping start page, skipping for namespace index
@@ -1075,11 +841,6 @@ function php_mixture_youarehere() {
     }
     print '<li>';
         php_mixture_icon($page);
-        //if (p_get_metadata($page, 'plugin_croissant_bctitle') != null) {
-        //    tpl_pagelink(":".$page, p_get_metadata($page, 'plugin_croissant_bctitle'));
-        //} else {
-        //    tpl_pagelink(":".$page);
-        //}
         tpl_pagelink(":".$page, php_mixture_pagetitle($page, "breadcrumbs"));
     echo "</li>";
     echo "</ul>";
@@ -1098,37 +859,32 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
     global $mixture, $trs, $conf;
 
     if ($what == "page") {
-      $tmp = explode(":", ltrim($target, ":"));
-      if ($context == "breadcrumbs") {
-        // Add glyph before user's public page
-        if ((count($tmp) == 2) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns']))) {
-          //dbg("ici?".$name);
-          $icon =  '<span class="glyph-18" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['userpublic'].'</span>';
-        // Add glyph before user's private namespace
-        } elseif ((count($tmp) == 3) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns'])) && ($tmp[2] == $conf['start'])) {
-          //dbg("ici?".$name);
-          $icon =  '<span class="glyph-18" title="'.tpl_getLang('privatens').'">'.$mixture['glyphs']['userprivate'].'</span>';
-        // Add a flag SVG image before translations
-        } elseif ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
-          //dbg("ici?".$name);
-          //$name = "<".$tmp[1].">".$name;
-          $icon =  '<span class="glyph-18" title="<'.$tmp[0].'>">'.$mixture['glyphs']['translation'].'</span>';
-        // Add a house SVG image before home
-        } elseif (ltrim($target, ":") == $conf['start']) {
-          //dbg("sob?".$name.tpl_getLang('wikihome'));
-          $icon =  '<span class="glyph-18" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
+        $tmp = explode(":", ltrim($target, ":"));
+        if ($context == "breadcrumbs") {
+            // Add glyph before user's public page
+            if ((count($tmp) == 2) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns']))) {
+                $icon =  '<span class="glyph-18" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['userpublic'].'</span>';
+            // Add glyph before user's private namespace
+            } elseif ((count($tmp) == 3) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns'])) && ($tmp[2] == $conf['start'])) {
+                $icon =  '<span class="glyph-18" title="'.tpl_getLang('privatens').'">'.$mixture['glyphs']['userprivate'].'</span>';
+            // Add a flag SVG image before translations
+            } elseif ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
+                $icon =  '<span class="glyph-18" title="<'.$tmp[0].'>">'.$mixture['glyphs']['translation'].'</span>';
+            // Add a house SVG image before home
+            } elseif (ltrim($target, ":") == $conf['start']) {
+                $icon =  '<span class="glyph-18" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
+            }
+        } else {
+            $icon =  '<span class="glyph-18" title="'.$target.' ('.$context.' '.$page.')">'.$mixture['glyphs']['default'].'</span>';
         }
-      } else {
-        //dbg("là?".$name);
-      }
     } else {
-      //dbg("grr?".$name);
+        $icon =  '<span class="glyph-18" title="'.$target.' ('.$context.' '.$page.')">'.$mixture['glyphs']['default'].'</span>';
     }
 
     if ($return == true) {
-      return $icon;
+        return $icon;
     } else {
-      print $icon;
+        print $icon;
     }
 }
 
@@ -1149,6 +905,7 @@ function php_mixture_pagenav() {
             $exclusions .= tpl_getconf('topbar');
         }
     }
+
     // List other pages in same namespace
     foreach($mixture['tree'] as $key => $value) {
         if (($value['type'] == "pg") && ($value['id'] != $ID) && (strpos($exclusions, end(explode(":", $value['id']))) === false)) {
