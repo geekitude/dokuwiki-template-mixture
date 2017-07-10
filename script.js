@@ -64,11 +64,15 @@ function js_mixture_resize(){
     jQuery('html').removeClass(device_classes).addClass(device_class);
 
     // handle some layout changes based on change in device
+    var $bannertools = jQuery('#mixture__banner_nav h3.toggle');
     var $aside = jQuery('#mixture__sidebar h3.toggle');
     var $toc = jQuery('#dw__toc h3');
 
     if (device_class.match(/desktop/)){
         // reset for desktop mode
+        if($bannertools.length) {
+            $bannertools[0].setState(1);
+        }
         if($aside.length) {
             $aside[0].setState(1);
         }
@@ -79,6 +83,9 @@ function js_mixture_resize(){
 
     if (device_class.match(/mobile/)){
         // toc and sidebar collapsed (toggles with titles shown)
+        if($bannertools.length) {
+            $bannertools[0].setState(-1);
+        }
         if($aside.length) {
             $aside.show();
             $aside[0].setState(-1);
@@ -155,6 +162,7 @@ jQuery(document).ready(function() {
     jQuery(function(){
         var resizeTimer;
         dw_page.makeToggle('#mixture__sidebar h3.toggle','#mixture__sidebar div.content');
+        dw_page.makeToggle('#mixture__banner_nav h3.toggle','#mixture__banner_nav div.content');
 
         // Proceed first run of resize watcher functions
         js_mixture_resize();

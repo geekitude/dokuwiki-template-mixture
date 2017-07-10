@@ -105,6 +105,10 @@ table,
 .table {
     border: none;
 }
+header ul,
+#mixture__pagenav ul {
+    list-style: none;
+}
 main {
     padding: @ini_spacer;
 }
@@ -135,7 +139,6 @@ main,
     width: 100%
 }
 #mixture__topbar ul {
-    list-style: none;
     padding: 0;
 }
 [dir=ltr] #mixture__topbar_date {
@@ -165,8 +168,11 @@ main,
 [dir=rtl] #mixture__branding_logo_image {
     margin: @ini_spacer 0 @ini_spacer @ini_spacer;
 }
-#mixture__branding_text {
-    margin: 0 0 @ini_spacer 0;
+[dir=ltr] #mixture__branding_text {
+    margin: @ini_spacer @ini_spacer @ini_spacer 0;
+}
+[dir=rtl] #mixture__branding_text {
+    margin: @ini_spacer 0 @ini_spacer @ini_spacer;
 }
 #mixture__title {
     color: @ini_color_primary;
@@ -182,7 +188,6 @@ div.breadcrumbs div.youarehere {
     padding: calc(@ini_spacer / 4) 0 calc(@ini_spacer / 4) 0;
 }
 #mixture__pagenav ul {
-    list-style: none;
     margin:0;
     padding: 0;
     flex-direction: row-reverse;
@@ -656,6 +661,42 @@ pre.dbg {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+}
+
+/* =BANNER INCLUDE HOOK
+----------------------------------------------- */
+#mixture__banner_nav {
+    width: 100%;
+    min-width: 250px;
+    background-color: @ini_background_neu;
+    padding: calc(@ini_spacer / 2);
+    z-index: 1;
+}
+#mixture__banner_nav h3.toggle {
+    font-size: 80%;
+    padding: 0;
+}
+@media (min-width: 768px) {
+    #mixture__banner_nav h3.toggle {
+        display: none;
+    }
+}
+@media (min-width: 1201px) {
+    #mixture__branding {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+    }
+    #mixture__banner_nav {
+        width: auto;
+    }
+    [dir=ltr] #mixture__banner_nav {
+        margin: @ini_spacer @ini_spacer @ini_spacer 0;
+    }
+    [dir=rtl] #mixture__banner_nav {
+        margin: @ini_spacer 0 @ini_spacer @ini_spacer;
+    }
 }
 
 @media (min-width: 544px) {
