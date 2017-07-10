@@ -314,8 +314,9 @@ main {
     padding: 0;
 }
 #mixture__footer {
-    margin-top: @ini_spacer;
     padding: @ini_spacer;
+    background-color: @ini_color_headings;
+    color: @ini_text_neu;
 }
 p.skip {
     text-align: center;
@@ -453,12 +454,25 @@ div.notify,
 div.success,
 div.error {
     width: 90%;
+}
+div.primary {
+    width: 50%;
+}
+#mixture__sidebar div.primary {
+    width: 85%;
+}
+div.info,
+div.notify,
+div.success,
+div.error,
+div.primary {
     margin: calc(@ini_spacer / 4) auto calc(@ini_spacer / 4) auto;
 }
 div.info a,
 div.notify a,
 div.success a,
-div.error a {
+div.error a,
+div.primary a {
     color: @ini_color_white;
 }
 div.info {
@@ -472,6 +486,11 @@ div.success {
 }
 div.error {
     background-color: @ini_color_red;
+}
+div.primary {
+    background-color: @ini_color_primary;
+    padding: (@ini_spacer / 2);
+    border-radius: (@ini_spacer / 2);
 }
 div.footnotes {
     margin: @ini_spacer auto 0 auto !important;

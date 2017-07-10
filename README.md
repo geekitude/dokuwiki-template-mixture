@@ -16,16 +16,18 @@ Experimental template based on DW's minimal Starter template, [KNACCS](http://kn
 * Sidebar can be wrapped inside main content instead of blocking a long column
 * ToC and Sidebar can both be extracted from main content when there's enough room: Toc becomes fixed while Sidebar scrolls with main content as usual (will hopefully be sticky some day)
 * Optional "scrollspy" ToC on wide screen
-* Dokuwiki's standard include hooks (based on [this document](https://www.dokuwiki.org/include_hooks) and starter template) as well as a few additions that can be easily put in place simply renaming corresponding `.html.sample` file located in the template directory (e.g. *lib/tpl/mixture/*) into `.html`
+* Dokuwiki's standard include hooks (based on [this document](https://www.dokuwiki.org/include_hooks) and starter template) as well as a few additions that can be easily put in place simply renaming corresponding `.html.includesample` file located in the template directory (e.g. *lib/tpl/mixture/*) into `.html`
   * *meta.html* : just before HTML head closing tag (use this to add additional styles or metaheaders)
-  * *title.html* : replace default basic site title by anything you want like a multi-colors string (note that site title should allways be an html string, not an image)
-  * *banner.html*(*) : replace image banner with some more dynamic and smarter HTML code
-  * *header.html*(*) : right at the begining of nav area
+  * *headerheader.html* : right above *branding* area (logo, title, ...)
+  * *title.html*(*) : replace default basic site title by anything you want like a multi-colors string (note that site title should allways be an html string, not an image)
+  * *banner.html*(*) : replace image banner with anything like some more dynamic and smarter HTML code
+  * *headerfooter.html* : right between *breadcrumbs* area and *pagenav*
   * *sidebarheader.html* : before *sidebar* content (but after sidebar header image)
   * *sidebarfooter.html* : after *sidebar* content
   * *pageheader.html* : below *breadcrumbs*, above the actual page content
-  * *pagefooter.html* : inside Namespaced footer, below  the last changed Date
-  * *footer.html* : at the very end of the page just before the body closing tag
+  * *pagefooter.html* : just above Mixture footer, below  the last changed Date
+  * *footerheader.html* : right after *footer*'s *last changed* line
+  * *footerfooter.html* : just above *footer*'s closing tag
 (*) these include hooks take the place of a standard element, they are not added to default page layout
 
 ## Third Party Modules

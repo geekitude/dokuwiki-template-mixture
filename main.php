@@ -32,7 +32,6 @@ $showSidebar = $hasSidebar && ($ACT=='show');
     </head>
     <body id="dokuwiki__top" class="<?php echo tpl_classes();?><?php echo ($showSidebar) ? ' showSidebar' : ''; ?><?php echo php_mixture_classes();?> inline-pagenav-dropdown">
         <div id="mixture__site">
-            <?php tpl_includeFile('header.html') ?>
             <!-- ********** HEADER ********** -->
             <header id="mixture__header" role="banner" class="pam">
                 <!-- TOPBAR (with date & last changes) -->
@@ -87,6 +86,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                 <p class="a11y skip">
                     <a href="#mixture__content"><?php echo $lang['skip_to_content'] ?></a>
                 </p>
+                <?php tpl_includeFile('headerheader.html') ?>
                 <!-- BRANDING -->
                 <div id="mixture__branding" class="flex-container-h flexjustifybetween">
                     <div id="mixture__branding_start" class="flex-container-h flexjustifycenter flexaligncenter">
@@ -113,7 +113,9 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             </div><!-- /#mixture__branding_logo -->
                         <?php endif ?>
                         <div id="mixture__branding_text">
-                            <?php if ((tpl_getConf('dynamicBranding') == 1) && ($ID <> $conf['start']) && ($ACT == 'show')): ?>
+                            <?php if (file_exists(tpl_incdir().'title.html')) : ?>
+                                <?php tpl_includeFile('title.html'); ?>
+                            <?php elseif ((tpl_getConf('dynamicBranding') == 1) && ($ID <> $conf['start']) && ($ACT == 'show')): ?>
                                 <h1 id="mixture__title">
                                     <?php
                                         // display wiki title as a link depending on titleLink setting
@@ -165,7 +167,9 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         </div>
                     </div>
                     <div id="mixture__branding_end" class="flex-container-h flexjustifycenter flexaligncenter">
-                        <?php if ($mixture['images']['banner'] != null) : ?>
+                        <?php if (file_exists(tpl_incdir().'banner.html')) : ?>
+                            <?php tpl_includeFile('banner.html'); ?>
+                        <?php elseif ($mixture['images']['banner'] != null) : ?>
                             <div id="mixture__branding_banner">
                                 <?php
                                     $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
@@ -209,6 +213,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                     </div>
                 <?php } ?>
                 <!-- <div class="clearfix"><hr /></div> -->
+                <?php tpl_includeFile('headerfooter.html') ?>
             </header>
             <aside id="mixture__pagenav" class="flex-container-h">
                 <?php
@@ -246,6 +251,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                     <aside id="mixture__sidebar" class="mod aside">
                         <h3 class="toggle"><?php echo $lang['sidebar'] ?></h3>
                         <div class="content" role="complementary">
+                            <div style="width: 100%; text-align: center"><img src="/lib/tpl/mixture/images/sidebar.jpg" title="sample" alt="*sidebar*" width="230" height="300" /></div>
                             <?php
                                 if (isset($mixture['images']['sidebar']['mediaId'])) {
                                     $sidebarImage = ml($mixture['images']['sidebar']['mediaId'],'',true);
@@ -284,62 +290,9 @@ $showSidebar = $hasSidebar && ($ACT=='show');
             <!-- ********** FOOTER ********** -->
             <footer id="mixture__footer" role="contentinfo" class="pam pt0">
                 <div class="pageInfo small"><span><?php tpl_pageinfo() ?></span></div>
-                <div class="tools">
-                    <!-- SITE TOOLS -->
-                    <div id="dokuwiki__sitetools">
-                        <h3><?php echo $lang['site_tools'] ?></h3>
-                        <?php tpl_searchform() ?>
-                        <ul>
-                            <?php
-                                tpl_toolsevent('sitetools', array(
-                                    'recent'    => tpl_action('recent', 1, 'li', 1),
-                                    'media'     => tpl_action('media', 1, 'li', 1),
-                                    'index'     => tpl_action('index', 1, 'li', 1),
-                                ));
-                            ?>
-                        </ul>
-                    </div><!-- /#dokuwiki__sitetools -->
-                    <!-- PAGE TOOLS -->
-                    <div id="dokuwiki__pagetools">
-                        <h3><?php echo $lang['page_tools'] ?></h3>
-                        <ul>
-                            <?php
-                                tpl_toolsevent('pagetools', array(
-                                    'edit'      => tpl_action('edit', 1, 'li', 1),
-                                    'revisions' => tpl_action('revisions', 1, 'li', 1),
-                                    'backlink'  => tpl_action('backlink', 1, 'li', 1),
-                                    'subscribe' => tpl_action('subscribe', 1, 'li', 1),
-                                    'revert'    => tpl_action('revert', 1, 'li', 1),
-                                    'top'       => tpl_action('top', 1, 'li', 1),
-                                ));
-                            ?>
-                        </ul>
-                    </div><!-- /#dokuwiki__pagetools -->
-                    <!-- USER TOOLS -->
-                    <?php if ($conf['useacl']): ?>
-                        <div id="dokuwiki__usertools">
-                            <h3><?php echo $lang['user_tools'] ?></h3>
-                            <ul>
-                                <?php
-                                    if (!empty($_SERVER['REMOTE_USER'])) {
-                                        echo '<li class="user">';
-                                            tpl_userinfo();
-                                        echo '</li>';
-                                    }
-                                ?>
-                                <?php
-                                    tpl_toolsevent('usertools', array(
-                                        'admin'     => tpl_action('admin', 1, 'li', 1),
-                                        'profile'   => tpl_action('profile', 1, 'li', 1),
-                                        'register'  => tpl_action('register', 1, 'li', 1),
-                                        'login'     => tpl_action('login', 1, 'li', 1),
-                                    ));
-                                ?>
-                            </ul>
-                        </div>
-                    <?php endif ?>
-                </div><!-- /.tools -->
+                <?php tpl_includeFile('footerheader.html'); ?>
                 <?php tpl_license('button') ?>
+                <?php tpl_includeFile('footerfooter.html'); ?>
             </footer>
             <?php tpl_includeFile('footer.html') ?>
         </div><!-- /#mixture__site -->
