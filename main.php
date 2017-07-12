@@ -37,7 +37,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                 <!-- TOPBAR (with date & last changes) -->
                 <?php if ((strpos(tpl_getConf('elements'), 'topbar_date') !== false) or (strpos(tpl_getConf('elements'), 'topbar_lastchanges') !== false) or (strpos(tpl_getConf('elements'), 'topbar_links') !== false)) : ?>
                     <div id="mixture__topbar" class="smaller clearfix">
-                        <div class="flex-container-h flexjustifybetween">
+                        <div class="flex-container-h justify-between">
                             <ul class="flex-container-h">
                                 <?php if (strpos(tpl_getConf('elements'), 'topbar_date') !== false) : ?>
                                     <li id="mixture__topbar_date" class="camelcase">
@@ -88,8 +88,8 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                 </p>
                 <?php tpl_includeFile('headerheader.html') ?>
                 <!-- BRANDING -->
-                <div id="mixture__branding" class="flex-container-v flexjustifybetween">
-                    <div id="mixture__branding_start" class="flex-container-h flexjustifycenter flexaligncenter">
+                <div id="mixture__branding" class="flex-container-h justify-between">
+                    <div id="mixture__branding_start" class="flex-container-h items-center">
                         <?php if ($mixture['images']['logo'] != null) : ?>
                             <div id="mixture__branding_logo">
                                 <?php
@@ -139,11 +139,11 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                     ?>
                                 </h1>
                             <?php else: ?>
-                                <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="'.tpl_getLang('wikihome').' [H]"') ?></h1>
+                                <h1 id="mixture__title"><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="'.tpl_getLang('wikihome').' [H]"') ?></h1>
                             <?php endif; ?>
                             <?php if ($conf['tagline']): ?>
                                 <?php
-                                    print "<p class='tagline'>";
+                                    print "<p id='mixture__tagline'>";
                                         // display wiki tagline as a link depending on taglineLink setting
                                         $link = php_mixture_ui_link("taglineLink");
                                         $text = php_mixture_branding("tagline");
@@ -166,7 +166,8 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             <?php endif ?>
                         </div>
                     </div>
-                    <div id="mixture__branding_end" class="flex-container-h flexjustifycenter flexaligncenter">
+                    <div id="mixture__branding_end" class="flex-container-h items-center">
+                        <?php tpl_includeFile('bannerheader.html'); ?>
                         <?php if (file_exists(tpl_incdir().'banner.html')) : ?>
                             <?php tpl_includeFile('banner.html'); ?>
                         <?php elseif ($mixture['images']['banner'] != null) : ?>
@@ -195,6 +196,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                 ?>
                             </div><!-- /#mixture__branding_banner -->
                         <?php endif ?>
+                        <?php tpl_includeFile('bannerfooter.html'); ?>
                     </div>
                 </div><!-- /#mixture__branding -->
                 <aside id="mixture__alerts">

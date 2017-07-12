@@ -111,6 +111,18 @@ function js_mixture_branding(){
     if (brandingWidth > brandingLogoWidth + brandingTextWidth) {
         jQuery('#mixture__branding_text').css("text-align","initial");
     }
+    //var brandingWidth = jQuery('#mixture__branding').width();
+    //var brandingStartWidth = jQuery('#mixture__branding_start').width();
+    //var brandingEndWidth = jQuery('#mixture__branding_end').width();
+    //var brandingStartLeft = jQuery('#mixture__branding_start').offset().left;
+    //var brandingEndLeft = jQuery('#mixture__branding_end').offset().left;
+    //console.log(brandingStartLeft);
+    //console.log(brandingEndLeft);
+    //if ((brandingWidth < brandingStartWidth + brandingEndWidth) && (brandingStartLeft != brandingEndLeft)) {
+    ////if (brandingWidth < brandingStartWidth + brandingEndWidth) {
+    //    console.log("eh ben?");
+    //    jQuery('#mixture__branding_start').css("padding-bottom","1rem");
+    //}
 }
 
 function js_mixture_pagenav(){
