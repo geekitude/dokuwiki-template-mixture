@@ -250,6 +250,7 @@ function php_mixture_init() {
     $mixture['glyphs']['trace'] = null;
     $mixture['glyphs']['translation'] = null;
     $mixture['glyphs']['userprivate'] = null;
+    $mixture['glyphs']['userprofile'] = null;
     $mixture['glyphs']['userpublic'] = null;
     $mixture['glyphs']['youarehere'] = null;
     foreach ($mixture['glyphs'] as $key => $value) {
