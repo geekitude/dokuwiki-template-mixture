@@ -28,6 +28,7 @@ $conf['taglineLink']        = 'parent_namespace';
 $conf['bannerLink']         = 'home';
 $conf['sidebarLink']        = 'namespace_start';
 $conf['dynamicBranding']    = 1;
+$conf['mainNav']            = 'iconic';
 $conf['exclusions']         = 'sidebar,topbar,playground:*,user:*,wiki:*';
 $conf['extractToC']         = 1;
 $conf['scrollspyToC']       = 1;

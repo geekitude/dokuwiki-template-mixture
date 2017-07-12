@@ -167,36 +167,104 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         </div>
                     </div>
                     <div id="mixture__branding_end" class="flex-container-h items-center">
-                        <?php tpl_includeFile('bannerheader.html'); ?>
-                        <?php if (file_exists(tpl_incdir().'banner.html')) : ?>
-                            <?php tpl_includeFile('banner.html'); ?>
-                        <?php elseif ($mixture['images']['banner'] != null) : ?>
-                            <div id="mixture__branding_banner">
-                                <?php
-                                    $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
-                                    if ($mixture['images']['banner']['mediaId'] != null) {
+                        <div class="content">
+                            <?php tpl_includeFile('bannerheader.html'); ?>
+                            <?php if (file_exists(tpl_incdir().'banner.html')) : ?>
+                                <?php tpl_includeFile('banner.html'); ?>
+                            <?php elseif ($mixture['images']['banner'] != null) : ?>
+                                <div id="mixture__branding_banner">
+                                    <?php
                                         $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
-                                    } else {
-                                        $bannerImage = "/lib/tpl/mixture/images/banner.png";
-                                    }
-                                    $link = php_mixture_ui_link("bannerLink", substr($mixture['images']['banner']['mediaId'], 0, strrpos($mixture['images']['banner']['mediaId'], ':') + 1));
-                                    $title = "Banner";
-                                    if ($link != null) {
-                                        if ($link['accesskey'] != null) {
-                                            $link['label'] .= " [".strtoupper($link['accesskey'])."]";
-                                            $accesskey = 'accesskey="'.$link['accesskey'].'" ';
+                                        if ($mixture['images']['banner']['mediaId'] != null) {
+                                            $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
+                                        } else {
+                                            $bannerImage = "/lib/tpl/mixture/images/banner.png";
                                         }
-                                        tpl_link(
-                                            $link['target'],
-                                            '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" '.$accesskey.'title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />'
-                                        );
-                                    } else {
-                                        print '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />';
-                                    }
-                                ?>
-                            </div><!-- /#mixture__branding_banner -->
-                        <?php endif ?>
-                        <?php tpl_includeFile('bannerfooter.html'); ?>
+                                        $link = php_mixture_ui_link("bannerLink", substr($mixture['images']['banner']['mediaId'], 0, strrpos($mixture['images']['banner']['mediaId'], ':') + 1));
+                                        $title = "Banner";
+                                        if ($link != null) {
+                                            if ($link['accesskey'] != null) {
+                                                $link['label'] .= " [".strtoupper($link['accesskey'])."]";
+                                                $accesskey = 'accesskey="'.$link['accesskey'].'" ';
+                                            }
+                                            tpl_link(
+                                                $link['target'],
+                                                '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" '.$accesskey.'title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />'
+                                            );
+                                        } else {
+                                            print '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />';
+                                        }
+                                    ?>
+                                </div><!-- /#mixture__branding_banner -->
+                            <?php endif ?>
+                            <?php tpl_includeFile('bannerfooter.html'); ?>
+                            <?php if (tpl_getConf('mainNav') == "classic") : ?>
+                                <nav id="mixture__classic_nav" class="main-navigation" role="navigation">
+                                    <h3 class="toggle"><?php echo $lang['tools']; ?></h3>
+                                    <div class="content">
+                                        <section id="mixture__usertools" class="clearfix">
+                                            <ul>
+                                                <!-- SEARCH FORM -->
+                                                <li id="dw__search" class="widget search-wrap">
+                                                    <?php tpl_searchform() ?>
+                                                </li>
+                                                <!-- USER MENU -->
+                                                <li id="mixture__banner_nav_user" class="dropdown">
+                                                    <?php
+                                                        if ($_SERVER['REMOTE_USER'] != NULL) {
+                                                            if ($userAvatar) {
+                                                                echo $userAvatar;
+                                                            } else {
+                                                                echo "<span class='label glyph-24' title='".$lang['usertools']."'>".$mixture['glyphs']['userprofile']."</span>";
+                                                            }
+                                                            echo "<ul class='dropdown-content'>";
+                                                                tpl_toolsevent('usertools', array(
+                                                                    'admin'     => tpl_action('admin', 1, 'li', 1),
+                                                                    /*'userpage'  => _tpl_action('userpage', 1, 'li', 1),*/ /*IS BY DEFAULT RIGHT ABOVE IN p.user */
+                                                                    'profile'   => tpl_action('profile', 1, 'li', 1),
+                                                                    'register'  => tpl_action('register', 1, 'li', 1),
+                                                                    'login'     => tpl_action('login', 1, 'li', 1),
+                                                                ));
+                                                            echo "</ul>";
+                                                        } else {
+                                                            tpl_action('login', 1, '', 0, '', '', "<i class='im-sign-in'></i>");
+                                                        }
+                                                    ?>
+                                                </li><!-- /#mixture__banner_nav_user -->
+                                            </ul>
+                                        </section><!-- /#mixture__usertools -->
+                                        <section id="mixture__loggedinas" class="clearfix">
+                                            <!-- "LOGGEDINAS" -->
+                                            <?php
+                                                if (!empty($_SERVER['REMOTE_USER'])) {
+                                                    echo '<ul><li>';
+                                                        tpl_userinfo(); /* 'Logged in as ...' */
+                                                    echo '</li></ul>';
+                                                }
+                                            ?>
+                                        </section><!-- /#mixture__loggedinas -->
+                                        <!-- OTHER SITE TOOLS -->
+                                        <section id="mixture__sitetools" class="clearfix">
+                                            <h3 class="a11y"><?php echo $lang['site_tools'] ?></h3>
+                                            <ul>
+                                                <?php
+                                                    echo '<li>';
+                                                        tpl_link(wl(),tpl_getLang('wikihome'),'class="action home" accesskey="h" title="[H]"');
+                                                    echo '</li>';
+                                                ?>
+                                                <?php
+                                                    tpl_toolsevent('sitetools', array(
+                                                        'recent'    => tpl_action('recent', 1, 'li', 1),
+                                                        'media'     => tpl_action('media', 1, 'li', 1),
+                                                        'index'     => tpl_action('index', 1, 'li', 1),
+                                                    ));
+                                                ?>
+                                            </ul>
+                                        </section><!-- /#mixture__sitetools -->
+                                    </div><!-- /.content -->
+                                </nav><!-- /#mixture__banner_nav -->
+                            <?php endif ?>
+                        </div><!-- /.content -->
                     </div>
                 </div><!-- /#mixture__branding -->
                 <aside id="mixture__alerts">
