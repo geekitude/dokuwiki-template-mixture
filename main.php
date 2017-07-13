@@ -227,7 +227,19 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                                 ));
                                                             echo "</ul>";
                                                         } else {
-                                                            tpl_action('login', 1, '', 0, '', '', "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>");
+                                                            // if "register" action is disabled, show a simple link to login page
+                                                            if (strpos($conf['disableactions'], 'register') !== false) {
+                                                                tpl_action('login', 1, '', 0, '', '', "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>");
+                                                            // if "register" action is enabled, show a dropdown proposing both login or register actions
+                                                            } else {
+                                                                echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>";
+                                                                echo "<ul class='dropdown-content'>";
+                                                                    tpl_toolsevent('usertools', array(
+                                                                        'register'  => tpl_action('register', 1, 'li', 1),
+                                                                        'login'     => tpl_action('login', 1, 'li', 1),
+                                                                    ));
+                                                                echo "</ul>";
+                                                            }
                                                         }
                                                     ?>
                                                 </li><!-- /#mixture__classic_nav_user -->
@@ -361,20 +373,6 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                 <div class="pageInfo small"><span><?php tpl_pageinfo() ?></span></div>
                 <?php tpl_includeFile('footerheader.html'); ?>
                 <div class="tools">
-                    <!-- SITE TOOLS -->
-                    <div id="dokuwiki__sitetools">
-                        <h3><?php echo $lang['site_tools'] ?></h3>
-                        <?php tpl_searchform() ?>
-                        <ul>
-                            <?php
-                                tpl_toolsevent('sitetools', array(
-                                    'recent'    => tpl_action('recent', 1, 'li', 1),
-                                    'media'     => tpl_action('media', 1, 'li', 1),
-                                    'index'     => tpl_action('index', 1, 'li', 1),
-                                ));
-                            ?>
-                        </ul>
-                    </div><!-- /#dokuwiki__sitetools -->
                     <!-- PAGE TOOLS -->
                     <div id="dokuwiki__pagetools">
                         <h3><?php echo $lang['page_tools'] ?></h3>
