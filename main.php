@@ -261,6 +261,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                             <ul>
                                                 <?php
                                                     echo '<li>';
+                                                        echo php_mixture_icon($conf['start']);
                                                         tpl_link(wl(),tpl_getLang('wikihome'),'class="action home" accesskey="h" title="[H]"');
                                                     echo '</li>';
                                                 ?>
