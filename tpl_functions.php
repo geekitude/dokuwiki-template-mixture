@@ -245,6 +245,7 @@ function php_mixture_init() {
     $mixture['glyphs']['home'] = null;
     $mixture['glyphs']['lastchanges'] = null;
     $mixture['glyphs']['link'] = null;
+    $mixture['glyphs']['login'] = null;
     $mixture['glyphs']['parent'] = null;
     $mixture['glyphs']['search'] = null;
     $mixture['glyphs']['trace'] = null;
@@ -919,4 +920,31 @@ function php_mixture_pagenav() {
             print "<li class='tab'>".tpl_link(wl($value['id']), $pagename, 'class="'.$classes.'" title="'.$value['id'].'"', true)."</li>";
         }
     }
+}
+
+/**
+ * SEARCH FORM
+ * Adapted from core to have more control over input placeholder and button content
+ *
+ * See original function in inc/template.php for details
+ */
+function php_mixture_searchform($ajax = true, $autocomplete = true) {
+    global $lang, $ACT, $QUERY;
+    global $mixture;
+    // don't print the search form if search action has been disabled
+    if(!actionOK('search')) return false;
+    print '<form id="dw__search" class="" action="'.wl().'" accept-charset="utf-8" method="get" role="search">';
+    print '<div class="form-group">';
+    print '<input type="hidden" name="do" value="search" />';
+    print '<input type="text" ';
+    if($ACT == 'search') print 'value="'.htmlspecialchars($QUERY).'" ';
+    if(!$autocomplete) print 'autocomplete="off" ';
+    print 'id="qsearch__in" accesskey="f" name="id" class="form-control" title="[F]" placeholder="'.$lang['btn_search'].'" />';
+    print '<button type="submit" title="'.$lang['btn_search'].'"><span class="label glyph-24">'.$mixture['glyphs']['search'].'</span></button>';
+    if ($ajax) print '<div id="qsearch__out" class="navbar-form ajax_qsearch JSpopup';
+        if($autocomplete) print ' autocomplete';
+    print '"></div>';
+    print '</div>';
+    print '</form>';
+    return true;
 }

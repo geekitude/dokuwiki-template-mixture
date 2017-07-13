@@ -200,22 +200,22 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             <?php tpl_includeFile('bannerfooter.html'); ?>
                             <?php if (tpl_getConf('mainNav') == "classic") : ?>
                                 <nav id="mixture__classic_nav" class="main-navigation" role="navigation">
-                                    <h3 class="toggle"><?php echo $lang['tools']; ?></h3>
+                                    <h3 class="toggle tools"><?php echo $lang['tools']; ?></h3>
                                     <div class="content">
                                         <section id="mixture__usertools" class="clearfix">
                                             <ul>
                                                 <!-- SEARCH FORM -->
                                                 <li id="dw__search" class="widget search-wrap">
-                                                    <?php tpl_searchform() ?>
+                                                    <?php php_mixture_searchform() ?>
                                                 </li>
                                                 <!-- USER MENU -->
-                                                <li id="mixture__banner_nav_user" class="dropdown">
+                                                <li id="mixture__classic_nav_user" class="dropdown">
                                                     <?php
                                                         if ($_SERVER['REMOTE_USER'] != NULL) {
                                                             if ($userAvatar) {
                                                                 echo $userAvatar;
                                                             } else {
-                                                                echo "<span class='label glyph-24' title='".$lang['usertools']."'>".$mixture['glyphs']['userprofile']."</span>";
+                                                                echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['userprofile']."</span>";
                                                             }
                                                             echo "<ul class='dropdown-content'>";
                                                                 tpl_toolsevent('usertools', array(
@@ -227,10 +227,10 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                                 ));
                                                             echo "</ul>";
                                                         } else {
-                                                            tpl_action('login', 1, '', 0, '', '', "<i class='im-sign-in'></i>");
+                                                            tpl_action('login', 1, '', 0, '', '', "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>");
                                                         }
                                                     ?>
-                                                </li><!-- /#mixture__banner_nav_user -->
+                                                </li><!-- /#mixture__classic_nav_user -->
                                             </ul>
                                         </section><!-- /#mixture__usertools -->
                                         <section id="mixture__loggedinas" class="clearfix">
@@ -262,7 +262,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                             </ul>
                                         </section><!-- /#mixture__sitetools -->
                                     </div><!-- /.content -->
-                                </nav><!-- /#mixture__banner_nav -->
+                                </nav><!-- /#mixture__classic_nav -->
                             <?php endif ?>
                         </div><!-- /.content -->
                     </div>

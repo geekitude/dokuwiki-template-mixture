@@ -651,9 +651,7 @@ pre.dbg {
     padding: 0 0 0 3px;
 }
 [class*="glyph"] svg {
-    fill: @ini_text_neu;
     vertical-align: top;
-    /*fill: red;*/
     display: inline-block;
     /*width: 1rem;*/
     /*height: 1rem;*/
@@ -665,7 +663,7 @@ pre.dbg {
 }
 .glyph-18 svg {
     width: 1.575rem; /* .875 * 1.8 */
-    height: 1.575rem; /* .875 * 1.8 */
+    height: 1.575rem;
 }
 @media (min-width: 480px) {
     .glyph-18 svg {
@@ -675,7 +673,7 @@ pre.dbg {
 }
 .glyph-20 svg {
     width: 1.75rem; /* .875 * 2 */
-    height: 1.75rem; /* .875 * 2 */
+    height: 1.75rem;
 }
 @media (min-width: 480px) {
     .glyph-20 svg {
@@ -685,13 +683,171 @@ pre.dbg {
 }
 .glyph-24 svg {
     width: 2.1rem; /* .875 * 2.4 */
-    height: 2.1rem; /* .875 * 2.4 */
+    height: 2.1rem;
 }
 @media (min-width: 480px) {
     .glyph-24 svg {
         width: 2.4rem;
         height: 2.4rem;
     }
+}
+.glyph-32 svg {
+    width: 2.8rem; /* .875 * 3.2 */
+    height: 2.8rem;
+}
+@media (min-width: 480px) {
+    .glyph-32 svg {
+        width: 3.2rem;
+        height: 3.2rem;
+    }
+}
+
+
+/* =FORMS
+----------------------------------------------- */
+input[type="text"], input[type="password"], textarea, select { 
+  outline: none;
+}
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+textarea {
+	-moz-appearance: none !important;
+	-webkit-appearance: none !important;
+	appearance: none !important;
+    font-size: unit((.95 * @ini_font_factor), rem);
+    padding: 5px;
+    margin: 1px 0;
+	border: 2px solid @ini_border;
+	line-height: .8 * @ini_line_factor;
+	/*width: 98%;*/
+	background-color: @ini_background_neu;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="search"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+	border-color: @ini_color_primary;
+}
+input.s {
+	width: 60%;
+    padding: 4px 10px;
+	height: 22px;
+	color: @ini_text_neu;
+	background-color: @ini_background;
+	margin: 0;
+	border: 1px solid @ini_border;
+}
+input.s:focus {
+	border-color: @ini_border;
+	text-indent: 0;
+}
+[dir=ltr] input.s:focus {
+	padding-left: 10px;
+}
+[dir=rtl] input.s:focus {
+    padding-right: 10px;
+}
+input[type="reset"],
+input[type="button"],
+input[type="submit"],
+button {
+   color: @ini_background;
+	display:inline-block;
+    font-size: unit((.95 * @ini_font_factor), rem);
+    padding: 7px;
+    margin: 1px 0;
+   -moz-appearance: none !important;
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	cursor: pointer;
+	background-color: @ini_color_primary;
+	border: 0px;
+   -webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+input[type="reset"]:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+button:hover {
+    background-color: @ini_color_headings;
+}
+#dw__search {
+    margin-top: -1px;
+    position: relative;
+}
+#qsearch__in {
+    width: 15rem;
+}
+[dir=ltr] #qsearch__in {
+    border-radius: 3px 0 0 3px;
+}
+[dir=rtl] #qsearch__in {
+    border-radius: 0 3px 3px 0;
+}
+#dw__search button[type="submit"] {
+    vertical-align: bottom;
+}
+[dir=ltr] #dw__search button[type="submit"] {
+    padding: 4px 0 4px 4px;
+}
+[dir=rtl] #dw__search button[type="submit"] {
+    padding: 4px 4px 4px 0;
+}
+#dw__search button[type="submit"] span.label svg {
+    fill: @ini_background;
+}
+#qsearch__out {
+    background-color: @ini_background_neu;
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 20rem;
+    left: -20rem; /* -( width of #qsearch__in + padding of .ajax_qsearch + a bit more ) */
+}
+#qsearch__out strong {
+    display: block;
+    text-align: center;
+}
+#qsearch__out ul {
+    display: block !important;
+    padding: 0 @ini_spacer @ini_spacer @ini_spacer;
+}
+
+/*
+#qsearch__out ul { margin-top: -5px; display: block !important; }
+#qsearch__out ul li { color: black !important; width: 100% !important; margin-top: -2px !important; margin-left: 28px !important; height: 100% !important; background-color: pink !important; z-index: 9999 !important; display: block !important;}
+*/
+/*
+#dw__search button[type="submit"] {
+    text-indent: -9999px; 
+    line-height: 0;
+    padding: 2px;
+    vertical-align: bottom;
+}
+*/
+/*
+#dw__search button[type="submit"]:after {
+    content: "";
+    background: transparent url(svg/search.svg) no-repeat 0 -1px;
+    display: block; 
+    width: 26px;
+    height: 28px;
+}
+*/
+[dir=ltr] #dw__search button[type="submit"] {
+    border-radius: 0 3px 3px 0;
+    margin-left: -2px;
+}
+[dir=rtl] #dw__search button[type="submit"] {
+    border-radius: 3px 0 0 3px;
+    margin-right: -2px;
 }
 
 /* =HELPERS

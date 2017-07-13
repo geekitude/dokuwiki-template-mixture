@@ -64,7 +64,7 @@ function js_mixture_resize(){
     jQuery('html').removeClass(device_classes).addClass(device_class);
 
     // handle some layout changes based on change in device
-    var $bannertools = jQuery('#mixture__banner_nav h3.toggle');
+    var $bannertools = jQuery('#mixture__classic_nav h3.toggle');
     var $aside = jQuery('#mixture__sidebar h3.toggle');
     var $toc = jQuery('#dw__toc h3');
 
@@ -174,7 +174,7 @@ jQuery(document).ready(function() {
     jQuery(function(){
         var resizeTimer;
         dw_page.makeToggle('#mixture__sidebar h3.toggle','#mixture__sidebar div.content');
-        dw_page.makeToggle('#mixture__banner_nav h3.toggle','#mixture__banner_nav div.content');
+        dw_page.makeToggle('#mixture__classic_nav h3.toggle','#mixture__classic_nav div.content');
 
         // Proceed first run of resize watcher functions
         js_mixture_resize();
