@@ -337,13 +337,13 @@ html.js #mixture__pagenav_nsindex {
 #mixture__pagenav ul li.tab a,
 #mixture__pagenav ul li.translation a {
     margin: 0 0 -2px 0;
-    padding: calc(.6 * @ini_spacer);
+    /*padding: calc(.6 * @ini_spacer);*/
     display:inline-block;
     width:100%;
     height:100%;
 }
 #mixture__pagenav ul li.translation {
-    padding: 0;
+    padding: calc(.6 * @ini_spacer);
     border-top: 4px solid transparent;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
@@ -367,6 +367,9 @@ html.js #mixture__pagenav_nsindex {
 #mixture__pagenav ul li.translation a:hover {
   background-color: @ini_background;
   opacity: 1;
+}
+#mixture__pagenav_nsindex ul {
+    margin-right: -1px;
 }
 #mixture__pagenav_nsindex span svg {
     margin-top: 1.2rem;
@@ -976,7 +979,6 @@ button:hover {
         right: 0;
     }
     body.inline-pagenav-dropdown #mixture__pagenav_nsindex ul li.tab {
-        padding: 0;
         border-top: 4px solid transparent;
         border-left: 1px solid transparent;
         border-right: 1px solid transparent;
@@ -985,6 +987,9 @@ button:hover {
         border-top-color: @ini_color_primary;
         border-left-color: @ini_border;
         border-right-color: @ini_border;
+    }
+    body.inline-pagenav-dropdown ul li.tab {
+        padding: calc(.6 * @ini_spacer) !important;
     }
 }
 @media (min-width: 768px) {
