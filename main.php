@@ -204,10 +204,12 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                     <div class="content">
                                         <section id="mixture__usertools" class="clearfix">
                                             <ul>
-                                                <!-- SEARCH FORM -->
-                                                <li id="dw__search" class="widget search-wrap">
-                                                    <?php php_mixture_searchform() ?>
-                                                </li>
+                                                <!-- SEARCH FORM (if "search" action isn't disabled) -->
+                                                <?php if (strpos($conf['disableactions'], 'search') === false) : ?>
+                                                    <li id="dw__search" class="widget search-wrap">
+                                                        <?php php_mixture_searchform() ?>
+                                                    </li>
+                                                <?php endif ?>
                                                 <!-- USER MENU -->
                                                 <li id="mixture__classic_nav_user" class="dropdown">
                                                     <?php
@@ -222,7 +224,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                                     'admin'     => tpl_action('admin', 1, 'li', 1),
                                                                     /*'userpage'  => _tpl_action('userpage', 1, 'li', 1),*/ /*IS BY DEFAULT RIGHT ABOVE IN p.user */
                                                                     'profile'   => tpl_action('profile', 1, 'li', 1),
-                                                                    'register'  => tpl_action('register', 1, 'li', 1),
+                                                                    /*'register'  => tpl_action('register', 1, 'li', 1),*/
                                                                     'login'     => tpl_action('login', 1, 'li', 1),
                                                                 ));
                                                             echo "</ul>";
@@ -266,15 +268,21 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                     echo '</li>';
                                                 ?>
                                                 <?php
-                                                    echo '<li>';
-                                                        tpl_action('recent', 1, '', 0, php_mixture_icon('recent','action'));
-                                                    echo '</li>';
+                                                    // if "rss" action isn't disabled
+                                                    if (strpos($conf['disableactions'], 'recent') === false) {
+                                                        echo '<li>';
+                                                            tpl_action('recent', 1, '', 0, php_mixture_icon('recent','action'));
+                                                        echo '</li>';
+                                                    }
                                                     echo '<li>';
                                                         tpl_action('media', 1, '', 0, php_mixture_icon('media','action'));
                                                     echo '</li>';
-                                                    echo '<li>';
-                                                        tpl_action('index', 1, '', 0, php_mixture_icon('index','action'));
-                                                    echo '</li>';
+                                                    // if "index" action isn't disabled
+                                                    if (strpos($conf['disableactions'], 'index') === false) {
+                                                        echo '<li>';
+                                                            tpl_action('index', 1, '', 0, php_mixture_icon('index','action'));
+                                                        echo '</li>';
+                                                    }
                                                     // Keeping event in case a plugin adds one
                                                     tpl_toolsevent('sitetools', array(
                                                         /*'recent'    => tpl_action('recent', 1, 'li', 1),*/
