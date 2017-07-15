@@ -243,10 +243,12 @@ function php_mixture_init() {
     $mixture['glyphs']['calendar'] = null;
     $mixture['glyphs']['ellipsis'] = null;
     $mixture['glyphs']['home'] = null;
-    $mixture['glyphs']['lastchanges'] = null;
+    $mixture['glyphs']['index'] = null;
     $mixture['glyphs']['link'] = null;
     $mixture['glyphs']['login'] = null;
+    $mixture['glyphs']['media'] = null;
     $mixture['glyphs']['parent'] = null;
+    $mixture['glyphs']['recent'] = null;
     $mixture['glyphs']['search'] = null;
     $mixture['glyphs']['trace'] = null;
     $mixture['glyphs']['translation'] = null;
@@ -858,7 +860,7 @@ function php_mixture_youarehere() {
  * @param bool      $print return result if true, print it if flase
  */
 function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "page", $return = false) {
-    global $mixture, $trs, $conf;
+    global $mixture, $trs, $conf, $lang;
 
     if ($what == "page") {
         $tmp = explode(":", ltrim($target, ":"));
@@ -875,6 +877,14 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
             // Add a house SVG image before home
             } elseif (ltrim($target, ":") == $conf['start']) {
                 $icon =  '<span class="glyph-18" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
+            }
+        } elseif ($context == "action") {
+            if ($target == "index") {
+                $icon =  '<span class="glyph-18" title="'.$lang['index'].'">'.$mixture['glyphs']['index'].'</span>';
+            } elseif ($target == "media") {
+                $icon =  '<span class="glyph-18" title="'.$lang['media'].'">'.$mixture['glyphs']['media'].'</span>';
+            } elseif ($target == "recent") {
+                $icon =  '<span class="glyph-18" title="'.$lang['btn_recent'].'">'.$mixture['glyphs']['recent'].'</span>';
             }
         } else {
             $icon =  '<span class="glyph-18" title="'.$target.' ('.$context.' '.$page.')">'.$mixture['glyphs']['default'].'</span>';

@@ -55,7 +55,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                     <li id="js_lastchanges_container" class="flex-container-h">
                                         <strong>
                                             <span class="label glyph-18" title="<?php echo $lang['btn_recent']; ?>">
-                                                <?php echo $mixture['glyphs']['lastchanges']; ?>
+                                                <?php echo $mixture['glyphs']['recent']; ?>
                                             </span>
                                             <span class="a11y">
                                                 <?php print $lang['btn_recent'] ?>:
@@ -266,10 +266,20 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                     echo '</li>';
                                                 ?>
                                                 <?php
+                                                    echo '<li>';
+                                                        tpl_action('recent', 1, '', 0, php_mixture_icon('recent','action'));
+                                                    echo '</li>';
+                                                    echo '<li>';
+                                                        tpl_action('media', 1, '', 0, php_mixture_icon('media','action'));
+                                                    echo '</li>';
+                                                    echo '<li>';
+                                                        tpl_action('index', 1, '', 0, php_mixture_icon('index','action'));
+                                                    echo '</li>';
+                                                    // Keeping event in case a plugin adds one
                                                     tpl_toolsevent('sitetools', array(
-                                                        'recent'    => tpl_action('recent', 1, 'li', 1),
-                                                        'media'     => tpl_action('media', 1, 'li', 1),
-                                                        'index'     => tpl_action('index', 1, 'li', 1),
+                                                        /*'recent'    => tpl_action('recent', 1, 'li', 1),*/
+                                                        /*'media'     => tpl_action('media', 1, 'li', 1),*/
+                                                        /*'index'     => tpl_action('index', 1, 'li', 1),*/
                                                     ));
                                                 ?>
                                             </ul>
