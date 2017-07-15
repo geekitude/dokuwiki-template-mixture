@@ -133,7 +133,7 @@ function js_mixture_pagenav(){
         pagetrs_width += jQuery(this).outerWidth(true);
     });
     // 10 pixels substracted to add just a little security in the process
-    var available = page_width - pageid_width - pagetrs_width - 10;
+    var available = page_width - pageid_width - pagetrs_width - 50;
 
     if(pagenav_width > available){
         // pagenav has overflow
