@@ -51,7 +51,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                         </span>
                                     </li>
                                 <?php endif; ?>
-                                <?php if (count($mixture['recents']) >= 1) : ?>
+                                <?php if ((strpos($conf['disableactions'], 'search') === false) && (count($mixture['recents']) >= 1)) : ?>
                                     <li id="js_lastchanges_container" class="flex-container-h">
                                         <strong>
                                             <span class="label glyph-18" title="<?php echo $lang['btn_recent']; ?>">
