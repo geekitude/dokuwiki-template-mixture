@@ -147,14 +147,6 @@ main,
 [dir=rtl] #mixture__topbar_date {
     margin-left: @ini_spacer;
 }
-[dir=ltr] #mixture__topbar_links ul.dropdown-content {
-    right: 0;
-    text-align: right;
-}
-[dir=rtl] #mixture__topbar_links ul.dropdown-content {
-    left: 0;
-    text-align: left;
-}
 #mixture__topbar_date span.text {
     display: none;
 }
@@ -250,6 +242,9 @@ main,
 #mixture__classic_nav #mixture__sitetools ul {
     display: inline-flex;
 }
+#mixture__classic_nav #mixture__usertools ul li.dropdown ul.dropdown-content li {
+    white-space: nowrap;
+}
 [dir=ltr] #mixture__classic_nav #mixture__usertools ul li.dropdown span svg {
     margin: 0 0 0 .5rem;
 }
@@ -264,12 +259,6 @@ main,
 }
 #mixture__classic_nav #mixture__usertools ul li.dropdown ul.dropdown-content {
     display: none;
-}
-#mixture__classic_nav #mixture__usertools ul li.dropdown ul.dropdown-content li {
-    white-space: nowrap;
-}
-[dir=ltr] #mixture__classic_nav #mixture__usertools ul li.dropdown ul.dropdown-content {
-    right: 0;
 }
 #mixture__classic_nav #mixture__usertools ul li.dropdown:hover ul.dropdown-content {
     display: block;
@@ -322,26 +311,12 @@ body.notFound #mixture__pagenav ul li div.pageId span {
 html.js #mixture__pagenav_nsindex {
     opacity: 0;
 }
-#mixture__pagenav_nsindex ul.dropdown-content {
-    padding: (@ini_spacer / 3);
-}
-[dir=ltr] #mixture__pagenav_nsindex ul.dropdown-content {
-    left: 0;
-    text-align: left;
-}
-[dir=rtl] #mixture__pagenav_nsindex ul.dropdown-content {
-    right: 0;
-    text-align: right;
-}
+/*
 #mixture__pagenav_nsindex ul li.tab {
     padding: 0 6px;
     border-top: 0;
     border-right: 4px solid transparent;
     border-left: 4px solid transparent;
-}
-#mixture__pagenav_nsindex ul li.tab:hover,
-#mixture__pagenav ul li.trs:hover {
-  opacity: .5;
 }
 [dir=ltr] #mixture__pagenav_nsindex ul li.tab:hover {
   border-left: 4px solid @ini_color_primary;
@@ -349,14 +324,16 @@ html.js #mixture__pagenav_nsindex {
 [dir=rtl] #mixture__pagenav_nsindex ul li.tab:hover {
   border-right: 4px solid @ini_color_primary;
 }
+*/
+#mixture__pagenav_nsindex ul li.tab:hover,
+#mixture__pagenav ul li.trs:hover {
+  opacity: .5;
+}
+/*
 #mixture__pagenav ul li.tab a {
-    margin: 0 0 -2px 0;
-    padding: calc(.6 * @ini_spacer);
-    display:inline-block;
-    width:100%;
-    height:100%;
     line-height: 2rem;
 }
+*/
 #mixture__pagenav ul li.tab a,
 #mixture__pagenav ul li.trs a {
     margin: 0 0 -2px 0;
@@ -375,8 +352,8 @@ html.js #mixture__pagenav_nsindex {
         border-top: 4px solid @ini_color_primary;
         border-left: 1px solid @ini_border;
         border-right: 1px solid @ini_border;
-    }
-
+}
+/*
 [dir=ltr] #mixture__pagenav ul li.tab a,
 [dir=ltr] #mixture__pagenav ul li.trs a {
     text-align: left;
@@ -385,6 +362,7 @@ html.js #mixture__pagenav_nsindex {
 [dir=rtl] #mixture__pagenav ul li.trs a {
     text-align: right;
 }
+*/
 #mixture__pagenav ul li.tab a:hover,
 #mixture__pagenav ul li.trs a:hover {
   background-color: @ini_background;
@@ -497,8 +475,6 @@ body.unwrappedSidebar #mixture__sidebar {
     width: 100%;
     margin: 0 0 calc(@ini_spacer / 2) 0;
 }
-/* only apply to #dw__toc.scrollspy? */
-.dropdown-content li div.li,
 #dw__toc li div.li {
     white-space: nowrap;
     overflow: hidden;
@@ -923,32 +899,42 @@ button:hover {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: @ini_background;
     /*min-width: 160px;*/
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 9;
+    width: auto !important;
 }
-.dropdown-content div.li {
+.dropdown-content li {
     padding: (@ini_spacer / 4) (@ini_spacer / 2);
 }
 /* Links inside the dropdown */
 .dropdown-content a {
     color: black;
     text-decoration: none;
-    display: inline;
-}
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: @ini_background;
 }
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
+    padding: 0;
 }
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+[dir=ltr] ul.dropdown-content,
+[dir=ltr] ul.dropdown-content a {
+    right: 0;
+    text-align: right;
 }
+[dir=rtl] ul.dropdown-content,
+[dir=rtl] ul.dropdown-content a {
+    left: 0;
+    text-align: left;
+}
+/*
+#mixture__pagenav_nsindex ul.dropdown-content {
+    padding: (@ini_spacer / 3);
+}
+*/
+
+
 
 /* =GLOBAL MEDIA QUERIES
 ----------------------------------------------- */
