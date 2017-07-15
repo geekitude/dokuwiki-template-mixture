@@ -312,7 +312,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         // List current page's translation(s), existing or not (if Translation plugin isn't set to use a dropdown)
                         if ((!isset($trs['dropdown'])) && (is_array($trs['links'])) && (count($trs['links']) >= 1)) {
                             foreach($trs['links'] as $key => $value) {
-                                print "<li class='trs'>".$value."</li>";
+                                print "<li class='translation'>".$value."</li>";
                             }
                         }
                     ?>
