@@ -240,6 +240,7 @@ function php_mixture_init() {
 
     // GLYPHS
     // Search for default or custum default SVG glyphs
+    $mixture['glyphs']['admin'] = null;
     $mixture['glyphs']['calendar'] = null;
     $mixture['glyphs']['ellipsis'] = null;
     $mixture['glyphs']['home'] = null;
@@ -905,6 +906,55 @@ function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "pag
     }
 }
 
+/**
+ * Adapted from tpl_admin.php file of Bootstrap3 template by Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
+ */
+function php_mixture_admin() {
+    global $ID, $ACT, $auth, $conf;
+
+    $admin_plugins = plugin_list('admin');
+    $tasks = array('usermanager', 'acl', 'extension', 'config', 'styling', 'revert', 'popularity', 'upgrade');
+    $addons = array_diff($admin_plugins, $tasks);
+    $adminmenu = array(
+        'tasks' => $tasks,
+        'addons' => $addons
+    );
+    foreach ($adminmenu['tasks'] as $task) {
+        if(($plugin = plugin_load('admin', $task, true)) === null) continue;
+//        if($plugin->forAdminOnly() && !$INFO['isadmin']) continue;
+        if($task == 'usermanager' && ! ($auth && $auth->canDo('getUsers'))) continue;
+        $label = $plugin->getMenuText($conf['lang']);
+        if (! $label) continue;
+        if ($task == "popularity") { $label = preg_replace("/\([^)]+\)/","",$label); }
+        if (($ACT == 'admin') and ($_GET['page'] == $task)) { $class = ' class="action active"'; } else { $class = ' class="action"'; }
+        echo sprintf('<li><a href="%s" title="%s"%s>%s%s</a></li>', wl($ID, array('do' => 'admin','page' => $task)), $label, $class, php_mixture_icon($task), $label);
+    }
+    $f = fopen(DOKU_INC.'inc/lang/'.$conf['lang'].'/adminplugins.txt', 'r');
+    $line = fgets($f);
+    fclose($f);
+    $line = preg_replace('/=/', '', $line);
+    if (count($adminmenu['addons']) > 0) {
+        echo '<li class="dropdown-header"><span>'.$line.'</span></li><hr/>';
+        foreach ($adminmenu['addons'] as $task) {
+            if(($plugin = plugin_load('admin', $task, true)) === null) continue;
+            if ($task == "move_tree") {
+                $parts = explode('<a href="%s">', $plugin->getLang('treelink'));
+                $label = substr($parts[1], 0, -4);
+            } else {
+                $label = $plugin->getMenuText($conf['lang']);
+            }
+            if($label == null) { $label = ucfirst($task); }
+            if (($ACT == 'admin') and ($_GET['page'] == $task)) { $class = ' class="action active"'; } else { $class = ' class="action"'; }
+            echo sprintf('<li><a href="%s" title="%s"%s>%s %s</a></li>', wl($ID, array('do' => 'admin','page' => $task)), ucfirst($task), $class, php_mixture_icon($task, true), ucfirst($label));
+        }
+    }
+    echo '<li class="dropdown-header"><span>Cache</span></li><hr/>';
+    echo '<li><a href="';
+        echo wl($ID, array("do" => $_GET['do'], "page" => $_GET['page'], "purge" => "true"));
+    echo '" class="action"><i class="fa fa-fw text-alt fa-recycle"></i> Purge current page\'s cache</a></li>';
+    echo '<li><a href="'.DOKU_URL.'lib/exe/js.php" class="action"><i class="fa fa-fw text-alt fa-code"></i> Purge JavaScript cache</a></li>';
+    echo '<li><a href="'.DOKU_URL.'lib/exe/css.php" class="action"><i class="fa fa-fw text-alt fa-file-code-o"></i> Purge CSS cache</a></li>';
+}
 /**
  * PAGE NAV
  * 

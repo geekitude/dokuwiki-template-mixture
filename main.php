@@ -221,7 +221,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                             }
                                                             echo "<ul class='dropdown-content'>";
                                                                 tpl_toolsevent('usertools', array(
-                                                                    'admin'     => tpl_action('admin', 1, 'li', 1),
+                                                                    /*'admin'     => tpl_action('admin', 1, 'li', 1),*/
                                                                     /*'userpage'  => _tpl_action('userpage', 1, 'li', 1),*/ /*IS BY DEFAULT RIGHT ABOVE IN p.user */
                                                                     'profile'   => tpl_action('profile', 1, 'li', 1),
                                                                     /*'register'  => tpl_action('register', 1, 'li', 1),*/
@@ -245,6 +245,17 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                         }
                                                     ?>
                                                 </li><!-- /#mixture__classic_nav_user -->
+                                                <!-- ADMIN MENU -->
+                                                <li id="mixture__classic_nav_admin" class="dropdown">
+                                                    <?php
+                                                        if (($_SERVER['REMOTE_USER'] != NULL) && ($INFO['isadmin'])) {
+                                                            echo "<span class='label glyph-32' title='".$lang['btn_admin']."'>".$mixture['glyphs']['admin']."</span>";
+                                                            echo "<ul class='dropdown-content'>";
+                                                                php_mixture_admin();
+                                                            echo "</ul>";
+                                                        }
+                                                    ?>
+                                                </li><!-- /#mixture__classic_nav_admin -->
                                             </ul>
                                         </section><!-- /#mixture__usertools -->
                                         <section id="mixture__loggedinas" class="clearfix">
