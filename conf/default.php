@@ -12,10 +12,10 @@ $conf['elements']           = 'topbar_date,topbar_lastchanges,topbar_links,pagen
 
 $conf['topbar']             = 'topbar';
 $conf['topbarFrom']         = 'cumulate';
-$conf['logo']               = 'logo';
-$conf['banner']             = 'banner';
-$conf['widebanner']         = 'widebanner';
-$conf['sidebar_header']     = 'sidebar';
+$conf['logoImg']            = 'logo';
+$conf['bannerImg']          = 'banner';
+$conf['widebannerImg']      = 'widebanner';
+$conf['sidebarImg']         = 'sidebar';
 $conf['imagesFrom']         = 'inherit';
 $conf['dateLocale']         = '';
 $conf['dateString']         = '%A %d %B %Y';

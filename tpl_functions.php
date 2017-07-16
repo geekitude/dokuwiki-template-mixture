@@ -225,17 +225,17 @@ function php_mixture_init() {
 
     // IMAGES
     // Search for namespace special images depending on settings (logo, banner, widebanner and potential last "sidebar header" image)
-    if (tpl_getConf('logo') != null) {
-        $mixture['images']['logo'] = php_mixture_file(tpl_getConf('logo'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
+    if (tpl_getConf('logoImg') != null) {
+        $mixture['images']['logo'] = php_mixture_file(tpl_getConf('logoImg'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
     }
-    if (tpl_getConf('banner') != null) {
-        $mixture['images']['banner'] = php_mixture_file(tpl_getConf('banner'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
+    if (tpl_getConf('bannerImg') != null) {
+        $mixture['images']['banner'] = php_mixture_file(tpl_getConf('bannerImg'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
     }
-    if (tpl_getConf('widebanner') != null) {
-        $mixture['images']['widebanner'] = php_mixture_file(tpl_getConf('widebanner'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
+    if (tpl_getConf('widebannerImg') != null) {
+        $mixture['images']['widebanner'] = php_mixture_file(tpl_getConf('widebannerImg'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
     }
-    if (tpl_getConf('sidebar_header') != null) {
-        $mixture['images']['sidebar'] = php_mixture_file(tpl_getConf('sidebar_header'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
+    if (tpl_getConf('sidebarImg') != null) {
+        $mixture['images']['sidebar'] = php_mixture_file(tpl_getConf('sidebarImg'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
     }
 
     // GLYPHS

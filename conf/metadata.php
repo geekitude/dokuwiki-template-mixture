@@ -12,10 +12,10 @@ $meta['elements']           = array('multicheckbox',
                                '_choices' => array('topbar_date','topbar_lastchanges','topbar_links','pagenav_nsindex'));
 $meta['topbar']             = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of pages containing topbar links (empty to disable) */
 $meta['topbarFrom']         = array('multichoice','_choices' => array('root','namespace','inherit','cumulate')); /* get topbar links from wiki root only / current ns only / current ns then parents / inherit from parents and cumulate*/
-$meta['logo']               = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as logo (empty to disable) */
-$meta['banner']             = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as banner (empty to disable) */
-$meta['widebanner']         = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as widebanner (empty to disable) */
-$meta['sidebar_header']     = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as sidebar header (empty to disable) */
+$meta['logoImg']            = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as logo (empty to disable) */
+$meta['bannerImg']          = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as banner (empty to disable) */
+$meta['widebannerImg']      = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as widebanner (empty to disable) */
+$meta['sidebarImg']         = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* name of image to search to use as sidebar header (empty to disable) */
 $meta['imagesFrom']         = array('multichoice','_choices' => array('root','namespace','inherit')); /* get images from wiki root only / current ns only / current ns then parents */
 $meta['dateLocale']         = array('string');
 $meta['dateString']         = array('string');

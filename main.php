@@ -93,7 +93,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <?php if ($mixture['images']['logo'] != null) : ?>
                             <div id="mixture__branding_logo">
                                 <?php
-                                    $logoImage = ml($mixture['images']['logo']['mediaId'],'',true);
+                                    /*$logoImage = ml($mixture['images']['logo']['mediaId'],'',true);*/
                                     if ($mixture['images']['logo']['mediaId'] != null) {
                                         $logoImage = ml($mixture['images']['logo']['mediaId'],'',true);
                                     } else {
@@ -174,7 +174,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             <?php elseif ($mixture['images']['banner'] != null) : ?>
                                 <div id="mixture__branding_banner">
                                     <?php
-                                        $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
+                                        /*$bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);*/
                                         if ($mixture['images']['banner']['mediaId'] != null) {
                                             $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
                                         } else {
@@ -353,17 +353,22 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <h3 class="toggle"><?php echo $lang['sidebar'] ?></h3>
                         <div class="content" role="complementary">
                             <?php
-                                if (isset($mixture['images']['sidebar']['mediaId'])) {
-                                    $sidebarImage = ml($mixture['images']['sidebar']['mediaId'],'',true);
+                                if ($mixture['images']['logo'] != null) {
+                                    /*$sidebarImage = ml($mixture['images']['sidebar']['mediaId'],'',true);*/
+                                    if ($mixture['images']['logo']['mediaId'] != null) {
+                                        $sidebarImage = ml($mixture['images']['sidebar']['mediaId'],'',true);
+                                    } else {
+                                        $sidebarImage = "/lib/tpl/mixture/images/sidebar.jpg";
+                                    }
                                     $link = php_mixture_ui_link("sidebarLink", substr($mixture['images']['sidebar']['mediaId'], 0, strrpos($mixture['images']['sidebar']['mediaId'], ':') + 1));
-                                    $title = ucwords(tpl_getConf('sidebar_header'));
+                                    $title = ucwords(tpl_getConf('sidebarImg'));
                                     if ($link != null) {
                                         tpl_link(
                                             $link['target'],
                                             '<img id="mixture__sidebar_header_image" src="'.$sidebarImage.'" title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['sidebar']['imageSize'][3].' />'
                                         );
                                     } else {
-                                        print '<img src="'.$sidebarImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['sidebar']['imageSize'][3].' />';
+                                        print '<img id="mixture__sidebar_header_image" src="'.$sidebarImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['sidebar']['imageSize'][3].' />';
                                     }
                                 }
                             ?>
