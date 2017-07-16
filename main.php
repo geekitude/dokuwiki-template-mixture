@@ -178,7 +178,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                         if ($mixture['images']['banner']['mediaId'] != null) {
                                             $bannerImage = ml($mixture['images']['banner']['mediaId'],'',true);
                                         } else {
-                                            $bannerImage = "/lib/tpl/mixture/images/banner.png";
+                                            $bannerImage = "/lib/tpl/mixture/images/banner.jpg";
                                         }
                                         $link = php_mixture_ui_link("bannerLink", substr($mixture['images']['banner']['mediaId'], 0, strrpos($mixture['images']['banner']['mediaId'], ':') + 1));
                                         $title = "Banner";
