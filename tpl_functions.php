@@ -401,6 +401,11 @@ function php_mixture_classes() {
     } else {
         $classes .= "unwrappedSidebar ";
     }
+    if ($mixture['images']['widebanner'] != null) {
+        $classes .= "hasWidebanner ";
+    } else {
+        $classes .= "noWidebanner ";
+    }
     if ($_GET['debug'] == true) {
         $classes .= "debug ";
     }

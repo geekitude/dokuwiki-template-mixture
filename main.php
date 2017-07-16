@@ -317,6 +317,19 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                 <?php tpl_includeFile('headerfooter.html') ?>
             </header>
             <aside id="mixture__pagenav" class="flex-container-h">
+                <?php if ($mixture['images']['widebanner'] != null) : ?>
+                    <div id="mixture__widebanner">
+                        <?php
+                            if ($mixture['images']['widebanner']['mediaId'] != null) {
+                                $widebannerImage = ml($mixture['images']['widebanner']['mediaId'],'',true);
+                            } else {
+                                $widebannerImage = "/lib/tpl/mixture/images/widebanner.jpg";
+                            }
+                            $title = "Widebanner";
+                            print '<img id="mixture__widebanner_image" src="'.$widebannerImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['widebanner']['imageSize'][3].' />';
+                        ?>
+                    </div><!-- /#mixture__branding_banner -->
+                <?php endif ?>
                 <?php
                     if (isset($trs['dropdown'])) {
                         print $trs['dropdown'];
