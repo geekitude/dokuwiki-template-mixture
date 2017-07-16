@@ -366,9 +366,9 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <h3 class="toggle"><?php echo $lang['sidebar'] ?></h3>
                         <div class="content" role="complementary">
                             <?php
-                                if ($mixture['images']['logo'] != null) {
+                                if ($mixture['images']['sidebar'] != null) {
                                     /*$sidebarImage = ml($mixture['images']['sidebar']['mediaId'],'',true);*/
-                                    if ($mixture['images']['logo']['mediaId'] != null) {
+                                    if ($mixture['images']['sidebar']['mediaId'] != null) {
                                         $sidebarImage = ml($mixture['images']['sidebar']['mediaId'],'',true);
                                     } else {
                                         $sidebarImage = "/lib/tpl/mixture/images/sidebar.jpg";
