@@ -963,12 +963,12 @@ function php_mixture_admin() {
             echo sprintf('<li><a href="%s" title="%s"%s>%s %s</a></li>', wl($ID, array('do' => 'admin','page' => $task)), ucfirst($task), $class, php_mixture_glyph($task, "action", ucfirst($label), true), ucfirst($label));
         }
     }
-    echo '<li class="dropdown-header"><span>Cache</span></li><hr/>';
+    echo '<li class="dropdown-header"><span>'.tpl_getLang('cache').'</span></li><hr/>';
     echo '<li><a href="';
         echo wl($ID, array("do" => $_GET['do'], "page" => $_GET['page'], "purge" => "true"));
-    echo '" class="action">'.php_mixture_glyph("refresh", "action", ucfirst($label),true).'Purge current page\'s cache</a></li>';
-    echo '<li><a href="'.DOKU_URL.'lib/exe/js.php" class="action">'.php_mixture_glyph("refresh", "action", ucfirst($label),true).'Purge JavaScript cache</a></li>';
-    echo '<li><a href="'.DOKU_URL.'lib/exe/css.php" class="action">'.php_mixture_glyph("refresh", "action", ucfirst($label),true).'Purge CSS cache</a></li>';
+    echo '" class="action">'.php_mixture_glyph("refresh", "action", ucfirst($label),true).tpl_getLang('purgepagecache').'</a></li>';
+    echo '<li><a href="'.DOKU_URL.'lib/exe/js.php" class="action">'.php_mixture_glyph("refresh", "action", ucfirst($label),true).tpl_getLang('purgejscache').'</a></li>';
+    echo '<li><a href="'.DOKU_URL.'lib/exe/css.php" class="action">'.php_mixture_glyph("refresh", "action", ucfirst($label),true).tpl_getLang('purgecsscache').'</a></li>';
 }
 /**
  * PAGE NAV

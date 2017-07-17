@@ -246,16 +246,16 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                     ?>
                                                 </li><!-- /#mixture__classic_nav_user -->
                                                 <!-- ADMIN MENU -->
-                                                <li id="mixture__classic_nav_admin" class="dropdown">
-                                                    <?php
-                                                        if (($_SERVER['REMOTE_USER'] != NULL) && ($INFO['isadmin'])) {
+                                                <?php
+                                                    if (($_SERVER['REMOTE_USER'] != NULL) && ($INFO['isadmin'])) {
+                                                        echo '<li id="mixture__classic_nav_admin" class="dropdown">';
                                                             echo "<span class='label glyph-32' title='".$lang['btn_admin']."'>".$mixture['glyphs']['admin']."</span>";
                                                             echo "<ul class='dropdown-content'>";
                                                                 php_mixture_admin();
                                                             echo "</ul>";
-                                                        }
-                                                    ?>
-                                                </li><!-- /#mixture__classic_nav_admin -->
+                                                        echo '</li><!-- /#mixture__classic_nav_admin -->';
+                                                    }
+                                                ?>
                                             </ul>
                                         </section><!-- /#mixture__usertools -->
                                         <section id="mixture__loggedinas" class="clearfix">
@@ -294,7 +294,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                             tpl_action('index', 1, '', 0, php_mixture_glyph('index','action'));
                                                         echo '</li>';
                                                     }
-                                                    // Keeping event in case a plugin adds one
+                                                    // Keeping event process in case a plugin adds one
                                                     tpl_toolsevent('sitetools', array(
                                                         /*'recent'    => tpl_action('recent', 1, 'li', 1),*/
                                                         /*'media'     => tpl_action('media', 1, 'li', 1),*/

@@ -11,3 +11,7 @@ $lang['parentns']           = 'Parent Namespace';
 $lang['publicpage']         = 'Public Page';
 $lang['privatens']          = 'Private Space';
 $lang['otherpages']         = 'Other pages in same namespace';
+$lang['cache']              = 'Cache';
+$lang['purgepagecache']     = 'Purge current page\'s cache';
+$lang['purgejscache']       = 'Purge JavaScript cache';
+$lang['purgecsscache']      = 'Purge CSS cache';
