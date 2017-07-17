@@ -274,7 +274,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                             <ul>
                                                 <?php
                                                     echo '<li>';
-                                                        echo php_mixture_icon($conf['start']);
+                                                        echo php_mixture_glyph($conf['start']);
                                                         tpl_link(wl(),tpl_getLang('wikihome'),'class="action home" accesskey="h" title="[H]"');
                                                     echo '</li>';
                                                 ?>
@@ -282,16 +282,16 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                     // if "rss" action isn't disabled
                                                     if (strpos($conf['disableactions'], 'recent') === false) {
                                                         echo '<li>';
-                                                            tpl_action('recent', 1, '', 0, php_mixture_icon('recent','action'));
+                                                            tpl_action('recent', 1, '', 0, php_mixture_glyph('recent','action'));
                                                         echo '</li>';
                                                     }
                                                     echo '<li>';
-                                                        tpl_action('media', 1, '', 0, php_mixture_icon('media','action'));
+                                                        tpl_action('media', 1, '', 0, php_mixture_glyph('media','action'));
                                                     echo '</li>';
                                                     // if "index" action isn't disabled
                                                     if (strpos($conf['disableactions'], 'index') === false) {
                                                         echo '<li>';
-                                                            tpl_action('index', 1, '', 0, php_mixture_icon('index','action'));
+                                                            tpl_action('index', 1, '', 0, php_mixture_glyph('index','action'));
                                                         echo '</li>';
                                                     }
                                                     // Keeping event in case a plugin adds one

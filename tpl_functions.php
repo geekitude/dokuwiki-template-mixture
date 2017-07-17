@@ -240,22 +240,31 @@ function php_mixture_init() {
 
     // GLYPHS
     // Search for default or custum default SVG glyphs
+    $mixture['glyphs']['acl'] = null;
     $mixture['glyphs']['admin'] = null;
     $mixture['glyphs']['calendar'] = null;
+    $mixture['glyphs']['config'] = null;
+    $mixture['glyphs']['discussion'] = null;
     $mixture['glyphs']['ellipsis'] = null;
+    $mixture['glyphs']['extension'] = null;
     $mixture['glyphs']['home'] = null;
     $mixture['glyphs']['index'] = null;
     $mixture['glyphs']['link'] = null;
     $mixture['glyphs']['login'] = null;
     $mixture['glyphs']['media'] = null;
     $mixture['glyphs']['parent'] = null;
+    $mixture['glyphs']['popularity'] = null;
     $mixture['glyphs']['recent'] = null;
+    $mixture['glyphs']['refresh'] = null;
+    $mixture['glyphs']['revert'] = null;
     $mixture['glyphs']['search'] = null;
+    $mixture['glyphs']['styling'] = null;
     $mixture['glyphs']['trace'] = null;
     $mixture['glyphs']['translation'] = null;
+    $mixture['glyphs']['upgrade'] = null;
     $mixture['glyphs']['userprivate'] = null;
     $mixture['glyphs']['userprofile'] = null;
-    $mixture['glyphs']['userpublic'] = null;
+    $mixture['glyphs']['users'] = null;
     $mixture['glyphs']['youarehere'] = null;
     foreach ($mixture['glyphs'] as $key => $value) {
         if (is_file(DOKU_CONF."tpl/mixture/".$key.".svg")) {
@@ -789,7 +798,7 @@ function php_mixture_breadcrumbs() {
             $i++;
             print '<li>';
               if (count(explode(":",$target)) == 1) { $target = ":".$target; }
-              php_mixture_icon($target);
+              php_mixture_glyph($target);
               tpl_pagelink(":".$target, php_mixture_pagetitle($target, "breadcrumbs"));
             print '</li>';
         }
@@ -822,7 +831,7 @@ function php_mixture_youarehere() {
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
     if (((isset($trs['parts'][0])) && ((strlen($trs['parts'][0]) == 0) || ($trs['parts'][0] == $trs['defaultLang']))) || (plugin_isdisabled('translation'))) {
         print '<li>';
-            php_mixture_icon($conf['start']);
+            php_mixture_glyph($conf['start']);
             tpl_pagelink(":".$conf['start'], php_mixture_pagetitle($conf['start'], "breadcrumbs"));
         print '</li>';
     }
@@ -833,7 +842,7 @@ function php_mixture_youarehere() {
         $page = $part;
         if (substr($page, -1) == ":") { $page .= $conf['start']; }
         print '<li>';
-        php_mixture_icon($page);
+        php_mixture_glyph($page);
         tpl_pagelink(":".$page, php_mixture_pagetitle($page, "breadcrumbs"));
         echo "</li>";
     }
@@ -850,7 +859,7 @@ function php_mixture_youarehere() {
         return true;
     }
     print '<li>';
-        php_mixture_icon($page);
+        php_mixture_glyph($page);
         tpl_pagelink(":".$page, php_mixture_pagetitle($page, "breadcrumbs"));
     echo "</li>";
     echo "</ul>";
@@ -865,44 +874,49 @@ function php_mixture_youarehere() {
  * @param string    $target : action/page
  * @param bool      $print return result if true, print it if flase
  */
-function php_mixture_icon($target = null, $context = "breadcrumbs", $what = "page", $return = false) {
+function php_mixture_glyph($target = null, $context = "breadcrumbs", $label = null, $return = false) {
     global $mixture, $trs, $conf, $lang;
 
-    if ($what == "page") {
+    //if ($what == "page") {
         $tmp = explode(":", ltrim($target, ":"));
         if ($context == "breadcrumbs") {
             // Add glyph before user's public page
             if ((count($tmp) == 2) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns']))) {
-                $icon =  '<span class="glyph-18" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['userpublic'].'</span>';
+                $glyph =  '<span class="glyph-18" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['users'].'</span>';
             // Add glyph before user's private namespace
             } elseif ((count($tmp) == 3) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns'])) && ($tmp[2] == $conf['start'])) {
-                $icon =  '<span class="glyph-18" title="'.tpl_getLang('privatens').'">'.$mixture['glyphs']['userprivate'].'</span>';
+                $glyph =  '<span class="glyph-18" title="'.tpl_getLang('privatens').'">'.$mixture['glyphs']['userprivate'].'</span>';
             // Add a flag SVG image before translations
             } elseif ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
-                $icon =  '<span class="glyph-18" title="<'.$tmp[0].'>">'.$mixture['glyphs']['translation'].'</span>';
+                $glyph =  '<span class="glyph-18" title="<'.$tmp[0].'>">'.$mixture['glyphs']['translation'].'</span>';
             // Add a house SVG image before home
             } elseif (ltrim($target, ":") == $conf['start']) {
-                $icon =  '<span class="glyph-18" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
+                $glyph =  '<span class="glyph-18" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
             }
         } elseif ($context == "action") {
-            if ($target == "index") {
-                $icon =  '<span class="glyph-18" title="'.$lang['index'].'">'.$mixture['glyphs']['index'].'</span>';
-            } elseif ($target == "media") {
-                $icon =  '<span class="glyph-18" title="'.$lang['media'].'">'.$mixture['glyphs']['media'].'</span>';
-            } elseif ($target == "recent") {
-                $icon =  '<span class="glyph-18" title="'.$lang['btn_recent'].'">'.$mixture['glyphs']['recent'].'</span>';
+            if (($target == "advanced") || ($target == "confmanager")){
+                $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs']['config'].'</span>';
+            } elseif ($target == "custombuttons") {
+                $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs']['admin'].'</span>';
+            } elseif ($target == "searchindex") {
+                $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs']['index'].'</span>';
+            } elseif ($target == "usermanager") {
+                $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs']['users'].'</span>';
+            } else {
+                $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs'][$target].'</span>';
             }
         } else {
-            $icon =  '<span class="glyph-18" title="'.$target.' ('.$context.' '.$page.')">'.$mixture['glyphs']['default'].'</span>';
+            //$glyph =  '<span class="glyph-18" title="'.$target.' ('.$context.' '.$page.')">'.$mixture['glyphs']['default'].'</span>';
+            $glyph =  '<span class="glyph-18" title="'.$target.' ('.$context.')">'.$mixture['glyphs']['default'].'</span>';
         }
-    } else {
-        $icon =  '<span class="glyph-18" title="'.$target.' ('.$context.' '.$page.')">'.$mixture['glyphs']['default'].'</span>';
-    }
+    //} else {
+    //    $glyph =  '<span class="glyph-18" title="'.$target.' ('.$context.' '.$page.')">'.$mixture['glyphs']['default'].'</span>';
+    //}
 
     if ($return == true) {
-        return $icon;
+        return $glyph;
     } else {
-        print $icon;
+        print $glyph;
     }
 }
 
@@ -927,7 +941,8 @@ function php_mixture_admin() {
         if (! $label) continue;
         if ($task == "popularity") { $label = preg_replace("/\([^)]+\)/","",$label); }
         if (($ACT == 'admin') and ($_GET['page'] == $task)) { $class = ' class="action active"'; } else { $class = ' class="action"'; }
-        echo sprintf('<li><a href="%s" title="%s"%s>%s%s</a></li>', wl($ID, array('do' => 'admin','page' => $task)), $label, $class, php_mixture_icon($task), $label);
+        //dbg($task);
+        echo sprintf('<li><a href="%s" title="%s"%s>%s%s</a></li>', wl($ID, array('do' => 'admin','page' => $task)), $label, $class, php_mixture_glyph($task, "action", $label, true), $label);
     }
     $f = fopen(DOKU_INC.'inc/lang/'.$conf['lang'].'/adminplugins.txt', 'r');
     $line = fgets($f);
@@ -945,15 +960,15 @@ function php_mixture_admin() {
             }
             if($label == null) { $label = ucfirst($task); }
             if (($ACT == 'admin') and ($_GET['page'] == $task)) { $class = ' class="action active"'; } else { $class = ' class="action"'; }
-            echo sprintf('<li><a href="%s" title="%s"%s>%s %s</a></li>', wl($ID, array('do' => 'admin','page' => $task)), ucfirst($task), $class, php_mixture_icon($task, true), ucfirst($label));
+            echo sprintf('<li><a href="%s" title="%s"%s>%s %s</a></li>', wl($ID, array('do' => 'admin','page' => $task)), ucfirst($task), $class, php_mixture_glyph($task, "action", ucfirst($label), true), ucfirst($label));
         }
     }
     echo '<li class="dropdown-header"><span>Cache</span></li><hr/>';
     echo '<li><a href="';
         echo wl($ID, array("do" => $_GET['do'], "page" => $_GET['page'], "purge" => "true"));
-    echo '" class="action"><i class="fa fa-fw text-alt fa-recycle"></i> Purge current page\'s cache</a></li>';
-    echo '<li><a href="'.DOKU_URL.'lib/exe/js.php" class="action"><i class="fa fa-fw text-alt fa-code"></i> Purge JavaScript cache</a></li>';
-    echo '<li><a href="'.DOKU_URL.'lib/exe/css.php" class="action"><i class="fa fa-fw text-alt fa-file-code-o"></i> Purge CSS cache</a></li>';
+    echo '" class="action">'.php_mixture_glyph("refresh", "action", ucfirst($label),true).'Purge current page\'s cache</a></li>';
+    echo '<li><a href="'.DOKU_URL.'lib/exe/js.php" class="action">'.php_mixture_glyph("refresh", "action", ucfirst($label),true).'Purge JavaScript cache</a></li>';
+    echo '<li><a href="'.DOKU_URL.'lib/exe/css.php" class="action">'.php_mixture_glyph("refresh", "action", ucfirst($label),true).'Purge CSS cache</a></li>';
 }
 /**
  * PAGE NAV
