@@ -786,7 +786,20 @@ button {
    -webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+}
+/* Consistent height between search form elements */
+input[type="text"],
+button {
     max-height: 3rem;
+}
+/* Firefox fix for search form (https://davidwalsh.name/firefox-buttons) */
+input[type="text"]::-moz-focus-inner,
+button::-moz-focus-inner { 
+	border: 0; 
+	padding: 0; 
+	margin-top:-2px; 
+	margin-bottom: -2px; 
+    max-height: none;
 }
 input[type="reset"]:hover,
 input[type="button"]:hover,
