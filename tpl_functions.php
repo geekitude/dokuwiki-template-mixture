@@ -697,7 +697,7 @@ function php_mixture_date($type, $timestamp = null, $clock = false, $printResult
         $result = utf8_encode(ucwords(strftime($format, $timestamp)));
     }
     if ($printResult) {
-        print $result;
+        echo $result;
         return true;
     } else {
         return $result;
@@ -729,7 +729,7 @@ function php_mixture_lastchanges($context = null) {
         if ($context == "landing") {
             $details .= ".";
         }
-        print '<li title="'.$details.'">';
+        echo '<li title="'.$details.'">';
             if ($value['media']) {
                 if (is_file($mediaPath."/".str_replace(":", "/", $value['id']))) {
                     $exist = "wikilink1";
@@ -762,10 +762,10 @@ function php_mixture_lastchanges($context = null) {
                 $by = " ".$lang['by']." ";
             }
             if ($context == null) {
-                print '<span>'.$by.'<span class="camelcase"><bdi>'.$value['user'].'</bdi></span></span>';
+                echo '<span>'.$by.'<span class="camelcase"><bdi>'.$value['user'].'</bdi></span></span>';
             }
             $i++;
-        print '</li>';
+        echo '</li>';
     }
 }
 
@@ -792,17 +792,17 @@ function php_mixture_breadcrumbs() {
 
     if (count($crumbs) > 0) {
         //render crumbs, highlight the last one
-        print '<ul>';
-        print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['trace'].'</span><span class="tiny-hidden label">'.$lang['breadcrumb'].'</span></li>';
+        echo '<ul>';
+        echo '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['breadcrumb'], ':').'">'.$mixture['glyphs']['trace'].'</span><span class="tiny-hidden label">'.$lang['breadcrumb'].'</span></li>';
         $last = count($crumbs);
         $i    = 0;
         foreach($crumbs as $target => $name) {
             $i++;
-            print '<li>';
+            echo '<li>';
               if (count(explode(":",$target)) == 1) { $target = ":".$target; }
               php_mixture_glyph($target);
               tpl_pagelink(":".$target, php_mixture_pagetitle($target, "breadcrumbs"));
-            print '</li>';
+            echo '</li>';
         }
         echo "</ul>";
         return true;
@@ -828,14 +828,14 @@ function php_mixture_youarehere() {
     $parts = explode(':', $ID);
     $count = count($parts);
 
-    print '<ul>';
-    print '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['youarehere'].'</span><span class="tiny-hidden label">'.$lang['youarehere'].'</span></li>';
+    echo '<ul>';
+    echo '<li><span class="small-hidden medium-hidden large-hidden glyph-20 label" title="'.rtrim($lang['youarehere'], ':').'">'.$mixture['glyphs']['youarehere'].'</span><span class="tiny-hidden label">'.$lang['youarehere'].'</span></li>';
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
     if (((isset($trs['parts'][0])) && ((strlen($trs['parts'][0]) == 0) || ($trs['parts'][0] == $trs['defaultLang']))) || (plugin_isdisabled('translation'))) {
-        print '<li>';
+        echo '<li>';
             php_mixture_glyph($conf['start']);
             tpl_pagelink(":".$conf['start'], php_mixture_pagetitle($conf['start'], "breadcrumbs"));
-        print '</li>';
+        echo '</li>';
     }
     // print intermediate namespace links
     $part = '';
@@ -843,7 +843,7 @@ function php_mixture_youarehere() {
         $part .= $parts[$i].':';
         $page = $part;
         if (substr($page, -1) == ":") { $page .= $conf['start']; }
-        print '<li>';
+        echo '<li>';
         php_mixture_glyph($page);
         tpl_pagelink(":".$page, php_mixture_pagetitle($page, "breadcrumbs"));
         echo "</li>";
@@ -860,7 +860,7 @@ function php_mixture_youarehere() {
         echo "</ul>";
         return true;
     }
-    print '<li>';
+    echo '<li>';
         php_mixture_glyph($page);
         tpl_pagelink(":".$page, php_mixture_pagetitle($page, "breadcrumbs"));
     echo "</li>";
@@ -922,7 +922,7 @@ function php_mixture_glyph($target = null, $context = "breadcrumbs", $label = nu
     if ($return == true) {
         return $glyph;
     } else {
-        print $glyph;
+        echo $glyph;
     }
 }
 
@@ -1003,7 +1003,7 @@ function php_mixture_pagenav() {
                 $classes = "wikilink2";
             }
             $pagename = php_mixture_pagetitle($value['id'], "pagenav");
-            print "<li class='tab'>".tpl_link(wl($value['id']), $pagename, 'class="'.$classes.'" title="'.$value['id'].'"', true)."</li>";
+            echo "<li class='tab'>".tpl_link(wl($value['id']), $pagename, 'class="'.$classes.'" title="'.$value['id'].'"', true)."</li>";
         }
     }
 }
@@ -1019,19 +1019,19 @@ function php_mixture_searchform($ajax = true, $autocomplete = true) {
     global $mixture;
     // don't print the search form if search action has been disabled
     if(!actionOK('search')) return false;
-    print '<form id="dw__search" class="" action="'.wl().'" accept-charset="utf-8" method="get" role="search">';
-    print '<div class="form-group">';
-    print '<input type="hidden" name="do" value="search" />';
-    print '<input type="text" ';
-    if($ACT == 'search') print 'value="'.htmlspecialchars($QUERY).'" ';
-    if(!$autocomplete) print 'autocomplete="off" ';
-    print 'id="qsearch__in" accesskey="f" name="id" class="form-control" title="[F]" placeholder="'.$lang['btn_search'].'" />';
-    print '<button type="submit" title="'.$lang['btn_search'].'"><span class="label glyph-24">'.$mixture['glyphs']['search'].'</span></button>';
-    if ($ajax) print '<div id="qsearch__out" class="navbar-form ajax_qsearch JSpopup';
-        if($autocomplete) print ' autocomplete';
-    print '"></div>';
-    print '</div>';
-    print '</form>';
+    echo '<form id="dw__search" class="" action="'.wl().'" accept-charset="utf-8" method="get" role="search">';
+    echo '<div class="form-group">';
+    echo '<input type="hidden" name="do" value="search" />';
+    echo '<input type="text" ';
+    if($ACT == 'search') echo 'value="'.htmlspecialchars($QUERY).'" ';
+    if(!$autocomplete) echo 'autocomplete="off" ';
+    echo 'id="qsearch__in" accesskey="f" name="id" class="form-control" title="[F]" placeholder="'.$lang['btn_search'].'" />';
+    echo '<button type="submit" title="'.$lang['btn_search'].'"><span class="label glyph-24">'.$mixture['glyphs']['search'].'</span></button>';
+    if ($ajax) echo '<div id="qsearch__out" class="navbar-form ajax_qsearch JSpopup';
+        if($autocomplete) echo ' autocomplete';
+    echo '"></div>';
+    echo '</div>';
+    echo '</form>';
     return true;
 }
 
@@ -1043,10 +1043,10 @@ function php_mixture_searchform($ajax = true, $autocomplete = true) {
 function php_mixture_action($action) {
     // if action isn't disabled within DW's setting
     if (strpos($conf['disableactions'], $action) === false) {
-        print "<li>";
+        echo "<li>";
             // "home" isn't a DW's action so building the link is specific
             if ($action == "home") {
-                print php_mixture_glyph("home", "action");
+                echo php_mixture_glyph("home", "action");
                 tpl_link(wl(),tpl_getLang('wikihome'),'class="action home" accesskey="h" title="'.tpl_getLang('wikihome').' [H]"');
             // "logout" is a DW's action but uses same action name than "login" and Mixture needs to make a difference to serve correct glyph
             } elseif ($action == "logout") {
@@ -1054,6 +1054,6 @@ function php_mixture_action($action) {
             } else {
                 tpl_action($action, 1, '', 0, php_mixture_glyph($action, "action"));
             }
-        print "</li>";
+        echo "</li>";
     }
 }

@@ -41,12 +41,12 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             <ul class="flex-container-h">
                                 <?php if (strpos(tpl_getConf('elements'), 'topbar_date') !== false) : ?>
                                     <li id="mixture__topbar_date" class="camelcase">
-                                        <span class="label glyph-18" title="<?php print php_mixture_date("long"); ?>">
+                                        <span class="label glyph-18" title="<?php echo php_mixture_date("long"); ?>">
                                             <?php echo $mixture['glyphs']['calendar']; ?>
                                         </span>
                                         <span class="text">
                                             <?php 
-                                                print php_mixture_date("long");
+                                                echo php_mixture_date("long");
                                             ?>
                                         </span>
                                     </li>
@@ -58,7 +58,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                 <?php echo $mixture['glyphs']['recent']; ?>
                                             </span>
                                             <span class="a11y">
-                                                <?php print $lang['btn_recent'] ?>:
+                                                <?php echo $lang['btn_recent'] ?>:
                                             </span>
                                         </strong>
                                         <ul class="<?php if (count($mixture['recents']) > 1) { echo 'js-lastchanges'; } else { echo 'lastchange'; } ?>">
@@ -107,7 +107,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                             '<img id="mixture__branding_logo_image" src="'.$logoImage.'" title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['logo']['imageSize'][3].' />'
                                         );
                                     } else {
-                                        print '<img id="mixture__branding_logo_image" src="'.$logoImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['logo']['imageSize'][3].' />';
+                                        echo '<img id="mixture__branding_logo_image" src="'.$logoImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['logo']['imageSize'][3].' />';
                                     }
                                 ?>
                             </div><!-- /#mixture__branding_logo -->
@@ -143,7 +143,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             <?php endif; ?>
                             <?php if ($conf['tagline']): ?>
                                 <?php
-                                    print "<p id='mixture__tagline'>";
+                                    echo "<p id='mixture__tagline'>";
                                         // display wiki tagline as a link depending on taglineLink setting
                                         $link = php_mixture_ui_link("taglineLink");
                                         $text = php_mixture_branding("tagline");
@@ -161,7 +161,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                         } else {
                                             echo '<span>'.$text.'</span>';
                                         }
-                                    print "</p>";
+                                    echo "</p>";
                                 ?>
                             <?php endif ?>
                         </div>
@@ -192,7 +192,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                 '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" '.$accesskey.'title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />'
                                             );
                                         } else {
-                                            print '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />';
+                                            echo '<img id="mixture__branding_banner_image" src="'.$bannerImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['banner']['imageSize'][3].' />';
                                         }
                                     ?>
                                 </div><!-- /#mixture__branding_banner -->
@@ -313,13 +313,13 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                 $widebannerImage = "/lib/tpl/mixture/images/widebanner.jpg";
                             }
                             $title = "Widebanner";
-                            print '<img id="mixture__widebanner_image" src="'.$widebannerImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['widebanner']['imageSize'][3].' />';
+                            echo '<img id="mixture__widebanner_image" src="'.$widebannerImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['widebanner']['imageSize'][3].' />';
                         ?>
                     </div><!-- /#mixture__branding_banner -->
                 <?php endif ?>
                 <?php
                     if (isset($trs['dropdown'])) {
-                        print $trs['dropdown'];
+                        echo $trs['dropdown'];
                     }
                 ?>
                 <ul class="small flex-container-h">
@@ -330,7 +330,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         // List current page's translation(s), existing or not (if Translation plugin isn't set to use a dropdown)
                         if ((!isset($trs['dropdown'])) && (is_array($trs['links'])) && (count($trs['links']) >= 1)) {
                             foreach($trs['links'] as $key => $value) {
-                                print "<li class='translation'>".$value."</li>";
+                                echo "<li class='translation'>".$value."</li>";
                             }
                         }
                     ?>
@@ -368,7 +368,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                             '<img id="mixture__sidebar_header_image" src="'.$sidebarImage.'" title="'.$link['label'].'" alt="*'.$title.'*" '.$mixture['images']['sidebar']['imageSize'][3].' />'
                                         );
                                     } else {
-                                        print '<img id="mixture__sidebar_header_image" src="'.$sidebarImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['sidebar']['imageSize'][3].' />';
+                                        echo '<img id="mixture__sidebar_header_image" src="'.$sidebarImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['sidebar']['imageSize'][3].' />';
                                     }
                                 }
                             ?>
