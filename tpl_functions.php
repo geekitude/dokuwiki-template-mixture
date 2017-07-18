@@ -251,11 +251,14 @@ function php_mixture_init() {
     $mixture['glyphs']['index'] = null;
     $mixture['glyphs']['link'] = null;
     $mixture['glyphs']['login'] = null;
+    $mixture['glyphs']['logout'] = null;
     $mixture['glyphs']['media'] = null;
     $mixture['glyphs']['parent'] = null;
     $mixture['glyphs']['popularity'] = null;
+    $mixture['glyphs']['profile'] = null;
     $mixture['glyphs']['recent'] = null;
     $mixture['glyphs']['refresh'] = null;
+    $mixture['glyphs']['register'] = null;
     $mixture['glyphs']['revert'] = null;
     $mixture['glyphs']['search'] = null;
     $mixture['glyphs']['styling'] = null;
@@ -263,7 +266,6 @@ function php_mixture_init() {
     $mixture['glyphs']['translation'] = null;
     $mixture['glyphs']['upgrade'] = null;
     $mixture['glyphs']['userprivate'] = null;
-    $mixture['glyphs']['userprofile'] = null;
     $mixture['glyphs']['users'] = null;
     $mixture['glyphs']['youarehere'] = null;
     foreach ($mixture['glyphs'] as $key => $value) {
@@ -528,9 +530,9 @@ function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $
 }
 
 /**
- * PREPARE UI LINKS DATA
+ * PREPARE UI LINKS
  * 
- * Prepare data needed for UI links (logo, title, tagline or banner).
+ * Prepare data needed for UI links (logo, title, tagline, banner or tools).
  *
  * @param string   $element UI element for wich the link is requested
  */
@@ -892,9 +894,13 @@ function php_mixture_glyph($target = null, $context = "breadcrumbs", $label = nu
             // Add a house SVG image before home
             } elseif (ltrim($target, ":") == $conf['start']) {
                 $glyph =  '<span class="glyph-18" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
+            } else {
+                $glyph =  '<span class="glyph-18" title="*Unknown*">'.$mixture['glyphs']['default'].'</span>';
             }
         } elseif ($context == "action") {
-            if (($target == "advanced") || ($target == "confmanager")){
+            if ($target == "home") {
+                $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs']['home'].'</span>';
+            } elseif (($target == "advanced") || ($target == "confmanager")){
                 $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs']['config'].'</span>';
             } elseif ($target == "custombuttons") {
                 $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs']['admin'].'</span>';
@@ -1027,4 +1033,27 @@ function php_mixture_searchform($ajax = true, $autocomplete = true) {
     print '</div>';
     print '</form>';
     return true;
+}
+
+/**
+ * Print a link to custom (like "home") or standard action
+ *
+ * @param string        $action action command
+ */
+function php_mixture_action($action) {
+    // if action isn't disabled within DW's setting
+    if (strpos($conf['disableactions'], $action) === false) {
+        print "<li>";
+            // "home" isn't a DW's action so building the link is specific
+            if ($action == "home") {
+                print php_mixture_glyph("home", "action");
+                tpl_link(wl(),tpl_getLang('wikihome'),'class="action home" accesskey="h" title="'.tpl_getLang('wikihome').' [H]"');
+            // "logout" is a DW's action but uses same action name than "login" and Mixture needs to make a difference to serve correct glyph
+            } elseif ($action == "logout") {
+                tpl_action("login", 1, '', 0, php_mixture_glyph("logout", "action"));
+            } else {
+                tpl_action($action, 1, '', 0, php_mixture_glyph($action, "action"));
+            }
+        print "</li>";
+    }
 }

@@ -217,16 +217,13 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                             if ($userAvatar) {
                                                                 echo $userAvatar;
                                                             } else {
-                                                                echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['userprofile']."</span>";
+                                                                echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['profile']."</span>";
                                                             }
                                                             echo "<ul class='dropdown-content'>";
-                                                                tpl_toolsevent('usertools', array(
-                                                                    /*'admin'     => tpl_action('admin', 1, 'li', 1),*/
-                                                                    /*'userpage'  => _tpl_action('userpage', 1, 'li', 1),*/ /*IS BY DEFAULT RIGHT ABOVE IN p.user */
-                                                                    'profile'   => tpl_action('profile', 1, 'li', 1),
-                                                                    /*'register'  => tpl_action('register', 1, 'li', 1),*/
-                                                                    'login'     => tpl_action('login', 1, 'li', 1),
-                                                                ));
+                                                                php_mixture_action("profile");
+                                                                php_mixture_action("logout");
+                                                                // DW's event process kept in case a plugin needs it
+                                                                tpl_toolsevent('usertools', array());
                                                             echo "</ul>";
                                                         } else {
                                                             // if "register" action is disabled, show a simple link to login page
@@ -236,10 +233,10 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                             } else {
                                                                 echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>";
                                                                 echo "<ul class='dropdown-content'>";
-                                                                    tpl_toolsevent('usertools', array(
-                                                                        'register'  => tpl_action('register', 1, 'li', 1),
-                                                                        'login'     => tpl_action('login', 1, 'li', 1),
-                                                                    ));
+                                                                    php_mixture_action("register");
+                                                                    php_mixture_action("login");
+                                                                    // DW's event process kept in case a plugin needs it
+                                                                    tpl_toolsevent('usertools', array());
                                                                 echo "</ul>";
                                                             }
                                                         }
@@ -273,33 +270,12 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                             <h3 class="a11y"><?php echo $lang['site_tools'] ?></h3>
                                             <ul>
                                                 <?php
-                                                    echo '<li>';
-                                                        echo php_mixture_glyph($conf['start']);
-                                                        tpl_link(wl(),tpl_getLang('wikihome'),'class="action home" accesskey="h" title="[H]"');
-                                                    echo '</li>';
-                                                ?>
-                                                <?php
-                                                    // if "rss" action isn't disabled
-                                                    if (strpos($conf['disableactions'], 'recent') === false) {
-                                                        echo '<li>';
-                                                            tpl_action('recent', 1, '', 0, php_mixture_glyph('recent','action'));
-                                                        echo '</li>';
-                                                    }
-                                                    echo '<li>';
-                                                        tpl_action('media', 1, '', 0, php_mixture_glyph('media','action'));
-                                                    echo '</li>';
-                                                    // if "index" action isn't disabled
-                                                    if (strpos($conf['disableactions'], 'index') === false) {
-                                                        echo '<li>';
-                                                            tpl_action('index', 1, '', 0, php_mixture_glyph('index','action'));
-                                                        echo '</li>';
-                                                    }
-                                                    // Keeping event process in case a plugin adds one
-                                                    tpl_toolsevent('sitetools', array(
-                                                        /*'recent'    => tpl_action('recent', 1, 'li', 1),*/
-                                                        /*'media'     => tpl_action('media', 1, 'li', 1),*/
-                                                        /*'index'     => tpl_action('index', 1, 'li', 1),*/
-                                                    ));
+                                                    php_mixture_action("home");
+                                                    php_mixture_action("recent");
+                                                    php_mixture_action("media");
+                                                    php_mixture_action("index");
+                                                    // DW's event process kept in case a plugin needs it
+                                                    tpl_toolsevent('sitetools', array());
                                                 ?>
                                             </ul>
                                         </section><!-- /#mixture__sitetools -->
