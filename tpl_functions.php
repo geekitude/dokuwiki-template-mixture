@@ -800,8 +800,7 @@ function php_mixture_breadcrumbs() {
             $i++;
             echo '<li>';
               if (count(explode(":",$target)) == 1) { $target = ":".$target; }
-              php_mixture_glyph($target);
-              tpl_pagelink(":".$target, php_mixture_pagetitle($target, "breadcrumbs"));
+              php_mixture_pagelink($target);
             echo '</li>';
         }
         echo "</ul>";
@@ -833,8 +832,7 @@ function php_mixture_youarehere() {
     // print the startpage unless we're in translated namespace (in wich case trace will start with current language start page)
     if (((isset($trs['parts'][0])) && ((strlen($trs['parts'][0]) == 0) || ($trs['parts'][0] == $trs['defaultLang']))) || (plugin_isdisabled('translation'))) {
         echo '<li>';
-            php_mixture_glyph($conf['start']);
-            tpl_pagelink(":".$conf['start'], php_mixture_pagetitle($conf['start'], "breadcrumbs"));
+            php_mixture_pagelink($conf['start']);
         echo '</li>';
     }
     // print intermediate namespace links
@@ -844,8 +842,7 @@ function php_mixture_youarehere() {
         $page = $part;
         if (substr($page, -1) == ":") { $page .= $conf['start']; }
         echo '<li>';
-        php_mixture_glyph($page);
-        tpl_pagelink(":".$page, php_mixture_pagetitle($page, "breadcrumbs"));
+            php_mixture_pagelink($page);
         echo "</li>";
     }
 
@@ -860,9 +857,8 @@ function php_mixture_youarehere() {
         echo "</ul>";
         return true;
     }
-    echo '<li>';
-        php_mixture_glyph($page);
-        tpl_pagelink(":".$page, php_mixture_pagetitle($page, "breadcrumbs"));
+    echo "<li>";
+        php_mixture_pagelink($page);
     echo "</li>";
     echo "</ul>";
     return true;
@@ -1056,4 +1052,23 @@ function php_mixture_action($action) {
             }
         echo "</li>";
     }
+}
+
+function php_mixture_pagelink($target) {
+    global $ID;
+
+    if ($target == $ID) {
+        $classes = "curid";
+    }
+    if (page_exists($target)) {
+        $classes .= " wikilink1";
+    } else {
+        $classes = " wikilink2";
+    }
+    $pageName = php_mixture_pagetitle($target);
+    tpl_link(
+        wl($target),
+        php_mixture_glyph($target, "breadcrumbs", $pageName, true).$pageName,
+        'class="'.ltrim($classes, " ").'" title="'.$target.'"'
+    );
 }

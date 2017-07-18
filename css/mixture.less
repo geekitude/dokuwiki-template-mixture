@@ -528,23 +528,28 @@ body.debug #mixture__helper {
 .breadcrumbs li {
     display: inline-block;
 }
-.breadcrumbs li.curid a {
+.breadcrumbs li a.curid {
     font-weight: 700;
     pointer-events: none;
-    color: @ini_text_neu;
+    color: @ini_text !important;
 }
 .breadcrumbs li:after {
     content: "\00a0";
 }
 /* Add separator before each list item that is following another one... */
-.breadcrumbs .trace ul > li + li:before {
-    content: "/\00a0";
+.breadcrumbs .trace ul > li:before {
+    content: "\00a0/\00a0";
     vertical-align: 5%;
 }
-.breadcrumbs .youarehere ul > li + li:before {
-    content: "»\00a0";
+.breadcrumbs .youarehere ul > li:before {
+    content: "\00a0»\00a0";
 }
-/* ...except second one (because first one is the label, not a breadcrumb) */
+/* ...except first one (because first one is the label, not a breadcrumb) */
+.breadcrumbs .trace ul > li:nth-child(1):before,
+.breadcrumbs .youarehere ul > li:nth-child(1):before {
+    content: "";
+}
+/* ...and second one (because it's after first one which is the label, not a breadcrumb, and thus does not need a separator) */
 .breadcrumbs .trace ul > li:nth-child(2):before,
 .breadcrumbs .youarehere ul > li:nth-child(2):before {
     content: "";
