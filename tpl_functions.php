@@ -1041,18 +1041,18 @@ function php_mixture_searchform($ajax = true, $autocomplete = true) {
  * @param string        $action action command
  */
 function php_mixture_action($action) {
+    global $lang;
     // if action isn't disabled within DW's setting
     if (strpos($conf['disableactions'], $action) === false) {
         echo "<li>";
             // "home" isn't a DW's action so building the link is specific
             if ($action == "home") {
-                echo php_mixture_glyph("home", "action");
-                tpl_link(wl(),tpl_getLang('wikihome'),'class="action home" accesskey="h" title="'.tpl_getLang('wikihome').' [H]"');
+                tpl_link(wl(),php_mixture_glyph("home", "action", tpl_getLang('wikihome'), true).tpl_getLang('wikihome'),'class="action home" accesskey="h" title="'.tpl_getLang('wikihome').' [H]"');
             // "logout" is a DW's action but uses same action name than "login" and Mixture needs to make a difference to serve correct glyph
             } elseif ($action == "logout") {
-                tpl_action("login", 1, '', 0, php_mixture_glyph("logout", "action"));
+                tpl_action("login", 1, '', 0, "", "", php_mixture_glyph("logout", "action", $lang['btn_login'], true).$lang['btn_login']);
             } else {
-                tpl_action($action, 1, '', 0, php_mixture_glyph($action, "action"));
+                tpl_action($action, 1, '', 0, "", "", php_mixture_glyph($action, "action", $lang['btn_'.$action], true).$lang['btn_'.$action]);
             }
         echo "</li>";
     }
