@@ -1087,6 +1087,38 @@ ul.dropdown-content hr {
     #mixture__classic_nav h3.toggle {
         display: none;
     }
+    #mixture__branding {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+    }
+    #mixture__branding_start {
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+                justify-content: flex-start
+    }
+    #mixture__branding_logo {
+        margin-bottom: 0;
+    }
+    #mixture__branding_end {
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+            -ms-flex-pack: end;
+                justify-content: flex-end
+    }
+    #mixture__classic_nav {
+        width: auto;
+    }
+    [dir=ltr] #mixture__classic_nav {
+        /*margin: @ini_spacer @ini_spacer @ini_spacer 0;*/
+        text-align: right;
+    }
+    [dir=rtl] #mixture__classic_nav {
+        /*margin: @ini_spacer 0 @ini_spacer @ini_spacer;*/
+        text-align: left;
+    }
     #mixture__sidebar {
         width: @ini_sidebar_width;
         max-width: 25%;
@@ -1143,38 +1175,6 @@ ul.dropdown-content hr {
         padding: 0 (@ini_spacer / 2);
     }
     */
-    #mixture__branding {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-            -ms-flex-direction: row;
-                flex-direction: row;
-    }
-    #mixture__branding_start {
-        -webkit-box-pack: start;
-        -webkit-justify-content: flex-start;
-            -ms-flex-pack: start;
-                justify-content: flex-start
-    }
-    #mixture__branding_logo {
-        margin-bottom: 0;
-    }
-    #mixture__branding_end {
-        -webkit-box-pack: end;
-        -webkit-justify-content: flex-end;
-            -ms-flex-pack: end;
-                justify-content: flex-end
-    }
-    #mixture__classic_nav {
-        width: auto;
-    }
-    [dir=ltr] #mixture__classic_nav {
-        /*margin: @ini_spacer @ini_spacer @ini_spacer 0;*/
-        text-align: right;
-    }
-    [dir=rtl] #mixture__classic_nav {
-        /*margin: @ini_spacer 0 @ini_spacer @ini_spacer;*/
-        text-align: left;
-    }
 }
 @media (min-width: 1801px) {
     #mixture__helper {
