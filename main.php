@@ -390,6 +390,29 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <!-- wikipage start -->
                             <?php tpl_content() ?>
                         <!-- wikipage stop -->
+                        <?php if (($INFO['exists']) && (tpl_getConf('pageFooterStyle') == 'mixture')) : ?>
+                            <?php tpl_includeFile('pagefooter.html') ?>
+                            <div id="mixture__docinfo" class="small clearfix">
+                                <div class="entry-meta flex-container-h items-center justify-center">
+                                    <span class="flex-container-h items-center"><span class="label glyph-24" title="<?php echo tpl_getLang('lasteditor'); ?>"><?php echo $mixture['glyphs']['user']; ?></span><?php echo ($INFO['editor']) ? '<bdi>'.editorinfo($INFO['editor']).'</bdi>' : $lang['external_edit']; ?></span>
+                                    <span class="flex-container-h items-center"><span class="label glyph-24" title="<?php echo tpl_getLang('lastmoddate'); ?>"><?php echo $mixture['glyphs']['calendar']; ?></span><?php echo ($INFO['lastmod']) ? '<bdi>'.dformat($INFO['lastmod']).'</bdi>' : ''; ?></span>
+                                    <span class="flex-container-h items-center"><span class="label glyph-24" title="<?php echo tpl_getLang('pagepath'); ?>"><?php echo $mixture['glyphs']['folder']; ?></span>
+                                        <?php
+                                            $fn = $INFO['filepath'];
+                                            if(!$conf['fullpath']) {
+                                                if($INFO['rev']) {
+                                                    $fn = str_replace($conf['olddir'].'/', '', $fn);
+                                                } else {
+                                                    $fn = str_replace($conf['datadir'].'/', '', $fn);
+                                                }
+                                            }
+                                            $fn   = utf8_decodeFN($fn);
+                                            echo '<bdi>'.$fn.'</bdi>';
+                                        ?>
+                                    </span>
+                                </div>
+                            </div>
+                        <?php endif ?>
                     </article>
                     <!-- <hr /> -->
                     <?php tpl_flush() ?>
@@ -398,7 +421,12 @@ $showSidebar = $hasSidebar && ($ACT=='show');
             </main>
             <!-- ********** FOOTER ********** -->
             <footer id="mixture__footer" role="contentinfo" class="pam pt0">
-                <div class="pageInfo small"><span><?php tpl_pageinfo() ?></span></div>
+                <?php tpl_includeFile('pagefooter.html') ?>
+                <?php if (($INFO['exists']) && (tpl_getConf('pageFooterStyle') == 'dokuwiki')) : ?>
+                    <div id="mixture__docinfo" class="small clearfix">
+                        <?php tpl_pageinfo() ?>
+                    </div>
+                <?php endif ?>
                 <?php tpl_includeFile('footerheader.html'); ?>
                 <div class="tools">
                     <!-- PAGE TOOLS -->

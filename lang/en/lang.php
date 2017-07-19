@@ -15,3 +15,6 @@ $lang['cache']              = 'Cache';
 $lang['purgepagecache']     = 'Purge current page\'s cache';
 $lang['purgejscache']       = 'Purge JavaScript cache';
 $lang['purgecsscache']      = 'Purge CSS cache';
+$lang['lasteditor']         = 'Last editor';
+$lang['lastmoddate']        = 'Last modification date and time';
+$lang['pagepath']           = 'Page file path';

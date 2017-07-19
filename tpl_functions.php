@@ -303,6 +303,7 @@ function php_mixture_init() {
     $mixture['glyphs']['discussion'] = null;
     $mixture['glyphs']['ellipsis'] = null;
     $mixture['glyphs']['extension'] = null;
+    $mixture['glyphs']['folder'] = null;
     $mixture['glyphs']['home'] = null;
     $mixture['glyphs']['index'] = null;
     $mixture['glyphs']['link'] = null;
@@ -322,6 +323,7 @@ function php_mixture_init() {
     $mixture['glyphs']['translation'] = null;
     $mixture['glyphs']['upgrade'] = null;
     $mixture['glyphs']['userprivate'] = null;
+    $mixture['glyphs']['user'] = null;
     $mixture['glyphs']['users'] = null;
     $mixture['glyphs']['youarehere'] = null;
     foreach ($mixture['glyphs'] as $key => $value) {

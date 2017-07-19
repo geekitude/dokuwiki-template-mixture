@@ -37,3 +37,4 @@ $meta['stickySidebar']      = array('onoff'); /* try to keep Sidebar always in v
 $meta['wrappedSidebar']     = array('onoff'); /* wrap content around sidebar (potential side effects with syntax plugins, for exemple, does not work well with larg WRAP elements) */
 $meta['avatar']             = array('multichoice', '_choices' => array('none','jdenticon','avatar-plugin'));/* image used as default last editor avatar if `user/%USER%/avatar.[jpg/png]` doesn't exists (jidenticon is more secure as it is local and based on full name, not mail) */
 $meta['avatarNs']           = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* namespace containing users' avatars that should be named after user's login (will always override jdenticon or avatar plugin image and it would make sense to use namespace containing users' public pages) */
+$meta['pageFooterStyle']    = array('multichoice', '_choices' => array('mixture','dokuwiki'));/* style of page footer */

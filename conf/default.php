@@ -37,3 +37,4 @@ $conf['stickySidebar']      = 0;
 $conf['wrappedSidebar']     = 0;
 $conf['avatar']             = 'jdenticon';
 $conf['avatarNs']           = 'user';
+$conf['pageFooterStyle']    = 'mixture';
