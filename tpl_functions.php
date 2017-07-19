@@ -58,6 +58,10 @@ function php_mixture_init() {
 
     // HELPER PLUGINS
     // Preparing usefull plugins' helpers
+    // Avatar
+    if (!plugin_isdisabled('avatar')) {
+        $avatarHelper = plugin_load('helper','avatar');
+    }
     // Userhomepage
     if (!empty($_SERVER['REMOTE_USER'])) {
         if (!plugin_isdisabled('userhomepage')) {
@@ -79,7 +83,6 @@ function php_mixture_init() {
             $uhp['public']['string'] = tpl_getLang('public_page');
         }
     }
-
     // Translations
     $trs = array();
     if (!plugin_isdisabled('translation')) {
@@ -1046,7 +1049,7 @@ function php_mixture_action($action) {
                 tpl_link(wl(),php_mixture_glyph("home", "action", tpl_getLang('wikihome'), true).tpl_getLang('wikihome'),'class="action home" accesskey="h" title="'.tpl_getLang('wikihome').' [H]"');
             // "logout" is a DW's action but uses same action name than "login" and Mixture needs to make a difference to serve correct glyph
             } elseif ($action == "logout") {
-                tpl_action("login", 1, '', 0, "", "", php_mixture_glyph("logout", "action", $lang['btn_login'], true).$lang['btn_login']);
+                tpl_action("login", 1, '', 0, "", "", php_mixture_glyph("logout", "action", $lang['btn_login'], true).$lang['btn_logout']);
             } else {
                 tpl_action($action, 1, '', 0, "", "", php_mixture_glyph($action, "action", $lang['btn_'.$action], true).$lang['btn_'.$action]);
             }
