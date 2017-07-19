@@ -446,6 +446,7 @@ h3.toggle.open strong {
 h3.toggle.closed {
     height: auto;
     color: @ini_color_headings;
+    height: 1.8rem;
 }
 [dir=ltr] #mixture__sidebar ul,
 [dir=ltr] #mixture__sidebar ol {
@@ -495,7 +496,6 @@ body.wrappedSidebar li {
     margin-left: inherit;
 }
 body.unwrappedSidebar #mixture__sidebar {
-    box-sizing: content-box;
     margin: 0 0 calc(@ini_spacer / 3) 0;
 }
 #dw__toc {
@@ -1020,6 +1020,9 @@ ul.dropdown-content hr {
     }
     #mixture__branding_text {
         margin: 0;
+    }
+    body.unwrappedSidebar #mixture__sidebar {
+        box-sizing: content-box;
     }
     #mixture__content {
         margin: 0;
