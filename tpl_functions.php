@@ -45,7 +45,7 @@ function php_mixture_init() {
     // DokuWiki core globals
     global $conf, $ID, $INFO, $auth, $JSINFO, $lang;
     // New global variables
-    global $mixture, $uhp, $trs, $editorAvatar, $userAvatar, $browserlang;
+    global $mixture, $uhp, $trs, $browserlang;
 
     // To use when we need to ignore `discussion` namespace
     $id = str_replace("discussion:", "", $ID);
@@ -274,12 +274,12 @@ function php_mixture_init() {
                 $editor['mail'] = $editorAuthInfo['mail']; // current page's editor's mail
                 // Firstly try to get a local avatar
                 $mixture['images']['editorAvatar'] = php_mixture_file($editor['login'], "namespace", "media", tpl_getConf('avatarNs'));
-                $mixture['images']['editorAvatar']['img'] = '<span id="mixture__editor_avatar" title="'.$editor['fullname'].'"><img src="'.ml($mixture['images']['editorAvatar']['mediaId'],'',true).'" alt="*'.$editor['fullname'].'*" width="32" height="32" /></span>';
+                $mixture['images']['editorAvatar']['img'] = '<span id="mixture__editor_avatar" class="flex-container-h items-center" title="'.$editor['fullname'].'"><img src="'.ml($mixture['images']['editorAvatar']['mediaId'],'',true).'" alt="*'.$editor['fullname'].'*" width="32" height="32" /></span>';
                 // Keep going if we didn't get a local avatar
                 if ($mixture['images']['editorAvatar']['mediaId'] == null) {
                     // ... then try to get an image from Avatar plugin if we didn't get a local avatar and if it's required by setting and avatar plugin's helper has been loaded
                     if ((tpl_getConf("avatar") == "avatar-plugin") && ($avatarHelper)) {
-                        $mixture['images']['editorAvatar']['img'] = '<span id="mixture__editor_avatar">'.$avatarHelper->getXHTML($editor['mail'], $editor['fullname'], 'center', 32).'</span>';
+                        $mixture['images']['editorAvatar']['img'] = '<span id="mixture__editor_avatar" class="flex-container-h items-center">'.$avatarHelper->getXHTML($editor['mail'], $editor['fullname'], 'center', 32).'</span>';
                         // adding a border to JPEG images (`png` and `gif` images most likely have a transparent background and shouldn't need a border to fit)
                         if (strpos($mixture['images']['editorAvatar']['img'], '.jpg') !== false) {
                             //$mixture['images']['editorAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter borders", $mixture['images']['editorAvatar']['img']);
@@ -287,7 +287,7 @@ function php_mixture_init() {
                         }
                     // ... then try a jdenticon
                     } else {
-                        $mixture['images']['editorAvatar']['svg'] = '<span id="mixture__editor_avatar" title="'.$editor['fullname'].'"><svg width="32" height="32" data-jdenticon-hash="'.hash('md5', $editor['mail']).'" alt="*'.$editor['fullname'].'*" class="mediacenter"></svg>';
+                        $mixture['images']['editorAvatar']['svg'] = '<span id="mixture__editor_avatar" class="flex-container-h items-center" title="'.$editor['fullname'].'"><svg width="32" height="32" data-jdenticon-hash="'.hash('md5', $editor['mail']).'" alt="*'.$editor['fullname'].'*" class="mediacenter"></svg>';
                     }
                 }
             }

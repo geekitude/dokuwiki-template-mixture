@@ -394,7 +394,20 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             <?php tpl_includeFile('pagefooter.html') ?>
                             <div id="mixture__docinfo" class="small clearfix">
                                 <div class="entry-meta flex-container-h items-center justify-center">
-                                    <span class="flex-container-h items-center"><span class="label glyph-24" title="<?php echo tpl_getLang('lasteditor'); ?>"><?php echo $mixture['glyphs']['user']; ?></span><?php echo ($INFO['editor']) ? '<bdi>'.editorinfo($INFO['editor']).'</bdi>' : $lang['external_edit']; ?></span>
+                                    <span class="flex-container-h items-center">
+                                        <?php
+                                            if ($mixture['images']['editorAvatar']) {
+                                                if ($mixture['images']['editorAvatar']['svg']) {
+                                                    echo $mixture['images']['editorAvatar']['svg'];
+                                                } elseif ($mixture['images']['editorAvatar']['img']) {
+                                                    echo $mixture['images']['editorAvatar']['img'];
+                                                }
+                                            } else {
+                                                echo "<span class='label glyph-24' title='".tpl_getLang('lasteditor')."'>".$mixture['glyphs']['user']."</span>";
+                                            }
+                                        ?>
+                                        <?php echo ($INFO['editor']) ? '<bdi>'.editorinfo($INFO['editor']).'</bdi>' : $lang['external_edit']; ?>
+                                    </span>
                                     <span class="flex-container-h items-center"><span class="label glyph-24" title="<?php echo tpl_getLang('lastmoddate'); ?>"><?php echo $mixture['glyphs']['calendar']; ?></span><?php echo ($INFO['lastmod']) ? '<bdi>'.dformat($INFO['lastmod']).'</bdi>' : ''; ?></span>
                                     <span class="flex-container-h items-center"><span class="label glyph-24" title="<?php echo tpl_getLang('pagepath'); ?>"><?php echo $mixture['glyphs']['folder']; ?></span>
                                         <?php

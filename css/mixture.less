@@ -435,11 +435,19 @@ main {
     margin: (2 * @ini_spacer) 0 0 0;
 }
 #mixture__docinfo .entry-meta span {
-	margin: (@ini_spacer / 4) @ini_spacer;
+	margin: (@ini_spacer / 5) @ini_spacer;
 }
 #mixture__docinfo .entry-meta a.interwiki.iw_user {
 	background: none;
     padding: 0;
+}
+[dir=ltr] #mixture__editor_avatar img,
+[dir=ltr] #mixture__editor_avatar svg {
+    margin-right: @ini_spacer;
+}
+[dir=rtl] #mixture__editor_avatar img,
+[dir=rtl] #mixture__editor_avatar svg {
+    margin-left: @ini_spacer;
 }
 #mixture__footer {
     background-color: @ini_color_headings;
