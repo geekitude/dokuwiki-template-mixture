@@ -43,7 +43,7 @@ if (!function_exists('tpl_toolsevent')) {
  */
 function php_mixture_init() {
     // DokuWiki core globals
-    global $conf, $ID, $INFO, $JSINFO, $lang;
+    global $conf, $ID, $INFO, $auth, $JSINFO, $lang;
     // New global variables
     global $mixture, $uhp, $trs, $editorAvatar, $userAvatar, $browserlang;
 
@@ -59,7 +59,7 @@ function php_mixture_init() {
     // HELPER PLUGINS
     // Preparing usefull plugins' helpers
     // Avatar
-    if (!plugin_isdisabled('avatar')) {
+    if ((!plugin_isdisabled('avatar')) && (tpl_getConf('avatar') == "avatar-plugin")) {
         $avatarHelper = plugin_load('helper','avatar');
     }
     // Userhomepage
@@ -240,6 +240,59 @@ function php_mixture_init() {
     if (tpl_getConf('sidebarImg') != null) {
         $mixture['images']['sidebar'] = php_mixture_file(tpl_getConf('sidebarImg'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
     }
+    if (tpl_getConf('avatar') != "none") {
+        if ($_SERVER['REMOTE_USER'] != NULL) {
+            $user = array();
+            $user['login'] = $_SERVER['REMOTE_USER']; // current user's login
+            $user['fullname'] = $INFO['userinfo']['name']; // current user's fullname
+            $user['mail'] = $INFO['userinfo']['mail']; // current user's mail
+            // Firstly try to get a local avatar
+            $mixture['images']['userAvatar'] = php_mixture_file($user['login'], "namespace", "media", tpl_getConf('avatarNs'));
+            $mixture['images']['userAvatar']['img'] = '<span id="mixture__user_avatar" title="'.$user['fullname'].'"><img src="'.ml($mixture['images']['userAvatar']['mediaId'],'',true).'" alt="*'.$user['fullname'].'*" width="32" height="32" /></span>';
+            // Keep going if we didn't get a local avatar
+            if ($mixture['images']['userAvatar']['mediaId'] == null) {
+                // ... then try to get an image from Avatar plugin if we didn't get a local avatar and if it's required by setting and avatar plugin's helper has been loaded
+                if ((tpl_getConf("avatar") == "avatar-plugin") && ($avatarHelper)) {
+                    $mixture['images']['userAvatar']['img'] = '<span id="mixture__user_avatar">'.$avatarHelper->getXHTML($user['mail'], $user['fullname'], 'center', 32).'</span>';
+                    // adding a border to JPEG images (`png` and `gif` images most likely have a transparent background and shouldn't need a border to fit)
+                    if (strpos($mixture['images']['userAvatar']['img'], '.jpg') !== false) {
+                        //$mixture['images']['userAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter borders", $mixture['images']['userAvatar']['img']);
+                        $mixture['images']['userAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter", $mixture['images']['userAvatar']['img']);
+                    }
+                // ... then try a jdenticon
+                } else {
+                    $mixture['images']['userAvatar']['svg'] = '<span id="mixture__user_avatar" title="'.$user['fullname'].'"><svg width="32" height="32" data-jdenticon-hash="'.hash('md5', $user['mail']).'" alt="*'.$user['fullname'].'*" class="mediacenter"></svg>';
+                }
+            }
+        }
+        if ($INFO['editor'] != NULL) {
+            if ($auth) {
+                $editorAuthInfo = $auth->getUserData($INFO['editor']);
+                $editor = array();
+                $editor['login'] = $INFO['editor']; // current page's editor's login
+                $editor['fullname'] = $editorAuthInfo['name']; // current page's editor's full name
+                $editor['mail'] = $editorAuthInfo['mail']; // current page's editor's mail
+                // Firstly try to get a local avatar
+                $mixture['images']['editorAvatar'] = php_mixture_file($editor['login'], "namespace", "media", tpl_getConf('avatarNs'));
+                $mixture['images']['editorAvatar']['img'] = '<span id="mixture__editor_avatar" title="'.$editor['fullname'].'"><img src="'.ml($mixture['images']['editorAvatar']['mediaId'],'',true).'" alt="*'.$editor['fullname'].'*" width="32" height="32" /></span>';
+                // Keep going if we didn't get a local avatar
+                if ($mixture['images']['editorAvatar']['mediaId'] == null) {
+                    // ... then try to get an image from Avatar plugin if we didn't get a local avatar and if it's required by setting and avatar plugin's helper has been loaded
+                    if ((tpl_getConf("avatar") == "avatar-plugin") && ($avatarHelper)) {
+                        $mixture['images']['editorAvatar']['img'] = '<span id="mixture__editor_avatar">'.$avatarHelper->getXHTML($editor['mail'], $editor['fullname'], 'center', 32).'</span>';
+                        // adding a border to JPEG images (`png` and `gif` images most likely have a transparent background and shouldn't need a border to fit)
+                        if (strpos($mixture['images']['editorAvatar']['img'], '.jpg') !== false) {
+                            //$mixture['images']['editorAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter borders", $mixture['images']['editorAvatar']['img']);
+                            $mixture['images']['editorAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter", $mixture['images']['editorAvatar']['img']);
+                        }
+                    // ... then try a jdenticon
+                    } else {
+                        $mixture['images']['editorAvatar']['svg'] = '<span id="mixture__editor_avatar" title="'.$editor['fullname'].'"><svg width="32" height="32" data-jdenticon-hash="'.hash('md5', $editor['mail']).'" alt="*'.$editor['fullname'].'*" class="mediacenter"></svg>';
+                    }
+                }
+            }
+        }
+    }
 
     // GLYPHS
     // Search for default or custum default SVG glyphs
@@ -313,6 +366,11 @@ function php_mixture_init() {
         $JSINFO['LoadNewsTicker'] = true;
     } else {
         $JSINFO['LoadNewsTicker'] = false;
+    }
+    if (tpl_getConf('avatar') != "none") {
+        $JSINFO['LoadJdenticon'] = true;
+    } else {
+        $JSINFO['LoadJdenticon'] = false;
     }
     //$JSINFO['ScrollspyToc'] = tpl_getConf('scrollspyToc');
 
@@ -430,6 +488,7 @@ function php_mixture_classes() {
 
 //php_mixture_file(tpl_getConf('banner'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
 function php_mixture_file($fileName, $where, $type = "page", $searchns = null, $returnId = false) {
+//dbg($fileName." + ".$where." + ".$type." + ".$searchns." + ".$returnId);
     global $conf, $mixture;
 
     if ($searchns == null) {

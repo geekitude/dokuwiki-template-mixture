@@ -214,8 +214,12 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                 <li id="mixture__classic_nav_user" class="dropdown">
                                                     <?php
                                                         if ($_SERVER['REMOTE_USER'] != NULL) {
-                                                            if ($userAvatar) {
-                                                                echo $userAvatar;
+                                                            if ($mixture['images']['userAvatar']) {
+                                                                if ($mixture['images']['userAvatar']['svg']) {
+                                                                    echo $mixture['images']['userAvatar']['svg'];
+                                                                } elseif ($mixture['images']['userAvatar']['img']) {
+                                                                    echo $mixture['images']['userAvatar']['img'];
+                                                                }
                                                             } else {
                                                                 echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['profile']."</span>";
                                                             }

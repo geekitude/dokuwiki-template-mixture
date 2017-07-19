@@ -35,3 +35,5 @@ $conf['scrollspyToC']       = 1;
 $conf['extractSidebar']     = 1;
 $conf['stickySidebar']      = 0;
 $conf['wrappedSidebar']     = 0;
+$conf['avatar']             = 'jdenticon';
+$conf['avatarNs']           = 'user';
