@@ -241,12 +241,15 @@ main,
 #mixture__classic_nav ul {
     margin: 0;
 }
+#mixture__classic_nav #mixture__sitetools span svg {
+    vertical-align: -3px;
+}
 #mixture__classic_nav h3.toggle {
     font-size: 80%;
     padding: 0;
 }
 #mixture__classic_nav_admin span.label svg {
-    margin: 0 !important;
+    margin: -1px 0 0 0 !important;
 }
 #mixture__classic_nav_admin ul {
     z-index: 10;
@@ -265,10 +268,10 @@ main,
     margin-left: 2rem;
 }
 [dir=ltr] #mixture__classic_nav #mixture__usertools ul li.dropdown span svg {
-    margin: 0 0 0 .5rem;
+    margin: -1px 0 0 .5rem;
 }
 [dir=rtl] #mixture__classic_nav #mixture__usertools ul li.dropdown span svg {
-    margin: 0 .5rem 0 0;
+    margin: -1px .5rem 0 0;
 }
 [dir=ltr] #mixture__classic_nav #mixture__sitetools ul li {
     margin: 0 0 0 1rem;
@@ -673,13 +676,12 @@ pre.dbg {
     height: unit(@ini_font_factor, rem);
     width: unit(@ini_font_factor, rem);
     stroke-width: 0;
-    stroke: @ini_text_neu;
+    stroke: transparent;
     fill: @ini_text_neu;
 }
 .glyph-18 svg {
     width: 1.575rem; /* .875 * 1.8 */
     height: 1.575rem;
-    vertical-align: -3px;
 }
 @media (min-width: 480px) {
     .glyph-18 svg {
