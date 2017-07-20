@@ -1,6 +1,3 @@
-if (JSINFO.LoadJdenticon) {
-    /* DOKUWIKI:include js/jdenticon-1.4.0.min.js */
-}
 if (JSINFO.LoadNewsTicker) {
     /* DOKUWIKI:include js/jquery.newsTicker-1.0.11.min.js */
 }

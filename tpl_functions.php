@@ -240,7 +240,7 @@ function php_mixture_init() {
     if (tpl_getConf('sidebarImg') != null) {
         $mixture['images']['sidebar'] = php_mixture_file(tpl_getConf('sidebarImg'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
     }
-    if (tpl_getConf('avatar') != "none") {
+    if (tpl_getConf('useavatar')) {
         if ($_SERVER['REMOTE_USER'] != NULL) {
             $user = array();
             $user['login'] = $_SERVER['REMOTE_USER']; // current user's login
@@ -259,9 +259,6 @@ function php_mixture_init() {
                         //$mixture['images']['userAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter borders", $mixture['images']['userAvatar']['img']);
                         $mixture['images']['userAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter", $mixture['images']['userAvatar']['img']);
                     }
-                // ... then try a jdenticon
-                } else {
-                    $mixture['images']['userAvatar']['svg'] = '<span id="mixture__user_avatar" title="'.$user['fullname'].'"><svg width="32" height="32" data-jdenticon-hash="'.hash('md5', $user['mail']).'" alt="*'.$user['fullname'].'*" class="mediacenter"></svg>';
                 }
             }
         }
@@ -285,9 +282,6 @@ function php_mixture_init() {
                             //$mixture['images']['editorAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter borders", $mixture['images']['editorAvatar']['img']);
                             $mixture['images']['editorAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter", $mixture['images']['editorAvatar']['img']);
                         }
-                    // ... then try a jdenticon
-                    } else {
-                        $mixture['images']['editorAvatar']['svg'] = '<span id="mixture__editor_avatar" class="flex-container-h items-center" title="'.tpl_getLang('lasteditor').'"><svg width="32" height="32" data-jdenticon-hash="'.hash('md5', $editor['mail']).'" alt="*'.$editor['fullname'].'*" class="mediacenter"></svg>';
                     }
                 }
             }
@@ -368,11 +362,6 @@ function php_mixture_init() {
         $JSINFO['LoadNewsTicker'] = true;
     } else {
         $JSINFO['LoadNewsTicker'] = false;
-    }
-    if (tpl_getConf('avatar') != "none") {
-        $JSINFO['LoadJdenticon'] = true;
-    } else {
-        $JSINFO['LoadJdenticon'] = false;
     }
     //$JSINFO['ScrollspyToc'] = tpl_getConf('scrollspyToc');
 
