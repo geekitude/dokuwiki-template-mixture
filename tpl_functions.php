@@ -247,8 +247,11 @@ function php_mixture_init() {
             $user['fullname'] = $INFO['userinfo']['name']; // current user's fullname
             $user['mail'] = $INFO['userinfo']['mail']; // current user's mail
             // Firstly try to get a local avatar
-            $mixture['images']['userAvatar'] = php_mixture_file($user['login'], "namespace", "media", tpl_getConf('avatarNs'));
-            $mixture['images']['userAvatar']['img'] = '<span id="mixture__user_avatar" title="'.$user['fullname'].'"><img src="'.ml($mixture['images']['userAvatar']['mediaId'],'',true).'" alt="*'.$user['fullname'].'*" width="32" height="32" /></span>';
+            $tmp = php_mixture_file($user['login'], "namespace", "media", tpl_getConf('avatarNs'));
+            if ($tmp['mediaId'] != null) {
+                $mixture['images']['userAvatar'] = $tmp;
+                $mixture['images']['userAvatar']['img'] = '<span id="mixture__user_avatar" title="'.$user['fullname'].'"><img src="'.ml($tmp['mediaId'],'',true).'" alt="*'.$user['fullname'].'*" width="32" height="32" /></span>';
+            }
             // Keep going if we didn't get a local avatar
             if ($mixture['images']['userAvatar']['mediaId'] == null) {
                 // ... then try to get an image from Avatar plugin if we didn't get a local avatar and if it's required by setting and avatar plugin's helper has been loaded
@@ -270,8 +273,11 @@ function php_mixture_init() {
                 $editor['fullname'] = $editorAuthInfo['name']; // current page's editor's full name
                 $editor['mail'] = $editorAuthInfo['mail']; // current page's editor's mail
                 // Firstly try to get a local avatar
-                $mixture['images']['editorAvatar'] = php_mixture_file($editor['login'], "namespace", "media", tpl_getConf('avatarNs'));
-                $mixture['images']['editorAvatar']['img'] = '<span id="mixture__editor_avatar" class="flex-container-h items-center" title="'.tpl_getLang('lasteditor').'"><img src="'.ml($mixture['images']['editorAvatar']['mediaId'],'',true).'" alt="*'.$editor['fullname'].'*" width="32" height="32" /></span>';
+                $tmp = php_mixture_file($editor['login'], "namespace", "media", tpl_getConf('avatarNs'));
+                if ($tmp['mediaId'] != null) {
+                    $mixture['images']['editorAvatar'] = $tmp;
+                    $mixture['images']['editorAvatar']['img'] = '<span id="mixture__editor_avatar" class="flex-container-h items-center" title="'.tpl_getLang('lasteditor').'"><img src="'.ml($tmp['mediaId'],'',true).'" alt="*'.$editor['fullname'].'*" width="32" height="32" /></span>';
+                }
                 // Keep going if we didn't get a local avatar
                 if ($mixture['images']['editorAvatar']['mediaId'] == null) {
                     // ... then try to get an image from Avatar plugin if we didn't get a local avatar and if it's required by setting and avatar plugin's helper has been loaded
