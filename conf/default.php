@@ -35,6 +35,4 @@ $conf['scrollspyToC']       = 1;
 $conf['extractSidebar']     = 1;
 $conf['stickySidebar']      = 0;
 $conf['wrappedSidebar']     = 0;
-$conf['useavatar']          = 1;
-$conf['avatarNs']           = 'user';
 $conf['pageFooterStyle']    = 'mixture';

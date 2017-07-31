@@ -35,6 +35,4 @@ $meta['scrollspyToC']       = array('onoff'); /* enable scrollspy ToC (requires 
 $meta['extractSidebar']     = array('onoff'); /* move Sidebar out of main content as soon as there's enough room */
 $meta['stickySidebar']      = array('onoff'); /* try to keep Sidebar always in viewport (buggy right now) */
 $meta['wrappedSidebar']     = array('onoff'); /* wrap content around sidebar (potential side effects with syntax plugins, for exemple, does not work well with larg WRAP elements) */
-$meta['useavatar']          = array('onoff'); /* use current user's and editor's avatars (supports local images or Avatar plugin) */
-$meta['avatarNs']           = array('string','_pattern' => '/^(|[a-zA-Z\-:]+)$/'); /* namespace containing users' avatars that should be named after user's login (will always override avatar plugin image and it would make sense to use namespace containing users' public pages) */
 $meta['pageFooterStyle']    = array('multichoice', '_choices' => array('mixture','dokuwiki'));/* style of page footer */

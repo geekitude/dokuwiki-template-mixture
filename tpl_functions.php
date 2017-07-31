@@ -240,56 +240,22 @@ function php_mixture_init() {
     if (tpl_getConf('sidebarImg') != null) {
         $mixture['images']['sidebar'] = php_mixture_file(tpl_getConf('sidebarImg'), tpl_getConf('imagesFrom'), "media", $mixture['baseNs']);
     }
-    if (tpl_getConf('useavatar')) {
+    if ($avatarHelper) {
         if ($_SERVER['REMOTE_USER'] != NULL) {
             $user = array();
-            $user['login'] = $_SERVER['REMOTE_USER']; // current user's login
-            $user['fullname'] = $INFO['userinfo']['name']; // current user's fullname
+            $user['user'] = $_SERVER['REMOTE_USER']; // current user's login
+            $user['name'] = $INFO['userinfo']['name']; // current user's fullname
             $user['mail'] = $INFO['userinfo']['mail']; // current user's mail
-            // Firstly try to get a local avatar
-            $tmp = php_mixture_file($user['login'], "namespace", "media", tpl_getConf('avatarNs'));
-            if ($tmp['mediaId'] != null) {
-                $mixture['images']['userAvatar'] = $tmp;
-                $mixture['images']['userAvatar']['img'] = '<span id="mixture__user_avatar" title="'.$user['fullname'].'"><img src="'.ml($tmp['mediaId'],'',true).'" alt="*'.$user['fullname'].'*" width="32" height="32" /></span>';
-            }
-            // Keep going if we didn't get a local avatar
-            if ($mixture['images']['userAvatar']['mediaId'] == null) {
-                // ... then try to get an image from Avatar plugin if we didn't get a local avatar and if it's required by setting and avatar plugin's helper has been loaded
-                if ((tpl_getConf("avatar") == "avatar-plugin") && ($avatarHelper)) {
-                    $mixture['images']['userAvatar']['img'] = '<span id="mixture__user_avatar">'.$avatarHelper->getXHTML($user['mail'], $user['fullname'], 'center', 32).'</span>';
-                    // adding a border to JPEG images (`png` and `gif` images most likely have a transparent background and shouldn't need a border to fit)
-                    if (strpos($mixture['images']['userAvatar']['img'], '.jpg') !== false) {
-                        //$mixture['images']['userAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter borders", $mixture['images']['userAvatar']['img']);
-                        $mixture['images']['userAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter", $mixture['images']['userAvatar']['img']);
-                    }
-                }
-            }
+            $mixture['images']['userAvatar']['img'] = $avatarHelper->getXHTML($user, $user['fullname'], 'center', 32);
         }
         if ($INFO['editor'] != NULL) {
             if ($auth) {
                 $editorAuthInfo = $auth->getUserData($INFO['editor']);
                 $editor = array();
-                $editor['login'] = $INFO['editor']; // current page's editor's login
-                $editor['fullname'] = $editorAuthInfo['name']; // current page's editor's full name
+                $editor['user'] = $INFO['editor']; // current page's editor's login
+                $editor['name'] = $editorAuthInfo['name']; // current page's editor's full name
                 $editor['mail'] = $editorAuthInfo['mail']; // current page's editor's mail
-                // Firstly try to get a local avatar
-                $tmp = php_mixture_file($editor['login'], "namespace", "media", tpl_getConf('avatarNs'));
-                if ($tmp['mediaId'] != null) {
-                    $mixture['images']['editorAvatar'] = $tmp;
-                    $mixture['images']['editorAvatar']['img'] = '<span id="mixture__editor_avatar" class="flex-container-h items-center" title="'.tpl_getLang('lasteditor').'"><img src="'.ml($tmp['mediaId'],'',true).'" alt="*'.$editor['fullname'].'*" width="32" height="32" /></span>';
-                }
-                // Keep going if we didn't get a local avatar
-                if ($mixture['images']['editorAvatar']['mediaId'] == null) {
-                    // ... then try to get an image from Avatar plugin if we didn't get a local avatar and if it's required by setting and avatar plugin's helper has been loaded
-                    if ((tpl_getConf("avatar") == "avatar-plugin") && ($avatarHelper)) {
-                        $mixture['images']['editorAvatar']['img'] = '<span id="mixture__editor_avatar" class="flex-container-h items-center">'.$avatarHelper->getXHTML($editor['mail'], tpl_getLang('lasteditor'), 'center', 32).'</span>';
-                        // adding a border to JPEG images (`png` and `gif` images most likely have a transparent background and shouldn't need a border to fit)
-                        if (strpos($mixture['images']['editorAvatar']['img'], '.jpg') !== false) {
-                            //$mixture['images']['editorAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter borders", $mixture['images']['editorAvatar']['img']);
-                            $mixture['images']['editorAvatar']['img'] = str_replace("mediacenter photo fn", "mediacenter", $mixture['images']['editorAvatar']['img']);
-                        }
-                    }
-                }
+                $mixture['images']['editorAvatar']['img'] = $avatarHelper->getXHTML($editor, tpl_getLang('lasteditor'), 'center', 32);
             }
         }
     }

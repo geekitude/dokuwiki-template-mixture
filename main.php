@@ -214,12 +214,10 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                 <li id="mixture__classic_nav_user" class="dropdown">
                                                     <?php
                                                         if ($_SERVER['REMOTE_USER'] != NULL) {
-                                                            if ($mixture['images']['userAvatar']) {
-                                                                if ($mixture['images']['userAvatar']['svg']) {
-                                                                    echo $mixture['images']['userAvatar']['svg'];
-                                                                } elseif ($mixture['images']['userAvatar']['img']) {
+                                                            if ($mixture['images']['userAvatar']['img']) {
+                                                                echo '<span id="mixture__user_avatar">';
                                                                     echo $mixture['images']['userAvatar']['img'];
-                                                                }
+                                                                echo '</span>';
                                                             } else {
                                                                 echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['profile']."</span>";
                                                             }
@@ -230,7 +228,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                                 tpl_toolsevent('usertools', array());
                                                             echo "</ul>";
                                                         } else {
-                                                            // if "register" action is disabled, show a simple link to login page
+                                                            // if "register" action is disabled, show a simple link to login action
                                                             if (strpos($conf['disableactions'], 'register') !== false) {
                                                                 tpl_action('login', 1, '', 0, '', '', "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>");
                                                             // if "register" action is enabled, show a dropdown proposing both login or register actions
@@ -397,11 +395,9 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                     <span class="flex-container-h items-center">
                                         <?php
                                             if ($mixture['images']['editorAvatar']) {
-                                                if ($mixture['images']['editorAvatar']['svg']) {
-                                                    echo $mixture['images']['editorAvatar']['svg'];
-                                                } elseif ($mixture['images']['editorAvatar']['img']) {
+                                                echo '<span id="mixture__editor_avatar" class="flex-container-h items-center">';
                                                     echo $mixture['images']['editorAvatar']['img'];
-                                                }
+                                                echo '</span>';
                                             } else {
                                                 echo "<span class='label glyph-24' title='".tpl_getLang('lasteditor')."'>".$mixture['glyphs']['user']."</span>";
                                             }
