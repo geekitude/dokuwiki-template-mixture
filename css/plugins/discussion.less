@@ -1,0 +1,61 @@
+/* Plugin adaptation to Mixture template */
+
+.dokuwiki .comment_wrapper {
+    display: inline-block;
+    background-color: @ini_background_alt;
+    width: calc(@ini_site_width - @ini_sidebar_width - (@ini_spacer * 1.1)) !important;
+    padding: 0 @ini_spacer;
+}
+.dokuwiki .comment_wrapper::before {
+  content: "";
+  display: table;
+  clear: both;
+  border-collapse: collapse;
+}
+
+/* Make sure plugin's text area isn't pushed down by unwrapped sidebar if it is longer than document text */
+.dokuwiki .comment_head {
+    font-size: .8em;
+    color: @ini_text_neu;
+}
+.dokuwiki .comment_head span.author {
+    background: url(svg/discussion-user.svg) 0 0 no-repeat;
+}
+[dir=ltr] .dokuwiki .comment_head span.author {
+    padding: 0 0 0 2rem;
+}
+[dir=rtl] .dokuwiki .comment_head span.author {
+    padding: 0 2rem 0 0;
+}
+[dir=ltr] .dokuwiki .comment_head span.author img {
+    margin: .8rem 1rem 0 0;
+}
+[dir=rtl] .dokuwiki .comment_head span.author img {
+    margin: .8rem 1rem 0 0;
+}
+.dokuwiki .comment_head abbr.published {
+    background: url(svg/discussion-calendar.svg) 0 1px no-repeat;
+}
+[dir=ltr] .dokuwiki .comment_head abbr.published {
+    padding: 0 0 0 2.1rem;
+}
+[dir=rtl] .dokuwiki .comment_head abbr.published {
+    padding: 0 2.1rem 0 0;
+}
+.dokuwiki .comment_text {
+    overflow: hidden;
+}
+.dokuwiki .comment_body {
+    display: inline-block;
+    margin: 0 !important;
+}
+.dokuwiki .comment_buttons {
+    display: flex;
+    flex-direction: row-reverse;
+}
+[dir=ltr] .dokuwiki .comment_buttons form {
+    margin: 0 0 .5rem 1rem;
+}
+[dir=rtl] .dokuwiki .comment_buttons form {
+    margin: 0 1rem .5rem 0;
+}
