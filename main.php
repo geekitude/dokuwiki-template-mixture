@@ -139,7 +139,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                     ?>
                                 </h1>
                             <?php else: ?>
-                                <h1 id="mixture__title"><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="'.tpl_getLang('wikihome').' [H]"') ?></h1>
+                                <h1 id="mixture__title"><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="'.tpl_getLang('wikihome').' [H]"'); ?></h1>
                             <?php endif; ?>
                             <?php if ($conf['tagline']): ?>
                                 <?php
@@ -231,7 +231,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                             // if "register" action is disabled, show a simple link to login action
                                                             if (strpos($conf['disableactions'], 'register') !== false) {
                                                                 tpl_action('login', 1, '', 0, '', '', "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>");
-                                                            // if "register" action is enabled, show a dropdown proposing both login or register actions
+                                                            // if "register" action is enabled, show both login or register actions
                                                             } else {
                                                                 echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>";
                                                                 echo "<ul class='dropdown-content'>";

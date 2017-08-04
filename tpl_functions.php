@@ -1063,6 +1063,7 @@ function php_mixture_searchform($ajax = true, $autocomplete = true) {
  */
 function php_mixture_action($action) {
     global $lang;
+
     // if action isn't disabled within DW's setting
     if (strpos($conf['disableactions'], $action) === false) {
         echo "<li>";
@@ -1071,7 +1072,7 @@ function php_mixture_action($action) {
                 tpl_link(wl(),php_mixture_glyph("home", "action", tpl_getLang('wikihome'), true).tpl_getLang('wikihome'),'class="action home" accesskey="h" title="'.tpl_getLang('wikihome').' [H]"');
             // "logout" is a DW's action but uses same action name than "login" and Mixture needs to make a difference to serve correct glyph
             } elseif ($action == "logout") {
-                tpl_action("login", 1, '', 0, "", "", php_mixture_glyph("logout", "action", $lang['btn_login'], true).$lang['btn_logout']);
+                tpl_action("login", 1, '', 0, "", "", php_mixture_glyph("logout", "action", $lang['btn_logout'], true).$lang['btn_logout']);
             } else {
                 tpl_action($action, 1, '', 0, "", "", php_mixture_glyph($action, "action", $lang['btn_'.$action], true).$lang['btn_'.$action]);
             }
