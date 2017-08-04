@@ -29,6 +29,7 @@ $meta['bannerLink']         = array('multichoice','_choices' => array('none','ho
 $meta['sidebarLink']        = array('multichoice','_choices' => array('none','home','namespace_start')); /* 'namespace_start' here stands for sidebar header image's namespace start page */
 $meta['dynamicBranding']    = array('onoff'); /* outside home page, wiki title is replaced by page title and tagline by wiki title */
 $meta['mainNav']            = array('multichoice','_choices' => array('classic','iconic')); /* classic (textual) or iconic main nav? */
+$meta['mergeloggedinas']    = array('onoff'); /* merge LoggedInAs string into usertools dropdown or not */
 $meta['exclusions']         = array('multicheckbox', '_choices' => array('sidebar','topbar','playground:*','user:*','wiki:*'));/* exclude these pages or namespaces from mixture indexes (ie nsindex and subcards) for non admins */
 $meta['extractToC']         = array('onoff'); /* move ToC out of main content as soon as there's enough room */
 $meta['scrollspyToC']       = array('onoff'); /* enable scrollspy ToC (requires previous option to be enabled) */
