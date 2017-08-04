@@ -219,9 +219,19 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                                     echo $mixture['images']['userAvatar']['img'];
                                                                 echo '</span>';
                                                             } else {
-                                                                echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['profile']."</span>";
+                                                                echo "<span class='label glyph-32' title='".$INFO['userinfo']['name'].' ('.$_SERVER['REMOTE_USER'].')'."'>".$mixture['glyphs']['profile']."</span>";
                                                             }
                                                             echo "<ul class='dropdown-content'>";
+                                                                if ($uhp['private']['id']) {
+                                                                    print '<li>';
+                                                                        tpl_link(wl($uhp['private']['id']),php_mixture_glyph($uhp['private']['id'], "usertools", $uhp['private']['string'],true)." ".$uhp['private']['string'],' title="'.$uhp['private']['id'].'"');
+                                                                    print '</li>';
+                                                                }
+                                                                if ($uhp['public']['id']) {
+                                                                    print '<li>';
+                                                                        tpl_link(wl($uhp['public']['id']),php_mixture_glyph($uhp['public']['id'], "usertools", $uhp['public']['string'],true)." ".$uhp['public']['string'],' title="'.$uhp['public']['id'].'"');
+                                                                    print '</li>';
+                                                                }
                                                                 php_mixture_action("profile");
                                                                 php_mixture_action("logout");
                                                                 // DW's event process kept in case a plugin needs it
@@ -257,16 +267,6 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                 ?>
                                             </ul>
                                         </section><!-- /#mixture__usertools -->
-                                        <section id="mixture__loggedinas" class="clearfix">
-                                            <!-- "LOGGEDINAS" -->
-                                            <?php
-                                                if (!empty($_SERVER['REMOTE_USER'])) {
-                                                    echo '<ul><li>';
-                                                        tpl_userinfo(); /* 'Logged in as ...' */
-                                                    echo '</li></ul>';
-                                                }
-                                            ?>
-                                        </section><!-- /#mixture__loggedinas -->
                                         <!-- OTHER SITE TOOLS -->
                                         <section id="mixture__sitetools" class="clearfix">
                                             <h3 class="a11y"><?php echo $lang['site_tools'] ?></h3>

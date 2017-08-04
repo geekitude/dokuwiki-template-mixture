@@ -246,7 +246,8 @@ function php_mixture_init() {
             $user['user'] = $_SERVER['REMOTE_USER']; // current user's login
             $user['name'] = $INFO['userinfo']['name']; // current user's fullname
             $user['mail'] = $INFO['userinfo']['mail']; // current user's mail
-            $mixture['images']['userAvatar']['img'] = $avatarHelper->getXHTML($user, $user['fullname'], 'center', 32);
+            //$mixture['images']['userAvatar']['img'] = $avatarHelper->getXHTML($user, $user['fullname'], 'center', 32);
+            $mixture['images']['userAvatar']['img'] = $avatarHelper->getXHTML($user, $user['name'].' ('.$user['user'].')', 'center', 32);
         }
         if ($INFO['editor'] != NULL) {
             if ($auth) {
@@ -266,6 +267,7 @@ function php_mixture_init() {
     $mixture['glyphs']['admin'] = null;
     $mixture['glyphs']['calendar'] = null;
     $mixture['glyphs']['config'] = null;
+    $mixture['glyphs']['default'] = null;
     $mixture['glyphs']['discussion'] = null;
     $mixture['glyphs']['ellipsis'] = null;
     $mixture['glyphs']['extension'] = null;
@@ -898,25 +900,29 @@ function php_mixture_youarehere() {
  * @param bool      $print return result if true, print it if flase
  */
 function php_mixture_glyph($target = null, $context = "breadcrumbs", $label = null, $return = false) {
-    global $mixture, $trs, $conf, $lang;
+    global $mixture, $trs, $conf, $lang, $uhp;
 
     //if ($what == "page") {
-        $tmp = explode(":", ltrim($target, ":"));
-        if ($context == "breadcrumbs") {
+        if ((($context == "breadcrumbs") || ($context == "usertools")) && (($target == $uhp['private']['id']) || ($target == $uhp['public']['id']))) {
             // Add glyph before user's public page
-            if ((count($tmp) == 2) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns']))) {
-                $glyph =  '<span class="glyph-18" title="'.tpl_getLang('publicpage').'">'.$mixture['glyphs']['users'].'</span>';
+            if ($target == $uhp['public']['id']) {
+                $glyph =  '<span class="glyph-18" title="'.$uhp['public']['string'].'">'.$mixture['glyphs']['users'].'</span>';
             // Add glyph before user's private namespace
-            } elseif ((count($tmp) == 3) && (($tmp[0] == "user") or ($tmp[0] == $conf['plugin']['userhomepage']['public_pages_ns'])) && ($tmp[2] == $conf['start'])) {
-                $glyph =  '<span class="glyph-18" title="'.tpl_getLang('privatens').'">'.$mixture['glyphs']['userprivate'].'</span>';
+            } elseif ($target == $uhp['private']['id']) {
+                $glyph =  '<span class="glyph-18" title="'.$uhp['private']['string'].'">'.$mixture['glyphs']['userprivate'].'</span>';
             // Add a flag SVG image before translations
-            } elseif ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
+            }
+        } elseif ($context == "breadcrumbs") {
+            $tmp = explode(":", ltrim($target, ":"));
+            // Add a flag SVG image before translations
+            if ((strlen($tmp[0]) == 2) && ($tmp[0] != $trs['defaultLang']) && (strpos($conf['plugin']['translation']['translations'], $tmp[0]) !== false)) {
                 $glyph =  '<span class="glyph-18" title="<'.$tmp[0].'>">'.$mixture['glyphs']['translation'].'</span>';
             // Add a house SVG image before home
             } elseif (ltrim($target, ":") == $conf['start']) {
                 $glyph =  '<span class="glyph-18" title="'.tpl_getLang('wikihome').'">'.$mixture['glyphs']['home'].'</span>';
             } else {
-                $glyph =  '<span class="glyph-18" title="*Unknown*">'.$mixture['glyphs']['default'].'</span>';
+                //$glyph =  '<span class="glyph-18" title="*Unknown target ('.$target.', '.$context.')*">'.$mixture['glyphs']['default'].'</span>';
+                return;
             }
         } elseif ($context == "action") {
             if ($target == "home") {
@@ -929,12 +935,14 @@ function php_mixture_glyph($target = null, $context = "breadcrumbs", $label = nu
                 $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs']['index'].'</span>';
             } elseif ($target == "usermanager") {
                 $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs']['users'].'</span>';
-            } else {
+            } elseif (isset($mixture['glyphs'][$target])) {
                 $glyph =  '<span class="glyph-18" title="'.$label.'">'.$mixture['glyphs'][$target].'</span>';
+            } else {
+                $glyph =  '<span class="glyph-18" title="*Unknown action ('.$target.', '.$context.')*">'.$mixture['glyphs']['default'].'</span>';
             }
         } else {
             //$glyph =  '<span class="glyph-18" title="'.$target.' ('.$context.' '.$page.')">'.$mixture['glyphs']['default'].'</span>';
-            $glyph =  '<span class="glyph-18" title="'.$target.' ('.$context.')">'.$mixture['glyphs']['default'].'</span>';
+            $glyph =  '<span class="glyph-18" title="*Unknown target ('.$target.', '.$context.')*">'.$mixture['glyphs']['default'].'</span>';
         }
     //} else {
     //    $glyph =  '<span class="glyph-18" title="'.$target.' ('.$context.' '.$page.')">'.$mixture['glyphs']['default'].'</span>';
