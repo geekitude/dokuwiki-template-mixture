@@ -1,10 +1,10 @@
 /* Plugin adaptation to Mixture template */
 
 .dokuwiki .comment_wrapper {
-    display: inline-block;
     background-color: @ini_background_alt;
-    width: calc(@ini_site_width - @ini_sidebar_width - (@ini_spacer * 1.1)) !important;
+    width: calc(@ini_site_width - @ini_sidebar_width - (@ini_spacer * 1.1));
     padding: 0 @ini_spacer;
+    margin: @ini_spacer auto 0 auto;
 }
 .dokuwiki .comment_wrapper::before {
   content: "";
