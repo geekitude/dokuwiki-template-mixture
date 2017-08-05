@@ -416,7 +416,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                 echo "<span class='label glyph-24' title='".tpl_getLang('lasteditor')."'>".$mixture['glyphs']['user']."</span>";
                                             }
                                         ?>
-                                        <?php echo ($INFO['editor']) ? '<bdi>'.editorinfo($INFO['editor']).'</bdi>' : $lang['external_edit']; ?>
+                                        <?php echo ($INFO['editor']) ? '<bdi title="'.$uhp['public']['string'].'">'.editorinfo($INFO['editor']).'</bdi>' : $lang['external_edit']; ?>
                                     </span>
                                     <span class="flex-container-h items-center"><span class="label glyph-24" title="<?php echo tpl_getLang('lastmoddate'); ?>"><?php echo $mixture['glyphs']['calendar']; ?></span><?php echo ($INFO['lastmod']) ? '<bdi>'.dformat($INFO['lastmod']).'</bdi>' : ''; ?></span>
                                     <span class="flex-container-h items-center"><span class="label glyph-24" title="<?php echo tpl_getLang('pagepath'); ?>"><?php echo $mixture['glyphs']['folder']; ?></span>
