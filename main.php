@@ -402,8 +402,8 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                         <!-- wikipage start -->
                             <?php tpl_content() ?>
                         <!-- wikipage stop -->
+                        <?php tpl_includeFile('pagefooter.html') ?>
                         <?php if (($INFO['exists']) && (tpl_getConf('pageFooterStyle') == 'mixture')) : ?>
-                            <?php tpl_includeFile('pagefooter.html') ?>
                             <div id="mixture__docinfo" class="small clearfix">
                                 <div class="entry-meta flex-container-h items-center justify-center">
                                     <span class="flex-container-h items-center">
@@ -444,7 +444,6 @@ $showSidebar = $hasSidebar && ($ACT=='show');
             </main>
             <!-- ********** FOOTER ********** -->
             <footer id="mixture__footer" role="contentinfo" class="pam pt0">
-                <?php tpl_includeFile('pagefooter.html') ?>
                 <?php if (($INFO['exists']) && (tpl_getConf('pageFooterStyle') == 'dokuwiki')) : ?>
                     <div id="mixture__docinfo" class="small clearfix">
                         <?php tpl_pageinfo() ?>
