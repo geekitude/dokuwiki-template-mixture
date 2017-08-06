@@ -234,19 +234,16 @@ main,
     width: 100%;
     min-width: 250px;
     background-color: @ini_background_neu;
+    /*padding: calc(@ini_spacer / 2) calc(@ini_spacer / 2) 0 calc(@ini_spacer / 2);*/
     padding: calc(@ini_spacer / 2);
     z-index: 1;
-    margin-top: (@ini_spacer / 4);
+    margin-top: @ini_spacer;
 }
 #mixture__classic_nav ul {
     margin: 0;
 }
 #mixture__classic_nav #mixture__sitetools span svg {
     vertical-align: -3px;
-}
-#mixture__classic_nav h3.toggle {
-    font-size: 80%;
-    padding: 0;
 }
 #mixture__classic_nav_admin span.label svg {
     margin: -2px 0 0 0 !important;
@@ -416,12 +413,14 @@ main {
     width: 100%;
     margin: calc(@ini_spacer / 4) 0 0 0;
 }
+#mixture__classic_nav h3.toggle,
 #mixture__sidebar h3.toggle,
 #mixture__sidebar div.content,
 #dw__toc h3.toggle,
 #dw__toc div.li {
     font-size: 80%;
 }
+#mixture__classic_nav h3.toggle,
 #mixture__sidebar h3.toggle,
 #dw__toc h3.toggle,
 #dw__toc div {
@@ -1117,6 +1116,8 @@ ul.dropdown-content hr {
     #mixture__classic_nav {
         background-color: transparent;
         text-align: center;
+        padding: calc(@ini_spacer / 2) calc(@ini_spacer / 2) 0 calc(@ini_spacer / 2);
+        margin-top: calc(@ini_spacer / 4);
     }
     #mixture__classic_nav h3.toggle {
         display: none;
