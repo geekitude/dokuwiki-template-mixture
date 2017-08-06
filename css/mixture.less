@@ -758,10 +758,11 @@ input[type="email"],
 input[type="search"],
 input[type="password"],
 textarea {
+background-color: pink !important;
 	-moz-appearance: none !important;
 	-webkit-appearance: none !important;
 	appearance: none !important;
-    font-size: unit((.95 * @ini_font_factor), rem);
+    font-size: unit((.85 * @ini_font_factor), rem);
     padding: .2rem;
     margin: .1rem 0;
 	border: 2px solid @ini_border;
@@ -772,6 +773,15 @@ textarea {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+}
+@media (min-width: 480px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="search"],
+    input[type="password"],
+    textarea {
+        font-size: unit((.95 * @ini_font_factor), rem);
+    }
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
@@ -803,9 +813,9 @@ input[type="reset"],
 input[type="button"],
 input[type="submit"],
 button {
-   color: @ini_background;
+    color: @ini_background;
 	display:inline-block;
-    font-size: unit((.95 * @ini_font_factor), rem);
+    font-size: unit((.85 * @ini_font_factor), rem);
     padding: 7px;
     margin: 1px 0;
    -moz-appearance: none !important;
@@ -817,6 +827,14 @@ button {
    -webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+}
+@media (min-width: 480px) {
+    input[type="reset"],
+    input[type="button"],
+    input[type="submit"],
+    button {
+        font-size: unit((.95 * @ini_font_factor), rem);
+    }
 }
 /* Consistent height between search form elements */
 input[type="text"],
