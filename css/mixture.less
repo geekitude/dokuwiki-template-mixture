@@ -1331,3 +1331,12 @@ ul.dropdown-content hr {
         max-width: none;
     }
 }
+/* Chrome 29+ */
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    body.hasWidebanner main {
+        margin-top: -.1rem;
+    }
+    body.hasWidebanner #mixture__pagenav ul li div.pageId span {
+        line-height: 3rem;
+    }
+}
