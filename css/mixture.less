@@ -298,9 +298,11 @@ div.breadcrumbs div.youarehere {
     padding: 0 0 calc(@ini_spacer / 4) 0;
 }
 #mixture__pagenav {
+    /*IE z-index hack */
     z-index: 9999;
 }
 #mixture__widebanner {
+    /*IE z-index hack */
     z-index: 1;
 }
 #mixture__widebanner img {
@@ -317,6 +319,7 @@ body.hasWidebanner #mixture__pagenav > ul {
     padding: 0;
     flex-direction: row-reverse;
     width: 100%;
+    /*IE z-index hack */
     z-index: 7;
 }
 #mixture__pagenav ul li {
