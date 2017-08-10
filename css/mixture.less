@@ -296,6 +296,12 @@ div.breadcrumbs div.youarehere {
 #mixture__alerts {
     padding: 0 0 calc(@ini_spacer / 4) 0;
 }
+#mixture__widebanner img {
+    /* IE fox for widebanner larger than main container in wide screen */
+    max-width: @ini_site_width;
+    /* IE fox for widebanner larger than main container in smaller window width */
+    width: 100%;
+}
 body.hasWidebanner #mixture__pagenav > ul {
     margin-top: -3.4rem;
 }
