@@ -331,7 +331,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             $title = "Widebanner";
                             echo '<img id="mixture__widebanner_image" src="'.$widebannerImage.'" title="'.$title.'" alt="*'.$title.'*" '.$mixture['images']['widebanner']['imageSize'][3].' />';
                         ?>
-                    </div><!-- /#mixture__branding_banner -->
+                    </div><!-- /#mixture__widebanner -->
                 <?php endif ?>
                 <?php
                     if (isset($trs['dropdown'])) {
