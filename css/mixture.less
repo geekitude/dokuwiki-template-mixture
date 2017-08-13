@@ -855,8 +855,15 @@ button {
 /* Consistent height between search form elements */
 input[type="text"],
 button {
-    max-height: 3rem;
-    min-height: 3rem;
+    max-height: 2.625rem;
+    min-height: 2.625rem;
+}
+@media (min-width: 480px) {
+    input[type="text"],
+    button {
+        max-height: 3rem;
+        min-height: 3rem;
+    }
 }
 /* Firefox fix for search form (https://davidwalsh.name/firefox-buttons) */
 input[type="text"]::-moz-focus-inner,
