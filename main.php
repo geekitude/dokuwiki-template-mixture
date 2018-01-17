@@ -205,9 +205,27 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                         <div class="inflex">
                                             <section id="mixture__pagetools">
                                                 <ul class="inflex">
-                                                    <li>
-                                                        blah
-                                                    </li>
+                                                    <?php
+                                                        $data = array(
+                                                            'view'  => 'main',
+                                                            'items' => array(
+                                                                'edit'      => tpl_action('edit',      true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/01-edit_pencil.svg')),
+                                                                'revert'    => tpl_action('revert',    true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/06-revert_replay.svg')),
+                                                                'revisions' => tpl_action('revisions', true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/07-revisions_history.svg')),
+                                                                'backlink'  => tpl_action('backlink',  true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/08-backlink_link-variant.svg')),
+                                                                'subscribe' => tpl_action('subscribe', true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/09-subscribe_email-outline.svg')),
+                                                                'top'       => tpl_action('top',       true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/10-top_arrow-up.svg'))
+                                                            )
+                                                        );
+                                                        // the page tools can be amended through a custom plugin hook
+                                                        $evt = new Doku_Event('TEMPLATE_PAGETOOLS_DISPLAY', $data);
+                                                        if($evt->advise_before()){
+                                                            foreach($evt->data['items'] as $k => $html) echo $html;
+                                                        }
+                                                        $evt->advise_after();
+                                                        unset($data);
+                                                        unset($evt);
+                                                    ?>
                                                 </ul>
                                             </section>
                                             <section id="mixture__usertools">
