@@ -213,8 +213,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                                 'revert'    => tpl_action('revert',    true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/06-revert_replay.svg')),
                                                                 'revisions' => tpl_action('revisions', true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/07-revisions_history.svg')),
                                                                 'backlink'  => tpl_action('backlink',  true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/08-backlink_link-variant.svg')),
-                                                                'subscribe' => tpl_action('subscribe', true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/09-subscribe_email-outline.svg')),
-                                                                'top'       => tpl_action('top',       true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/10-top_arrow-up.svg'))
+                                                                'subscribe' => tpl_action('subscribe', true, 'li', true, '<span>', '</span>'.inlineSVG(__DIR__ . '/../dokuwiki/images/tools/09-subscribe_email-outline.svg'))
                                                             )
                                                         );
                                                         // the page tools can be amended through a custom plugin hook
