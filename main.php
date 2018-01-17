@@ -230,12 +230,6 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                             </section>
                                             <section id="mixture__usertools">
                                                 <ul class="inflex">
-                                                    <!-- SEARCH FORM (if "search" action isn't disabled) -->
-                                                    <?php if (strpos($conf['disableactions'], 'search') === false) : ?>
-                                                        <li id="dw__search" class="widget search-wrap">
-                                                            <?php php_mixture_searchform() ?>
-                                                        </li>
-                                                    <?php endif ?>
                                                     <!-- USER MENU -->
                                                     <li id="mixture__classic_nav_user" class="dropdown">
                                                         <?php
@@ -320,6 +314,12 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                     // DW's event process kept in case a plugin needs it
                                                     tpl_toolsevent('sitetools', array());
                                                 ?>
+                                                <!-- SEARCH FORM (if "search" action isn't disabled) -->
+                                                <?php if (strpos($conf['disableactions'], 'search') === false) : ?>
+                                                    <li id="dw__search" class="widget search-wrap">
+                                                        <?php php_mixture_searchform() ?>
+                                                    </li>
+                                                <?php endif ?>
                                             </ul>
                                         </section><!-- /#mixture__sitetools -->
                                     </div><!-- /.content -->
