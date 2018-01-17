@@ -704,13 +704,22 @@ pre.dbg {
 [dir=rtl] [class*="glyph"] {
     padding: 0 0 0 3px;
 }
+/*
 [class*="glyph"] svg {
     vertical-align: top;
     display: inline-block;
-    /*width: 1rem;*/
-    /*height: 1rem;*/
     height: unit(@ini_font_factor, rem);
     width: unit(@ini_font_factor, rem);
+    stroke-width: 0;
+    stroke: transparent;
+    fill: @ini_text_neu;
+}
+*/
+a svg {
+    vertical-align: text-top;
+    display: inline-block;
+    height: unit(@ini_font_factor * 1.5, rem);
+    width: unit(@ini_font_factor * 1.5, rem);
     stroke-width: 0;
     stroke: transparent;
     fill: @ini_text_neu;
