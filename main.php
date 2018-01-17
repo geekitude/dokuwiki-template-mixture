@@ -201,74 +201,83 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                             <?php if (tpl_getConf('mainNav') == "classic") : ?>
                                 <nav id="mixture__classic_nav" class="main-navigation" role="navigation">
                                     <h3 class="toggle tools"><?php echo $lang['tools']; ?></h3>
-                                    <div class="content">
-                                        <section id="mixture__usertools" class="clearfix">
-                                            <ul>
-                                                <!-- SEARCH FORM (if "search" action isn't disabled) -->
-                                                <?php if (strpos($conf['disableactions'], 'search') === false) : ?>
-                                                    <li id="dw__search" class="widget search-wrap">
-                                                        <?php php_mixture_searchform() ?>
+                                    <div class="content" class="clearfix">
+                                        <div class="inflex">
+                                            <section id="mixture__pagetools">
+                                                <ul class="inflex">
+                                                    <li>
+                                                        blah
                                                     </li>
-                                                <?php endif ?>
-                                                <!-- USER MENU -->
-                                                <li id="mixture__classic_nav_user" class="dropdown">
-                                                    <?php
-                                                        if ($_SERVER['REMOTE_USER'] != NULL) {
-                                                            if ($mixture['images']['userAvatar']['img']) {
-                                                                echo '<span id="mixture__user_avatar">';
-                                                                    echo $mixture['images']['userAvatar']['img'];
-                                                                echo '</span>';
-                                                            } else {
-                                                                echo "<span class='label glyph-32' title='".$INFO['userinfo']['name'].' ('.$_SERVER['REMOTE_USER'].')'."'>".$mixture['glyphs']['profile']."</span>";
-                                                            }
-                                                            echo "<ul class='dropdown-content'>";
-                                                                if (tpl_getConf('mergeloggedinas') == true) {
-                                                                    if ($uhp['private']['id']) {
-                                                                        print '<li>';
-                                                                            tpl_link(wl($uhp['private']['id']),php_mixture_glyph($uhp['private']['id'], "usertools", $uhp['private']['string'],true)." ".$uhp['private']['string'],' title="'.$uhp['private']['id'].'"');
-                                                                        print '</li>';
-                                                                    }
-                                                                    if ($uhp['public']['id']) {
-                                                                        print '<li>';
-                                                                            tpl_link(wl($uhp['public']['id']),php_mixture_glyph($uhp['public']['id'], "usertools", $uhp['public']['string'],true)." ".$uhp['public']['string'],' title="'.$uhp['public']['id'].'"');
-                                                                        print '</li>';
-                                                                    }
+                                                </ul>
+                                            </section>
+                                            <section id="mixture__usertools">
+                                                <ul class="inflex">
+                                                    <!-- SEARCH FORM (if "search" action isn't disabled) -->
+                                                    <?php if (strpos($conf['disableactions'], 'search') === false) : ?>
+                                                        <li id="dw__search" class="widget search-wrap">
+                                                            <?php php_mixture_searchform() ?>
+                                                        </li>
+                                                    <?php endif ?>
+                                                    <!-- USER MENU -->
+                                                    <li id="mixture__classic_nav_user" class="dropdown">
+                                                        <?php
+                                                            if ($_SERVER['REMOTE_USER'] != NULL) {
+                                                                if ($mixture['images']['userAvatar']['img']) {
+                                                                    echo '<span id="mixture__user_avatar">';
+                                                                        echo $mixture['images']['userAvatar']['img'];
+                                                                    echo '</span>';
+                                                                } else {
+                                                                    echo "<span class='label glyph-32' title='".$INFO['userinfo']['name'].' ('.$_SERVER['REMOTE_USER'].')'."'>".$mixture['glyphs']['profile']."</span>";
                                                                 }
-                                                                php_mixture_action("profile");
-                                                                php_mixture_action("logout");
-                                                                // DW's event process kept in case a plugin needs it
-                                                                tpl_toolsevent('usertools', array());
-                                                            echo "</ul>";
-                                                        } else {
-                                                            // if "register" action is disabled, show a simple link to login action
-                                                            if (strpos($conf['disableactions'], 'register') !== false) {
-                                                                tpl_action('login', 1, '', 0, '', '', "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>");
-                                                            // if "register" action is enabled, show both login or register actions
-                                                            } else {
-                                                                echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>";
                                                                 echo "<ul class='dropdown-content'>";
-                                                                    php_mixture_action("register");
-                                                                    php_mixture_action("login");
+                                                                    if (tpl_getConf('mergeloggedinas') == true) {
+                                                                        if ($uhp['private']['id']) {
+                                                                            print '<li>';
+                                                                                tpl_link(wl($uhp['private']['id']),php_mixture_glyph($uhp['private']['id'], "usertools", $uhp['private']['string'],true)." ".$uhp['private']['string'],' title="'.$uhp['private']['id'].'"');
+                                                                            print '</li>';
+                                                                        }
+                                                                        if ($uhp['public']['id']) {
+                                                                            print '<li>';
+                                                                                tpl_link(wl($uhp['public']['id']),php_mixture_glyph($uhp['public']['id'], "usertools", $uhp['public']['string'],true)." ".$uhp['public']['string'],' title="'.$uhp['public']['id'].'"');
+                                                                            print '</li>';
+                                                                        }
+                                                                    }
+                                                                    php_mixture_action("profile");
+                                                                    php_mixture_action("logout");
                                                                     // DW's event process kept in case a plugin needs it
                                                                     tpl_toolsevent('usertools', array());
                                                                 echo "</ul>";
+                                                            } else {
+                                                                // if "register" action is disabled, show a simple link to login action
+                                                                if (strpos($conf['disableactions'], 'register') !== false) {
+                                                                    tpl_action('login', 1, '', 0, '', '', "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>");
+                                                                // if "register" action is enabled, show both login or register actions
+                                                                } else {
+                                                                    echo "<span class='label glyph-32' title='".$lang['usertools']."'>".$mixture['glyphs']['login']."</span>";
+                                                                    echo "<ul class='dropdown-content'>";
+                                                                        php_mixture_action("register");
+                                                                        php_mixture_action("login");
+                                                                        // DW's event process kept in case a plugin needs it
+                                                                        tpl_toolsevent('usertools', array());
+                                                                    echo "</ul>";
+                                                                }
                                                             }
+                                                        ?>
+                                                    </li><!-- /#mixture__classic_nav_user -->
+                                                    <!-- ADMIN MENU -->
+                                                    <?php
+                                                        if (($_SERVER['REMOTE_USER'] != NULL) && ($INFO['isadmin'])) {
+                                                            echo '<li id="mixture__classic_nav_admin" class="dropdown">';
+                                                                echo "<span class='label glyph-32' title='".$lang['btn_admin']."'>".$mixture['glyphs']['admin']."</span>";
+                                                                echo "<ul class='dropdown-content'>";
+                                                                    php_mixture_admin();
+                                                                echo "</ul>";
+                                                            echo '</li><!-- /#mixture__classic_nav_admin -->';
                                                         }
                                                     ?>
-                                                </li><!-- /#mixture__classic_nav_user -->
-                                                <!-- ADMIN MENU -->
-                                                <?php
-                                                    if (($_SERVER['REMOTE_USER'] != NULL) && ($INFO['isadmin'])) {
-                                                        echo '<li id="mixture__classic_nav_admin" class="dropdown">';
-                                                            echo "<span class='label glyph-32' title='".$lang['btn_admin']."'>".$mixture['glyphs']['admin']."</span>";
-                                                            echo "<ul class='dropdown-content'>";
-                                                                php_mixture_admin();
-                                                            echo "</ul>";
-                                                        echo '</li><!-- /#mixture__classic_nav_admin -->';
-                                                    }
-                                                ?>
-                                            </ul>
-                                        </section><!-- /#mixture__usertools -->
+                                                </ul>
+                                            </section><!-- /#mixture__usertools -->
+                                        </div><!-- /.inlineflex -->
                                         <?php if (tpl_getConf('mergeloggedinas') != true) : ?>
                                             <section id="mixture__loggedinas" class="clearfix">
                                                 <!-- "LOGGEDINAS" -->
@@ -284,7 +293,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                         <!-- OTHER SITE TOOLS -->
                                         <section id="mixture__sitetools" class="clearfix">
                                             <h3 class="a11y"><?php echo $lang['site_tools'] ?></h3>
-                                            <ul>
+                                            <ul class="inflex">
                                                 <?php
                                                     php_mixture_action("home");
                                                     php_mixture_action("recent");
