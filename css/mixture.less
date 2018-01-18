@@ -261,6 +261,12 @@ main,
     display: inline-flex;
 }
 */
+[dir=ltr] #mixture__classic_nav li + li {
+    margin: 0 0 0 1rem;
+}
+[dir=rtl] #mixture__classic_nav li + li {
+    margin: 0 1rem 0 0;
+}
 #mixture__classic_nav #mixture__usertools ul li.dropdown ul.dropdown-content li {
     white-space: nowrap;
 }
@@ -695,14 +701,22 @@ pre.dbg {
 
 /* =ICONS
 ----------------------------------------------- */
-[class*="glyph"] {
+/*[class*="glyph"] {
     font-size: 0;
-}
+}*/
+/*
 [dir=ltr] [class*="glyph"] {
     padding: 0 3px 0 0;
 }
 [dir=rtl] [class*="glyph"] {
     padding: 0 0 0 3px;
+}
+*/
+[dir=ltr] svg + span {
+    padding: 0 0 0 3px;
+}
+[dir=rtl] svg + span {
+    padding: 0 3px 0 0;
 }
 /*
 [class*="glyph"] svg {
