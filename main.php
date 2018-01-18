@@ -316,7 +316,7 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                 <!-- SEARCH FORM (if "search" action isn't disabled) -->
                                                 <?php if (strpos($conf['disableactions'], 'search') === false) : ?>
                                                     <li id="mixture__search" class="dropdown">
-                                                        <?php echo "<span class='label glyph-20' title='".$lang['btn_search']."'>".$mixture['glyphs']['search']."</span>"; ?>
+                                                        <?php echo "<span class='glyph-20' title='".$lang['btn_search']."'>".$mixture['glyphs']['search']."</span>"; ?>
                                                         <ul class='dropdown-content'>
                                                             <li id="dw__search_wrapper" class="widget search-wrap">
                                                                 <?php php_mixture_searchform(); ?>
