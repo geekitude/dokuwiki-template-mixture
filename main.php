@@ -209,11 +209,11 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                                                         $data = array(
                                                             'view'  => 'main',
                                                             'items' => array(
-                                                                'edit'      => tpl_action('edit',      true, 'li', true, inlineSVG(__DIR__ . '/../dokuwiki/images/tools/01-edit_pencil.svg').'<span>', '</span>'),
-                                                                'revert'    => tpl_action('revert',    true, 'li', true, inlineSVG(__DIR__ . '/../dokuwiki/images/tools/06-revert_replay.svg').'<span>', '</span>'),
-                                                                'revisions' => tpl_action('revisions', true, 'li', true, inlineSVG(__DIR__ . '/../dokuwiki/images/tools/07-revisions_history.svg').'<span>', '</span>'),
-                                                                'backlink'  => tpl_action('backlink',  true, 'li', true, inlineSVG(__DIR__ . '/../dokuwiki/images/tools/08-backlink_link-variant.svg').'<span>', '</span>'),
-                                                                'subscribe' => tpl_action('subscribe', true, 'li', true, inlineSVG(__DIR__ . '/../dokuwiki/images/tools/09-subscribe_email-outline.svg').'<span>', '</span>')
+                                                                'edit'      => tpl_action('edit',      true, 'li', true, inlineSVG(__DIR__ . '/svg/edit.svg').'<span>', '</span>'),
+                                                                'revert'    => tpl_action('revert',    true, 'li', true, inlineSVG(__DIR__ . '/svg/revert.svg').'<span>', '</span>'),
+                                                                'revisions' => tpl_action('revisions', true, 'li', true, inlineSVG(__DIR__ . '/svg/revisions.svg').'<span>', '</span>'),
+                                                                'backlink'  => tpl_action('backlink',  true, 'li', true, inlineSVG(__DIR__ . '/svg/backlink.svg').'<span>', '</span>'),
+                                                                'subscribe' => tpl_action('subscribe', true, 'li', true, inlineSVG(__DIR__ . '/svg/subscribe.svg').'<span>', '</span>')
                                                             )
                                                         );
                                                         // the page tools can be amended through a custom plugin hook
